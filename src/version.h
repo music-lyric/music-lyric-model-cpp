@@ -4,7 +4,7 @@
 namespace music_lyric_model {
 	/**
 	 * Schema version of the proto this binding targets.
-	 * Generated from proto/src/version.txt.
+	 * Generated from proto/src/version.txt by script/generate-proto-version.py.
 	 */
 	inline constexpr const char *SCHEMA_VERSION = "1.0.0";
 }

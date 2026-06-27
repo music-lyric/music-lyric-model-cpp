@@ -1,8 +1,9 @@
 .PHONY: gen configure build clean
 
-# Regenerate gen/ from the proto submodule (requires buf).
+# Regenerate gen/ and src/version.h from the proto submodule (requires buf).
 gen:
 	buf generate proto --template buf.gen.yml
+	python script/generate-proto-version.py
 
 # Configure the CMake build tree into build/.
 configure:
