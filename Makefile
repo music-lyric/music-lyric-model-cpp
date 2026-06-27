@@ -1,19 +1,17 @@
-BUILD_DIR ?= build
-
 .PHONY: gen configure build clean
 
-# Regenerate gen/ from the proto submodule.
+# Regenerate gen/ from the proto submodule (requires buf).
 gen:
 	buf generate proto --template buf.gen.yml
 
-# Configure the CMake build tree.
+# Configure the CMake build tree into build/.
 configure:
-	cmake -S . -B $(BUILD_DIR)
+	cmake --preset default
 
-# Build the library.
+# Build the library (Debug).
 build: configure
-	cmake --build $(BUILD_DIR)
+	cmake --build --preset debug
 
 # Remove the build tree.
 clean:
-	rm -rf $(BUILD_DIR)
+	rm -rf build

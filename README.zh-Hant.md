@@ -2,11 +2,11 @@
 
 [English](./README.md) | [简体中文](./README.zh-Hans.md) | [繁體中文](./README.zh-Hant.md)
 
-The C++ binding for the **music lyric model**.
+**music lyric model** 的 C++ 綁定.
 
-## Usage
+## 使用
 
-Add this repository as a submodule and link it from your CMake project:
+將本儲存庫作為 submodule 引入, 並在你的 CMake 專案中連結:
 
 ```bash
 git submodule add https://github.com/music-lyric/music-lyric-model-cpp.git third_party/music-lyric-model-cpp
@@ -20,7 +20,7 @@ target_link_libraries(your_app PRIVATE music_lyric_model)
 ```cpp
 #include "music_lyric_model.h"
 
-// makeInfo stamps the current SCHEMA_VERSION.
+// makeInfo 會蓋上當前的 SCHEMA_VERSION.
 auto info = music_lyric_model::makeInfo();
 info.set_type(music_lyric_model::INFO_TYPE_NORMAL);
 
@@ -31,29 +31,29 @@ auto fromBytes = music_lyric_model::decodeInfoWithBinary(bytes);
 auto fromJson  = music_lyric_model::decodeInfoWithJson(json);
 ```
 
-## Build
+## 建置
 
-### Requirements
+### 環境需求
 
 - CMake ≥ 3.21
 - Ninja
 
 ### CMake
 
-Configure and build:
+設定並建置:
 
 ```bash
 cmake --preset default
-cmake --build --preset debug      # or: --preset release
+cmake --build --preset debug      # 或: --preset release
 ```
 
 ### Make
 
-Regenerate `gen/` from the proto submodule (requires `buf`):
+從 proto submodule 重新產生 `gen/` (需要 `buf`):
 
 ```bash
-git submodule update --init --recursive   # fetch proto/
+git submodule update --init --recursive   # 拉取 proto/
 make gen
 ```
 
-`make` also wraps the build: `make build`, `make clean`.
+`make` 同樣封裝了建置: `make build`, `make clean`.
