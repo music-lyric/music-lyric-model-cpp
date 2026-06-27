@@ -50,12 +50,12 @@ Thumbs.db
 build/
 Build/
 build-*/
+out/
 
 # CMake Generated files
 CMakeFiles/
 CMakeCache.txt
 cmake_install.cmake
-Makefile
 install_manifest.txt
 compile_commands.json
 
