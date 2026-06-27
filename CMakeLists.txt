@@ -6,6 +6,11 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+# Embed debug info in objects (/Z7) instead of /Zi to avoid PDB write contention
+foreach(_flags CMAKE_C_FLAGS_DEBUG CMAKE_CXX_FLAGS_DEBUG CMAKE_C_FLAGS_RELWITHDEBINFO CMAKE_CXX_FLAGS_RELWITHDEBINFO)
+    string(REPLACE "/Zi" "/Z7" ${_flags} "${${_flags}}")
+endforeach()
+
 # protobuf pinned to exactly 7.35.1 (git v35.1)
 find_package(Protobuf 7.35.1 EXACT CONFIG QUIET)
 if(NOT Protobuf_FOUND)
@@ -13,6 +18,12 @@ if(NOT Protobuf_FOUND)
     set(protobuf_BUILD_TESTS OFF CACHE BOOL "" FORCE)
     set(protobuf_INSTALL OFF CACHE BOOL "" FORCE)
     set(protobuf_BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
+    set(protobuf_MSVC_STATIC_RUNTIME OFF CACHE BOOL "" FORCE)
+    set(protobuf_BUILD_PROTOC_BINARIES OFF CACHE BOOL "" FORCE)
+    set(protobuf_BUILD_LIBUPB OFF CACHE BOOL "" FORCE)
+    set(protobuf_BUILD_CONFORMANCE OFF CACHE BOOL "" FORCE)
+    set(protobuf_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+    set(protobuf_WITH_ZLIB OFF CACHE BOOL "" FORCE)
     FetchContent_Declare(protobuf
         GIT_REPOSITORY https://github.com/protocolbuffers/protobuf.git
         GIT_TAG v35.1
@@ -26,9 +37,13 @@ file(GLOB_RECURSE MUSIC_LYRIC_GEN_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOU
 file(GLOB_RECURSE MUSIC_LYRIC_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 
 add_library(music_lyric_model ${MUSIC_LYRIC_GEN_SOURCES} ${MUSIC_LYRIC_SOURCES})
-add_library(music_lyric::model ALIAS music_lyric_model)
+add_library(music_lyric_model::music_lyric_model ALIAS music_lyric_model)
 
 target_compile_features(music_lyric_model PUBLIC cxx_std_17)
+
+# MSVC reads source as the system code page (e.g. GBK) by default, but abseil/protobuf headers are UTF-8.
+# /bigobj is required by protobuf gencode.
+target_compile_options(music_lyric_model PUBLIC $<$<CXX_COMPILER_ID:MSVC>:/utf-8;/bigobj>)
 
 target_include_directories(music_lyric_model PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/gen>"
