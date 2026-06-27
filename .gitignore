@@ -7,52 +7,51 @@ Thumbs.db
 .env.*
 !.env.example
 
+# Editor
+.vs
+
 # Prerequisites
 *.d
-
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
 
 # Precompiled Headers
 *.gch
 *.pch
 
-# Linker files
+# Linker Files
 *.ilk
 
 # Debugger Files
 *.pdb
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-*.so.*
-
-# Fortran module files
+# Fortran Module
 *.mod
 *.smod
 
-# Compiled Static libraries
+# Compiled Libraries
 *.lai
 *.la
 *.a
 *.lib
+*.so
+*.dylib
+*.dll
+*.so.*
+*.slo
+*.lo
+*.o
+*.obj
 
 # Executables
 *.exe
 *.out
 *.app
 
-# Build directories
+# Build Directories
 build/
 Build/
 build-*/
 
-# CMake generated files
+# CMake Generated files
 CMakeFiles/
 CMakeCache.txt
 cmake_install.cmake
@@ -60,18 +59,20 @@ Makefile
 install_manifest.txt
 compile_commands.json
 
-# Temporary files
+# Temporary Files
 *.tmp
 *.log
 *.bak
 *.swp
 
-# vcpkg
+# Package Manager
 vcpkg_installed/
 
-# debug information files
+# Debug Files
 *.dwo
 
-# test output & cache
+# Test
 Testing/
+
+# Cache
 .cache/
