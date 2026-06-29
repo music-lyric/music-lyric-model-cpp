@@ -22,17 +22,17 @@ namespace music_lyric_model {
 	/**
 	 * Agent with the given id, null when absent.
 	 */
-	const lyric::AgentItem *getAgentById(const google::protobuf::RepeatedPtrField<lyric::AgentItem> &agents, const std::string &id);
+	const lyric::AgentItem* getAgentById(const google::protobuf::RepeatedPtrField<lyric::AgentItem>& agents, const std::string& id);
 
 	/**
 	 * Agent performing a line, resolved from its reference.
 	 */
-	const lyric::AgentItem *getLineAgent(const lyric::Line &line, const google::protobuf::RepeatedPtrField<lyric::AgentItem> &agents);
+	const lyric::AgentItem* getLineAgent(const lyric::Line& line, const google::protobuf::RepeatedPtrField<lyric::AgentItem>& agents);
 
 	/**
 	 * Agent performing the most lines, null when empty.
 	 */
-	const lyric::AgentItem *getPrimaryAgent(const google::protobuf::RepeatedPtrField<lyric::AgentItem> &agents);
-}
+	const lyric::AgentItem* getPrimaryAgent(const google::protobuf::RepeatedPtrField<lyric::AgentItem>& agents);
+} // namespace music_lyric_model
 
 #endif

@@ -16,7 +16,7 @@ namespace music_lyric_model {
 	/**
 	 * Duration of a time range in milliseconds, zero when absent.
 	 */
-	int64_t getTimeDuration(const lyric::Time *time);
-}
+	int64_t getTimeDuration(const lyric::Time* time);
+} // namespace music_lyric_model
 
 #endif

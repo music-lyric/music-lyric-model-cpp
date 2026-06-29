@@ -20,4 +20,4 @@ namespace music_lyric_model {
 	lyric::WordAnnotation makeWordAnnotation() {
 		return {};
 	}
-}
+} // namespace music_lyric_model

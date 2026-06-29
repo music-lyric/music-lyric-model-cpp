@@ -34,9 +34,9 @@ namespace music_lyric_model {
 	 * First annotation item, preferring a language match.
 	 */
 	template <typename T>
-	const T *getFirstAnnotation(const google::protobuf::RepeatedPtrField<T> &items, const std::optional<std::string> &language = std::nullopt) {
+	const T* getFirstAnnotation(const google::protobuf::RepeatedPtrField<T>& items, const std::optional<std::string>& language = std::nullopt) {
 		if (language.has_value()) {
-			for (const auto &item : items) {
+			for (const auto& item : items) {
 				if (item.has_language() && item.language() == *language) {
 					return &item;
 				}
@@ -48,12 +48,12 @@ namespace music_lyric_model {
 	/**
 	 * Translated text of a line, preferring a language match.
 	 */
-	std::optional<std::string> getLineTranslate(const lyric::Line &line, const std::optional<std::string> &language = std::nullopt);
+	std::optional<std::string> getLineTranslate(const lyric::Line& line, const std::optional<std::string>& language = std::nullopt);
 
 	/**
 	 * Romanized text of a line, preferring a language match.
 	 */
-	std::optional<std::string> getLineRoman(const lyric::Line &line, const std::optional<std::string> &language = std::nullopt);
-}
+	std::optional<std::string> getLineRoman(const lyric::Line& line, const std::optional<std::string>& language = std::nullopt);
+} // namespace music_lyric_model
 
 #endif

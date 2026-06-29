@@ -22,22 +22,22 @@ namespace music_lyric_model {
 	/**
 	 * Whether any meta of a case exists.
 	 */
-	bool hasMeta(const google::protobuf::RepeatedPtrField<lyric::MetaItem> &metas, lyric::MetaItem::ContentCase kind);
+	bool hasMeta(const google::protobuf::RepeatedPtrField<lyric::MetaItem>& metas, lyric::MetaItem::ContentCase kind);
 
 	/**
 	 * All metas of a case.
 	 */
-	std::vector<const lyric::MetaItem *> getAllMeta(const google::protobuf::RepeatedPtrField<lyric::MetaItem> &metas, lyric::MetaItem::ContentCase kind);
+	std::vector<const lyric::MetaItem*> getAllMeta(const google::protobuf::RepeatedPtrField<lyric::MetaItem>& metas, lyric::MetaItem::ContentCase kind);
 
 	/**
 	 * First meta of a case, null when absent.
 	 */
-	const lyric::MetaItem *getFirstMeta(const google::protobuf::RepeatedPtrField<lyric::MetaItem> &metas, lyric::MetaItem::ContentCase kind);
+	const lyric::MetaItem* getFirstMeta(const google::protobuf::RepeatedPtrField<lyric::MetaItem>& metas, lyric::MetaItem::ContentCase kind);
 
 	/**
 	 * All metas with the given original key.
 	 */
-	std::vector<const lyric::MetaItem *> getMetaByKey(const google::protobuf::RepeatedPtrField<lyric::MetaItem> &metas, const std::string &key);
-}
+	std::vector<const lyric::MetaItem*> getMetaByKey(const google::protobuf::RepeatedPtrField<lyric::MetaItem>& metas, const std::string& key);
+} // namespace music_lyric_model
 
 #endif

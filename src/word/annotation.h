@@ -37,13 +37,13 @@ namespace music_lyric_model {
 	 * Text joined from every annotation token.
 	 */
 	template <typename T>
-	std::string getWordAnnotationText(const T &item) {
+	std::string getWordAnnotationText(const T& item) {
 		std::string result;
-		for (const auto &word : item.words()) {
+		for (const auto& word : item.words()) {
 			result += word.content();
 		}
 		return result;
 	}
-}
+} // namespace music_lyric_model
 
 #endif

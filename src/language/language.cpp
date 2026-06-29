@@ -5,8 +5,8 @@ namespace music_lyric_model {
 		return {};
 	}
 
-	bool hasLanguage(const google::protobuf::RepeatedPtrField<lyric::LanguageItem> &languages, const std::string &tag) {
-		for (const auto &item : languages) {
+	bool hasLanguage(const google::protobuf::RepeatedPtrField<lyric::LanguageItem>& languages, const std::string& tag) {
+		for (const auto& item : languages) {
 			if (item.tag() == tag) {
 				return true;
 			}
@@ -14,8 +14,8 @@ namespace music_lyric_model {
 		return false;
 	}
 
-	const lyric::LanguageItem *getLanguageByTag(const google::protobuf::RepeatedPtrField<lyric::LanguageItem> &languages, const std::string &tag) {
-		for (const auto &item : languages) {
+	const lyric::LanguageItem* getLanguageByTag(const google::protobuf::RepeatedPtrField<lyric::LanguageItem>& languages, const std::string& tag) {
+		for (const auto& item : languages) {
 			if (item.tag() == tag) {
 				return &item;
 			}
@@ -23,13 +23,13 @@ namespace music_lyric_model {
 		return nullptr;
 	}
 
-	const lyric::LanguageItem *getPrimaryLanguage(const google::protobuf::RepeatedPtrField<lyric::LanguageItem> &languages) {
-		const lyric::LanguageItem *result = nullptr;
-		for (const auto &item : languages) {
+	const lyric::LanguageItem* getPrimaryLanguage(const google::protobuf::RepeatedPtrField<lyric::LanguageItem>& languages) {
+		const lyric::LanguageItem* result = nullptr;
+		for (const auto& item : languages) {
 			if (!result || item.percent() > result->percent()) {
 				result = &item;
 			}
 		}
 		return result;
 	}
-}
+} // namespace music_lyric_model
