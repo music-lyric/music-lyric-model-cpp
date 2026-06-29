@@ -1,4 +1,4 @@
-.PHONY: gen configure build clean
+.PHONY: gen configure build format clean
 
 # Regenerate gen/ and src/version.h from the proto submodule (requires buf).
 gen:
@@ -12,6 +12,10 @@ configure:
 # Build the library (Debug).
 build: configure
 	cmake --build --preset debug
+
+# Format all hand-written sources under src/ in place (requires clang-format).
+format:
+	python script/format-code.py
 
 # Remove the build tree.
 clean:
