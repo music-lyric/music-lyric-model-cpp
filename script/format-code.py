@@ -5,21 +5,16 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SRC = os.path.join(ROOT, "src")
+SOURCES = (os.path.join(ROOT, "src"), os.path.join(ROOT, "test"))
 
-EXCLUDES = {"version.h"}
+EXCLUDES = {}
 
 EXTENSIONS = (".cpp", ".h")
 
 
-def main() -> None:
-    """Format every hand-written source under src/ in place with clang-format."""
-    clang_format = shutil.which("clang-format")
-    if clang_format is None:
-        sys.exit("clang-format not found on PATH")
-
+def handle(path: str, formater: str):
     files = []
-    for dirpath, _, filenames in os.walk(SRC):
+    for dirpath, _, filenames in os.walk(path):
         for name in filenames:
             if name in EXCLUDES or not name.endswith(EXTENSIONS):
                 continue
@@ -27,11 +22,20 @@ def main() -> None:
     files.sort()
 
     if not files:
-        print("no sources found under src/")
+        print(f"no sources found under {path}")
         return
 
-    subprocess.run([clang_format, "-i", *files], check=True)
-    print(f"formatted {len(files)} files under src/")
+    subprocess.run([formater, "-i", *files], check=True)
+    print(f"formatted {len(files)} files under {path}")
+
+
+def main():
+    formater = shutil.which("clang-format")
+    if formater is None:
+        sys.exit("clang-format not found on PATH")
+
+    for src in SOURCES:
+        handle(src)
 
 
 if __name__ == "__main__":
