@@ -57,3 +57,7 @@ make gen
 ```
 
 `make` 同样封装了构建: `make build`, `make clean`.
+
+## 许可证
+
+基于 [MIT License](./LICENSE) 发布.

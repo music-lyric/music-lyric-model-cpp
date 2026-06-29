@@ -57,3 +57,7 @@ make gen
 ```
 
 `make` also wraps the build: `make build`, `make clean`.
+
+## License
+
+Released under the [MIT License](./LICENSE).
