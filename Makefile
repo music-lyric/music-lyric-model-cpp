@@ -1,19 +1,23 @@
-.PHONY: gen configure build format clean
+.PHONY: gen configure build format test clean
 
-# Regenerate gen/ and src/version.h from the proto submodule (requires buf).
+# Regenerate proto info.
 gen:
 	buf generate proto --template buf.gen.yml
 	python script/generate-proto-version.py
 
-# Configure the CMake build tree into build/.
+# Configure cmake info.
 configure:
 	cmake --preset default
 
-# Build the library (Debug).
+# Build the library.
 build: configure
 	cmake --build --preset debug
 
-# Format all hand-written sources under src/ in place (requires clang-format).
+# Build and run the unit tests.
+test: build
+	ctest --test-dir build -C Debug --output-on-failure
+
+# Format all sources.
 format:
 	python script/format-code.py
 

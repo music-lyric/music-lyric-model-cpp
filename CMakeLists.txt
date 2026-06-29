@@ -52,3 +52,15 @@ target_include_directories(music_lyric_model PUBLIC
 )
 
 target_link_libraries(music_lyric_model PUBLIC protobuf::libprotobuf)
+
+if(PROJECT_IS_TOP_LEVEL)
+    enable_testing()
+
+    file(GLOB_RECURSE MUSIC_LYRIC_TEST_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/test/*.cpp")
+
+    add_executable(music_lyric_model_test ${MUSIC_LYRIC_TEST_SOURCES})
+    target_link_libraries(music_lyric_model_test PRIVATE music_lyric_model)
+    target_include_directories(music_lyric_model_test PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/test")
+
+    add_test(NAME music_lyric_model_test COMMAND music_lyric_model_test)
+endif()
