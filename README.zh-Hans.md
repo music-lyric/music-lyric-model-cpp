@@ -24,11 +24,11 @@ target_link_libraries(your_app PRIVATE music_lyric_model)
 auto info = music_lyric_model::makeInfo();
 info.set_type(music_lyric_model::INFO_TYPE_NORMAL);
 
-std::vector<uint8_t> bytes = music_lyric_model::encodeInfoWithBinary(info);
-std::string          json  = music_lyric_model::encodeInfoWithJson(info);
+std::vector<uint8_t> bytes = music_lyric_model::encodeInfo(info);
+std::string          json  = music_lyric_model::infoToJson(info);
 
-auto fromBytes = music_lyric_model::decodeInfoWithBinary(bytes);
-auto fromJson  = music_lyric_model::decodeInfoWithJson(json);
+auto fromBytes = music_lyric_model::decodeInfo(bytes);
+auto fromJson  = music_lyric_model::infoFromJson(json);
 ```
 
 ## 构建

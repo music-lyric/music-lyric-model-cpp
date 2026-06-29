@@ -1,6 +1,8 @@
 #ifndef MUSIC_LYRIC_WORD_ANNOTATION_H_
 #define MUSIC_LYRIC_WORD_ANNOTATION_H_
 
+#include <string>
+
 #include "word/annotation.pb.h"
 
 namespace music_lyric_model {
@@ -30,6 +32,18 @@ namespace music_lyric_model {
 	 * Creates a WordAnnotation, the per-word annotation container.
 	 */
 	lyric::WordAnnotation makeWordAnnotation();
+
+	/**
+	 * Text joined from every annotation token.
+	 */
+	template <typename T>
+	std::string getWordAnnotationText(const T &item) {
+		std::string result;
+		for (const auto &word : item.words()) {
+			result += word.content();
+		}
+		return result;
+	}
 }
 
 #endif
