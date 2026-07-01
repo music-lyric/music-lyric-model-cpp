@@ -99,4 +99,23 @@ namespace music_lyric_model {
 		}
 		return result;
 	}
+
+	std::vector<const lyric::AgentItem*> getAgentsByType(const google::protobuf::RepeatedPtrField<lyric::AgentItem>& agents, lyric::AgentType type) {
+		std::vector<const lyric::AgentItem*> result;
+		for (const auto& item : agents) {
+			if (item.type() == type) {
+				result.push_back(&item);
+			}
+		}
+		return result;
+	}
+
+	bool hasAgent(const google::protobuf::RepeatedPtrField<lyric::AgentItem>& agents, lyric::AgentType type) {
+		for (const auto& item : agents) {
+			if (item.type() == type) {
+				return true;
+			}
+		}
+		return false;
+	}
 } // namespace music_lyric_model

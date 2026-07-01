@@ -78,3 +78,11 @@ TEST_CASE("getPrimaryAgent picks the most lines") {
 	CHECK(getPrimaryAgent(info)->id() == "a2");
 	CHECK(getPrimaryAgent(makeInfo()) == nullptr);
 }
+
+TEST_CASE("getAgentsByType and hasAgent filter by type") {
+	const RepeatedPtrField<AgentItem> agents = makeAgents();
+	CHECK(getAgentsByType(agents, AGENT_TYPE_PERSON).size() == 1);
+	CHECK(getAgentsByType(agents, AGENT_TYPE_PERSON).at(0)->id() == "a1");
+	CHECK(hasAgent(agents, AGENT_TYPE_GROUP) == true);
+	CHECK(hasAgent(agents, AGENT_TYPE_OTHER) == false);
+}

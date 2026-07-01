@@ -67,6 +67,16 @@ namespace music_lyric_model {
 	 * Agent performing the most lines, null when empty.
 	 */
 	const lyric::AgentItem* getPrimaryAgent(const lyric::Info& info);
+
+	/**
+	 * All agents of a type.
+	 */
+	std::vector<const lyric::AgentItem*> getAgentsByType(const google::protobuf::RepeatedPtrField<lyric::AgentItem>& agents, lyric::AgentType type);
+
+	/**
+	 * Whether any agent of a type exists.
+	 */
+	bool hasAgent(const google::protobuf::RepeatedPtrField<lyric::AgentItem>& agents, lyric::AgentType type);
 } // namespace music_lyric_model
 
 #endif
