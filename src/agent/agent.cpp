@@ -34,7 +34,7 @@ namespace music_lyric_model {
 		return nullptr;
 	}
 
-	const lyric::AgentItem* getLineAgent(const lyric::Line& line, const google::protobuf::RepeatedPtrField<lyric::AgentItem>& agents) {
+	const lyric::AgentItem* resolveLineAgent(const lyric::Line& line, const google::protobuf::RepeatedPtrField<lyric::AgentItem>& agents) {
 		const std::string* id = lineAgentId(line);
 		return id ? getAgentById(agents, *id) : nullptr;
 	}

@@ -45,13 +45,13 @@ TEST_CASE("getAgentById finds the agent") {
 	CHECK(getAgentById(agents, "none") == nullptr);
 }
 
-TEST_CASE("getLineAgent resolves a line reference") {
+TEST_CASE("resolveLineAgent resolves a line reference") {
 	const RepeatedPtrField<AgentItem> agents = makeAgents();
 	const Line                        line   = makeAgentLine("a2");
-	REQUIRE(getLineAgent(line, agents) != nullptr);
-	CHECK(getLineAgent(line, agents)->id() == "a2");
-	CHECK(getLineAgent(makeLineNormal(), agents) == nullptr);
-	CHECK(getLineAgent(makeLineInterlude(), agents) == nullptr);
+	REQUIRE(resolveLineAgent(line, agents) != nullptr);
+	CHECK(resolveLineAgent(line, agents)->id() == "a2");
+	CHECK(resolveLineAgent(makeLineNormal(), agents) == nullptr);
+	CHECK(resolveLineAgent(makeLineInterlude(), agents) == nullptr);
 }
 
 TEST_CASE("getAgentLineCounts and getAgentLineCount tally lines per agent") {

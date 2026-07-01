@@ -46,7 +46,7 @@ namespace music_lyric_model {
 	/**
 	 * Agent performing a line, resolved from its reference.
 	 */
-	const lyric::AgentItem* getLineAgent(const lyric::Line& line, const google::protobuf::RepeatedPtrField<lyric::AgentItem>& agents);
+	const lyric::AgentItem* resolveLineAgent(const lyric::Line& line, const google::protobuf::RepeatedPtrField<lyric::AgentItem>& agents);
 
 	/**
 	 * Number of lines each agent performs, keyed by agent id.
