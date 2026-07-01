@@ -17,6 +17,16 @@ namespace music_lyric_model {
 	 * Duration of a time range in milliseconds, zero when absent.
 	 */
 	int64_t getTimeDuration(const lyric::Time* time);
+
+	/**
+	 * Progress within a time range at the given moment, clamped to 0..1.
+	 */
+	double getTimeProgress(const lyric::Time* time, int64_t ms);
+
+	/**
+	 * Whether the time range is active at the given moment in milliseconds.
+	 */
+	bool isTimeActive(const lyric::Time* time, int64_t ms);
 } // namespace music_lyric_model
 
 #endif

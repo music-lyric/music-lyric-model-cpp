@@ -87,3 +87,15 @@ TEST_CASE("getLineAnnotation is absent on an interlude") {
 	CHECK(getLineAnnotation(makeNormalLine()) != nullptr);
 	CHECK(getLineAnnotation(makeInterludeLine()) == nullptr);
 }
+
+TEST_CASE("getActiveLine finds the line at a moment") {
+	google::protobuf::RepeatedPtrField<Line> lines;
+	*lines.Add() = makeNormalLine();
+	*lines.Add() = makeInterludeLine();
+	CHECK(getActiveLineIndex(lines, 1500) == 0);
+	CHECK(getActiveLineIndex(lines, 2500) == 1);
+	CHECK(getActiveLineIndex(lines, 5000) == -1);
+	REQUIRE(getActiveLine(lines, 2500) != nullptr);
+	CHECK(getLineTime(*getActiveLine(lines, 2500))->end() == 3000);
+	CHECK(getActiveLine(lines, 5000) == nullptr);
+}

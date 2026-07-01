@@ -1,5 +1,7 @@
 #include "word/content.h"
 
+#include "common/time.h"
+
 namespace music_lyric_model {
 	lyric::Word makeWordNormal(const lyric::WordNormal& normal) {
 		lyric::Word word;
@@ -43,5 +45,23 @@ namespace music_lyric_model {
 			return &word.normal().annotation().ruby();
 		}
 		return nullptr;
+	}
+
+	int64_t getWordDuration(const lyric::Word& word) {
+		return getTimeDuration(getWordTime(word));
+	}
+
+	int getActiveWordIndex(const google::protobuf::RepeatedPtrField<lyric::Word>& words, int64_t ms) {
+		for (int i = 0, len = words.size(); i < len; i++) {
+			if (isTimeActive(getWordTime(words.Get(i)), ms)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	const lyric::Word* getActiveWord(const google::protobuf::RepeatedPtrField<lyric::Word>& words, int64_t ms) {
+		const int index = getActiveWordIndex(words, ms);
+		return index == -1 ? nullptr : &words.Get(index);
 	}
 } // namespace music_lyric_model

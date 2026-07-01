@@ -1,6 +1,7 @@
 #ifndef MUSIC_LYRIC_WORD_CONTENT_H_
 #define MUSIC_LYRIC_WORD_CONTENT_H_
 
+#include <cstdint>
 #include <string>
 
 #include "word/content.pb.h"
@@ -42,6 +43,21 @@ namespace music_lyric_model {
 	 * Ruby annotation of a word, null when absent.
 	 */
 	const lyric::WordAnnotationRuby* getWordRuby(const lyric::Word& word);
+
+	/**
+	 * Duration of a word in milliseconds.
+	 */
+	int64_t getWordDuration(const lyric::Word& word);
+
+	/**
+	 * Index of the word active at the given moment, or -1 when none.
+	 */
+	int getActiveWordIndex(const google::protobuf::RepeatedPtrField<lyric::Word>& words, int64_t ms);
+
+	/**
+	 * Word active at the given moment, null when none.
+	 */
+	const lyric::Word* getActiveWord(const google::protobuf::RepeatedPtrField<lyric::Word>& words, int64_t ms);
 } // namespace music_lyric_model
 
 #endif

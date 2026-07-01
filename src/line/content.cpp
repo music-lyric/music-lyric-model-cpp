@@ -107,4 +107,18 @@ namespace music_lyric_model {
 		const lyric::LineContent* content = getLineContent(line);
 		return content && content->has_annotation() ? &content->annotation() : nullptr;
 	}
+
+	int getActiveLineIndex(const google::protobuf::RepeatedPtrField<lyric::Line>& lines, int64_t ms) {
+		for (int i = 0, len = lines.size(); i < len; i++) {
+			if (isTimeActive(getLineTime(lines.Get(i)), ms)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	const lyric::Line* getActiveLine(const google::protobuf::RepeatedPtrField<lyric::Line>& lines, int64_t ms) {
+		const int index = getActiveLineIndex(lines, ms);
+		return index == -1 ? nullptr : &lines.Get(index);
+	}
 } // namespace music_lyric_model

@@ -84,6 +84,16 @@ namespace music_lyric_model {
 	 * Annotation of a line, null on an interlude.
 	 */
 	const lyric::LineAnnotation* getLineAnnotation(const lyric::Line& line);
+
+	/**
+	 * Index of the line active at the given moment, or -1 when none.
+	 */
+	int getActiveLineIndex(const google::protobuf::RepeatedPtrField<lyric::Line>& lines, int64_t ms);
+
+	/**
+	 * Line active at the given moment, null when none.
+	 */
+	const lyric::Line* getActiveLine(const google::protobuf::RepeatedPtrField<lyric::Line>& lines, int64_t ms);
 } // namespace music_lyric_model
 
 #endif
