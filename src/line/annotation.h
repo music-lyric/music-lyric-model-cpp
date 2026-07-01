@@ -3,6 +3,7 @@
 
 #include <optional>
 #include <string>
+#include <vector>
 
 #include "line/annotation.pb.h"
 #include "line/content.pb.h"
@@ -54,6 +55,26 @@ namespace music_lyric_model {
 	 * Romanized text of a line, preferring a language match.
 	 */
 	std::optional<std::string> getLineRoman(const lyric::Line& line, const std::optional<std::string>& language = std::nullopt);
+
+	/**
+	 * Line romanizations aggregated from a line's word annotations, grouped by language.
+	 */
+	std::vector<lyric::LineAnnotationRoman> deriveLineRomans(const google::protobuf::RepeatedPtrField<lyric::Word>& words);
+
+	/**
+	 * Line translations aggregated from a line's word annotations, grouped by language.
+	 */
+	std::vector<lyric::LineAnnotationTranslate> deriveLineTranslates(const google::protobuf::RepeatedPtrField<lyric::Word>& words);
+
+	/**
+	 * Line unknown annotations aggregated from a line's word annotations, grouped by original key.
+	 */
+	std::vector<lyric::LineAnnotationUnknown> deriveLineUnknowns(const google::protobuf::RepeatedPtrField<lyric::Word>& words);
+
+	/**
+	 * Builds a LineAnnotation by aggregating a line's word annotations; every item is marked derived.
+	 */
+	lyric::LineAnnotation deriveLineAnnotation(const google::protobuf::RepeatedPtrField<lyric::Word>& words);
 } // namespace music_lyric_model
 
 #endif
