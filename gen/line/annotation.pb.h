@@ -248,9 +248,9 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED LineAnnotationUnknown final : publi
   // accessors -------------------------------------------------------
   enum : int {
     kKeyFieldNumber = 1,
-    kLanguageFieldNumber = 2,
-    kContentFieldNumber = 3,
-    kDerivedFieldNumber = 4,
+    kLanguageFieldNumber = 3,
+    kContentFieldNumber = 4,
+    kDerivedFieldNumber = 2,
   };
   // string key = 1 [json_name = "key"];
   void clear_key() ;
@@ -267,7 +267,7 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED LineAnnotationUnknown final : publi
   ::std::string* PROTOBUF_NONNULL _internal_mutable_key();
 
   public:
-  // optional string language = 2 [json_name = "language"];
+  // optional string language = 3 [json_name = "language"];
   [[nodiscard]] bool has_language()
       const;
   void clear_language() ;
@@ -284,7 +284,7 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED LineAnnotationUnknown final : publi
   ::std::string* PROTOBUF_NONNULL _internal_mutable_language();
 
   public:
-  // string content = 3 [json_name = "content"];
+  // string content = 4 [json_name = "content"];
   void clear_content() ;
   [[nodiscard]] const ::std::string& content() const;
   template <typename Arg_ = const ::std::string&, typename... Args_>
@@ -299,7 +299,7 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED LineAnnotationUnknown final : publi
   ::std::string* PROTOBUF_NONNULL _internal_mutable_content();
 
   public:
-  // bool derived = 4 [json_name = "derived"];
+  // bool derived = 2 [json_name = "derived"];
   void clear_derived() ;
   [[nodiscard]] bool derived() const;
   void set_derived(bool value);
@@ -501,10 +501,11 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED LineAnnotationTranslate final : pub
 
   // accessors -------------------------------------------------------
   enum : int {
-    kLanguageFieldNumber = 1,
-    kContentFieldNumber = 2,
+    kLanguageFieldNumber = 2,
+    kContentFieldNumber = 3,
+    kDerivedFieldNumber = 1,
   };
-  // optional string language = 1 [json_name = "language"];
+  // optional string language = 2 [json_name = "language"];
   [[nodiscard]] bool has_language()
       const;
   void clear_language() ;
@@ -521,7 +522,7 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED LineAnnotationTranslate final : pub
   ::std::string* PROTOBUF_NONNULL _internal_mutable_language();
 
   public:
-  // string content = 2 [json_name = "content"];
+  // string content = 3 [json_name = "content"];
   void clear_content() ;
   [[nodiscard]] const ::std::string& content() const;
   template <typename Arg_ = const ::std::string&, typename... Args_>
@@ -536,11 +537,21 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED LineAnnotationTranslate final : pub
   ::std::string* PROTOBUF_NONNULL _internal_mutable_content();
 
   public:
+  // bool derived = 1 [json_name = "derived"];
+  void clear_derived() ;
+  [[nodiscard]] bool derived() const;
+  void set_derived(bool value);
+
+  private:
+  bool _internal_derived() const;
+  void _internal_set_derived(bool value);
+
+  public:
   // @@protoc_insertion_point(class_scope:lyric.LineAnnotationTranslate)
  private:
   class _Internal;
   using ParseTableT_ =
-      ::google::protobuf::internal::TcParseTable<1, 2,
+      ::google::protobuf::internal::TcParseTable<2, 3,
                           0, 53,
                           2>;
   static constexpr ParseTableT_ InternalGenerateParseTable_(
@@ -571,6 +582,7 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED LineAnnotationTranslate final : pub
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr language_;
     ::google::protobuf::internal::ArenaStringPtr content_;
+    bool derived_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -726,11 +738,11 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED LineAnnotationRoman final : public 
 
   // accessors -------------------------------------------------------
   enum : int {
-    kLanguageFieldNumber = 1,
-    kContentFieldNumber = 2,
-    kDerivedFieldNumber = 3,
+    kLanguageFieldNumber = 2,
+    kContentFieldNumber = 3,
+    kDerivedFieldNumber = 1,
   };
-  // optional string language = 1 [json_name = "language"];
+  // optional string language = 2 [json_name = "language"];
   [[nodiscard]] bool has_language()
       const;
   void clear_language() ;
@@ -747,7 +759,7 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED LineAnnotationRoman final : public 
   ::std::string* PROTOBUF_NONNULL _internal_mutable_language();
 
   public:
-  // string content = 2 [json_name = "content"];
+  // string content = 3 [json_name = "content"];
   void clear_content() ;
   [[nodiscard]] const ::std::string& content() const;
   template <typename Arg_ = const ::std::string&, typename... Args_>
@@ -762,7 +774,7 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED LineAnnotationRoman final : public 
   ::std::string* PROTOBUF_NONNULL _internal_mutable_content();
 
   public:
-  // bool derived = 3 [json_name = "derived"];
+  // bool derived = 1 [json_name = "derived"];
   void clear_derived() ;
   [[nodiscard]] bool derived() const;
   void set_derived(bool value);
@@ -1152,7 +1164,31 @@ inline void LineAnnotationUnknown::set_allocated_key(::std::string* PROTOBUF_NUL
   // @@protoc_insertion_point(field_set_allocated:lyric.LineAnnotationUnknown.key)
 }
 
-// optional string language = 2 [json_name = "language"];
+// bool derived = 2 [json_name = "derived"];
+inline void LineAnnotationUnknown::clear_derived() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.derived_ = false;
+  ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
+}
+inline bool LineAnnotationUnknown::derived() const {
+  // @@protoc_insertion_point(field_get:lyric.LineAnnotationUnknown.derived)
+  return _internal_derived();
+}
+inline void LineAnnotationUnknown::set_derived(bool value) {
+  _internal_set_derived(value);
+  SetHasBit(_impl_._has_bits_[0], 0x00000008U);
+  // @@protoc_insertion_point(field_set:lyric.LineAnnotationUnknown.derived)
+}
+inline bool LineAnnotationUnknown::_internal_derived() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.derived_;
+}
+inline void LineAnnotationUnknown::_internal_set_derived(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.derived_ = value;
+}
+
+// optional string language = 3 [json_name = "language"];
 inline bool LineAnnotationUnknown::has_language() const {
   bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000002U);
   return value;
@@ -1220,7 +1256,7 @@ inline void LineAnnotationUnknown::set_allocated_language(::std::string* PROTOBU
   // @@protoc_insertion_point(field_set_allocated:lyric.LineAnnotationUnknown.language)
 }
 
-// string content = 3 [json_name = "content"];
+// string content = 4 [json_name = "content"];
 inline void LineAnnotationUnknown::clear_content() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.content_.ClearToEmpty();
@@ -1284,35 +1320,35 @@ inline void LineAnnotationUnknown::set_allocated_content(::std::string* PROTOBUF
   // @@protoc_insertion_point(field_set_allocated:lyric.LineAnnotationUnknown.content)
 }
 
-// bool derived = 4 [json_name = "derived"];
-inline void LineAnnotationUnknown::clear_derived() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.derived_ = false;
-  ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
-}
-inline bool LineAnnotationUnknown::derived() const {
-  // @@protoc_insertion_point(field_get:lyric.LineAnnotationUnknown.derived)
-  return _internal_derived();
-}
-inline void LineAnnotationUnknown::set_derived(bool value) {
-  _internal_set_derived(value);
-  SetHasBit(_impl_._has_bits_[0], 0x00000008U);
-  // @@protoc_insertion_point(field_set:lyric.LineAnnotationUnknown.derived)
-}
-inline bool LineAnnotationUnknown::_internal_derived() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.derived_;
-}
-inline void LineAnnotationUnknown::_internal_set_derived(bool value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.derived_ = value;
-}
-
 // -------------------------------------------------------------------
 
 // LineAnnotationRoman
 
-// optional string language = 1 [json_name = "language"];
+// bool derived = 1 [json_name = "derived"];
+inline void LineAnnotationRoman::clear_derived() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.derived_ = false;
+  ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
+}
+inline bool LineAnnotationRoman::derived() const {
+  // @@protoc_insertion_point(field_get:lyric.LineAnnotationRoman.derived)
+  return _internal_derived();
+}
+inline void LineAnnotationRoman::set_derived(bool value) {
+  _internal_set_derived(value);
+  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+  // @@protoc_insertion_point(field_set:lyric.LineAnnotationRoman.derived)
+}
+inline bool LineAnnotationRoman::_internal_derived() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.derived_;
+}
+inline void LineAnnotationRoman::_internal_set_derived(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.derived_ = value;
+}
+
+// optional string language = 2 [json_name = "language"];
 inline bool LineAnnotationRoman::has_language() const {
   bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000001U);
   return value;
@@ -1380,7 +1416,7 @@ inline void LineAnnotationRoman::set_allocated_language(::std::string* PROTOBUF_
   // @@protoc_insertion_point(field_set_allocated:lyric.LineAnnotationRoman.language)
 }
 
-// string content = 2 [json_name = "content"];
+// string content = 3 [json_name = "content"];
 inline void LineAnnotationRoman::clear_content() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.content_.ClearToEmpty();
@@ -1444,35 +1480,35 @@ inline void LineAnnotationRoman::set_allocated_content(::std::string* PROTOBUF_N
   // @@protoc_insertion_point(field_set_allocated:lyric.LineAnnotationRoman.content)
 }
 
-// bool derived = 3 [json_name = "derived"];
-inline void LineAnnotationRoman::clear_derived() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.derived_ = false;
-  ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
-}
-inline bool LineAnnotationRoman::derived() const {
-  // @@protoc_insertion_point(field_get:lyric.LineAnnotationRoman.derived)
-  return _internal_derived();
-}
-inline void LineAnnotationRoman::set_derived(bool value) {
-  _internal_set_derived(value);
-  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
-  // @@protoc_insertion_point(field_set:lyric.LineAnnotationRoman.derived)
-}
-inline bool LineAnnotationRoman::_internal_derived() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.derived_;
-}
-inline void LineAnnotationRoman::_internal_set_derived(bool value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.derived_ = value;
-}
-
 // -------------------------------------------------------------------
 
 // LineAnnotationTranslate
 
-// optional string language = 1 [json_name = "language"];
+// bool derived = 1 [json_name = "derived"];
+inline void LineAnnotationTranslate::clear_derived() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.derived_ = false;
+  ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
+}
+inline bool LineAnnotationTranslate::derived() const {
+  // @@protoc_insertion_point(field_get:lyric.LineAnnotationTranslate.derived)
+  return _internal_derived();
+}
+inline void LineAnnotationTranslate::set_derived(bool value) {
+  _internal_set_derived(value);
+  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+  // @@protoc_insertion_point(field_set:lyric.LineAnnotationTranslate.derived)
+}
+inline bool LineAnnotationTranslate::_internal_derived() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.derived_;
+}
+inline void LineAnnotationTranslate::_internal_set_derived(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.derived_ = value;
+}
+
+// optional string language = 2 [json_name = "language"];
 inline bool LineAnnotationTranslate::has_language() const {
   bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000001U);
   return value;
@@ -1540,7 +1576,7 @@ inline void LineAnnotationTranslate::set_allocated_language(::std::string* PROTO
   // @@protoc_insertion_point(field_set_allocated:lyric.LineAnnotationTranslate.language)
 }
 
-// string content = 2 [json_name = "content"];
+// string content = 3 [json_name = "content"];
 inline void LineAnnotationTranslate::clear_content() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.content_.ClearToEmpty();

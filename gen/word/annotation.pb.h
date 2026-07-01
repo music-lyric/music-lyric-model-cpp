@@ -87,6 +87,14 @@ extern const ::google::protobuf::internal::ClassDataFull WordAnnotationRuby_clas
 #else
 extern const WordAnnotationRubyGlobalsTypeInternal WordAnnotationRuby_globals_;
 #endif  // PROTOBUF_MESSAGE_GLOBALS
+class WordAnnotationTranslate;
+struct WordAnnotationTranslateGlobalsTypeInternal;
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+extern WordAnnotationTranslateGlobalsTypeInternal WordAnnotationTranslate_globals_;
+extern const ::google::protobuf::internal::ClassDataFull WordAnnotationTranslate_class_data_;
+#else
+extern const WordAnnotationTranslateGlobalsTypeInternal WordAnnotationTranslate_globals_;
+#endif  // PROTOBUF_MESSAGE_GLOBALS
 class WordAnnotationUnknown;
 struct WordAnnotationUnknownGlobalsTypeInternal;
 #ifndef PROTOBUF_MESSAGE_GLOBALS
@@ -274,7 +282,7 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED WordAnnotationContent final : publi
   ::std::string* PROTOBUF_NONNULL _internal_mutable_content();
 
   public:
-  // optional .lyric.Time time = 1 [json_name = "time"];
+  // .lyric.Time time = 1 [json_name = "time"];
   [[nodiscard]] bool has_time()
       const;
   void clear_time() ;
@@ -388,7 +396,7 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED WordAnnotationUnknown final : publi
   [[nodiscard]] static const WordAnnotationUnknown& default_instance() {
     return *::google::protobuf::internal::MessageGlobalsBase::ToDefaultInstance<WordAnnotationUnknown>(&WordAnnotationUnknown_globals_);
   }
-  static constexpr int kIndexInFileMessages = 3;
+  static constexpr int kIndexInFileMessages = 4;
   friend void swap(WordAnnotationUnknown& a, WordAnnotationUnknown& b) { a.Swap(&b); }
   inline void Swap(WordAnnotationUnknown* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -538,7 +546,7 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED WordAnnotationUnknown final : publi
   ::std::string* PROTOBUF_NONNULL _internal_mutable_language();
 
   public:
-  // optional .lyric.Time time = 2 [json_name = "time"];
+  // .lyric.Time time = 2 [json_name = "time"];
   [[nodiscard]] bool has_time()
       const;
   void clear_time() ;
@@ -589,6 +597,255 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED WordAnnotationUnknown final : publi
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField< ::lyric::WordAnnotationContent > words_;
     ::google::protobuf::internal::ArenaStringPtr key_;
+    ::google::protobuf::internal::ArenaStringPtr language_;
+    ::lyric::Time* PROTOBUF_NULLABLE time_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_word_2fannotation_2eproto;
+};
+// -------------------------------------------------------------------
+
+class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED WordAnnotationTranslate final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:lyric.WordAnnotationTranslate) */ {
+ public:
+  inline WordAnnotationTranslate() : WordAnnotationTranslate(nullptr) {}
+  ~WordAnnotationTranslate() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(WordAnnotationTranslate* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(WordAnnotationTranslate));
+  }
+#endif
+
+  template <typename = void>
+  explicit constexpr WordAnnotationTranslate(::google::protobuf::internal::ConstantInitialized,
+                           const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+                               class_data);
+
+  inline WordAnnotationTranslate(const WordAnnotationTranslate& from) : WordAnnotationTranslate(nullptr, from) {}
+  inline WordAnnotationTranslate(WordAnnotationTranslate&& from) noexcept : WordAnnotationTranslate(nullptr, ::std::move(from)) {}
+  inline WordAnnotationTranslate& operator=(const WordAnnotationTranslate& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline WordAnnotationTranslate& operator=(WordAnnotationTranslate&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  [[nodiscard]] inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  [[nodiscard]] inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL
+  mutable_unknown_fields() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  [[nodiscard]] static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  [[nodiscard]] static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL
+  GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  [[nodiscard]] static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  [[nodiscard]] static const WordAnnotationTranslate& default_instance() {
+    return *::google::protobuf::internal::MessageGlobalsBase::ToDefaultInstance<WordAnnotationTranslate>(&WordAnnotationTranslate_globals_);
+  }
+  static constexpr int kIndexInFileMessages = 2;
+  friend void swap(WordAnnotationTranslate& a, WordAnnotationTranslate& b) { a.Swap(&b); }
+  inline void Swap(WordAnnotationTranslate* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(WordAnnotationTranslate* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  [[nodiscard]] WordAnnotationTranslate* PROTOBUF_NONNULL
+  New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<WordAnnotationTranslate>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const WordAnnotationTranslate& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const WordAnnotationTranslate& from) { WordAnnotationTranslate::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  [[nodiscard]] bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  [[nodiscard]] static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  [[nodiscard]] static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  [[nodiscard]] ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  [[nodiscard]] ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  [[nodiscard]] ::size_t ByteSizeLong() const final;
+  [[nodiscard]] ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  [[nodiscard]] int GetCachedSize() const {
+    return _impl_._cached_size_.Get();
+  }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(WordAnnotationTranslate* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "lyric.WordAnnotationTranslate"; }
+
+  explicit WordAnnotationTranslate(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  WordAnnotationTranslate(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const WordAnnotationTranslate& from);
+  WordAnnotationTranslate(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, WordAnnotationTranslate&& from) noexcept
+      : WordAnnotationTranslate(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_(
+      const MessageLite& prototype,
+      const ::google::protobuf::internal::TcParseTableBase* PROTOBUF_NULLABLE tc_table = nullptr);
+
+  [[nodiscard]] ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kWordsFieldNumber = 3,
+    kLanguageFieldNumber = 2,
+    kTimeFieldNumber = 1,
+  };
+  // repeated .lyric.WordAnnotationContent words = 3 [json_name = "words"];
+  [[nodiscard]] int words_size()
+      const;
+  private:
+  int _internal_words_size() const;
+
+  public:
+  void clear_words() ;
+  [[nodiscard]] const ::lyric::WordAnnotationContent& words(int index) const;
+  [[nodiscard]] ::lyric::WordAnnotationContent* PROTOBUF_NONNULL mutable_words(int index);
+  ::lyric::WordAnnotationContent* PROTOBUF_NONNULL add_words();
+  [[nodiscard]] const ::google::protobuf::RepeatedPtrField<::lyric::WordAnnotationContent>&
+  words() const;
+  [[nodiscard]] ::google::protobuf::RepeatedPtrField<::lyric::WordAnnotationContent>* PROTOBUF_NONNULL
+  mutable_words();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::lyric::WordAnnotationContent>& _internal_words() const;
+  ::google::protobuf::RepeatedPtrField<::lyric::WordAnnotationContent>* PROTOBUF_NONNULL _internal_mutable_words();
+
+  public:
+  // optional string language = 2 [json_name = "language"];
+  [[nodiscard]] bool has_language()
+      const;
+  void clear_language() ;
+  [[nodiscard]] const ::std::string& language() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_language(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_language();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_language();
+  void set_allocated_language(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_language() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_language(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_language();
+
+  public:
+  // .lyric.Time time = 1 [json_name = "time"];
+  [[nodiscard]] bool has_time()
+      const;
+  void clear_time() ;
+  [[nodiscard]] const ::lyric::Time& time() const;
+  [[nodiscard]] ::lyric::Time* PROTOBUF_NULLABLE release_time();
+  ::lyric::Time* PROTOBUF_NONNULL mutable_time();
+  void set_allocated_time(::lyric::Time* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_time(::lyric::Time* PROTOBUF_NULLABLE value);
+  ::lyric::Time* PROTOBUF_NULLABLE unsafe_arena_release_time();
+
+  private:
+  const ::lyric::Time& _internal_time() const;
+  ::lyric::Time* PROTOBUF_NONNULL _internal_mutable_time();
+
+  public:
+  // @@protoc_insertion_point(class_scope:lyric.WordAnnotationTranslate)
+ private:
+  class _Internal;
+  using ParseTableT_ =
+      ::google::protobuf::internal::TcParseTable<2, 3,
+                          2, 46,
+                          2>;
+  static constexpr ParseTableT_ InternalGenerateParseTable_(
+      const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL class_data);
+  friend class ::google::protobuf::internal::TcParser;
+  #ifndef PROTOBUF_MESSAGE_GLOBALS
+  static const ParseTableT_ _table_;
+  #endif
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  friend ::google::protobuf::internal::PrivateAccess;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                                    ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const WordAnnotationTranslate& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedPtrField< ::lyric::WordAnnotationContent > words_;
     ::google::protobuf::internal::ArenaStringPtr language_;
     ::lyric::Time* PROTOBUF_NULLABLE time_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -654,7 +911,7 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED WordAnnotationRuby final : public :
   [[nodiscard]] static const WordAnnotationRuby& default_instance() {
     return *::google::protobuf::internal::MessageGlobalsBase::ToDefaultInstance<WordAnnotationRuby>(&WordAnnotationRuby_globals_);
   }
-  static constexpr int kIndexInFileMessages = 2;
+  static constexpr int kIndexInFileMessages = 3;
   friend void swap(WordAnnotationRuby& a, WordAnnotationRuby& b) { a.Swap(&b); }
   inline void Swap(WordAnnotationRuby* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -789,7 +1046,7 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED WordAnnotationRuby final : public :
   ::std::string* PROTOBUF_NONNULL _internal_mutable_language();
 
   public:
-  // optional .lyric.Time time = 1 [json_name = "time"];
+  // .lyric.Time time = 1 [json_name = "time"];
   [[nodiscard]] bool has_time()
       const;
   void clear_time() ;
@@ -1049,7 +1306,7 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED WordAnnotationRoman final : public 
   ::std::string* PROTOBUF_NONNULL _internal_mutable_language();
 
   public:
-  // optional .lyric.Time time = 1 [json_name = "time"];
+  // .lyric.Time time = 1 [json_name = "time"];
   [[nodiscard]] bool has_time()
       const;
   void clear_time() ;
@@ -1164,7 +1421,7 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED WordAnnotation final : public ::goo
   [[nodiscard]] static const WordAnnotation& default_instance() {
     return *::google::protobuf::internal::MessageGlobalsBase::ToDefaultInstance<WordAnnotation>(&WordAnnotation_globals_);
   }
-  static constexpr int kIndexInFileMessages = 4;
+  static constexpr int kIndexInFileMessages = 5;
   friend void swap(WordAnnotation& a, WordAnnotation& b) { a.Swap(&b); }
   inline void Swap(WordAnnotation* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -1258,6 +1515,7 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED WordAnnotation final : public ::goo
   enum : int {
     kUnknownsFieldNumber = 1,
     kRomansFieldNumber = 3,
+    kTranslatesFieldNumber = 4,
     kRubyFieldNumber = 2,
   };
   // repeated .lyric.WordAnnotationUnknown unknowns = 1 [json_name = "unknowns"];
@@ -1302,7 +1560,28 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED WordAnnotation final : public ::goo
   ::google::protobuf::RepeatedPtrField<::lyric::WordAnnotationRoman>* PROTOBUF_NONNULL _internal_mutable_romans();
 
   public:
-  // optional .lyric.WordAnnotationRuby ruby = 2 [json_name = "ruby"];
+  // repeated .lyric.WordAnnotationTranslate translates = 4 [json_name = "translates"];
+  [[nodiscard]] int translates_size()
+      const;
+  private:
+  int _internal_translates_size() const;
+
+  public:
+  void clear_translates() ;
+  [[nodiscard]] const ::lyric::WordAnnotationTranslate& translates(int index) const;
+  [[nodiscard]] ::lyric::WordAnnotationTranslate* PROTOBUF_NONNULL mutable_translates(int index);
+  ::lyric::WordAnnotationTranslate* PROTOBUF_NONNULL add_translates();
+  [[nodiscard]] const ::google::protobuf::RepeatedPtrField<::lyric::WordAnnotationTranslate>&
+  translates() const;
+  [[nodiscard]] ::google::protobuf::RepeatedPtrField<::lyric::WordAnnotationTranslate>* PROTOBUF_NONNULL
+  mutable_translates();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::lyric::WordAnnotationTranslate>& _internal_translates() const;
+  ::google::protobuf::RepeatedPtrField<::lyric::WordAnnotationTranslate>* PROTOBUF_NONNULL _internal_mutable_translates();
+
+  public:
+  // .lyric.WordAnnotationRuby ruby = 2 [json_name = "ruby"];
   [[nodiscard]] bool has_ruby()
       const;
   void clear_ruby() ;
@@ -1322,8 +1601,8 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED WordAnnotation final : public ::goo
  private:
   class _Internal;
   using ParseTableT_ =
-      ::google::protobuf::internal::TcParseTable<2, 3,
-                          3, 0,
+      ::google::protobuf::internal::TcParseTable<2, 4,
+                          4, 0,
                           2>;
   static constexpr ParseTableT_ InternalGenerateParseTable_(
       const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL class_data);
@@ -1353,6 +1632,7 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED WordAnnotation final : public ::goo
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField< ::lyric::WordAnnotationUnknown > unknowns_;
     ::google::protobuf::RepeatedPtrField< ::lyric::WordAnnotationRoman > romans_;
+    ::google::protobuf::RepeatedPtrField< ::lyric::WordAnnotationTranslate > translates_;
     ::lyric::WordAnnotationRuby* PROTOBUF_NULLABLE ruby_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1376,7 +1656,7 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED WordAnnotation final : public ::goo
 
 // WordAnnotationContent
 
-// optional .lyric.Time time = 1 [json_name = "time"];
+// .lyric.Time time = 1 [json_name = "time"];
 inline bool WordAnnotationContent::has_time() const {
   bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000002U);
   PROTOBUF_ASSUME(!value || _impl_.time_ != nullptr);
@@ -1537,7 +1817,7 @@ inline void WordAnnotationContent::set_allocated_content(::std::string* PROTOBUF
 
 // WordAnnotationRoman
 
-// optional .lyric.Time time = 1 [json_name = "time"];
+// .lyric.Time time = 1 [json_name = "time"];
 inline bool WordAnnotationRoman::has_time() const {
   bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000004U);
   PROTOBUF_ASSUME(!value || _impl_.time_ != nullptr);
@@ -1755,9 +2035,229 @@ WordAnnotationRoman::_internal_mutable_words() {
 
 // -------------------------------------------------------------------
 
+// WordAnnotationTranslate
+
+// .lyric.Time time = 1 [json_name = "time"];
+inline bool WordAnnotationTranslate::has_time() const {
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000004U);
+  PROTOBUF_ASSUME(!value || _impl_.time_ != nullptr);
+  return value;
+}
+inline const ::lyric::Time& WordAnnotationTranslate::_internal_time() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::lyric::Time* p = _impl_.time_;
+  return p != nullptr ? *p : *::google::protobuf::internal::MessageGlobalsBase::ToDefaultInstance<::lyric::Time>(&::lyric::Time_globals_);
+}
+inline const ::lyric::Time& WordAnnotationTranslate::time() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:lyric.WordAnnotationTranslate.time)
+  return _internal_time();
+}
+inline void WordAnnotationTranslate::unsafe_arena_set_allocated_time(
+    ::lyric::Time* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.time_);
+  }
+  _impl_.time_ = reinterpret_cast<::lyric::Time*>(value);
+  if (value != nullptr) {
+    SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+  } else {
+    ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:lyric.WordAnnotationTranslate.time)
+}
+inline ::lyric::Time* PROTOBUF_NULLABLE WordAnnotationTranslate::release_time() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
+  ::lyric::Time* released = _impl_.time_;
+  _impl_.time_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::lyric::Time* PROTOBUF_NULLABLE WordAnnotationTranslate::unsafe_arena_release_time() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:lyric.WordAnnotationTranslate.time)
+
+  ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
+  ::lyric::Time* temp = _impl_.time_;
+  _impl_.time_ = nullptr;
+  return temp;
+}
+inline ::lyric::Time* PROTOBUF_NONNULL WordAnnotationTranslate::_internal_mutable_time() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.time_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::lyric::Time>(GetArena());
+    _impl_.time_ = reinterpret_cast<::lyric::Time*>(p);
+  }
+  return _impl_.time_;
+}
+inline ::lyric::Time* PROTOBUF_NONNULL WordAnnotationTranslate::mutable_time()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+  ::lyric::Time* _msg = _internal_mutable_time();
+  // @@protoc_insertion_point(field_mutable:lyric.WordAnnotationTranslate.time)
+  return _msg;
+}
+inline void WordAnnotationTranslate::set_allocated_time(::lyric::Time* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.time_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::Message*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+  } else {
+    ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
+  }
+
+  _impl_.time_ = reinterpret_cast<::lyric::Time*>(value);
+  // @@protoc_insertion_point(field_set_allocated:lyric.WordAnnotationTranslate.time)
+}
+
+// optional string language = 2 [json_name = "language"];
+inline bool WordAnnotationTranslate::has_language() const {
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000002U);
+  return value;
+}
+inline void WordAnnotationTranslate::clear_language() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.language_.ClearToEmpty();
+  ClearHasBit(_impl_._has_bits_[0], 0x00000002U);
+}
+inline const ::std::string& WordAnnotationTranslate::language() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:lyric.WordAnnotationTranslate.language)
+  return _internal_language();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void WordAnnotationTranslate::set_language(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  SetHasBit(_impl_._has_bits_[0], 0x00000002U);
+  _impl_.language_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:lyric.WordAnnotationTranslate.language)
+}
+inline ::std::string* PROTOBUF_NONNULL WordAnnotationTranslate::mutable_language()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  SetHasBit(_impl_._has_bits_[0], 0x00000002U);
+  ::std::string* _s = _internal_mutable_language();
+  // @@protoc_insertion_point(field_mutable:lyric.WordAnnotationTranslate.language)
+  return _s;
+}
+inline const ::std::string& WordAnnotationTranslate::_internal_language() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.language_.Get();
+}
+inline void WordAnnotationTranslate::_internal_set_language(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.language_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL WordAnnotationTranslate::_internal_mutable_language() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.language_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE WordAnnotationTranslate::release_language() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:lyric.WordAnnotationTranslate.language)
+  if (!CheckHasBit(_impl_._has_bits_[0], 0x00000002U)) {
+    return nullptr;
+  }
+  ClearHasBit(_impl_._has_bits_[0], 0x00000002U);
+  auto* released = _impl_.language_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.language_.Set("", GetArena());
+  }
+  return released;
+}
+inline void WordAnnotationTranslate::set_allocated_language(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    SetHasBit(_impl_._has_bits_[0], 0x00000002U);
+  } else {
+    ClearHasBit(_impl_._has_bits_[0], 0x00000002U);
+  }
+  _impl_.language_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.language_.IsDefault()) {
+    _impl_.language_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:lyric.WordAnnotationTranslate.language)
+}
+
+// repeated .lyric.WordAnnotationContent words = 3 [json_name = "words"];
+inline int WordAnnotationTranslate::_internal_words_size() const {
+  return _internal_words().size();
+}
+inline int WordAnnotationTranslate::words_size() const {
+  return _internal_words_size();
+}
+inline void WordAnnotationTranslate::clear_words() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.words_.Clear();
+  ClearHasBit(_impl_._has_bits_[0], 0x00000001U);
+}
+inline const ::lyric::WordAnnotationContent& WordAnnotationTranslate::words(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:lyric.WordAnnotationTranslate.words)
+  return _internal_words().Get(index);
+}
+inline ::lyric::WordAnnotationContent* PROTOBUF_NONNULL WordAnnotationTranslate::mutable_words(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:lyric.WordAnnotationTranslate.words)
+  return _internal_mutable_words()->Mutable(index);
+}
+inline ::lyric::WordAnnotationContent* PROTOBUF_NONNULL WordAnnotationTranslate::add_words()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::lyric::WordAnnotationContent* _add =
+      _internal_mutable_words()->InternalAddWithArena(
+          ::google::protobuf::MessageLite::internal_visibility(), GetArena());
+  SetHasBit(_impl_._has_bits_[0], 0x00000001U);
+  // @@protoc_insertion_point(field_add:lyric.WordAnnotationTranslate.words)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::lyric::WordAnnotationContent>& WordAnnotationTranslate::words() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:lyric.WordAnnotationTranslate.words)
+  return _internal_words();
+}
+inline ::google::protobuf::RepeatedPtrField<::lyric::WordAnnotationContent>* PROTOBUF_NONNULL
+WordAnnotationTranslate::mutable_words() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  SetHasBit(_impl_._has_bits_[0], 0x00000001U);
+  // @@protoc_insertion_point(field_mutable_list:lyric.WordAnnotationTranslate.words)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_words();
+}
+inline const ::google::protobuf::RepeatedPtrField<::lyric::WordAnnotationContent>&
+WordAnnotationTranslate::_internal_words() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.words_;
+}
+inline ::google::protobuf::RepeatedPtrField<::lyric::WordAnnotationContent>* PROTOBUF_NONNULL
+WordAnnotationTranslate::_internal_mutable_words() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.words_;
+}
+
+// -------------------------------------------------------------------
+
 // WordAnnotationRuby
 
-// optional .lyric.Time time = 1 [json_name = "time"];
+// .lyric.Time time = 1 [json_name = "time"];
 inline bool WordAnnotationRuby::has_time() const {
   bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000004U);
   PROTOBUF_ASSUME(!value || _impl_.time_ != nullptr);
@@ -2065,7 +2565,7 @@ inline void WordAnnotationUnknown::set_allocated_key(::std::string* PROTOBUF_NUL
   // @@protoc_insertion_point(field_set_allocated:lyric.WordAnnotationUnknown.key)
 }
 
-// optional .lyric.Time time = 2 [json_name = "time"];
+// .lyric.Time time = 2 [json_name = "time"];
 inline bool WordAnnotationUnknown::has_time() const {
   bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000008U);
   PROTOBUF_ASSUME(!value || _impl_.time_ != nullptr);
@@ -2340,16 +2840,16 @@ WordAnnotation::_internal_mutable_unknowns() {
   return &_impl_.unknowns_;
 }
 
-// optional .lyric.WordAnnotationRuby ruby = 2 [json_name = "ruby"];
+// .lyric.WordAnnotationRuby ruby = 2 [json_name = "ruby"];
 inline bool WordAnnotation::has_ruby() const {
-  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000004U);
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000008U);
   PROTOBUF_ASSUME(!value || _impl_.ruby_ != nullptr);
   return value;
 }
 inline void WordAnnotation::clear_ruby() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.ruby_ != nullptr) _impl_.ruby_->Clear();
-  ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
 }
 inline const ::lyric::WordAnnotationRuby& WordAnnotation::_internal_ruby() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
@@ -2368,16 +2868,16 @@ inline void WordAnnotation::unsafe_arena_set_allocated_ruby(
   }
   _impl_.ruby_ = reinterpret_cast<::lyric::WordAnnotationRuby*>(value);
   if (value != nullptr) {
-    SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+    SetHasBit(_impl_._has_bits_[0], 0x00000008U);
   } else {
-    ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
+    ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:lyric.WordAnnotation.ruby)
 }
 inline ::lyric::WordAnnotationRuby* PROTOBUF_NULLABLE WordAnnotation::release_ruby() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
-  ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
   ::lyric::WordAnnotationRuby* released = _impl_.ruby_;
   _impl_.ruby_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
@@ -2397,7 +2897,7 @@ inline ::lyric::WordAnnotationRuby* PROTOBUF_NULLABLE WordAnnotation::unsafe_are
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:lyric.WordAnnotation.ruby)
 
-  ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
   ::lyric::WordAnnotationRuby* temp = _impl_.ruby_;
   _impl_.ruby_ = nullptr;
   return temp;
@@ -2412,7 +2912,7 @@ inline ::lyric::WordAnnotationRuby* PROTOBUF_NONNULL WordAnnotation::_internal_m
 }
 inline ::lyric::WordAnnotationRuby* PROTOBUF_NONNULL WordAnnotation::mutable_ruby()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000008U);
   ::lyric::WordAnnotationRuby* _msg = _internal_mutable_ruby();
   // @@protoc_insertion_point(field_mutable:lyric.WordAnnotation.ruby)
   return _msg;
@@ -2429,9 +2929,9 @@ inline void WordAnnotation::set_allocated_ruby(::lyric::WordAnnotationRuby* PROT
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+    SetHasBit(_impl_._has_bits_[0], 0x00000008U);
   } else {
-    ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
+    ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
   }
 
   _impl_.ruby_ = reinterpret_cast<::lyric::WordAnnotationRuby*>(value);
@@ -2491,6 +2991,61 @@ inline ::google::protobuf::RepeatedPtrField<::lyric::WordAnnotationRoman>* PROTO
 WordAnnotation::_internal_mutable_romans() {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return &_impl_.romans_;
+}
+
+// repeated .lyric.WordAnnotationTranslate translates = 4 [json_name = "translates"];
+inline int WordAnnotation::_internal_translates_size() const {
+  return _internal_translates().size();
+}
+inline int WordAnnotation::translates_size() const {
+  return _internal_translates_size();
+}
+inline void WordAnnotation::clear_translates() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.translates_.Clear();
+  ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
+}
+inline const ::lyric::WordAnnotationTranslate& WordAnnotation::translates(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:lyric.WordAnnotation.translates)
+  return _internal_translates().Get(index);
+}
+inline ::lyric::WordAnnotationTranslate* PROTOBUF_NONNULL WordAnnotation::mutable_translates(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:lyric.WordAnnotation.translates)
+  return _internal_mutable_translates()->Mutable(index);
+}
+inline ::lyric::WordAnnotationTranslate* PROTOBUF_NONNULL WordAnnotation::add_translates()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::lyric::WordAnnotationTranslate* _add =
+      _internal_mutable_translates()->InternalAddWithArena(
+          ::google::protobuf::MessageLite::internal_visibility(), GetArena());
+  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+  // @@protoc_insertion_point(field_add:lyric.WordAnnotation.translates)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::lyric::WordAnnotationTranslate>& WordAnnotation::translates() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:lyric.WordAnnotation.translates)
+  return _internal_translates();
+}
+inline ::google::protobuf::RepeatedPtrField<::lyric::WordAnnotationTranslate>* PROTOBUF_NONNULL
+WordAnnotation::mutable_translates() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+  // @@protoc_insertion_point(field_mutable_list:lyric.WordAnnotation.translates)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_translates();
+}
+inline const ::google::protobuf::RepeatedPtrField<::lyric::WordAnnotationTranslate>&
+WordAnnotation::_internal_translates() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.translates_;
+}
+inline ::google::protobuf::RepeatedPtrField<::lyric::WordAnnotationTranslate>* PROTOBUF_NONNULL
+WordAnnotation::_internal_mutable_translates() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.translates_;
 }
 
 #ifdef __GNUC__

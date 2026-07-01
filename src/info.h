@@ -38,11 +38,6 @@ namespace music_lyric_model {
 	lyric::Info infoFromJson(const std::string& json);
 
 	/**
-	 * Fills each line agent's index and each agent's line count snapshots.
-	 */
-	void calcAgentIndex(lyric::Info& info);
-
-	/**
 	 * Sorts lines and their background lines by start time ascending.
 	 */
 	void sortLinesByTime(lyric::Info& info);

@@ -4,48 +4,52 @@
 
 using namespace music_lyric_model;
 using namespace lyric;
-using google::protobuf::RepeatedPtrField;
 
 namespace {
-	RepeatedPtrField<MetaItem> makeMetas() {
-		RepeatedPtrField<MetaItem> metas;
-		MetaItem*                  ti = metas.Add();
-		ti->set_key("ti");
-		ti->set_title("Song");
-		MetaItem* ar1 = metas.Add();
-		ar1->set_key("ar");
-		ar1->set_singer("Alice");
-		MetaItem* ar2 = metas.Add();
-		ar2->set_key("ar");
-		ar2->set_singer("Bob");
-		MetaItem* offset = metas.Add();
-		offset->set_key("offset");
-		offset->set_offset(120);
-		return metas;
+	Meta makeSampleMeta() {
+		Meta meta;
+
+		MetaText* ja = meta.add_titles();
+		ja->set_value("歌");
+		MetaText* en = meta.add_titles();
+		en->set_language("en");
+		en->set_value("Song");
+
+		MetaCredit* credit = meta.add_credits();
+		credit->set_role("lyricist");
+		credit->add_names()->set_value("Alice");
+
+		MetaUnknown* unknown = meta.add_unknowns();
+		unknown->set_key("mood");
+		unknown->set_value("calm");
+
+		MetaReference* reference = meta.add_references();
+		reference->set_platform("apple");
+		reference->add_ids("us-1");
+		reference->add_ids("jp-2");
+
+		return meta;
 	}
 } // namespace
 
-TEST_CASE("hasMeta checks presence by case") {
-	const RepeatedPtrField<MetaItem> metas = makeMetas();
-	CHECK(hasMeta(metas, MetaItem::kTitle) == true);
-	CHECK(hasMeta(metas, MetaItem::kAlbum) == false);
+TEST_CASE("getMetaText prefers a language match then falls back") {
+	const Meta meta = makeSampleMeta();
+	CHECK(getMetaText(meta.titles(), std::string("en")) == std::string("Song"));
+	CHECK(getMetaText(meta.titles()) == std::string("歌"));
+	CHECK(getMetaText(meta.titles(), std::string("ko")) == std::string("歌"));
+	CHECK(getMetaText(meta.artists()) == std::nullopt);
 }
 
-TEST_CASE("getFirstMeta reads the typed value") {
-	const RepeatedPtrField<MetaItem> metas = makeMetas();
-	REQUIRE(getFirstMeta(metas, MetaItem::kTitle) != nullptr);
-	CHECK(getFirstMeta(metas, MetaItem::kTitle)->title() == "Song");
-	REQUIRE(getFirstMeta(metas, MetaItem::kOffset) != nullptr);
-	CHECK(getFirstMeta(metas, MetaItem::kOffset)->offset() == 120);
-	CHECK(getFirstMeta(metas, MetaItem::kAlbum) == nullptr);
+TEST_CASE("getMetaUnknown reads values by original key") {
+	const Meta meta = makeSampleMeta();
+	REQUIRE(getMetaUnknown(meta.unknowns(), "mood").size() == 1);
+	CHECK(getMetaUnknown(meta.unknowns(), "mood").at(0) == "calm");
+	CHECK(getMetaUnknown(meta.unknowns(), "none").empty());
 }
 
-TEST_CASE("getAllMeta returns every entry of a case") {
-	const RepeatedPtrField<MetaItem> metas = makeMetas();
-	CHECK(getAllMeta(metas, MetaItem::kSinger).size() == 2);
-}
-
-TEST_CASE("getMetaByKey groups by original key") {
-	const RepeatedPtrField<MetaItem> metas = makeMetas();
-	CHECK(getMetaByKey(metas, "ar").size() == 2);
+TEST_CASE("getMetaReference reads ids by platform") {
+	const Meta meta = makeSampleMeta();
+	CHECK(getMetaReference(meta.references(), "apple").size() == 2);
+	CHECK(getMetaReference(meta.references(), "apple").at(1) == "jp-2");
+	CHECK(getMetaReference(meta.references(), "none").empty());
 }

@@ -11,19 +11,24 @@ namespace music_lyric_model {
 	using namespace lyric;
 
 	/**
-	 * Creates a normal line wrapped in a Line.
+	 * Creates a LineContent, the sung content shared by normal and background lines.
 	 */
-	lyric::Line makeLineNormal(const lyric::LineNormal& normal = {});
+	lyric::LineContent makeLineContent(const lyric::LineContent& content = {});
+
+	/**
+	 * Creates a normal line wrapped in a Line, with an optional time range.
+	 */
+	lyric::Line makeLineNormal(const lyric::LineNormal& normal = {}, const lyric::Time* time = nullptr);
 
 	/**
 	 * Creates a LineBackground, a background line attached to a normal line.
 	 */
-	lyric::LineBackground makeLineBackground();
+	lyric::LineBackground makeLineBackground(const lyric::LineBackground& background = {});
 
 	/**
-	 * Creates an interlude wrapped in a Line.
+	 * Creates an interlude wrapped in a Line, with an optional time range.
 	 */
-	lyric::Line makeLineInterlude(const lyric::LineInterlude& interlude = {});
+	lyric::Line makeLineInterlude(const lyric::Time* time = nullptr);
 
 	/**
 	 * Whether a Line holds a normal line.
@@ -44,6 +49,11 @@ namespace music_lyric_model {
 	 * Duration of a line in milliseconds.
 	 */
 	int64_t getLineDuration(const lyric::Line& line);
+
+	/**
+	 * Content of a line, null on an interlude.
+	 */
+	const lyric::LineContent* getLineContent(const lyric::Line& line);
 
 	/**
 	 * Words of a line, empty for an interlude.

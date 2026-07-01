@@ -9,6 +9,10 @@ namespace music_lyric_model {
 		return {};
 	}
 
+	lyric::WordAnnotationTranslate makeWordAnnotationTranslate() {
+		return {};
+	}
+
 	lyric::WordAnnotationRuby makeWordAnnotationRuby() {
 		return {};
 	}

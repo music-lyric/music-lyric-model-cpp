@@ -26,7 +26,7 @@ namespace {
 		*annotation.mutable_translates() = makeTranslates();
 		annotation.add_romans()->set_content("nihao");
 		LineNormal body;
-		*body.mutable_annotation() = annotation;
+		*body.mutable_content()->mutable_annotation() = annotation;
 		return makeLineNormal(body);
 	}
 } // namespace

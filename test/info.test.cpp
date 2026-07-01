@@ -16,11 +16,12 @@ namespace {
 		WordNormal w;
 		w.set_content(content);
 		LineNormal body;
-		body.mutable_time()->set_start(start);
-		body.mutable_time()->set_end(end);
-		body.mutable_agent()->set_id("a1");
-		*body.add_words() = makeWordNormal(w);
-		return makeLineNormal(body);
+		body.mutable_content()->mutable_agent()->set_id("a1");
+		*body.mutable_content()->add_words() = makeWordNormal(w);
+		Time time;
+		time.set_start(start);
+		time.set_end(end);
+		return makeLineNormal(body, &time);
 	}
 
 	Info buildInfo() {
@@ -29,30 +30,16 @@ namespace {
 		info.add_agents()->set_id("a2");
 		*info.add_lines() = makeAgentLine(1000, 2000, "hello");
 		*info.add_lines() = makeAgentLine(2000, 3000, "world");
-		LineInterlude interlude;
-		interlude.mutable_time()->set_start(3000);
-		interlude.mutable_time()->set_end(4000);
-		*info.add_lines() = makeLineInterlude(interlude);
+		Time interlude;
+		interlude.set_start(3000);
+		interlude.set_end(4000);
+		*info.add_lines() = makeLineInterlude(&interlude);
 		return info;
 	}
 } // namespace
 
 TEST_CASE("makeInfo always stamps the schema version") {
 	CHECK(makeInfo().version() == SCHEMA_VERSION);
-}
-
-TEST_CASE("calcAgentIndex fills index and count snapshots") {
-	Info info = buildInfo();
-	calcAgentIndex(info);
-	REQUIRE(isLineNormal(info.lines(0)));
-	REQUIRE(isLineNormal(info.lines(1)));
-	CHECK(info.lines(0).normal().agent().global_index() == 0);
-	CHECK(info.lines(1).normal().agent().global_index() == 1);
-	CHECK(info.lines(1).normal().agent().block_index() == 1);
-	REQUIRE(getAgentById(info.agents(), "a1") != nullptr);
-	CHECK(getAgentById(info.agents(), "a1")->count() == 2);
-	REQUIRE(getAgentById(info.agents(), "a2") != nullptr);
-	CHECK(getAgentById(info.agents(), "a2")->count() == 0);
 }
 
 TEST_CASE("sortLinesByTime orders ascending") {

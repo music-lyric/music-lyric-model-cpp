@@ -64,7 +64,7 @@ constexpr Info::ParseTableT_ Info::InternalGenerateParseTable_(const ::_pbi::Cla
       {::_pbi::TcParser::MiniParse, {}},
       // string version = 1 [json_name = "version"];
       {::_pbi::TcParser::FastUS1,
-       {10, 4, 0,
+       {10, 3, 0,
         PROTOBUF_FIELD_OFFSET(Info, _impl_.version_)}},
       // .lyric.InfoType type = 2 [json_name = "type"];
       {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Info, _impl_.type_), 5>(),
@@ -74,45 +74,45 @@ constexpr Info::ParseTableT_ Info::InternalGenerateParseTable_(const ::_pbi::Cla
       {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Info, _impl_.timing_), 6>(),
        {24, 6, 0,
         PROTOBUF_FIELD_OFFSET(Info, _impl_.timing_)}},
-      // repeated .lyric.MetaItem metas = 4 [json_name = "metas"];
-      {::_pbi::TcParser::FastMtR1,
-       {34, 0, 0,
-        PROTOBUF_FIELD_OFFSET(Info, _impl_.metas_)}},
+      // .lyric.Meta meta = 4 [json_name = "meta"];
+      {::_pbi::TcParser::FastMtS1,
+       {34, 4, 0,
+        PROTOBUF_FIELD_OFFSET(Info, _impl_.meta_)}},
       // repeated .lyric.LanguageItem languages = 5 [json_name = "languages"];
       {::_pbi::TcParser::FastMtR1,
-       {42, 1, 1,
+       {42, 0, 1,
         PROTOBUF_FIELD_OFFSET(Info, _impl_.languages_)}},
       // repeated .lyric.AgentItem agents = 6 [json_name = "agents"];
       {::_pbi::TcParser::FastMtR1,
-       {50, 2, 2,
+       {50, 1, 2,
         PROTOBUF_FIELD_OFFSET(Info, _impl_.agents_)}},
       // repeated .lyric.Line lines = 7 [json_name = "lines"];
       {::_pbi::TcParser::FastMtR1,
-       {58, 3, 3,
+       {58, 2, 3,
         PROTOBUF_FIELD_OFFSET(Info, _impl_.lines_)}},
     }}, {{
       65535, 65535
     }}, {{
       // string version = 1 [json_name = "version"];
-      {PROTOBUF_FIELD_OFFSET(Info, _impl_.version_), _Internal::kHasBitsOffset + 4, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+      {PROTOBUF_FIELD_OFFSET(Info, _impl_.version_), _Internal::kHasBitsOffset + 3, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
       // .lyric.InfoType type = 2 [json_name = "type"];
       {PROTOBUF_FIELD_OFFSET(Info, _impl_.type_), _Internal::kHasBitsOffset + 5, 0, (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
       // .lyric.InfoTiming timing = 3 [json_name = "timing"];
       {PROTOBUF_FIELD_OFFSET(Info, _impl_.timing_), _Internal::kHasBitsOffset + 6, 0, (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
-      // repeated .lyric.MetaItem metas = 4 [json_name = "metas"];
-      {PROTOBUF_FIELD_OFFSET(Info, _impl_.metas_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+      // .lyric.Meta meta = 4 [json_name = "meta"];
+      {PROTOBUF_FIELD_OFFSET(Info, _impl_.meta_), _Internal::kHasBitsOffset + 4, 0, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
       // repeated .lyric.LanguageItem languages = 5 [json_name = "languages"];
-      {PROTOBUF_FIELD_OFFSET(Info, _impl_.languages_), _Internal::kHasBitsOffset + 1, 1, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+      {PROTOBUF_FIELD_OFFSET(Info, _impl_.languages_), _Internal::kHasBitsOffset + 0, 1, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
       // repeated .lyric.AgentItem agents = 6 [json_name = "agents"];
-      {PROTOBUF_FIELD_OFFSET(Info, _impl_.agents_), _Internal::kHasBitsOffset + 2, 2, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+      {PROTOBUF_FIELD_OFFSET(Info, _impl_.agents_), _Internal::kHasBitsOffset + 1, 2, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
       // repeated .lyric.Line lines = 7 [json_name = "lines"];
-      {PROTOBUF_FIELD_OFFSET(Info, _impl_.lines_), _Internal::kHasBitsOffset + 3, 3, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+      {PROTOBUF_FIELD_OFFSET(Info, _impl_.lines_), _Internal::kHasBitsOffset + 2, 3, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
     }},
     {{
         #ifndef PROTOBUF_MESSAGE_GLOBALS
-        {::_pbi::TcParser::GetTable<::lyric::MetaItem>()},
+        {::_pbi::TcParser::GetTable<::lyric::Meta>()},
         #else
-        {::_pbi::FieldAuxMessageGlobals(), &::lyric::MetaItem_globals_},
+        {::_pbi::FieldAuxMessageGlobals(), &::lyric::Meta_globals_},
         #endif
         #ifndef PROTOBUF_MESSAGE_GLOBALS
         {::_pbi::TcParser::GetTable<::lyric::LanguageItem>()},
@@ -143,11 +143,6 @@ inline constexpr Info::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        metas_ { visibility, ::_pbi::InternalMetadataOffset::Build<
-            ::lyric::Info,
-            PROTOBUF_FIELD_OFFSET(::lyric::Info, _impl_.metas_)>()
-         }
-        ,
         languages_ { visibility, ::_pbi::InternalMetadataOffset::Build<
             ::lyric::Info,
             PROTOBUF_FIELD_OFFSET(::lyric::Info, _impl_.languages_)>()
@@ -166,6 +161,7 @@ inline constexpr Info::Impl_::Impl_(
         version_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
+        meta_{nullptr},
         type_{static_cast< ::lyric::InfoType >(0)},
         timing_{static_cast< ::lyric::InfoTiming >(0)} {}
 
@@ -275,17 +271,17 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::lyric::Info, _impl_.version_),
         PROTOBUF_FIELD_OFFSET(::lyric::Info, _impl_.type_),
         PROTOBUF_FIELD_OFFSET(::lyric::Info, _impl_.timing_),
-        PROTOBUF_FIELD_OFFSET(::lyric::Info, _impl_.metas_),
+        PROTOBUF_FIELD_OFFSET(::lyric::Info, _impl_.meta_),
         PROTOBUF_FIELD_OFFSET(::lyric::Info, _impl_.languages_),
         PROTOBUF_FIELD_OFFSET(::lyric::Info, _impl_.agents_),
         PROTOBUF_FIELD_OFFSET(::lyric::Info, _impl_.lines_),
-        4,
+        3,
         5,
         6,
+        4,
         0,
         1,
         2,
-        3,
 };
 
 static const ::_pbi::MigrationSchema
@@ -300,20 +296,19 @@ const char descriptor_table_protodef_info_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     protodesc_cold) = {
     "\n\ninfo.proto\022\005lyric\032\017meta/meta.proto\032\027la"
     "nguage/language.proto\032\021agent/agent.proto"
-    "\032\022line/content.proto\"\227\002\n\004Info\022\030\n\007version"
+    "\032\022line/content.proto\"\221\002\n\004Info\022\030\n\007version"
     "\030\001 \001(\tR\007version\022#\n\004type\030\002 \001(\0162\017.lyric.In"
     "foTypeR\004type\022)\n\006timing\030\003 \001(\0162\021.lyric.Inf"
-    "oTimingR\006timing\022%\n\005metas\030\004 \003(\0132\017.lyric.M"
-    "etaItemR\005metas\0221\n\tlanguages\030\005 \003(\0132\023.lyri"
-    "c.LanguageItemR\tlanguages\022(\n\006agents\030\006 \003("
-    "\0132\020.lyric.AgentItemR\006agents\022!\n\005lines\030\007 \003"
-    "(\0132\013.lyric.LineR\005lines*g\n\010InfoType\022\031\n\025IN"
-    "FO_TYPE_UNSPECIFIED\020\000\022\025\n\021INFO_TYPE_INVAL"
-    "ID\020\001\022\023\n\017INFO_TYPE_EMPTY\020\002\022\024\n\020INFO_TYPE_N"
-    "ORMAL\020\003*o\n\nInfoTiming\022\033\n\027INFO_TIMING_UNS"
-    "PECIFIED\020\000\022\024\n\020INFO_TIMING_NONE\020\001\022\024\n\020INFO"
-    "_TIMING_LINE\020\002\022\030\n\024INFO_TIMING_SYLLABLE\020\003"
-    "b\006proto3"
+    "oTimingR\006timing\022\037\n\004meta\030\004 \001(\0132\013.lyric.Me"
+    "taR\004meta\0221\n\tlanguages\030\005 \003(\0132\023.lyric.Lang"
+    "uageItemR\tlanguages\022(\n\006agents\030\006 \003(\0132\020.ly"
+    "ric.AgentItemR\006agents\022!\n\005lines\030\007 \003(\0132\013.l"
+    "yric.LineR\005lines*Q\n\010InfoType\022\031\n\025INFO_TYP"
+    "E_UNSPECIFIED\020\000\022\025\n\021INFO_TYPE_INVALID\020\001\022\023"
+    "\n\017INFO_TYPE_VALID\020\002*k\n\nInfoTiming\022\033\n\027INF"
+    "O_TIMING_UNSPECIFIED\020\000\022\024\n\020INFO_TIMING_NO"
+    "NE\020\001\022\024\n\020INFO_TIMING_LINE\020\002\022\024\n\020INFO_TIMIN"
+    "G_WORD\020\003b\006proto3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_info_2eproto_deps[4] = {
@@ -326,7 +321,7 @@ static ::absl::once_flag descriptor_table_info_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_info_2eproto = {
     false,
     false,
-    608,
+    576,
     descriptor_table_protodef_info_2eproto,
     "info.proto",
     &descriptor_table_info_2eproto_once,
@@ -346,7 +341,7 @@ InfoType_descriptor() {
   return file_level_enum_descriptors_info_2eproto[0];
 }
 PROTOBUF_CONSTINIT const uint32_t InfoType_internal_data_[] = {
-    262144u, 0u, };
+    196608u, 0u, };
 [[nodiscard]] const ::google::protobuf::EnumDescriptor* PROTOBUF_NONNULL
 InfoTiming_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_info_2eproto);
@@ -356,25 +351,25 @@ PROTOBUF_CONSTINIT const uint32_t InfoTiming_internal_data_[] = {
     262144u, 0u, };
 // ===================================================================
 
-void Info::clear_metas() {
+void Info::clear_meta() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.metas_.Clear();
-  ClearHasBit(_impl_._has_bits_[0], 0x00000001U);
+  if (_impl_.meta_ != nullptr) _impl_.meta_->Clear();
+  ClearHasBit(_impl_._has_bits_[0], 0x00000010U);
 }
 void Info::clear_languages() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.languages_.Clear();
-  ClearHasBit(_impl_._has_bits_[0], 0x00000002U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000001U);
 }
 void Info::clear_agents() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.agents_.Clear();
-  ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000002U);
 }
 void Info::clear_lines() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.lines_.Clear();
-  ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
 }
 Info::Info(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
@@ -391,13 +386,6 @@ PROTOBUF_NDEBUG_INLINE Info::Impl_::Impl_(
     [[maybe_unused]] const ::lyric::Info& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
-        metas_ {
-          visibility, ::_pbi::InternalMetadataOffset::Build<
-              ::lyric::Info,
-              PROTOBUF_FIELD_OFFSET(::lyric::Info, _impl_.metas_)>()
-          , from.metas_
-        }
-        ,
         languages_ {
           visibility, ::_pbi::InternalMetadataOffset::Build<
               ::lyric::Info,
@@ -435,6 +423,10 @@ Info::Info(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.meta_ = (CheckHasBit(cached_has_bits, 0x00000010U))
+                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.meta_)
+                : nullptr;
   ::memcpy(reinterpret_cast<char*>(&_impl_) +
                offsetof(Impl_, type_),
            reinterpret_cast<const char*>(&from._impl_) +
@@ -449,11 +441,6 @@ PROTOBUF_NDEBUG_INLINE Info::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
       : _cached_size_{0},
-        metas_ { visibility, ::_pbi::InternalMetadataOffset::Build<
-            ::lyric::Info,
-            PROTOBUF_FIELD_OFFSET(::lyric::Info, _impl_.metas_)>()
-         }
-        ,
         languages_ { visibility, ::_pbi::InternalMetadataOffset::Build<
             ::lyric::Info,
             PROTOBUF_FIELD_OFFSET(::lyric::Info, _impl_.languages_)>()
@@ -474,10 +461,10 @@ PROTOBUF_NDEBUG_INLINE Info::Impl_::Impl_(
 inline void Info::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   ::memset(reinterpret_cast<char*>(&_impl_) +
-               offsetof(Impl_, type_),
+               offsetof(Impl_, meta_),
            0,
            offsetof(Impl_, timing_) -
-               offsetof(Impl_, type_) +
+               offsetof(Impl_, meta_) +
                sizeof(Impl_::timing_));
 }
 Info::~Info() {
@@ -492,6 +479,7 @@ inline void Info::SharedDtor(MessageLite& self) {
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
   this_._impl_.version_.Destroy();
+  delete this_._impl_.meta_;
   this_._impl_.~Impl_();
 }
 
@@ -531,19 +519,20 @@ PROTOBUF_NOINLINE void Info::Clear() {
   cached_has_bits = _impl_._has_bits_[0];
   if (BatchCheckHasBit(cached_has_bits, 0x0000001fU)) {
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-      _impl_.metas_.Clear();
-    }
-    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
       _impl_.languages_.Clear();
     }
-    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
       _impl_.agents_.Clear();
     }
-    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
       _impl_.lines_.Clear();
     }
-    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
       _impl_.version_.ClearNonDefaultToEmpty();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+      ABSL_DCHECK(_impl_.meta_ != nullptr);
+      _impl_.meta_->Clear();
     }
   }
   if (BatchCheckHasBit(cached_has_bits, 0x00000060U)) {
@@ -575,7 +564,7 @@ PROTOBUF_NOINLINE void Info::Clear() {
 
   cached_has_bits = this_._impl_._has_bits_[0];
   // string version = 1 [json_name = "version"];
-  if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+  if (CheckHasBit(cached_has_bits, 0x00000008U)) {
     if (!this_._internal_version().empty()) {
       const ::std::string& _s = this_._internal_version();
       ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -602,21 +591,15 @@ PROTOBUF_NOINLINE void Info::Clear() {
     }
   }
 
-  // repeated .lyric.MetaItem metas = 4 [json_name = "metas"];
-  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-    for (unsigned i = 0, n = static_cast<unsigned>(
-                             this_._internal_metas_size());
-         i < n; i++) {
-      const auto& repfield = this_._internal_metas().Get(i);
-      target =
-          ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-              4, repfield, repfield.GetCachedSize(),
-              target, stream);
-    }
+  // .lyric.Meta meta = 4 [json_name = "meta"];
+  if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        4, *this_._impl_.meta_, this_._impl_.meta_->GetCachedSize(), target,
+        stream);
   }
 
   // repeated .lyric.LanguageItem languages = 5 [json_name = "languages"];
-  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
     for (unsigned i = 0, n = static_cast<unsigned>(
                              this_._internal_languages_size());
          i < n; i++) {
@@ -629,7 +612,7 @@ PROTOBUF_NOINLINE void Info::Clear() {
   }
 
   // repeated .lyric.AgentItem agents = 6 [json_name = "agents"];
-  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
     for (unsigned i = 0, n = static_cast<unsigned>(
                              this_._internal_agents_size());
          i < n; i++) {
@@ -642,7 +625,7 @@ PROTOBUF_NOINLINE void Info::Clear() {
   }
 
   // repeated .lyric.Line lines = 7 [json_name = "lines"];
-  if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
     for (unsigned i = 0, n = static_cast<unsigned>(
                              this_._internal_lines_size());
          i < n; i++) {
@@ -680,40 +663,38 @@ PROTOBUF_NOINLINE void Info::Clear() {
   ::_pbi::Prefetch5LinesFrom7Lines(&this_);
   cached_has_bits = this_._impl_._has_bits_[0];
   if (BatchCheckHasBit(cached_has_bits, 0x0000007fU)) {
-    // repeated .lyric.MetaItem metas = 4 [json_name = "metas"];
-    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-      total_size += 1UL * this_._internal_metas_size();
-      for (const auto& msg : this_._internal_metas()) {
-        total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
-      }
-    }
     // repeated .lyric.LanguageItem languages = 5 [json_name = "languages"];
-    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
       total_size += 1UL * this_._internal_languages_size();
       for (const auto& msg : this_._internal_languages()) {
         total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
       }
     }
     // repeated .lyric.AgentItem agents = 6 [json_name = "agents"];
-    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
       total_size += 1UL * this_._internal_agents_size();
       for (const auto& msg : this_._internal_agents()) {
         total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
       }
     }
     // repeated .lyric.Line lines = 7 [json_name = "lines"];
-    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
       total_size += 1UL * this_._internal_lines_size();
       for (const auto& msg : this_._internal_lines()) {
         total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
       }
     }
     // string version = 1 [json_name = "version"];
-    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
       if (!this_._internal_version().empty()) {
         total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                         this_._internal_version());
       }
+    }
+    // .lyric.Meta meta = 4 [json_name = "meta"];
+    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+      total_size += 1 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.meta_);
     }
     // .lyric.InfoType type = 2 [json_name = "type"];
     if (CheckHasBit(cached_has_bits, 0x00000020U)) {
@@ -750,32 +731,35 @@ void Info::MergeImpl(::google::protobuf::MessageLite& to_msg,
   cached_has_bits = from._impl_._has_bits_[0];
   if (BatchCheckHasBit(cached_has_bits, 0x0000007fU)) {
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-      _this->_internal_mutable_metas()->InternalMergeFromWithArena(
-          ::google::protobuf::MessageLite::internal_visibility(), arena,
-          from._internal_metas());
-    }
-    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
       _this->_internal_mutable_languages()->InternalMergeFromWithArena(
           ::google::protobuf::MessageLite::internal_visibility(), arena,
           from._internal_languages());
     }
-    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
       _this->_internal_mutable_agents()->InternalMergeFromWithArena(
           ::google::protobuf::MessageLite::internal_visibility(), arena,
           from._internal_agents());
     }
-    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
       _this->_internal_mutable_lines()->InternalMergeFromWithArena(
           ::google::protobuf::MessageLite::internal_visibility(), arena,
           from._internal_lines());
     }
-    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
       if (!from._internal_version().empty()) {
         _this->_internal_set_version(from._internal_version());
       } else {
         if (_this->_impl_.version_.IsDefault()) {
           _this->_internal_set_version("");
         }
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+      ABSL_DCHECK(from._impl_.meta_ != nullptr);
+      if (_this->_impl_.meta_ == nullptr) {
+        _this->_impl_.meta_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.meta_);
+      } else {
+        _this->_impl_.meta_->MergeFrom(*from._impl_.meta_);
       }
     }
     if (CheckHasBit(cached_has_bits, 0x00000020U)) {
@@ -808,7 +792,6 @@ void Info::InternalSwap(Info* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  _impl_.metas_.InternalSwap(&other->_impl_.metas_);
   _impl_.languages_.InternalSwap(&other->_impl_.languages_);
   _impl_.agents_.InternalSwap(&other->_impl_.agents_);
   _impl_.lines_.InternalSwap(&other->_impl_.lines_);
@@ -816,9 +799,9 @@ void Info::InternalSwap(Info* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(Info, _impl_.timing_)
       + sizeof(Info::_impl_.timing_)
-      - PROTOBUF_FIELD_OFFSET(Info, _impl_.type_)>(
-          reinterpret_cast<char*>(&_impl_.type_),
-          reinterpret_cast<char*>(&other->_impl_.type_));
+      - PROTOBUF_FIELD_OFFSET(Info, _impl_.meta_)>(
+          reinterpret_cast<char*>(&_impl_.meta_),
+          reinterpret_cast<char*>(&other->_impl_.meta_));
 }
 
 ::google::protobuf::Metadata Info::GetMetadata() const {

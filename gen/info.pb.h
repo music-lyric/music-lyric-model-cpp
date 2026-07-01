@@ -87,8 +87,7 @@ namespace lyric {
 enum InfoType : int {
   INFO_TYPE_UNSPECIFIED = 0,
   INFO_TYPE_INVALID = 1,
-  INFO_TYPE_EMPTY = 2,
-  INFO_TYPE_NORMAL = 3,
+  INFO_TYPE_VALID = 2,
   InfoType_INT_MIN_SENTINEL_DO_NOT_USE_ =
       ::std::numeric_limits<::int32_t>::min(),
   InfoType_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -99,11 +98,11 @@ extern const uint32_t InfoType_internal_data_[];
 inline constexpr InfoType InfoType_MIN =
     static_cast<InfoType>(0);
 inline constexpr InfoType InfoType_MAX =
-    static_cast<InfoType>(3);
+    static_cast<InfoType>(2);
 [[nodiscard]] inline bool InfoType_IsValid(int value) {
-  return 0 <= value && value <= 3;
+  return 0 <= value && value <= 2;
 }
-inline constexpr int InfoType_ARRAYSIZE = 3 + 1;
+inline constexpr int InfoType_ARRAYSIZE = 2 + 1;
 [[nodiscard]] const ::google::protobuf::EnumDescriptor* PROTOBUF_NONNULL
 InfoType_descriptor();
 [[nodiscard]] inline auto ProtobufInternalGetEnumDescriptor(InfoType) {
@@ -118,7 +117,7 @@ template <typename T>
 }
 template <>
 [[nodiscard]] inline const ::std::string& InfoType_Name(InfoType value) {
-  return ::google::protobuf::internal::NameOfDenseEnum<InfoType_descriptor, 0, 3>(
+  return ::google::protobuf::internal::NameOfDenseEnum<InfoType_descriptor, 0, 2>(
       static_cast<int>(value));
 }
 [[nodiscard]] inline bool InfoType_Parse(
@@ -130,7 +129,7 @@ enum InfoTiming : int {
   INFO_TIMING_UNSPECIFIED = 0,
   INFO_TIMING_NONE = 1,
   INFO_TIMING_LINE = 2,
-  INFO_TIMING_SYLLABLE = 3,
+  INFO_TIMING_WORD = 3,
   InfoTiming_INT_MIN_SENTINEL_DO_NOT_USE_ =
       ::std::numeric_limits<::int32_t>::min(),
   InfoTiming_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -324,35 +323,14 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED Info final : public ::google::proto
 
   // accessors -------------------------------------------------------
   enum : int {
-    kMetasFieldNumber = 4,
     kLanguagesFieldNumber = 5,
     kAgentsFieldNumber = 6,
     kLinesFieldNumber = 7,
     kVersionFieldNumber = 1,
+    kMetaFieldNumber = 4,
     kTypeFieldNumber = 2,
     kTimingFieldNumber = 3,
   };
-  // repeated .lyric.MetaItem metas = 4 [json_name = "metas"];
-  [[nodiscard]] int metas_size()
-      const;
-  private:
-  int _internal_metas_size() const;
-
-  public:
-  void clear_metas() ;
-  [[nodiscard]] const ::lyric::MetaItem& metas(int index) const;
-  [[nodiscard]] ::lyric::MetaItem* PROTOBUF_NONNULL mutable_metas(int index);
-  ::lyric::MetaItem* PROTOBUF_NONNULL add_metas();
-  [[nodiscard]] const ::google::protobuf::RepeatedPtrField<::lyric::MetaItem>&
-  metas() const;
-  [[nodiscard]] ::google::protobuf::RepeatedPtrField<::lyric::MetaItem>* PROTOBUF_NONNULL
-  mutable_metas();
-
-  private:
-  const ::google::protobuf::RepeatedPtrField<::lyric::MetaItem>& _internal_metas() const;
-  ::google::protobuf::RepeatedPtrField<::lyric::MetaItem>* PROTOBUF_NONNULL _internal_mutable_metas();
-
-  public:
   // repeated .lyric.LanguageItem languages = 5 [json_name = "languages"];
   [[nodiscard]] int languages_size()
       const;
@@ -431,6 +409,22 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED Info final : public ::google::proto
   ::std::string* PROTOBUF_NONNULL _internal_mutable_version();
 
   public:
+  // .lyric.Meta meta = 4 [json_name = "meta"];
+  [[nodiscard]] bool has_meta()
+      const;
+  void clear_meta() ;
+  [[nodiscard]] const ::lyric::Meta& meta() const;
+  [[nodiscard]] ::lyric::Meta* PROTOBUF_NULLABLE release_meta();
+  ::lyric::Meta* PROTOBUF_NONNULL mutable_meta();
+  void set_allocated_meta(::lyric::Meta* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_meta(::lyric::Meta* PROTOBUF_NULLABLE value);
+  ::lyric::Meta* PROTOBUF_NULLABLE unsafe_arena_release_meta();
+
+  private:
+  const ::lyric::Meta& _internal_meta() const;
+  ::lyric::Meta* PROTOBUF_NONNULL _internal_mutable_meta();
+
+  public:
   // .lyric.InfoType type = 2 [json_name = "type"];
   void clear_type() ;
   [[nodiscard]] ::lyric::InfoType type() const;
@@ -484,11 +478,11 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED Info final : public ::google::proto
         const Info& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::RepeatedPtrField< ::lyric::MetaItem > metas_;
     ::google::protobuf::RepeatedPtrField< ::lyric::LanguageItem > languages_;
     ::google::protobuf::RepeatedPtrField< ::lyric::AgentItem > agents_;
     ::google::protobuf::RepeatedPtrField< ::lyric::Line > lines_;
     ::google::protobuf::internal::ArenaStringPtr version_;
+    ::lyric::Meta* PROTOBUF_NULLABLE meta_;
     int type_;
     int timing_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -517,7 +511,7 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED Info final : public ::google::proto
 inline void Info::clear_version() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.version_.ClearToEmpty();
-  ClearHasBit(_impl_._has_bits_[0], 0x00000010U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
 }
 inline const ::std::string& Info::version() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -527,13 +521,13 @@ inline const ::std::string& Info::version() const
 template <typename Arg_, typename... Args_>
 PROTOBUF_ALWAYS_INLINE void Info::set_version(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  SetHasBit(_impl_._has_bits_[0], 0x00000010U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000008U);
   _impl_.version_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:lyric.Info.version)
 }
 inline ::std::string* PROTOBUF_NONNULL Info::mutable_version()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  SetHasBit(_impl_._has_bits_[0], 0x00000010U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000008U);
   ::std::string* _s = _internal_mutable_version();
   // @@protoc_insertion_point(field_mutable:lyric.Info.version)
   return _s;
@@ -553,10 +547,10 @@ inline ::std::string* PROTOBUF_NONNULL Info::_internal_mutable_version() {
 inline ::std::string* PROTOBUF_NULLABLE Info::release_version() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:lyric.Info.version)
-  if (!CheckHasBit(_impl_._has_bits_[0], 0x00000010U)) {
+  if (!CheckHasBit(_impl_._has_bits_[0], 0x00000008U)) {
     return nullptr;
   }
-  ClearHasBit(_impl_._has_bits_[0], 0x00000010U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
   auto* released = _impl_.version_.Release();
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
     _impl_.version_.Set("", GetArena());
@@ -566,9 +560,9 @@ inline ::std::string* PROTOBUF_NULLABLE Info::release_version() {
 inline void Info::set_allocated_version(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
-    SetHasBit(_impl_._has_bits_[0], 0x00000010U);
+    SetHasBit(_impl_._has_bits_[0], 0x00000008U);
   } else {
-    ClearHasBit(_impl_._has_bits_[0], 0x00000010U);
+    ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
   }
   _impl_.version_.SetAllocated(value, GetArena());
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.version_.IsDefault()) {
@@ -625,54 +619,97 @@ inline void Info::_internal_set_timing(::lyric::InfoTiming value) {
   _impl_.timing_ = value;
 }
 
-// repeated .lyric.MetaItem metas = 4 [json_name = "metas"];
-inline int Info::_internal_metas_size() const {
-  return _internal_metas().size();
+// .lyric.Meta meta = 4 [json_name = "meta"];
+inline bool Info::has_meta() const {
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000010U);
+  PROTOBUF_ASSUME(!value || _impl_.meta_ != nullptr);
+  return value;
 }
-inline int Info::metas_size() const {
-  return _internal_metas_size();
-}
-inline const ::lyric::MetaItem& Info::metas(int index) const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:lyric.Info.metas)
-  return _internal_metas().Get(index);
-}
-inline ::lyric::MetaItem* PROTOBUF_NONNULL Info::mutable_metas(int index)
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:lyric.Info.metas)
-  return _internal_mutable_metas()->Mutable(index);
-}
-inline ::lyric::MetaItem* PROTOBUF_NONNULL Info::add_metas()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::lyric::MetaItem* _add =
-      _internal_mutable_metas()->InternalAddWithArena(
-          ::google::protobuf::MessageLite::internal_visibility(), GetArena());
-  SetHasBit(_impl_._has_bits_[0], 0x00000001U);
-  // @@protoc_insertion_point(field_add:lyric.Info.metas)
-  return _add;
-}
-inline const ::google::protobuf::RepeatedPtrField<::lyric::MetaItem>& Info::metas() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:lyric.Info.metas)
-  return _internal_metas();
-}
-inline ::google::protobuf::RepeatedPtrField<::lyric::MetaItem>* PROTOBUF_NONNULL
-Info::mutable_metas() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  SetHasBit(_impl_._has_bits_[0], 0x00000001U);
-  // @@protoc_insertion_point(field_mutable_list:lyric.Info.metas)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _internal_mutable_metas();
-}
-inline const ::google::protobuf::RepeatedPtrField<::lyric::MetaItem>&
-Info::_internal_metas() const {
+inline const ::lyric::Meta& Info::_internal_meta() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.metas_;
+  const ::lyric::Meta* p = _impl_.meta_;
+  return p != nullptr ? *p : *::google::protobuf::internal::MessageGlobalsBase::ToDefaultInstance<::lyric::Meta>(&::lyric::Meta_globals_);
 }
-inline ::google::protobuf::RepeatedPtrField<::lyric::MetaItem>* PROTOBUF_NONNULL
-Info::_internal_mutable_metas() {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return &_impl_.metas_;
+inline const ::lyric::Meta& Info::meta() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:lyric.Info.meta)
+  return _internal_meta();
+}
+inline void Info::unsafe_arena_set_allocated_meta(
+    ::lyric::Meta* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.meta_);
+  }
+  _impl_.meta_ = reinterpret_cast<::lyric::Meta*>(value);
+  if (value != nullptr) {
+    SetHasBit(_impl_._has_bits_[0], 0x00000010U);
+  } else {
+    ClearHasBit(_impl_._has_bits_[0], 0x00000010U);
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:lyric.Info.meta)
+}
+inline ::lyric::Meta* PROTOBUF_NULLABLE Info::release_meta() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  ClearHasBit(_impl_._has_bits_[0], 0x00000010U);
+  ::lyric::Meta* released = _impl_.meta_;
+  _impl_.meta_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::lyric::Meta* PROTOBUF_NULLABLE Info::unsafe_arena_release_meta() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:lyric.Info.meta)
+
+  ClearHasBit(_impl_._has_bits_[0], 0x00000010U);
+  ::lyric::Meta* temp = _impl_.meta_;
+  _impl_.meta_ = nullptr;
+  return temp;
+}
+inline ::lyric::Meta* PROTOBUF_NONNULL Info::_internal_mutable_meta() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.meta_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::lyric::Meta>(GetArena());
+    _impl_.meta_ = reinterpret_cast<::lyric::Meta*>(p);
+  }
+  return _impl_.meta_;
+}
+inline ::lyric::Meta* PROTOBUF_NONNULL Info::mutable_meta()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  SetHasBit(_impl_._has_bits_[0], 0x00000010U);
+  ::lyric::Meta* _msg = _internal_mutable_meta();
+  // @@protoc_insertion_point(field_mutable:lyric.Info.meta)
+  return _msg;
+}
+inline void Info::set_allocated_meta(::lyric::Meta* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.meta_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::Message*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    SetHasBit(_impl_._has_bits_[0], 0x00000010U);
+  } else {
+    ClearHasBit(_impl_._has_bits_[0], 0x00000010U);
+  }
+
+  _impl_.meta_ = reinterpret_cast<::lyric::Meta*>(value);
+  // @@protoc_insertion_point(field_set_allocated:lyric.Info.meta)
 }
 
 // repeated .lyric.LanguageItem languages = 5 [json_name = "languages"];
@@ -698,7 +735,7 @@ inline ::lyric::LanguageItem* PROTOBUF_NONNULL Info::add_languages()
   ::lyric::LanguageItem* _add =
       _internal_mutable_languages()->InternalAddWithArena(
           ::google::protobuf::MessageLite::internal_visibility(), GetArena());
-  SetHasBit(_impl_._has_bits_[0], 0x00000002U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000001U);
   // @@protoc_insertion_point(field_add:lyric.Info.languages)
   return _add;
 }
@@ -709,7 +746,7 @@ inline const ::google::protobuf::RepeatedPtrField<::lyric::LanguageItem>& Info::
 }
 inline ::google::protobuf::RepeatedPtrField<::lyric::LanguageItem>* PROTOBUF_NONNULL
 Info::mutable_languages() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  SetHasBit(_impl_._has_bits_[0], 0x00000002U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000001U);
   // @@protoc_insertion_point(field_mutable_list:lyric.Info.languages)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _internal_mutable_languages();
@@ -748,7 +785,7 @@ inline ::lyric::AgentItem* PROTOBUF_NONNULL Info::add_agents()
   ::lyric::AgentItem* _add =
       _internal_mutable_agents()->InternalAddWithArena(
           ::google::protobuf::MessageLite::internal_visibility(), GetArena());
-  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000002U);
   // @@protoc_insertion_point(field_add:lyric.Info.agents)
   return _add;
 }
@@ -759,7 +796,7 @@ inline const ::google::protobuf::RepeatedPtrField<::lyric::AgentItem>& Info::age
 }
 inline ::google::protobuf::RepeatedPtrField<::lyric::AgentItem>* PROTOBUF_NONNULL
 Info::mutable_agents() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000002U);
   // @@protoc_insertion_point(field_mutable_list:lyric.Info.agents)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _internal_mutable_agents();
@@ -798,7 +835,7 @@ inline ::lyric::Line* PROTOBUF_NONNULL Info::add_lines()
   ::lyric::Line* _add =
       _internal_mutable_lines()->InternalAddWithArena(
           ::google::protobuf::MessageLite::internal_visibility(), GetArena());
-  SetHasBit(_impl_._has_bits_[0], 0x00000008U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
   // @@protoc_insertion_point(field_add:lyric.Info.lines)
   return _add;
 }
@@ -809,7 +846,7 @@ inline const ::google::protobuf::RepeatedPtrField<::lyric::Line>& Info::lines() 
 }
 inline ::google::protobuf::RepeatedPtrField<::lyric::Line>* PROTOBUF_NONNULL
 Info::mutable_lines() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  SetHasBit(_impl_._has_bits_[0], 0x00000008U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
   // @@protoc_insertion_point(field_mutable_list:lyric.Info.lines)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _internal_mutable_lines();

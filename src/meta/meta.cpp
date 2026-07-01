@@ -1,49 +1,53 @@
 #include "meta/meta.h"
 
 namespace music_lyric_model {
-	lyric::MetaCreator makeMetaCreator() {
+	lyric::Meta makeMeta() {
 		return {};
 	}
 
-	lyric::MetaItem makeMetaItem() {
+	lyric::MetaText makeMetaText() {
 		return {};
 	}
 
-	bool hasMeta(const google::protobuf::RepeatedPtrField<lyric::MetaItem>& metas, lyric::MetaItem::ContentCase kind) {
-		for (const auto& meta : metas) {
-			if (meta.content_case() == kind) {
-				return true;
+	lyric::MetaCredit makeMetaCredit() {
+		return {};
+	}
+
+	lyric::MetaUnknown makeMetaUnknown() {
+		return {};
+	}
+
+	lyric::MetaReference makeMetaReference() {
+		return {};
+	}
+
+	std::optional<std::string> getMetaText(const google::protobuf::RepeatedPtrField<lyric::MetaText>& items, const std::optional<std::string>& language) {
+		if (language.has_value()) {
+			for (const auto& item : items) {
+				if (item.has_language() && item.language() == *language) {
+					return item.value();
+				}
 			}
 		}
-		return false;
+		return items.empty() ? std::nullopt : std::optional<std::string>(items.Get(0).value());
 	}
 
-	std::vector<const lyric::MetaItem*> getAllMeta(const google::protobuf::RepeatedPtrField<lyric::MetaItem>& metas, lyric::MetaItem::ContentCase kind) {
-		std::vector<const lyric::MetaItem*> result;
-		for (const auto& meta : metas) {
-			if (meta.content_case() == kind) {
-				result.push_back(&meta);
+	std::vector<std::string> getMetaUnknown(const google::protobuf::RepeatedPtrField<lyric::MetaUnknown>& unknowns, const std::string& key) {
+		std::vector<std::string> result;
+		for (const auto& item : unknowns) {
+			if (item.key() == key) {
+				result.push_back(item.value());
 			}
 		}
 		return result;
 	}
 
-	const lyric::MetaItem* getFirstMeta(const google::protobuf::RepeatedPtrField<lyric::MetaItem>& metas, lyric::MetaItem::ContentCase kind) {
-		for (const auto& meta : metas) {
-			if (meta.content_case() == kind) {
-				return &meta;
+	std::vector<std::string> getMetaReference(const google::protobuf::RepeatedPtrField<lyric::MetaReference>& references, const std::string& platform) {
+		for (const auto& item : references) {
+			if (item.platform() == platform) {
+				return {item.ids().begin(), item.ids().end()};
 			}
 		}
-		return nullptr;
-	}
-
-	std::vector<const lyric::MetaItem*> getMetaByKey(const google::protobuf::RepeatedPtrField<lyric::MetaItem>& metas, const std::string& key) {
-		std::vector<const lyric::MetaItem*> result;
-		for (const auto& meta : metas) {
-			if (meta.key() == key) {
-				result.push_back(&meta);
-			}
-		}
-		return result;
+		return {};
 	}
 } // namespace music_lyric_model

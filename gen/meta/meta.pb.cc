@@ -29,25 +29,31 @@ namespace _fl = ::google::protobuf::internal::field_layout;
 namespace {
 PROTOBUF_CONSTINIT ::google::protobuf::internal::ReflectionData
     file_reflection_data[] = {
-        // ::lyric::MetaCreator
+        // ::lyric::MetaText
         {&::_pbi::kDescriptorMethods, &::descriptor_table_meta_2fmeta_2eproto, /* tracker*/ nullptr,},
-        // ::lyric::MetaItem
+        // ::lyric::MetaCredit
+        {&::_pbi::kDescriptorMethods, &::descriptor_table_meta_2fmeta_2eproto, /* tracker*/ nullptr,},
+        // ::lyric::MetaUnknown
+        {&::_pbi::kDescriptorMethods, &::descriptor_table_meta_2fmeta_2eproto, /* tracker*/ nullptr,},
+        // ::lyric::MetaReference
+        {&::_pbi::kDescriptorMethods, &::descriptor_table_meta_2fmeta_2eproto, /* tracker*/ nullptr,},
+        // ::lyric::Meta
         {&::_pbi::kDescriptorMethods, &::descriptor_table_meta_2fmeta_2eproto, /* tracker*/ nullptr,},
 };
 }  // namespace
 #endif
 namespace lyric {
-class MetaCreator::_Internal {
+class MetaUnknown::_Internal {
  public:
-  using HasBits = decltype(::std::declval<MetaCreator>()._impl_._has_bits_);
+  using HasBits = decltype(::std::declval<MetaUnknown>()._impl_._has_bits_);
   static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(MetaCreator, _impl_._has_bits_);
+      8 * PROTOBUF_FIELD_OFFSET(MetaUnknown, _impl_._has_bits_);
 };
 
-constexpr MetaCreator::ParseTableT_ MetaCreator::InternalGenerateParseTable_(const ::_pbi::ClassData* class_data) {
+constexpr MetaUnknown::ParseTableT_ MetaUnknown::InternalGenerateParseTable_(const ::_pbi::ClassData* class_data) {
   return ParseTableT_{
     {
-      PROTOBUF_FIELD_OFFSET(MetaCreator, _impl_._has_bits_),
+      PROTOBUF_FIELD_OFFSET(MetaUnknown, _impl_._has_bits_),
       0, // no _extensions_
       2, 8,  // max_field_number, fast_idx_mask
       offsetof(ParseTableT_, field_lookup_table),
@@ -60,51 +66,49 @@ constexpr MetaCreator::ParseTableT_ MetaCreator::InternalGenerateParseTable_(con
       nullptr,  // post_loop_handler
       ::_pbi::TcParser::GenericFallback,  // fallback
       #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-      ::_pbi::TcParser::GetTable<::lyric::MetaCreator>(),  // to_prefetch
+      ::_pbi::TcParser::GetTable<::lyric::MetaUnknown>(),  // to_prefetch
       #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
     }, {{
-      // repeated string name = 2 [json_name = "name"];
-      {::_pbi::TcParser::FastUR1,
-       {18, 0, 0,
-        PROTOBUF_FIELD_OFFSET(MetaCreator, _impl_.name_)}},
-      // string role = 1 [json_name = "role"];
+      // string value = 2 [json_name = "value"];
       {::_pbi::TcParser::FastUS1,
-       {10, 1, 0,
-        PROTOBUF_FIELD_OFFSET(MetaCreator, _impl_.role_)}},
+       {18, 1, 0,
+        PROTOBUF_FIELD_OFFSET(MetaUnknown, _impl_.value_)}},
+      // string key = 1 [json_name = "key"];
+      {::_pbi::TcParser::FastUS1,
+       {10, 0, 0,
+        PROTOBUF_FIELD_OFFSET(MetaUnknown, _impl_.key_)}},
     }}, {{
       65535, 65535
     }}, {{
-      // string role = 1 [json_name = "role"];
-      {PROTOBUF_FIELD_OFFSET(MetaCreator, _impl_.role_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-      // repeated string name = 2 [json_name = "name"];
-      {PROTOBUF_FIELD_OFFSET(MetaCreator, _impl_.name_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+      // string key = 1 [json_name = "key"];
+      {PROTOBUF_FIELD_OFFSET(MetaUnknown, _impl_.key_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+      // string value = 2 [json_name = "value"];
+      {PROTOBUF_FIELD_OFFSET(MetaUnknown, _impl_.value_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     }},
     // no aux_entries
     {{
-      "\21\4\4\0\0\0\0\0"
-      "lyric.MetaCreator"
-      "role"
-      "name"
+      "\21\3\5\0\0\0\0\0"
+      "lyric.MetaUnknown"
+      "key"
+      "value"
     }},
   };
 }
 
 
-inline constexpr MetaCreator::Impl_::Impl_(
+inline constexpr MetaUnknown::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        name_ { visibility, ::_pbi::InternalMetadataOffset::Build<
-            ::lyric::MetaCreator,
-            PROTOBUF_FIELD_OFFSET(::lyric::MetaCreator, _impl_.name_)>()
-         }
-        ,
-        role_(
+        key_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        value_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()) {}
 
 template <typename>
-constexpr MetaCreator::MetaCreator(::_pbi::ConstantInitialized,
+constexpr MetaUnknown::MetaUnknown(::_pbi::ConstantInitialized,
                        const ::_pbi::ClassData* PROTOBUF_NONNULL class_data)
     : ::google::protobuf::Message(
 #if defined(PROTOBUF_CUSTOM_VTABLE)
@@ -113,15 +117,15 @@ constexpr MetaCreator::MetaCreator(::_pbi::ConstantInitialized,
           ),
       _impl_(internal_visibility(), ::_pbi::ConstantInitialized()) {
 }
-inline void* PROTOBUF_NONNULL MetaCreator::PlacementNew_(
+inline void* PROTOBUF_NONNULL MetaUnknown::PlacementNew_(
     const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
-  return ::new (mem) MetaCreator(arena);
+  return ::new (mem) MetaUnknown(arena);
 }
-constexpr auto MetaCreator::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(MetaCreator), alignof(MetaCreator));
+constexpr auto MetaUnknown::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(MetaUnknown), alignof(MetaUnknown));
 }
-constexpr auto MetaCreator::InternalGenerateClassData_(
+constexpr auto MetaUnknown::InternalGenerateClassData_(
     const MessageLite& prototype,
     const ::google::protobuf::internal::TcParseTableBase* tc_table) {
   return ::google::protobuf::internal::ClassDataFull{
@@ -133,14 +137,170 @@ constexpr auto MetaCreator::InternalGenerateClassData_(
           tc_table,
 #endif
           nullptr,  // IsInitialized
-          &MetaCreator::MergeImpl,
-          ::google::protobuf::Message::GetNewImpl<MetaCreator>(),
+          &MetaUnknown::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<MetaUnknown>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-          &MetaCreator::SharedDtor,
-          ::google::protobuf::Message::GetClearImpl<MetaCreator>(), &MetaCreator::ByteSizeLong,
-              &MetaCreator::_InternalSerialize,
+          &MetaUnknown::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<MetaUnknown>(), &MetaUnknown::ByteSizeLong,
+              &MetaUnknown::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          PROTOBUF_FIELD_OFFSET(MetaCreator, _impl_._cached_size_),
+          PROTOBUF_FIELD_OFFSET(MetaUnknown, _impl_._cached_size_),
+          false,
+      },
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+      &file_reflection_data[2],
+#else   // !PROTOBUF_MESSAGE_GLOBALS
+      &::_pbi::kDescriptorMethods,
+      &descriptor_table_meta_2fmeta_2eproto,
+      nullptr,  // tracker
+#endif  // PROTOBUF_MESSAGE_GLOBALS
+  };
+}
+struct MetaUnknownGlobalsTypeInternal : ::_pbi::MessageGlobalsBase {
+  constexpr MetaUnknownGlobalsTypeInternal()
+      :
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+        _default(::_pbi::ConstantInitialized{},
+                 MetaUnknown_class_data_.base())
+#else   // !PROTOBUF_MESSAGE_GLOBALS
+        MessageGlobalsBase(MetaUnknown::InternalGenerateClassData_(
+            _default, &MetaUnknown_globals_._table.header)),
+        _default(::_pbi::ConstantInitialized{}, GetClassData()),
+        _table(::_pbi::PrivateAccess::GenerateParseTable<MetaUnknown>(
+            GetClassData()))
+#endif  // PROTOBUF_MESSAGE_GLOBALS
+  {
+  }
+  ~MetaUnknownGlobalsTypeInternal() {}
+  union {
+    alignas(::_pbi::kMaxMessageAlignment) MetaUnknown _default;
+  };
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+  decltype(::_pbi::PrivateAccess::GenerateParseTable<MetaUnknown>(
+      ::std::declval<const ::_pbi::ClassData*>())) _table;
+#endif
+};
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+static_assert(PROTOBUF_FIELD_OFFSET(MetaUnknownGlobalsTypeInternal, _default) ==
+              ::_pbi::MessageGlobalsBase::OffsetToDefault());
+#endif  // PROTOBUF_MESSAGE_GLOBALS
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PROTOBUF_MESSAGE_GLOBALS_CONST MetaUnknownGlobalsTypeInternal MetaUnknown_globals_
+        PROTOBUF_MESSAGE_GLOBALS_SECTION(.data.rel.ro);
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+namespace {
+const ::_pbi::ClassData* MetaUnknown_get_class_data() {
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+  return MetaUnknown_globals_.GetClassData();
+#else
+  return MetaUnknown_class_data_.base();
+#endif  // PROTOBUF_MESSAGE_GLOBALS
+}
+}  // namespace
+#endif  // PROTOBUF_CUSTOM_VTABLE
+class MetaText::_Internal {
+ public:
+  using HasBits = decltype(::std::declval<MetaText>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(MetaText, _impl_._has_bits_);
+};
+
+constexpr MetaText::ParseTableT_ MetaText::InternalGenerateParseTable_(const ::_pbi::ClassData* class_data) {
+  return ParseTableT_{
+    {
+      PROTOBUF_FIELD_OFFSET(MetaText, _impl_._has_bits_),
+      0, // no _extensions_
+      2, 8,  // max_field_number, fast_idx_mask
+      offsetof(ParseTableT_, field_lookup_table),
+      4294967292,  // skipmap
+      offsetof(ParseTableT_, field_entries),
+      2,  // num_field_entries
+      0,  // num_aux_entries
+      offsetof(ParseTableT_, field_names),  // no aux_entries
+      class_data,
+      nullptr,  // post_loop_handler
+      ::_pbi::TcParser::GenericFallback,  // fallback
+      #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+      ::_pbi::TcParser::GetTable<::lyric::MetaText>(),  // to_prefetch
+      #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+    }, {{
+      // string value = 2 [json_name = "value"];
+      {::_pbi::TcParser::FastUS1,
+       {18, 1, 0,
+        PROTOBUF_FIELD_OFFSET(MetaText, _impl_.value_)}},
+      // optional string language = 1 [json_name = "language"];
+      {::_pbi::TcParser::FastUS1,
+       {10, 0, 0,
+        PROTOBUF_FIELD_OFFSET(MetaText, _impl_.language_)}},
+    }}, {{
+      65535, 65535
+    }}, {{
+      // optional string language = 1 [json_name = "language"];
+      {PROTOBUF_FIELD_OFFSET(MetaText, _impl_.language_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+      // string value = 2 [json_name = "value"];
+      {PROTOBUF_FIELD_OFFSET(MetaText, _impl_.value_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    }},
+    // no aux_entries
+    {{
+      "\16\10\5\0\0\0\0\0"
+      "lyric.MetaText"
+      "language"
+      "value"
+    }},
+  };
+}
+
+
+inline constexpr MetaText::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        language_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        value_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()) {}
+
+template <typename>
+constexpr MetaText::MetaText(::_pbi::ConstantInitialized,
+                       const ::_pbi::ClassData* PROTOBUF_NONNULL class_data)
+    : ::google::protobuf::Message(
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          class_data
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          ),
+      _impl_(internal_visibility(), ::_pbi::ConstantInitialized()) {
+}
+inline void* PROTOBUF_NONNULL MetaText::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) MetaText(arena);
+}
+constexpr auto MetaText::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(MetaText), alignof(MetaText));
+}
+constexpr auto MetaText::InternalGenerateClassData_(
+    const MessageLite& prototype,
+    const ::google::protobuf::internal::TcParseTableBase* tc_table) {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &prototype,
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+          &_table_.header,
+#else
+          tc_table,
+#endif
+          nullptr,  // IsInitialized
+          &MetaText::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<MetaText>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &MetaText::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<MetaText>(), &MetaText::ByteSizeLong,
+              &MetaText::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(MetaText, _impl_._cached_size_),
           false,
       },
 #ifdef PROTOBUF_MESSAGE_GLOBALS
@@ -152,143 +312,117 @@ constexpr auto MetaCreator::InternalGenerateClassData_(
 #endif  // PROTOBUF_MESSAGE_GLOBALS
   };
 }
-struct MetaCreatorGlobalsTypeInternal : ::_pbi::MessageGlobalsBase {
-  constexpr MetaCreatorGlobalsTypeInternal()
+struct MetaTextGlobalsTypeInternal : ::_pbi::MessageGlobalsBase {
+  constexpr MetaTextGlobalsTypeInternal()
       :
 #ifndef PROTOBUF_MESSAGE_GLOBALS
         _default(::_pbi::ConstantInitialized{},
-                 MetaCreator_class_data_.base())
+                 MetaText_class_data_.base())
 #else   // !PROTOBUF_MESSAGE_GLOBALS
-        MessageGlobalsBase(MetaCreator::InternalGenerateClassData_(
-            _default, &MetaCreator_globals_._table.header)),
+        MessageGlobalsBase(MetaText::InternalGenerateClassData_(
+            _default, &MetaText_globals_._table.header)),
         _default(::_pbi::ConstantInitialized{}, GetClassData()),
-        _table(::_pbi::PrivateAccess::GenerateParseTable<MetaCreator>(
+        _table(::_pbi::PrivateAccess::GenerateParseTable<MetaText>(
             GetClassData()))
 #endif  // PROTOBUF_MESSAGE_GLOBALS
   {
   }
-  ~MetaCreatorGlobalsTypeInternal() {}
+  ~MetaTextGlobalsTypeInternal() {}
   union {
-    alignas(::_pbi::kMaxMessageAlignment) MetaCreator _default;
+    alignas(::_pbi::kMaxMessageAlignment) MetaText _default;
   };
 #ifdef PROTOBUF_MESSAGE_GLOBALS
-  decltype(::_pbi::PrivateAccess::GenerateParseTable<MetaCreator>(
+  decltype(::_pbi::PrivateAccess::GenerateParseTable<MetaText>(
       ::std::declval<const ::_pbi::ClassData*>())) _table;
 #endif
 };
 #ifdef PROTOBUF_MESSAGE_GLOBALS
-static_assert(PROTOBUF_FIELD_OFFSET(MetaCreatorGlobalsTypeInternal, _default) ==
+static_assert(PROTOBUF_FIELD_OFFSET(MetaTextGlobalsTypeInternal, _default) ==
               ::_pbi::MessageGlobalsBase::OffsetToDefault());
 #endif  // PROTOBUF_MESSAGE_GLOBALS
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PROTOBUF_MESSAGE_GLOBALS_CONST MetaCreatorGlobalsTypeInternal MetaCreator_globals_
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PROTOBUF_MESSAGE_GLOBALS_CONST MetaTextGlobalsTypeInternal MetaText_globals_
         PROTOBUF_MESSAGE_GLOBALS_SECTION(.data.rel.ro);
 #if defined(PROTOBUF_CUSTOM_VTABLE)
 namespace {
-const ::_pbi::ClassData* MetaCreator_get_class_data() {
+const ::_pbi::ClassData* MetaText_get_class_data() {
 #ifdef PROTOBUF_MESSAGE_GLOBALS
-  return MetaCreator_globals_.GetClassData();
+  return MetaText_globals_.GetClassData();
 #else
-  return MetaCreator_class_data_.base();
+  return MetaText_class_data_.base();
 #endif  // PROTOBUF_MESSAGE_GLOBALS
 }
 }  // namespace
 #endif  // PROTOBUF_CUSTOM_VTABLE
-class MetaItem::_Internal {
+class MetaReference::_Internal {
  public:
-  using HasBits = decltype(::std::declval<MetaItem>()._impl_._has_bits_);
+  using HasBits = decltype(::std::declval<MetaReference>()._impl_._has_bits_);
   static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(MetaItem, _impl_._has_bits_);
-  static constexpr ::int32_t kOneofCaseOffset =
-      PROTOBUF_FIELD_OFFSET(::lyric::MetaItem, _impl_._oneof_case_);
+      8 * PROTOBUF_FIELD_OFFSET(MetaReference, _impl_._has_bits_);
 };
 
-constexpr MetaItem::ParseTableT_ MetaItem::InternalGenerateParseTable_(const ::_pbi::ClassData* class_data) {
+constexpr MetaReference::ParseTableT_ MetaReference::InternalGenerateParseTable_(const ::_pbi::ClassData* class_data) {
   return ParseTableT_{
     {
-      PROTOBUF_FIELD_OFFSET(MetaItem, _impl_._has_bits_),
+      PROTOBUF_FIELD_OFFSET(MetaReference, _impl_._has_bits_),
       0, // no _extensions_
-      10, 0,  // max_field_number, fast_idx_mask
+      2, 8,  // max_field_number, fast_idx_mask
       offsetof(ParseTableT_, field_lookup_table),
-      4294966272,  // skipmap
+      4294967292,  // skipmap
       offsetof(ParseTableT_, field_entries),
-      10,  // num_field_entries
-      2,  // num_aux_entries
-      offsetof(ParseTableT_, aux_entries),
+      2,  // num_field_entries
+      0,  // num_aux_entries
+      offsetof(ParseTableT_, field_names),  // no aux_entries
       class_data,
       nullptr,  // post_loop_handler
       ::_pbi::TcParser::GenericFallback,  // fallback
       #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-      ::_pbi::TcParser::GetTable<::lyric::MetaItem>(),  // to_prefetch
+      ::_pbi::TcParser::GetTable<::lyric::MetaReference>(),  // to_prefetch
       #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
     }, {{
-      // string key = 1 [json_name = "key"];
+      // repeated string ids = 2 [json_name = "ids"];
+      {::_pbi::TcParser::FastUR1,
+       {18, 0, 0,
+        PROTOBUF_FIELD_OFFSET(MetaReference, _impl_.ids_)}},
+      // string platform = 1 [json_name = "platform"];
       {::_pbi::TcParser::FastUS1,
-       {10, 0, 0,
-        PROTOBUF_FIELD_OFFSET(MetaItem, _impl_.key_)}},
+       {10, 1, 0,
+        PROTOBUF_FIELD_OFFSET(MetaReference, _impl_.platform_)}},
     }}, {{
       65535, 65535
     }}, {{
-      // string key = 1 [json_name = "key"];
-      {PROTOBUF_FIELD_OFFSET(MetaItem, _impl_.key_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-      // .google.protobuf.Value unknown = 2 [json_name = "unknown"];
-      {PROTOBUF_FIELD_OFFSET(MetaItem, _impl_.content_.unknown_), _Internal::kOneofCaseOffset + 0, 0, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
-      // double offset = 3 [json_name = "offset"];
-      {PROTOBUF_FIELD_OFFSET(MetaItem, _impl_.content_.offset_), _Internal::kOneofCaseOffset + 0, 0, (0 | ::_fl::kFcOneof | ::_fl::kDouble)},
-      // double duration = 4 [json_name = "duration"];
-      {PROTOBUF_FIELD_OFFSET(MetaItem, _impl_.content_.duration_), _Internal::kOneofCaseOffset + 0, 0, (0 | ::_fl::kFcOneof | ::_fl::kDouble)},
-      // string title = 5 [json_name = "title"];
-      {PROTOBUF_FIELD_OFFSET(MetaItem, _impl_.content_.title_), _Internal::kOneofCaseOffset + 0, 0, (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
-      // string singer = 6 [json_name = "singer"];
-      {PROTOBUF_FIELD_OFFSET(MetaItem, _impl_.content_.singer_), _Internal::kOneofCaseOffset + 0, 0, (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
-      // string album = 7 [json_name = "album"];
-      {PROTOBUF_FIELD_OFFSET(MetaItem, _impl_.content_.album_), _Internal::kOneofCaseOffset + 0, 0, (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
-      // .lyric.MetaCreator creator = 8 [json_name = "creator"];
-      {PROTOBUF_FIELD_OFFSET(MetaItem, _impl_.content_.creator_), _Internal::kOneofCaseOffset + 0, 1, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
-      // string author = 9 [json_name = "author"];
-      {PROTOBUF_FIELD_OFFSET(MetaItem, _impl_.content_.author_), _Internal::kOneofCaseOffset + 0, 0, (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
-      // string isrc = 10 [json_name = "isrc"];
-      {PROTOBUF_FIELD_OFFSET(MetaItem, _impl_.content_.isrc_), _Internal::kOneofCaseOffset + 0, 0, (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
+      // string platform = 1 [json_name = "platform"];
+      {PROTOBUF_FIELD_OFFSET(MetaReference, _impl_.platform_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+      // repeated string ids = 2 [json_name = "ids"];
+      {PROTOBUF_FIELD_OFFSET(MetaReference, _impl_.ids_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
     }},
+    // no aux_entries
     {{
-        #ifndef PROTOBUF_MESSAGE_GLOBALS
-        {::_pbi::TcParser::GetTable<::google::protobuf::Value>()},
-        #else
-        {::_pbi::FieldAuxMessageGlobals(), &::google::protobuf::Value_globals_},
-        #endif
-        #ifndef PROTOBUF_MESSAGE_GLOBALS
-        {::_pbi::TcParser::GetTable<::lyric::MetaCreator>()},
-        #else
-        {::_pbi::FieldAuxMessageGlobals(), &::lyric::MetaCreator_globals_},
-        #endif
-    }},
-    {{
-      "\16\3\0\0\0\5\6\5\0\6\4\0\0\0\0\0"
-      "lyric.MetaItem"
-      "key"
-      "title"
-      "singer"
-      "album"
-      "author"
-      "isrc"
+      "\23\10\3\0\0\0\0\0"
+      "lyric.MetaReference"
+      "platform"
+      "ids"
     }},
   };
 }
 
 
-inline constexpr MetaItem::Impl_::Impl_(
+inline constexpr MetaReference::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        key_(
+        ids_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::MetaReference,
+            PROTOBUF_FIELD_OFFSET(::lyric::MetaReference, _impl_.ids_)>()
+         }
+        ,
+        platform_(
             &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        content_{},
-        _oneof_case_{} {}
+            ::_pbi::ConstantInitialized()) {}
 
 template <typename>
-constexpr MetaItem::MetaItem(::_pbi::ConstantInitialized,
+constexpr MetaReference::MetaReference(::_pbi::ConstantInitialized,
                        const ::_pbi::ClassData* PROTOBUF_NONNULL class_data)
     : ::google::protobuf::Message(
 #if defined(PROTOBUF_CUSTOM_VTABLE)
@@ -297,15 +431,15 @@ constexpr MetaItem::MetaItem(::_pbi::ConstantInitialized,
           ),
       _impl_(internal_visibility(), ::_pbi::ConstantInitialized()) {
 }
-inline void* PROTOBUF_NONNULL MetaItem::PlacementNew_(
+inline void* PROTOBUF_NONNULL MetaReference::PlacementNew_(
     const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
-  return ::new (mem) MetaItem(arena);
+  return ::new (mem) MetaReference(arena);
 }
-constexpr auto MetaItem::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(MetaItem), alignof(MetaItem));
+constexpr auto MetaReference::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(MetaReference), alignof(MetaReference));
 }
-constexpr auto MetaItem::InternalGenerateClassData_(
+constexpr auto MetaReference::InternalGenerateClassData_(
     const MessageLite& prototype,
     const ::google::protobuf::internal::TcParseTableBase* tc_table) {
   return ::google::protobuf::internal::ClassDataFull{
@@ -317,14 +451,177 @@ constexpr auto MetaItem::InternalGenerateClassData_(
           tc_table,
 #endif
           nullptr,  // IsInitialized
-          &MetaItem::MergeImpl,
-          ::google::protobuf::Message::GetNewImpl<MetaItem>(),
+          &MetaReference::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<MetaReference>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-          &MetaItem::SharedDtor,
-          ::google::protobuf::Message::GetClearImpl<MetaItem>(), &MetaItem::ByteSizeLong,
-              &MetaItem::_InternalSerialize,
+          &MetaReference::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<MetaReference>(), &MetaReference::ByteSizeLong,
+              &MetaReference::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          PROTOBUF_FIELD_OFFSET(MetaItem, _impl_._cached_size_),
+          PROTOBUF_FIELD_OFFSET(MetaReference, _impl_._cached_size_),
+          false,
+      },
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+      &file_reflection_data[3],
+#else   // !PROTOBUF_MESSAGE_GLOBALS
+      &::_pbi::kDescriptorMethods,
+      &descriptor_table_meta_2fmeta_2eproto,
+      nullptr,  // tracker
+#endif  // PROTOBUF_MESSAGE_GLOBALS
+  };
+}
+struct MetaReferenceGlobalsTypeInternal : ::_pbi::MessageGlobalsBase {
+  constexpr MetaReferenceGlobalsTypeInternal()
+      :
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+        _default(::_pbi::ConstantInitialized{},
+                 MetaReference_class_data_.base())
+#else   // !PROTOBUF_MESSAGE_GLOBALS
+        MessageGlobalsBase(MetaReference::InternalGenerateClassData_(
+            _default, &MetaReference_globals_._table.header)),
+        _default(::_pbi::ConstantInitialized{}, GetClassData()),
+        _table(::_pbi::PrivateAccess::GenerateParseTable<MetaReference>(
+            GetClassData()))
+#endif  // PROTOBUF_MESSAGE_GLOBALS
+  {
+  }
+  ~MetaReferenceGlobalsTypeInternal() {}
+  union {
+    alignas(::_pbi::kMaxMessageAlignment) MetaReference _default;
+  };
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+  decltype(::_pbi::PrivateAccess::GenerateParseTable<MetaReference>(
+      ::std::declval<const ::_pbi::ClassData*>())) _table;
+#endif
+};
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+static_assert(PROTOBUF_FIELD_OFFSET(MetaReferenceGlobalsTypeInternal, _default) ==
+              ::_pbi::MessageGlobalsBase::OffsetToDefault());
+#endif  // PROTOBUF_MESSAGE_GLOBALS
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PROTOBUF_MESSAGE_GLOBALS_CONST MetaReferenceGlobalsTypeInternal MetaReference_globals_
+        PROTOBUF_MESSAGE_GLOBALS_SECTION(.data.rel.ro);
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+namespace {
+const ::_pbi::ClassData* MetaReference_get_class_data() {
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+  return MetaReference_globals_.GetClassData();
+#else
+  return MetaReference_class_data_.base();
+#endif  // PROTOBUF_MESSAGE_GLOBALS
+}
+}  // namespace
+#endif  // PROTOBUF_CUSTOM_VTABLE
+class MetaCredit::_Internal {
+ public:
+  using HasBits = decltype(::std::declval<MetaCredit>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(MetaCredit, _impl_._has_bits_);
+};
+
+constexpr MetaCredit::ParseTableT_ MetaCredit::InternalGenerateParseTable_(const ::_pbi::ClassData* class_data) {
+  return ParseTableT_{
+    {
+      PROTOBUF_FIELD_OFFSET(MetaCredit, _impl_._has_bits_),
+      0, // no _extensions_
+      2, 8,  // max_field_number, fast_idx_mask
+      offsetof(ParseTableT_, field_lookup_table),
+      4294967292,  // skipmap
+      offsetof(ParseTableT_, field_entries),
+      2,  // num_field_entries
+      1,  // num_aux_entries
+      offsetof(ParseTableT_, aux_entries),
+      class_data,
+      nullptr,  // post_loop_handler
+      ::_pbi::TcParser::GenericFallback,  // fallback
+      #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+      ::_pbi::TcParser::GetTable<::lyric::MetaCredit>(),  // to_prefetch
+      #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+    }, {{
+      // repeated .lyric.MetaText names = 2 [json_name = "names"];
+      {::_pbi::TcParser::FastMtR1,
+       {18, 0, 0,
+        PROTOBUF_FIELD_OFFSET(MetaCredit, _impl_.names_)}},
+      // string role = 1 [json_name = "role"];
+      {::_pbi::TcParser::FastUS1,
+       {10, 1, 0,
+        PROTOBUF_FIELD_OFFSET(MetaCredit, _impl_.role_)}},
+    }}, {{
+      65535, 65535
+    }}, {{
+      // string role = 1 [json_name = "role"];
+      {PROTOBUF_FIELD_OFFSET(MetaCredit, _impl_.role_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+      // repeated .lyric.MetaText names = 2 [json_name = "names"];
+      {PROTOBUF_FIELD_OFFSET(MetaCredit, _impl_.names_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    }},
+    {{
+        #ifndef PROTOBUF_MESSAGE_GLOBALS
+        {::_pbi::TcParser::GetTable<::lyric::MetaText>()},
+        #else
+        {::_pbi::FieldAuxMessageGlobals(), &::lyric::MetaText_globals_},
+        #endif
+    }},
+    {{
+      "\20\4\0\0\0\0\0\0"
+      "lyric.MetaCredit"
+      "role"
+    }},
+  };
+}
+
+
+inline constexpr MetaCredit::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        names_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::MetaCredit,
+            PROTOBUF_FIELD_OFFSET(::lyric::MetaCredit, _impl_.names_)>()
+         }
+        ,
+        role_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()) {}
+
+template <typename>
+constexpr MetaCredit::MetaCredit(::_pbi::ConstantInitialized,
+                       const ::_pbi::ClassData* PROTOBUF_NONNULL class_data)
+    : ::google::protobuf::Message(
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          class_data
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          ),
+      _impl_(internal_visibility(), ::_pbi::ConstantInitialized()) {
+}
+inline void* PROTOBUF_NONNULL MetaCredit::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) MetaCredit(arena);
+}
+constexpr auto MetaCredit::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(MetaCredit), alignof(MetaCredit));
+}
+constexpr auto MetaCredit::InternalGenerateClassData_(
+    const MessageLite& prototype,
+    const ::google::protobuf::internal::TcParseTableBase* tc_table) {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &prototype,
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+          &_table_.header,
+#else
+          tc_table,
+#endif
+          nullptr,  // IsInitialized
+          &MetaCredit::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<MetaCredit>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &MetaCredit::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<MetaCredit>(), &MetaCredit::ByteSizeLong,
+              &MetaCredit::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(MetaCredit, _impl_._cached_size_),
           false,
       },
 #ifdef PROTOBUF_MESSAGE_GLOBALS
@@ -336,45 +633,326 @@ constexpr auto MetaItem::InternalGenerateClassData_(
 #endif  // PROTOBUF_MESSAGE_GLOBALS
   };
 }
-struct MetaItemGlobalsTypeInternal : ::_pbi::MessageGlobalsBase {
-  constexpr MetaItemGlobalsTypeInternal()
+struct MetaCreditGlobalsTypeInternal : ::_pbi::MessageGlobalsBase {
+  constexpr MetaCreditGlobalsTypeInternal()
       :
 #ifndef PROTOBUF_MESSAGE_GLOBALS
         _default(::_pbi::ConstantInitialized{},
-                 MetaItem_class_data_.base())
+                 MetaCredit_class_data_.base())
 #else   // !PROTOBUF_MESSAGE_GLOBALS
-        MessageGlobalsBase(MetaItem::InternalGenerateClassData_(
-            _default, &MetaItem_globals_._table.header)),
+        MessageGlobalsBase(MetaCredit::InternalGenerateClassData_(
+            _default, &MetaCredit_globals_._table.header)),
         _default(::_pbi::ConstantInitialized{}, GetClassData()),
-        _table(::_pbi::PrivateAccess::GenerateParseTable<MetaItem>(
+        _table(::_pbi::PrivateAccess::GenerateParseTable<MetaCredit>(
             GetClassData()))
 #endif  // PROTOBUF_MESSAGE_GLOBALS
   {
   }
-  ~MetaItemGlobalsTypeInternal() {}
+  ~MetaCreditGlobalsTypeInternal() {}
   union {
-    alignas(::_pbi::kMaxMessageAlignment) MetaItem _default;
+    alignas(::_pbi::kMaxMessageAlignment) MetaCredit _default;
   };
 #ifdef PROTOBUF_MESSAGE_GLOBALS
-  decltype(::_pbi::PrivateAccess::GenerateParseTable<MetaItem>(
+  decltype(::_pbi::PrivateAccess::GenerateParseTable<MetaCredit>(
       ::std::declval<const ::_pbi::ClassData*>())) _table;
 #endif
 };
 #ifdef PROTOBUF_MESSAGE_GLOBALS
-static_assert(PROTOBUF_FIELD_OFFSET(MetaItemGlobalsTypeInternal, _default) ==
+static_assert(PROTOBUF_FIELD_OFFSET(MetaCreditGlobalsTypeInternal, _default) ==
               ::_pbi::MessageGlobalsBase::OffsetToDefault());
 #endif  // PROTOBUF_MESSAGE_GLOBALS
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PROTOBUF_MESSAGE_GLOBALS_CONST MetaItemGlobalsTypeInternal MetaItem_globals_
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PROTOBUF_MESSAGE_GLOBALS_CONST MetaCreditGlobalsTypeInternal MetaCredit_globals_
         PROTOBUF_MESSAGE_GLOBALS_SECTION(.data.rel.ro);
 #if defined(PROTOBUF_CUSTOM_VTABLE)
 namespace {
-const ::_pbi::ClassData* MetaItem_get_class_data() {
+const ::_pbi::ClassData* MetaCredit_get_class_data() {
 #ifdef PROTOBUF_MESSAGE_GLOBALS
-  return MetaItem_globals_.GetClassData();
+  return MetaCredit_globals_.GetClassData();
 #else
-  return MetaItem_class_data_.base();
+  return MetaCredit_class_data_.base();
+#endif  // PROTOBUF_MESSAGE_GLOBALS
+}
+}  // namespace
+#endif  // PROTOBUF_CUSTOM_VTABLE
+class Meta::_Internal {
+ public:
+  using HasBits = decltype(::std::declval<Meta>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(Meta, _impl_._has_bits_);
+};
+
+constexpr Meta::ParseTableT_ Meta::InternalGenerateParseTable_(const ::_pbi::ClassData* class_data) {
+  return ParseTableT_{
+    {
+      PROTOBUF_FIELD_OFFSET(Meta, _impl_._has_bits_),
+      0, // no _extensions_
+      10, 120,  // max_field_number, fast_idx_mask
+      offsetof(ParseTableT_, field_lookup_table),
+      4294966272,  // skipmap
+      offsetof(ParseTableT_, field_entries),
+      10,  // num_field_entries
+      7,  // num_aux_entries
+      offsetof(ParseTableT_, aux_entries),
+      class_data,
+      nullptr,  // post_loop_handler
+      ::_pbi::TcParser::GenericFallback,  // fallback
+      #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+      ::_pbi::TcParser::GetTable<::lyric::Meta>(),  // to_prefetch
+      #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+    }, {{
+      {::_pbi::TcParser::MiniParse, {}},
+      // repeated .lyric.MetaUnknown unknowns = 1 [json_name = "unknowns"];
+      {::_pbi::TcParser::FastMtR1,
+       {10, 0, 0,
+        PROTOBUF_FIELD_OFFSET(Meta, _impl_.unknowns_)}},
+      // sint32 offset = 2 [json_name = "offset"];
+      {::_pbi::TcParser::FastZ32S1,
+       {16, 8, 0,
+        PROTOBUF_FIELD_OFFSET(Meta, _impl_.offset_)}},
+      // uint32 duration = 3 [json_name = "duration"];
+      {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Meta, _impl_.duration_), 9>(),
+       {24, 9, 0,
+        PROTOBUF_FIELD_OFFSET(Meta, _impl_.duration_)}},
+      // repeated .lyric.MetaText titles = 4 [json_name = "titles"];
+      {::_pbi::TcParser::FastMtR1,
+       {34, 1, 1,
+        PROTOBUF_FIELD_OFFSET(Meta, _impl_.titles_)}},
+      // repeated .lyric.MetaText artists = 5 [json_name = "artists"];
+      {::_pbi::TcParser::FastMtR1,
+       {42, 2, 2,
+        PROTOBUF_FIELD_OFFSET(Meta, _impl_.artists_)}},
+      // repeated .lyric.MetaText albums = 6 [json_name = "albums"];
+      {::_pbi::TcParser::FastMtR1,
+       {50, 3, 3,
+        PROTOBUF_FIELD_OFFSET(Meta, _impl_.albums_)}},
+      // repeated .lyric.MetaText authors = 7 [json_name = "authors"];
+      {::_pbi::TcParser::FastMtR1,
+       {58, 4, 4,
+        PROTOBUF_FIELD_OFFSET(Meta, _impl_.authors_)}},
+      // repeated string isrcs = 8 [json_name = "isrcs"];
+      {::_pbi::TcParser::FastUR1,
+       {66, 5, 0,
+        PROTOBUF_FIELD_OFFSET(Meta, _impl_.isrcs_)}},
+      // repeated .lyric.MetaCredit credits = 9 [json_name = "credits"];
+      {::_pbi::TcParser::FastMtR1,
+       {74, 6, 5,
+        PROTOBUF_FIELD_OFFSET(Meta, _impl_.credits_)}},
+      // repeated .lyric.MetaReference references = 10 [json_name = "references"];
+      {::_pbi::TcParser::FastMtR1,
+       {82, 7, 6,
+        PROTOBUF_FIELD_OFFSET(Meta, _impl_.references_)}},
+      {::_pbi::TcParser::MiniParse, {}},
+      {::_pbi::TcParser::MiniParse, {}},
+      {::_pbi::TcParser::MiniParse, {}},
+      {::_pbi::TcParser::MiniParse, {}},
+      {::_pbi::TcParser::MiniParse, {}},
+    }}, {{
+      65535, 65535
+    }}, {{
+      // repeated .lyric.MetaUnknown unknowns = 1 [json_name = "unknowns"];
+      {PROTOBUF_FIELD_OFFSET(Meta, _impl_.unknowns_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+      // sint32 offset = 2 [json_name = "offset"];
+      {PROTOBUF_FIELD_OFFSET(Meta, _impl_.offset_), _Internal::kHasBitsOffset + 8, 0, (0 | ::_fl::kFcOptional | ::_fl::kSInt32)},
+      // uint32 duration = 3 [json_name = "duration"];
+      {PROTOBUF_FIELD_OFFSET(Meta, _impl_.duration_), _Internal::kHasBitsOffset + 9, 0, (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
+      // repeated .lyric.MetaText titles = 4 [json_name = "titles"];
+      {PROTOBUF_FIELD_OFFSET(Meta, _impl_.titles_), _Internal::kHasBitsOffset + 1, 1, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+      // repeated .lyric.MetaText artists = 5 [json_name = "artists"];
+      {PROTOBUF_FIELD_OFFSET(Meta, _impl_.artists_), _Internal::kHasBitsOffset + 2, 2, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+      // repeated .lyric.MetaText albums = 6 [json_name = "albums"];
+      {PROTOBUF_FIELD_OFFSET(Meta, _impl_.albums_), _Internal::kHasBitsOffset + 3, 3, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+      // repeated .lyric.MetaText authors = 7 [json_name = "authors"];
+      {PROTOBUF_FIELD_OFFSET(Meta, _impl_.authors_), _Internal::kHasBitsOffset + 4, 4, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+      // repeated string isrcs = 8 [json_name = "isrcs"];
+      {PROTOBUF_FIELD_OFFSET(Meta, _impl_.isrcs_), _Internal::kHasBitsOffset + 5, 0, (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+      // repeated .lyric.MetaCredit credits = 9 [json_name = "credits"];
+      {PROTOBUF_FIELD_OFFSET(Meta, _impl_.credits_), _Internal::kHasBitsOffset + 6, 5, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+      // repeated .lyric.MetaReference references = 10 [json_name = "references"];
+      {PROTOBUF_FIELD_OFFSET(Meta, _impl_.references_), _Internal::kHasBitsOffset + 7, 6, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    }},
+    {{
+        #ifndef PROTOBUF_MESSAGE_GLOBALS
+        {::_pbi::TcParser::GetTable<::lyric::MetaUnknown>()},
+        #else
+        {::_pbi::FieldAuxMessageGlobals(), &::lyric::MetaUnknown_globals_},
+        #endif
+        #ifndef PROTOBUF_MESSAGE_GLOBALS
+        {::_pbi::TcParser::GetTable<::lyric::MetaText>()},
+        #else
+        {::_pbi::FieldAuxMessageGlobals(), &::lyric::MetaText_globals_},
+        #endif
+        #ifndef PROTOBUF_MESSAGE_GLOBALS
+        {::_pbi::TcParser::GetTable<::lyric::MetaText>()},
+        #else
+        {::_pbi::FieldAuxMessageGlobals(), &::lyric::MetaText_globals_},
+        #endif
+        #ifndef PROTOBUF_MESSAGE_GLOBALS
+        {::_pbi::TcParser::GetTable<::lyric::MetaText>()},
+        #else
+        {::_pbi::FieldAuxMessageGlobals(), &::lyric::MetaText_globals_},
+        #endif
+        #ifndef PROTOBUF_MESSAGE_GLOBALS
+        {::_pbi::TcParser::GetTable<::lyric::MetaText>()},
+        #else
+        {::_pbi::FieldAuxMessageGlobals(), &::lyric::MetaText_globals_},
+        #endif
+        #ifndef PROTOBUF_MESSAGE_GLOBALS
+        {::_pbi::TcParser::GetTable<::lyric::MetaCredit>()},
+        #else
+        {::_pbi::FieldAuxMessageGlobals(), &::lyric::MetaCredit_globals_},
+        #endif
+        #ifndef PROTOBUF_MESSAGE_GLOBALS
+        {::_pbi::TcParser::GetTable<::lyric::MetaReference>()},
+        #else
+        {::_pbi::FieldAuxMessageGlobals(), &::lyric::MetaReference_globals_},
+        #endif
+    }},
+    {{
+      "\12\0\0\0\0\0\0\0\5\0\0\0\0\0\0\0"
+      "lyric.Meta"
+      "isrcs"
+    }},
+  };
+}
+
+
+inline constexpr Meta::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        unknowns_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::Meta,
+            PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.unknowns_)>()
+         }
+        ,
+        titles_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::Meta,
+            PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.titles_)>()
+         }
+        ,
+        artists_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::Meta,
+            PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.artists_)>()
+         }
+        ,
+        albums_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::Meta,
+            PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.albums_)>()
+         }
+        ,
+        authors_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::Meta,
+            PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.authors_)>()
+         }
+        ,
+        isrcs_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::Meta,
+            PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.isrcs_)>()
+         }
+        ,
+        credits_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::Meta,
+            PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.credits_)>()
+         }
+        ,
+        references_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::Meta,
+            PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.references_)>()
+         }
+        ,
+        offset_{0},
+        duration_{0u} {}
+
+template <typename>
+constexpr Meta::Meta(::_pbi::ConstantInitialized,
+                       const ::_pbi::ClassData* PROTOBUF_NONNULL class_data)
+    : ::google::protobuf::Message(
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          class_data
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          ),
+      _impl_(internal_visibility(), ::_pbi::ConstantInitialized()) {
+}
+inline void* PROTOBUF_NONNULL Meta::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) Meta(arena);
+}
+constexpr auto Meta::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Meta), alignof(Meta));
+}
+constexpr auto Meta::InternalGenerateClassData_(
+    const MessageLite& prototype,
+    const ::google::protobuf::internal::TcParseTableBase* tc_table) {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &prototype,
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+          &_table_.header,
+#else
+          tc_table,
+#endif
+          nullptr,  // IsInitialized
+          &Meta::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<Meta>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &Meta::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<Meta>(), &Meta::ByteSizeLong,
+              &Meta::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(Meta, _impl_._cached_size_),
+          false,
+      },
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+      &file_reflection_data[4],
+#else   // !PROTOBUF_MESSAGE_GLOBALS
+      &::_pbi::kDescriptorMethods,
+      &descriptor_table_meta_2fmeta_2eproto,
+      nullptr,  // tracker
+#endif  // PROTOBUF_MESSAGE_GLOBALS
+  };
+}
+struct MetaGlobalsTypeInternal : ::_pbi::MessageGlobalsBase {
+  constexpr MetaGlobalsTypeInternal()
+      :
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+        _default(::_pbi::ConstantInitialized{},
+                 Meta_class_data_.base())
+#else   // !PROTOBUF_MESSAGE_GLOBALS
+        MessageGlobalsBase(Meta::InternalGenerateClassData_(
+            _default, &Meta_globals_._table.header)),
+        _default(::_pbi::ConstantInitialized{}, GetClassData()),
+        _table(::_pbi::PrivateAccess::GenerateParseTable<Meta>(
+            GetClassData()))
+#endif  // PROTOBUF_MESSAGE_GLOBALS
+  {
+  }
+  ~MetaGlobalsTypeInternal() {}
+  union {
+    alignas(::_pbi::kMaxMessageAlignment) Meta _default;
+  };
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+  decltype(::_pbi::PrivateAccess::GenerateParseTable<Meta>(
+      ::std::declval<const ::_pbi::ClassData*>())) _table;
+#endif
+};
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+static_assert(PROTOBUF_FIELD_OFFSET(MetaGlobalsTypeInternal, _default) ==
+              ::_pbi::MessageGlobalsBase::OffsetToDefault());
+#endif  // PROTOBUF_MESSAGE_GLOBALS
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PROTOBUF_MESSAGE_GLOBALS_CONST MetaGlobalsTypeInternal Meta_globals_
+        PROTOBUF_MESSAGE_GLOBALS_SECTION(.data.rel.ro);
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+namespace {
+const ::_pbi::ClassData* Meta_get_class_data() {
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+  return Meta_globals_.GetClassData();
+#else
+  return Meta_class_data_.base();
 #endif  // PROTOBUF_MESSAGE_GLOBALS
 }
 }  // namespace
@@ -388,78 +966,106 @@ const ::uint32_t
     TableStruct_meta_2fmeta_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
         protodesc_cold) = {
         0x081, // bitmap
-        PROTOBUF_FIELD_OFFSET(::lyric::MetaCreator, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::lyric::MetaText, _impl_._has_bits_),
         5, // hasbit index offset
-        PROTOBUF_FIELD_OFFSET(::lyric::MetaCreator, _impl_.role_),
-        PROTOBUF_FIELD_OFFSET(::lyric::MetaCreator, _impl_.name_),
+        PROTOBUF_FIELD_OFFSET(::lyric::MetaText, _impl_.language_),
+        PROTOBUF_FIELD_OFFSET(::lyric::MetaText, _impl_.value_),
+        0,
+        1,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::lyric::MetaCredit, _impl_._has_bits_),
+        5, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::lyric::MetaCredit, _impl_.role_),
+        PROTOBUF_FIELD_OFFSET(::lyric::MetaCredit, _impl_.names_),
         1,
         0,
-        0x085, // bitmap
-        PROTOBUF_FIELD_OFFSET(::lyric::MetaItem, _impl_._has_bits_),
-        PROTOBUF_FIELD_OFFSET(::lyric::MetaItem, _impl_._oneof_case_[0]),
-        15, // hasbit index offset
-        PROTOBUF_FIELD_OFFSET(::lyric::MetaItem, _impl_.key_),
-        PROTOBUF_FIELD_OFFSET(::lyric::MetaItem, _impl_.content_),
-        PROTOBUF_FIELD_OFFSET(::lyric::MetaItem, _impl_.content_),
-        PROTOBUF_FIELD_OFFSET(::lyric::MetaItem, _impl_.content_),
-        PROTOBUF_FIELD_OFFSET(::lyric::MetaItem, _impl_.content_),
-        PROTOBUF_FIELD_OFFSET(::lyric::MetaItem, _impl_.content_),
-        PROTOBUF_FIELD_OFFSET(::lyric::MetaItem, _impl_.content_),
-        PROTOBUF_FIELD_OFFSET(::lyric::MetaItem, _impl_.content_),
-        PROTOBUF_FIELD_OFFSET(::lyric::MetaItem, _impl_.content_),
-        PROTOBUF_FIELD_OFFSET(::lyric::MetaItem, _impl_.content_),
-        PROTOBUF_FIELD_OFFSET(::lyric::MetaItem, _impl_.content_),
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::lyric::MetaUnknown, _impl_._has_bits_),
+        5, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::lyric::MetaUnknown, _impl_.key_),
+        PROTOBUF_FIELD_OFFSET(::lyric::MetaUnknown, _impl_.value_),
         0,
-        ~0u,
-        ~0u,
-        ~0u,
-        ~0u,
-        ~0u,
-        ~0u,
-        ~0u,
-        ~0u,
-        ~0u,
+        1,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::lyric::MetaReference, _impl_._has_bits_),
+        5, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::lyric::MetaReference, _impl_.platform_),
+        PROTOBUF_FIELD_OFFSET(::lyric::MetaReference, _impl_.ids_),
+        1,
+        0,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_._has_bits_),
+        13, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.unknowns_),
+        PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.offset_),
+        PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.duration_),
+        PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.titles_),
+        PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.artists_),
+        PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.albums_),
+        PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.authors_),
+        PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.isrcs_),
+        PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.credits_),
+        PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.references_),
+        0,
+        8,
+        9,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-        {0, sizeof(::lyric::MetaCreator)},
-        {7, sizeof(::lyric::MetaItem)},
+        {0, sizeof(::lyric::MetaText)},
+        {7, sizeof(::lyric::MetaCredit)},
+        {14, sizeof(::lyric::MetaUnknown)},
+        {21, sizeof(::lyric::MetaReference)},
+        {28, sizeof(::lyric::Meta)},
 };
 static const ::_pbi::MessageGlobalsBase* PROTOBUF_NONNULL const
     file_message_globals[] = {
-        &::lyric::MetaCreator_globals_,
-        &::lyric::MetaItem_globals_,
+        &::lyric::MetaText_globals_,
+        &::lyric::MetaCredit_globals_,
+        &::lyric::MetaUnknown_globals_,
+        &::lyric::MetaReference_globals_,
+        &::lyric::Meta_globals_,
 };
 const char descriptor_table_protodef_meta_2fmeta_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\017meta/meta.proto\022\005lyric\032\034google/protobu"
-    "f/struct.proto\"5\n\013MetaCreator\022\022\n\004role\030\001 "
-    "\001(\tR\004role\022\022\n\004name\030\002 \003(\tR\004name\"\275\002\n\010MetaIt"
-    "em\022\020\n\003key\030\001 \001(\tR\003key\0222\n\007unknown\030\002 \001(\0132\026."
-    "google.protobuf.ValueH\000R\007unknown\022\030\n\006offs"
-    "et\030\003 \001(\001H\000R\006offset\022\034\n\010duration\030\004 \001(\001H\000R\010"
-    "duration\022\026\n\005title\030\005 \001(\tH\000R\005title\022\030\n\006sing"
-    "er\030\006 \001(\tH\000R\006singer\022\026\n\005album\030\007 \001(\tH\000R\005alb"
-    "um\022.\n\007creator\030\010 \001(\0132\022.lyric.MetaCreatorH"
-    "\000R\007creator\022\030\n\006author\030\t \001(\tH\000R\006author\022\024\n\004"
-    "isrc\030\n \001(\tH\000R\004isrcB\t\n\007contentb\006proto3"
-};
-static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
-    descriptor_table_meta_2fmeta_2eproto_deps[1] = {
-        &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
+    "\n\017meta/meta.proto\022\005lyric\"N\n\010MetaText\022\037\n\010"
+    "language\030\001 \001(\tH\000R\010language\210\001\001\022\024\n\005value\030\002"
+    " \001(\tR\005valueB\013\n\t_language\"G\n\nMetaCredit\022\022"
+    "\n\004role\030\001 \001(\tR\004role\022%\n\005names\030\002 \003(\0132\017.lyri"
+    "c.MetaTextR\005names\"5\n\013MetaUnknown\022\020\n\003key\030"
+    "\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005value\"=\n\rMeta"
+    "Reference\022\032\n\010platform\030\001 \001(\tR\010platform\022\020\n"
+    "\003ids\030\002 \003(\tR\003ids\"\213\003\n\004Meta\022.\n\010unknowns\030\001 \003"
+    "(\0132\022.lyric.MetaUnknownR\010unknowns\022\026\n\006offs"
+    "et\030\002 \001(\021R\006offset\022\032\n\010duration\030\003 \001(\rR\010dura"
+    "tion\022\'\n\006titles\030\004 \003(\0132\017.lyric.MetaTextR\006t"
+    "itles\022)\n\007artists\030\005 \003(\0132\017.lyric.MetaTextR"
+    "\007artists\022\'\n\006albums\030\006 \003(\0132\017.lyric.MetaTex"
+    "tR\006albums\022)\n\007authors\030\007 \003(\0132\017.lyric.MetaT"
+    "extR\007authors\022\024\n\005isrcs\030\010 \003(\tR\005isrcs\022+\n\007cr"
+    "edits\030\t \003(\0132\021.lyric.MetaCreditR\007credits\022"
+    "4\n\nreferences\030\n \003(\0132\024.lyric.MetaReferenc"
+    "eR\nreferencesb\006proto3"
 };
 static ::absl::once_flag descriptor_table_meta_2fmeta_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_meta_2fmeta_2eproto = {
     false,
     false,
-    437,
+    701,
     descriptor_table_protodef_meta_2fmeta_2eproto,
     "meta/meta.proto",
     &descriptor_table_meta_2fmeta_2eproto_once,
-    descriptor_table_meta_2fmeta_2eproto_deps,
-    1,
-    2,
+    nullptr,
+    0,
+    5,
     schemas,
     file_message_globals,
     TableStruct_meta_2fmeta_2eproto::offsets,
@@ -469,67 +1075,309 @@ PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_meta_2fmeta_2e
 namespace lyric {
 // ===================================================================
 
-MetaCreator::MetaCreator(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+MetaText::MetaText(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, MetaCreator_get_class_data()) {
+    : ::google::protobuf::Message(arena, MetaText_get_class_data()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:lyric.MetaCreator)
+  // @@protoc_insertion_point(arena_constructor:lyric.MetaText)
 }
-PROTOBUF_NDEBUG_INLINE MetaCreator::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE MetaText::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-    [[maybe_unused]] const ::lyric::MetaCreator& from_msg)
+    [[maybe_unused]] const ::lyric::MetaText& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
-        name_ {
-          visibility, ::_pbi::InternalMetadataOffset::Build<
-              ::lyric::MetaCreator,
-              PROTOBUF_FIELD_OFFSET(::lyric::MetaCreator, _impl_.name_)>()
-          , from.name_
-        }
-        ,
-        role_(arena, from.role_) {}
+        language_(arena, from.language_),
+        value_(arena, from.value_) {}
 
-MetaCreator::MetaCreator(
+MetaText::MetaText(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
-    const MetaCreator& from)
+    const MetaText& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, MetaCreator_get_class_data()) {
+    : ::google::protobuf::Message(arena, MetaText_get_class_data()) {
 
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  MetaCreator* const _this = this;
+  MetaText* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
 
-  // @@protoc_insertion_point(copy_constructor:lyric.MetaCreator)
+  // @@protoc_insertion_point(copy_constructor:lyric.MetaText)
 }
-PROTOBUF_NDEBUG_INLINE MetaCreator::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE MetaText::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
       : _cached_size_{0},
-        name_ { visibility, ::_pbi::InternalMetadataOffset::Build<
-            ::lyric::MetaCreator,
-            PROTOBUF_FIELD_OFFSET(::lyric::MetaCreator, _impl_.name_)>()
+        language_(arena),
+        value_(arena) {}
+
+inline void MetaText::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+MetaText::~MetaText() {
+  // @@protoc_insertion_point(destructor:lyric.MetaText)
+  SharedDtor(*this);
+}
+inline void MetaText::SharedDtor(MessageLite& self) {
+  MetaText& this_ = static_cast<MetaText&>(self);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.language_.Destroy();
+  this_._impl_.value_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull MetaText_class_data_ =
+        MetaText::InternalGenerateClassData_(MetaText_globals_._default);
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+MetaText::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&MetaText_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(MetaText_class_data_.tc_table);
+  return MetaText_class_data_.base();
+}
+#else
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+MetaText::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&MetaText_globals_);
+  ::google::protobuf::internal::PrefetchToLocalCache(
+      ::google::protobuf::internal::MessageGlobalsBase::ToParseTableBase(&MetaText_globals_));
+  return MetaText_globals_.GetClassData();
+}
+#endif  // !PROTOBUF_MESSAGE_GLOBALS
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const MetaText::ParseTableT_
+    MetaText::_table_ =
+        MetaText::InternalGenerateParseTable_(MetaText_class_data_.base());
+#endif  // !PROTOBUF_MESSAGE_GLOBALS
+PROTOBUF_NOINLINE void MetaText::Clear() {
+// @@protoc_insertion_point(message_clear_start:lyric.MetaText)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      _impl_.language_.ClearNonDefaultToEmpty();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      _impl_.value_.ClearNonDefaultToEmpty();
+    }
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL MetaText::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const MetaText& this_ = static_cast<const MetaText&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL MetaText::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const MetaText& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(serialize_to_array_start:lyric.MetaText)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // optional string language = 1 [json_name = "language"];
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    const ::std::string& _s = this_._internal_language();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.MetaText.language");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // string value = 2 [json_name = "value"];
+  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+    if (!this_._internal_value().empty()) {
+      const ::std::string& _s = this_._internal_value();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.MetaText.value");
+      target = stream->WriteStringMaybeAliased(2, _s, target);
+    }
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:lyric.MetaText)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t MetaText::ByteSizeLong(const MessageLite& base) {
+  const MetaText& this_ = static_cast<const MetaText&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t MetaText::ByteSizeLong() const {
+  const MetaText& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:lyric.MetaText)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    // optional string language = 1 [json_name = "language"];
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                      this_._internal_language());
+    }
+    // string value = 2 [json_name = "value"];
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (!this_._internal_value().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_value());
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void MetaText::MergeImpl(::google::protobuf::MessageLite& to_msg,
+                      const ::google::protobuf::MessageLite& from_msg) {
+   auto* const _this = static_cast<MetaText*>(&to_msg);
+  auto& from = static_cast<const MetaText&>(from_msg);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    from.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(class_specific_merge_from_start:lyric.MetaText)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      _this->_internal_set_language(from._internal_language());
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (!from._internal_value().empty()) {
+        _this->_internal_set_value(from._internal_value());
+      } else {
+        if (_this->_impl_.value_.IsDefault()) {
+          _this->_internal_set_value("");
+        }
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+}
+
+void MetaText::CopyFrom(const MetaText& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:lyric.MetaText)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void MetaText::InternalSwap(MetaText* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.language_, &other->_impl_.language_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.value_, &other->_impl_.value_, arena);
+}
+
+::google::protobuf::Metadata MetaText::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+MetaCredit::MetaCredit(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, MetaCredit_get_class_data()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:lyric.MetaCredit)
+}
+PROTOBUF_NDEBUG_INLINE MetaCredit::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    [[maybe_unused]] const ::lyric::MetaCredit& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        names_ {
+          visibility, ::_pbi::InternalMetadataOffset::Build<
+              ::lyric::MetaCredit,
+              PROTOBUF_FIELD_OFFSET(::lyric::MetaCredit, _impl_.names_)>()
+          , from.names_
+        }
+        ,
+        role_(arena, from.role_) {}
+
+MetaCredit::MetaCredit(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const MetaCredit& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, MetaCredit_get_class_data()) {
+
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  MetaCredit* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:lyric.MetaCredit)
+}
+PROTOBUF_NDEBUG_INLINE MetaCredit::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        names_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::MetaCredit,
+            PROTOBUF_FIELD_OFFSET(::lyric::MetaCredit, _impl_.names_)>()
          }
         ,
         role_(arena) {}
 
-inline void MetaCreator::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+inline void MetaCredit::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
-MetaCreator::~MetaCreator() {
-  // @@protoc_insertion_point(destructor:lyric.MetaCreator)
+MetaCredit::~MetaCredit() {
+  // @@protoc_insertion_point(destructor:lyric.MetaCredit)
   SharedDtor(*this);
 }
-inline void MetaCreator::SharedDtor(MessageLite& self) {
-  MetaCreator& this_ = static_cast<MetaCreator&>(self);
+inline void MetaCredit::SharedDtor(MessageLite& self) {
+  MetaCredit& this_ = static_cast<MetaCredit&>(self);
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
@@ -541,32 +1389,32 @@ inline void MetaCreator::SharedDtor(MessageLite& self) {
 
 #ifndef PROTOBUF_MESSAGE_GLOBALS
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
-    ::google::protobuf::internal::ClassDataFull MetaCreator_class_data_ =
-        MetaCreator::InternalGenerateClassData_(MetaCreator_globals_._default);
+    ::google::protobuf::internal::ClassDataFull MetaCredit_class_data_ =
+        MetaCredit::InternalGenerateClassData_(MetaCredit_globals_._default);
 
 PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
-MetaCreator::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&MetaCreator_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(MetaCreator_class_data_.tc_table);
-  return MetaCreator_class_data_.base();
+MetaCredit::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&MetaCredit_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(MetaCredit_class_data_.tc_table);
+  return MetaCredit_class_data_.base();
 }
 #else
 PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
-MetaCreator::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&MetaCreator_globals_);
+MetaCredit::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&MetaCredit_globals_);
   ::google::protobuf::internal::PrefetchToLocalCache(
-      ::google::protobuf::internal::MessageGlobalsBase::ToParseTableBase(&MetaCreator_globals_));
-  return MetaCreator_globals_.GetClassData();
+      ::google::protobuf::internal::MessageGlobalsBase::ToParseTableBase(&MetaCredit_globals_));
+  return MetaCredit_globals_.GetClassData();
 }
 #endif  // !PROTOBUF_MESSAGE_GLOBALS
 #ifndef PROTOBUF_MESSAGE_GLOBALS
 PROTOBUF_CONSTINIT
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const MetaCreator::ParseTableT_
-    MetaCreator::_table_ =
-        MetaCreator::InternalGenerateParseTable_(MetaCreator_class_data_.base());
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const MetaCredit::ParseTableT_
+    MetaCredit::_table_ =
+        MetaCredit::InternalGenerateParseTable_(MetaCredit_class_data_.base());
 #endif  // !PROTOBUF_MESSAGE_GLOBALS
-PROTOBUF_NOINLINE void MetaCreator::Clear() {
-// @@protoc_insertion_point(message_clear_start:lyric.MetaCreator)
+PROTOBUF_NOINLINE void MetaCredit::Clear() {
+// @@protoc_insertion_point(message_clear_start:lyric.MetaCredit)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -575,7 +1423,7 @@ PROTOBUF_NOINLINE void MetaCreator::Clear() {
   cached_has_bits = _impl_._has_bits_[0];
   if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-      _impl_.name_.Clear();
+      _impl_.names_.Clear();
     }
     if (CheckHasBit(cached_has_bits, 0x00000002U)) {
       _impl_.role_.ClearNonDefaultToEmpty();
@@ -586,20 +1434,20 @@ PROTOBUF_NOINLINE void MetaCreator::Clear() {
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::uint8_t* PROTOBUF_NONNULL MetaCreator::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL MetaCredit::_InternalSerialize(
     const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
-  const MetaCreator& this_ = static_cast<const MetaCreator&>(base);
+  const MetaCredit& this_ = static_cast<const MetaCredit&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::uint8_t* PROTOBUF_NONNULL MetaCreator::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL MetaCredit::_InternalSerialize(
     ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-  const MetaCreator& this_ = *this;
+  const MetaCredit& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
-  // @@protoc_insertion_point(serialize_to_array_start:lyric.MetaCreator)
+  // @@protoc_insertion_point(serialize_to_array_start:lyric.MetaCredit)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -609,18 +1457,21 @@ PROTOBUF_NOINLINE void MetaCreator::Clear() {
     if (!this_._internal_role().empty()) {
       const ::std::string& _s = this_._internal_role();
       ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.MetaCreator.role");
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.MetaCredit.role");
       target = stream->WriteStringMaybeAliased(1, _s, target);
     }
   }
 
-  // repeated string name = 2 [json_name = "name"];
+  // repeated .lyric.MetaText names = 2 [json_name = "names"];
   if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-    for (int i = 0, n = this_._internal_name_size(); i < n; ++i) {
-      const auto& s = this_._internal_name().Get(i);
-      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.MetaCreator.name");
-      target = stream->WriteString(2, s, target);
+    for (unsigned i = 0, n = static_cast<unsigned>(
+                             this_._internal_names_size());
+         i < n; i++) {
+      const auto& repfield = this_._internal_names().Get(i);
+      target =
+          ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+              2, repfield, repfield.GetCachedSize(),
+              target, stream);
     }
   }
 
@@ -629,18 +1480,18 @@ PROTOBUF_NOINLINE void MetaCreator::Clear() {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:lyric.MetaCreator)
+  // @@protoc_insertion_point(serialize_to_array_end:lyric.MetaCredit)
   return target;
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::size_t MetaCreator::ByteSizeLong(const MessageLite& base) {
-  const MetaCreator& this_ = static_cast<const MetaCreator&>(base);
+::size_t MetaCredit::ByteSizeLong(const MessageLite& base) {
+  const MetaCredit& this_ = static_cast<const MetaCredit&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::size_t MetaCreator::ByteSizeLong() const {
-  const MetaCreator& this_ = *this;
+::size_t MetaCredit::ByteSizeLong() const {
+  const MetaCredit& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(message_byte_size_start:lyric.MetaCreator)
+  // @@protoc_insertion_point(message_byte_size_start:lyric.MetaCredit)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -650,13 +1501,11 @@ PROTOBUF_NOINLINE void MetaCreator::Clear() {
   ::_pbi::Prefetch5LinesFrom7Lines(&this_);
   cached_has_bits = this_._impl_._has_bits_[0];
   if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
-    // repeated string name = 2 [json_name = "name"];
+    // repeated .lyric.MetaText names = 2 [json_name = "names"];
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-      total_size +=
-          1 * ::google::protobuf::internal::FromIntSize(this_._internal_name().size());
-      for (int i = 0, n = this_._internal_name().size(); i < n; ++i) {
-        total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
-            this_._internal_name().Get(i));
+      total_size += 1UL * this_._internal_names_size();
+      for (const auto& msg : this_._internal_names()) {
+        total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
       }
     }
     // string role = 1 [json_name = "role"];
@@ -671,15 +1520,15 @@ PROTOBUF_NOINLINE void MetaCreator::Clear() {
                                              &this_._impl_._cached_size_);
 }
 
-void MetaCreator::MergeImpl(::google::protobuf::MessageLite& to_msg,
+void MetaCredit::MergeImpl(::google::protobuf::MessageLite& to_msg,
                       const ::google::protobuf::MessageLite& from_msg) {
-   auto* const _this = static_cast<MetaCreator*>(&to_msg);
-  auto& from = static_cast<const MetaCreator&>(from_msg);
+   auto* const _this = static_cast<MetaCredit*>(&to_msg);
+  auto& from = static_cast<const MetaCredit&>(from_msg);
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     from.CheckHasBitConsistency();
   }
   ::google::protobuf::Arena* arena = _this->GetArena();
-  // @@protoc_insertion_point(class_specific_merge_from_start:lyric.MetaCreator)
+  // @@protoc_insertion_point(class_specific_merge_from_start:lyric.MetaCredit)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
@@ -687,9 +1536,9 @@ void MetaCreator::MergeImpl(::google::protobuf::MessageLite& to_msg,
   cached_has_bits = from._impl_._has_bits_[0];
   if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-      _this->_internal_mutable_name()->InternalMergeFromWithArena(
+      _this->_internal_mutable_names()->InternalMergeFromWithArena(
           ::google::protobuf::MessageLite::internal_visibility(), arena,
-          from._internal_name());
+          from._internal_names());
     }
     if (CheckHasBit(cached_has_bits, 0x00000002U)) {
       if (!from._internal_role().empty()) {
@@ -706,275 +1555,151 @@ void MetaCreator::MergeImpl(::google::protobuf::MessageLite& to_msg,
       from._internal_metadata_);
 }
 
-void MetaCreator::CopyFrom(const MetaCreator& from) {
-  // @@protoc_insertion_point(class_specific_copy_from_start:lyric.MetaCreator)
+void MetaCredit::CopyFrom(const MetaCredit& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:lyric.MetaCredit)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void MetaCreator::InternalSwap(MetaCreator* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+void MetaCredit::InternalSwap(MetaCredit* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   using ::std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  _impl_.name_.InternalSwap(&other->_impl_.name_);
+  _impl_.names_.InternalSwap(&other->_impl_.names_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.role_, &other->_impl_.role_, arena);
 }
 
-::google::protobuf::Metadata MetaCreator::GetMetadata() const {
+::google::protobuf::Metadata MetaCredit::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 
-void MetaItem::set_allocated_unknown(::google::protobuf::Value* PROTOBUF_NULLABLE unknown) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_content();
-  if (unknown) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::Message*>(unknown)->GetArena();
-    if (message_arena != submessage_arena) {
-      unknown = ::google::protobuf::internal::GetOwnedMessage(message_arena, unknown, submessage_arena);
-    }
-    set_has_unknown();
-    _impl_.content_.unknown_ = unknown;
-  }
-  // @@protoc_insertion_point(field_set_allocated:lyric.MetaItem.unknown)
-}
-void MetaItem::clear_unknown() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (content_case() == kUnknown) {
-    if (GetArena() == nullptr) {
-      delete _impl_.content_.unknown_;
-    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.content_.unknown_);
-    }
-    clear_has_content();
-  }
-}
-void MetaItem::set_allocated_creator(::lyric::MetaCreator* PROTOBUF_NULLABLE creator) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_content();
-  if (creator) {
-    ::google::protobuf::Arena* submessage_arena = creator->GetArena();
-    if (message_arena != submessage_arena) {
-      creator = ::google::protobuf::internal::GetOwnedMessage(message_arena, creator, submessage_arena);
-    }
-    set_has_creator();
-    _impl_.content_.creator_ = creator;
-  }
-  // @@protoc_insertion_point(field_set_allocated:lyric.MetaItem.creator)
-}
-MetaItem::MetaItem(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+MetaUnknown::MetaUnknown(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, MetaItem_get_class_data()) {
+    : ::google::protobuf::Message(arena, MetaUnknown_get_class_data()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:lyric.MetaItem)
+  // @@protoc_insertion_point(arena_constructor:lyric.MetaUnknown)
 }
-PROTOBUF_NDEBUG_INLINE MetaItem::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE MetaUnknown::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-    [[maybe_unused]] const ::lyric::MetaItem& from_msg)
+    [[maybe_unused]] const ::lyric::MetaUnknown& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
         key_(arena, from.key_),
-        content_{},
-        _oneof_case_{from._oneof_case_[0]} {}
+        value_(arena, from.value_) {}
 
-MetaItem::MetaItem(
+MetaUnknown::MetaUnknown(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
-    const MetaItem& from)
+    const MetaUnknown& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, MetaItem_get_class_data()) {
+    : ::google::protobuf::Message(arena, MetaUnknown_get_class_data()) {
 
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  MetaItem* const _this = this;
+  MetaUnknown* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  switch (content_case()) {
-    case CONTENT_NOT_SET:
-      break;
-      case kUnknown:
-        _impl_.content_.unknown_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.content_.unknown_);
-        break;
-      case kOffset:
-        _impl_.content_.offset_ = from._impl_.content_.offset_;
-        break;
-      case kDuration:
-        _impl_.content_.duration_ = from._impl_.content_.duration_;
-        break;
-      case kTitle:
-        new (&_impl_.content_.title_) decltype(_impl_.content_.title_){arena, from._impl_.content_.title_};
-        break;
-      case kSinger:
-        new (&_impl_.content_.singer_) decltype(_impl_.content_.singer_){arena, from._impl_.content_.singer_};
-        break;
-      case kAlbum:
-        new (&_impl_.content_.album_) decltype(_impl_.content_.album_){arena, from._impl_.content_.album_};
-        break;
-      case kCreator:
-        _impl_.content_.creator_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.content_.creator_);
-        break;
-      case kAuthor:
-        new (&_impl_.content_.author_) decltype(_impl_.content_.author_){arena, from._impl_.content_.author_};
-        break;
-      case kIsrc:
-        new (&_impl_.content_.isrc_) decltype(_impl_.content_.isrc_){arena, from._impl_.content_.isrc_};
-        break;
-  }
 
-  // @@protoc_insertion_point(copy_constructor:lyric.MetaItem)
+  // @@protoc_insertion_point(copy_constructor:lyric.MetaUnknown)
 }
-PROTOBUF_NDEBUG_INLINE MetaItem::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE MetaUnknown::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
       : _cached_size_{0},
         key_(arena),
-        content_{},
-        _oneof_case_{} {}
+        value_(arena) {}
 
-inline void MetaItem::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+inline void MetaUnknown::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
-MetaItem::~MetaItem() {
-  // @@protoc_insertion_point(destructor:lyric.MetaItem)
+MetaUnknown::~MetaUnknown() {
+  // @@protoc_insertion_point(destructor:lyric.MetaUnknown)
   SharedDtor(*this);
 }
-inline void MetaItem::SharedDtor(MessageLite& self) {
-  MetaItem& this_ = static_cast<MetaItem&>(self);
+inline void MetaUnknown::SharedDtor(MessageLite& self) {
+  MetaUnknown& this_ = static_cast<MetaUnknown&>(self);
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
   this_._impl_.key_.Destroy();
-  if (this_.has_content()) {
-    this_.clear_content();
-  }
+  this_._impl_.value_.Destroy();
   this_._impl_.~Impl_();
 }
 
-void MetaItem::clear_content() {
-// @@protoc_insertion_point(one_of_clear_start:lyric.MetaItem)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  switch (content_case()) {
-    case kUnknown: {
-      if (GetArena() == nullptr) {
-        delete _impl_.content_.unknown_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.content_.unknown_);
-      }
-      break;
-    }
-    case kOffset: {
-      // No need to clear
-      break;
-    }
-    case kDuration: {
-      // No need to clear
-      break;
-    }
-    case kTitle: {
-      _impl_.content_.title_.Destroy();
-      break;
-    }
-    case kSinger: {
-      _impl_.content_.singer_.Destroy();
-      break;
-    }
-    case kAlbum: {
-      _impl_.content_.album_.Destroy();
-      break;
-    }
-    case kCreator: {
-      if (GetArena() == nullptr) {
-        delete _impl_.content_.creator_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.content_.creator_);
-      }
-      break;
-    }
-    case kAuthor: {
-      _impl_.content_.author_.Destroy();
-      break;
-    }
-    case kIsrc: {
-      _impl_.content_.isrc_.Destroy();
-      break;
-    }
-    case CONTENT_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[0] = CONTENT_NOT_SET;
-}
-
-
 #ifndef PROTOBUF_MESSAGE_GLOBALS
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
-    ::google::protobuf::internal::ClassDataFull MetaItem_class_data_ =
-        MetaItem::InternalGenerateClassData_(MetaItem_globals_._default);
+    ::google::protobuf::internal::ClassDataFull MetaUnknown_class_data_ =
+        MetaUnknown::InternalGenerateClassData_(MetaUnknown_globals_._default);
 
 PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
-MetaItem::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&MetaItem_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(MetaItem_class_data_.tc_table);
-  return MetaItem_class_data_.base();
+MetaUnknown::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&MetaUnknown_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(MetaUnknown_class_data_.tc_table);
+  return MetaUnknown_class_data_.base();
 }
 #else
 PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
-MetaItem::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&MetaItem_globals_);
+MetaUnknown::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&MetaUnknown_globals_);
   ::google::protobuf::internal::PrefetchToLocalCache(
-      ::google::protobuf::internal::MessageGlobalsBase::ToParseTableBase(&MetaItem_globals_));
-  return MetaItem_globals_.GetClassData();
+      ::google::protobuf::internal::MessageGlobalsBase::ToParseTableBase(&MetaUnknown_globals_));
+  return MetaUnknown_globals_.GetClassData();
 }
 #endif  // !PROTOBUF_MESSAGE_GLOBALS
 #ifndef PROTOBUF_MESSAGE_GLOBALS
 PROTOBUF_CONSTINIT
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const MetaItem::ParseTableT_
-    MetaItem::_table_ =
-        MetaItem::InternalGenerateParseTable_(MetaItem_class_data_.base());
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const MetaUnknown::ParseTableT_
+    MetaUnknown::_table_ =
+        MetaUnknown::InternalGenerateParseTable_(MetaUnknown_class_data_.base());
 #endif  // !PROTOBUF_MESSAGE_GLOBALS
-PROTOBUF_NOINLINE void MetaItem::Clear() {
-// @@protoc_insertion_point(message_clear_start:lyric.MetaItem)
+PROTOBUF_NOINLINE void MetaUnknown::Clear() {
+// @@protoc_insertion_point(message_clear_start:lyric.MetaUnknown)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   cached_has_bits = _impl_._has_bits_[0];
-  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-    _impl_.key_.ClearNonDefaultToEmpty();
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      _impl_.key_.ClearNonDefaultToEmpty();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      _impl_.value_.ClearNonDefaultToEmpty();
+    }
   }
-  clear_content();
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::uint8_t* PROTOBUF_NONNULL MetaItem::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL MetaUnknown::_InternalSerialize(
     const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
-  const MetaItem& this_ = static_cast<const MetaItem&>(base);
+  const MetaUnknown& this_ = static_cast<const MetaUnknown&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::uint8_t* PROTOBUF_NONNULL MetaItem::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL MetaUnknown::_InternalSerialize(
     ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-  const MetaItem& this_ = *this;
+  const MetaUnknown& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
-  // @@protoc_insertion_point(serialize_to_array_start:lyric.MetaItem)
+  // @@protoc_insertion_point(serialize_to_array_start:lyric.MetaUnknown)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -984,291 +1709,965 @@ PROTOBUF_NOINLINE void MetaItem::Clear() {
     if (!this_._internal_key().empty()) {
       const ::std::string& _s = this_._internal_key();
       ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.MetaItem.key");
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.MetaUnknown.key");
       target = stream->WriteStringMaybeAliased(1, _s, target);
     }
   }
 
-  switch (this_.content_case()) {
-    case kUnknown: {
-      target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-          2, *this_._impl_.content_.unknown_, this_._impl_.content_.unknown_->GetCachedSize(), target,
-          stream);
-      break;
-    }
-    case kOffset: {
-      target = stream->EnsureSpace(target);
-      target = ::_pbi::WireFormatLite::WriteDoubleToArray(
-          3, this_._internal_offset(), target);
-      break;
-    }
-    case kDuration: {
-      target = stream->EnsureSpace(target);
-      target = ::_pbi::WireFormatLite::WriteDoubleToArray(
-          4, this_._internal_duration(), target);
-      break;
-    }
-    case kTitle: {
-      const ::std::string& _s = this_._internal_title();
+  // string value = 2 [json_name = "value"];
+  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+    if (!this_._internal_value().empty()) {
+      const ::std::string& _s = this_._internal_value();
       ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.MetaItem.title");
-      target = stream->WriteStringMaybeAliased(5, _s, target);
-      break;
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.MetaUnknown.value");
+      target = stream->WriteStringMaybeAliased(2, _s, target);
     }
-    case kSinger: {
-      const ::std::string& _s = this_._internal_singer();
-      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.MetaItem.singer");
-      target = stream->WriteStringMaybeAliased(6, _s, target);
-      break;
-    }
-    case kAlbum: {
-      const ::std::string& _s = this_._internal_album();
-      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.MetaItem.album");
-      target = stream->WriteStringMaybeAliased(7, _s, target);
-      break;
-    }
-    case kCreator: {
-      target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-          8, *this_._impl_.content_.creator_, this_._impl_.content_.creator_->GetCachedSize(), target,
-          stream);
-      break;
-    }
-    case kAuthor: {
-      const ::std::string& _s = this_._internal_author();
-      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.MetaItem.author");
-      target = stream->WriteStringMaybeAliased(9, _s, target);
-      break;
-    }
-    case kIsrc: {
-      const ::std::string& _s = this_._internal_isrc();
-      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.MetaItem.isrc");
-      target = stream->WriteStringMaybeAliased(10, _s, target);
-      break;
-    }
-    default:
-      break;
   }
+
   if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:lyric.MetaItem)
+  // @@protoc_insertion_point(serialize_to_array_end:lyric.MetaUnknown)
   return target;
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::size_t MetaItem::ByteSizeLong(const MessageLite& base) {
-  const MetaItem& this_ = static_cast<const MetaItem&>(base);
+::size_t MetaUnknown::ByteSizeLong(const MessageLite& base) {
+  const MetaUnknown& this_ = static_cast<const MetaUnknown&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::size_t MetaItem::ByteSizeLong() const {
-  const MetaItem& this_ = *this;
+::size_t MetaUnknown::ByteSizeLong() const {
+  const MetaUnknown& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(message_byte_size_start:lyric.MetaItem)
+  // @@protoc_insertion_point(message_byte_size_start:lyric.MetaUnknown)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void)cached_has_bits;
 
-   {
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
     // string key = 1 [json_name = "key"];
-    cached_has_bits = this_._impl_._has_bits_[0];
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
       if (!this_._internal_key().empty()) {
         total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                         this_._internal_key());
       }
     }
-  }
-  switch (this_.content_case()) {
-    // .google.protobuf.Value unknown = 2 [json_name = "unknown"];
-    case kUnknown: {
-      total_size += 1 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.content_.unknown_);
-      break;
-    }
-    // double offset = 3 [json_name = "offset"];
-    case kOffset: {
-      total_size += 9;
-      break;
-    }
-    // double duration = 4 [json_name = "duration"];
-    case kDuration: {
-      total_size += 9;
-      break;
-    }
-    // string title = 5 [json_name = "title"];
-    case kTitle: {
-      total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                      this_._internal_title());
-      break;
-    }
-    // string singer = 6 [json_name = "singer"];
-    case kSinger: {
-      total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                      this_._internal_singer());
-      break;
-    }
-    // string album = 7 [json_name = "album"];
-    case kAlbum: {
-      total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                      this_._internal_album());
-      break;
-    }
-    // .lyric.MetaCreator creator = 8 [json_name = "creator"];
-    case kCreator: {
-      total_size += 1 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.content_.creator_);
-      break;
-    }
-    // string author = 9 [json_name = "author"];
-    case kAuthor: {
-      total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                      this_._internal_author());
-      break;
-    }
-    // string isrc = 10 [json_name = "isrc"];
-    case kIsrc: {
-      total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                      this_._internal_isrc());
-      break;
-    }
-    case CONTENT_NOT_SET: {
-      break;
+    // string value = 2 [json_name = "value"];
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (!this_._internal_value().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_value());
+      }
     }
   }
   return this_.MaybeComputeUnknownFieldsSize(total_size,
                                              &this_._impl_._cached_size_);
 }
 
-void MetaItem::MergeImpl(::google::protobuf::MessageLite& to_msg,
+void MetaUnknown::MergeImpl(::google::protobuf::MessageLite& to_msg,
                       const ::google::protobuf::MessageLite& from_msg) {
-   auto* const _this = static_cast<MetaItem*>(&to_msg);
-  auto& from = static_cast<const MetaItem&>(from_msg);
+   auto* const _this = static_cast<MetaUnknown*>(&to_msg);
+  auto& from = static_cast<const MetaUnknown&>(from_msg);
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     from.CheckHasBitConsistency();
   }
-  ::google::protobuf::Arena* arena = _this->GetArena();
-  // @@protoc_insertion_point(class_specific_merge_from_start:lyric.MetaItem)
+  // @@protoc_insertion_point(class_specific_merge_from_start:lyric.MetaUnknown)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
   cached_has_bits = from._impl_._has_bits_[0];
-  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-    if (!from._internal_key().empty()) {
-      _this->_internal_set_key(from._internal_key());
-    } else {
-      if (_this->_impl_.key_.IsDefault()) {
-        _this->_internal_set_key("");
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      if (!from._internal_key().empty()) {
+        _this->_internal_set_key(from._internal_key());
+      } else {
+        if (_this->_impl_.key_.IsDefault()) {
+          _this->_internal_set_key("");
+        }
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (!from._internal_value().empty()) {
+        _this->_internal_set_value(from._internal_value());
+      } else {
+        if (_this->_impl_.value_.IsDefault()) {
+          _this->_internal_set_value("");
+        }
       }
     }
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
-  if (const uint32_t oneof_from_case =
-          from._impl_._oneof_case_[0]) {
-    const uint32_t oneof_to_case = _this->_impl_._oneof_case_[0];
-    const bool oneof_needs_init = oneof_to_case != oneof_from_case;
-    if (oneof_needs_init) {
-      if (oneof_to_case != 0) {
-        _this->clear_content();
-      }
-      _this->_impl_._oneof_case_[0] = oneof_from_case;
-    }
-
-    switch (oneof_from_case) {
-      case kUnknown: {
-        if (oneof_needs_init) {
-          _this->_impl_.content_.unknown_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.content_.unknown_);
-        } else {
-          _this->_impl_.content_.unknown_->MergeFrom(*from._impl_.content_.unknown_);
-        }
-        break;
-      }
-      case kOffset: {
-        _this->_impl_.content_.offset_ = from._impl_.content_.offset_;
-        break;
-      }
-      case kDuration: {
-        _this->_impl_.content_.duration_ = from._impl_.content_.duration_;
-        break;
-      }
-      case kTitle: {
-        if (oneof_needs_init) {
-          _this->_impl_.content_.title_.InitDefault();
-        }
-        _this->_impl_.content_.title_.Set(from._internal_title(), arena);
-        break;
-      }
-      case kSinger: {
-        if (oneof_needs_init) {
-          _this->_impl_.content_.singer_.InitDefault();
-        }
-        _this->_impl_.content_.singer_.Set(from._internal_singer(), arena);
-        break;
-      }
-      case kAlbum: {
-        if (oneof_needs_init) {
-          _this->_impl_.content_.album_.InitDefault();
-        }
-        _this->_impl_.content_.album_.Set(from._internal_album(), arena);
-        break;
-      }
-      case kCreator: {
-        if (oneof_needs_init) {
-          _this->_impl_.content_.creator_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.content_.creator_);
-        } else {
-          _this->_impl_.content_.creator_->MergeFrom(*from._impl_.content_.creator_);
-        }
-        break;
-      }
-      case kAuthor: {
-        if (oneof_needs_init) {
-          _this->_impl_.content_.author_.InitDefault();
-        }
-        _this->_impl_.content_.author_.Set(from._internal_author(), arena);
-        break;
-      }
-      case kIsrc: {
-        if (oneof_needs_init) {
-          _this->_impl_.content_.isrc_.InitDefault();
-        }
-        _this->_impl_.content_.isrc_.Set(from._internal_isrc(), arena);
-        break;
-      }
-      case CONTENT_NOT_SET:
-        break;
-    }
-  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
 }
 
-void MetaItem::CopyFrom(const MetaItem& from) {
-  // @@protoc_insertion_point(class_specific_copy_from_start:lyric.MetaItem)
+void MetaUnknown::CopyFrom(const MetaUnknown& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:lyric.MetaUnknown)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void MetaItem::InternalSwap(MetaItem* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+void MetaUnknown::InternalSwap(MetaUnknown* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   using ::std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.key_, &other->_impl_.key_, arena);
-  swap(_impl_.content_, other->_impl_.content_);
-  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.value_, &other->_impl_.value_, arena);
 }
 
-::google::protobuf::Metadata MetaItem::GetMetadata() const {
+::google::protobuf::Metadata MetaUnknown::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+MetaReference::MetaReference(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, MetaReference_get_class_data()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:lyric.MetaReference)
+}
+PROTOBUF_NDEBUG_INLINE MetaReference::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    [[maybe_unused]] const ::lyric::MetaReference& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        ids_ {
+          visibility, ::_pbi::InternalMetadataOffset::Build<
+              ::lyric::MetaReference,
+              PROTOBUF_FIELD_OFFSET(::lyric::MetaReference, _impl_.ids_)>()
+          , from.ids_
+        }
+        ,
+        platform_(arena, from.platform_) {}
+
+MetaReference::MetaReference(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const MetaReference& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, MetaReference_get_class_data()) {
+
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  MetaReference* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:lyric.MetaReference)
+}
+PROTOBUF_NDEBUG_INLINE MetaReference::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        ids_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::MetaReference,
+            PROTOBUF_FIELD_OFFSET(::lyric::MetaReference, _impl_.ids_)>()
+         }
+        ,
+        platform_(arena) {}
+
+inline void MetaReference::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+MetaReference::~MetaReference() {
+  // @@protoc_insertion_point(destructor:lyric.MetaReference)
+  SharedDtor(*this);
+}
+inline void MetaReference::SharedDtor(MessageLite& self) {
+  MetaReference& this_ = static_cast<MetaReference&>(self);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.platform_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull MetaReference_class_data_ =
+        MetaReference::InternalGenerateClassData_(MetaReference_globals_._default);
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+MetaReference::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&MetaReference_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(MetaReference_class_data_.tc_table);
+  return MetaReference_class_data_.base();
+}
+#else
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+MetaReference::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&MetaReference_globals_);
+  ::google::protobuf::internal::PrefetchToLocalCache(
+      ::google::protobuf::internal::MessageGlobalsBase::ToParseTableBase(&MetaReference_globals_));
+  return MetaReference_globals_.GetClassData();
+}
+#endif  // !PROTOBUF_MESSAGE_GLOBALS
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const MetaReference::ParseTableT_
+    MetaReference::_table_ =
+        MetaReference::InternalGenerateParseTable_(MetaReference_class_data_.base());
+#endif  // !PROTOBUF_MESSAGE_GLOBALS
+PROTOBUF_NOINLINE void MetaReference::Clear() {
+// @@protoc_insertion_point(message_clear_start:lyric.MetaReference)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      _impl_.ids_.Clear();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      _impl_.platform_.ClearNonDefaultToEmpty();
+    }
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL MetaReference::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const MetaReference& this_ = static_cast<const MetaReference&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL MetaReference::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const MetaReference& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(serialize_to_array_start:lyric.MetaReference)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // string platform = 1 [json_name = "platform"];
+  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+    if (!this_._internal_platform().empty()) {
+      const ::std::string& _s = this_._internal_platform();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.MetaReference.platform");
+      target = stream->WriteStringMaybeAliased(1, _s, target);
+    }
+  }
+
+  // repeated string ids = 2 [json_name = "ids"];
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    for (int i = 0, n = this_._internal_ids_size(); i < n; ++i) {
+      const auto& s = this_._internal_ids().Get(i);
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.MetaReference.ids");
+      target = stream->WriteString(2, s, target);
+    }
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:lyric.MetaReference)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t MetaReference::ByteSizeLong(const MessageLite& base) {
+  const MetaReference& this_ = static_cast<const MetaReference&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t MetaReference::ByteSizeLong() const {
+  const MetaReference& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:lyric.MetaReference)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    // repeated string ids = 2 [json_name = "ids"];
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      total_size +=
+          1 * ::google::protobuf::internal::FromIntSize(this_._internal_ids().size());
+      for (int i = 0, n = this_._internal_ids().size(); i < n; ++i) {
+        total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+            this_._internal_ids().Get(i));
+      }
+    }
+    // string platform = 1 [json_name = "platform"];
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (!this_._internal_platform().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_platform());
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void MetaReference::MergeImpl(::google::protobuf::MessageLite& to_msg,
+                      const ::google::protobuf::MessageLite& from_msg) {
+   auto* const _this = static_cast<MetaReference*>(&to_msg);
+  auto& from = static_cast<const MetaReference&>(from_msg);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    from.CheckHasBitConsistency();
+  }
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:lyric.MetaReference)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      _this->_internal_mutable_ids()->InternalMergeFromWithArena(
+          ::google::protobuf::MessageLite::internal_visibility(), arena,
+          from._internal_ids());
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (!from._internal_platform().empty()) {
+        _this->_internal_set_platform(from._internal_platform());
+      } else {
+        if (_this->_impl_.platform_.IsDefault()) {
+          _this->_internal_set_platform("");
+        }
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+}
+
+void MetaReference::CopyFrom(const MetaReference& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:lyric.MetaReference)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void MetaReference::InternalSwap(MetaReference* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.ids_.InternalSwap(&other->_impl_.ids_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.platform_, &other->_impl_.platform_, arena);
+}
+
+::google::protobuf::Metadata MetaReference::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+Meta::Meta(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, Meta_get_class_data()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:lyric.Meta)
+}
+PROTOBUF_NDEBUG_INLINE Meta::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    [[maybe_unused]] const ::lyric::Meta& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        unknowns_ {
+          visibility, ::_pbi::InternalMetadataOffset::Build<
+              ::lyric::Meta,
+              PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.unknowns_)>()
+          , from.unknowns_
+        }
+        ,
+        titles_ {
+          visibility, ::_pbi::InternalMetadataOffset::Build<
+              ::lyric::Meta,
+              PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.titles_)>()
+          , from.titles_
+        }
+        ,
+        artists_ {
+          visibility, ::_pbi::InternalMetadataOffset::Build<
+              ::lyric::Meta,
+              PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.artists_)>()
+          , from.artists_
+        }
+        ,
+        albums_ {
+          visibility, ::_pbi::InternalMetadataOffset::Build<
+              ::lyric::Meta,
+              PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.albums_)>()
+          , from.albums_
+        }
+        ,
+        authors_ {
+          visibility, ::_pbi::InternalMetadataOffset::Build<
+              ::lyric::Meta,
+              PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.authors_)>()
+          , from.authors_
+        }
+        ,
+        isrcs_ {
+          visibility, ::_pbi::InternalMetadataOffset::Build<
+              ::lyric::Meta,
+              PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.isrcs_)>()
+          , from.isrcs_
+        }
+        ,
+        credits_ {
+          visibility, ::_pbi::InternalMetadataOffset::Build<
+              ::lyric::Meta,
+              PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.credits_)>()
+          , from.credits_
+        }
+        ,
+        references_ {
+          visibility, ::_pbi::InternalMetadataOffset::Build<
+              ::lyric::Meta,
+              PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.references_)>()
+          , from.references_
+        }
+     {}
+
+Meta::Meta(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const Meta& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, Meta_get_class_data()) {
+
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Meta* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::memcpy(reinterpret_cast<char*>(&_impl_) +
+               offsetof(Impl_, offset_),
+           reinterpret_cast<const char*>(&from._impl_) +
+               offsetof(Impl_, offset_),
+           offsetof(Impl_, duration_) -
+               offsetof(Impl_, offset_) +
+               sizeof(Impl_::duration_));
+
+  // @@protoc_insertion_point(copy_constructor:lyric.Meta)
+}
+PROTOBUF_NDEBUG_INLINE Meta::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        unknowns_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::Meta,
+            PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.unknowns_)>()
+         }
+        ,
+        titles_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::Meta,
+            PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.titles_)>()
+         }
+        ,
+        artists_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::Meta,
+            PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.artists_)>()
+         }
+        ,
+        albums_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::Meta,
+            PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.albums_)>()
+         }
+        ,
+        authors_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::Meta,
+            PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.authors_)>()
+         }
+        ,
+        isrcs_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::Meta,
+            PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.isrcs_)>()
+         }
+        ,
+        credits_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::Meta,
+            PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.credits_)>()
+         }
+        ,
+        references_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::Meta,
+            PROTOBUF_FIELD_OFFSET(::lyric::Meta, _impl_.references_)>()
+         }
+     {}
+
+inline void Meta::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char*>(&_impl_) +
+               offsetof(Impl_, offset_),
+           0,
+           offsetof(Impl_, duration_) -
+               offsetof(Impl_, offset_) +
+               sizeof(Impl_::duration_));
+}
+Meta::~Meta() {
+  // @@protoc_insertion_point(destructor:lyric.Meta)
+  SharedDtor(*this);
+}
+inline void Meta::SharedDtor(MessageLite& self) {
+  Meta& this_ = static_cast<Meta&>(self);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.~Impl_();
+}
+
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull Meta_class_data_ =
+        Meta::InternalGenerateClassData_(Meta_globals_._default);
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+Meta::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&Meta_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(Meta_class_data_.tc_table);
+  return Meta_class_data_.base();
+}
+#else
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+Meta::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&Meta_globals_);
+  ::google::protobuf::internal::PrefetchToLocalCache(
+      ::google::protobuf::internal::MessageGlobalsBase::ToParseTableBase(&Meta_globals_));
+  return Meta_globals_.GetClassData();
+}
+#endif  // !PROTOBUF_MESSAGE_GLOBALS
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const Meta::ParseTableT_
+    Meta::_table_ =
+        Meta::InternalGenerateParseTable_(Meta_class_data_.base());
+#endif  // !PROTOBUF_MESSAGE_GLOBALS
+PROTOBUF_NOINLINE void Meta::Clear() {
+// @@protoc_insertion_point(message_clear_start:lyric.Meta)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x000000ffU)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      _impl_.unknowns_.Clear();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      _impl_.titles_.Clear();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      _impl_.artists_.Clear();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+      _impl_.albums_.Clear();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+      _impl_.authors_.Clear();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000020U)) {
+      _impl_.isrcs_.Clear();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000040U)) {
+      _impl_.credits_.Clear();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000080U)) {
+      _impl_.references_.Clear();
+    }
+  }
+  if (BatchCheckHasBit(cached_has_bits, 0x00000300U)) {
+    ::memset(&_impl_.offset_, 0, static_cast<::size_t>(
+        reinterpret_cast<char*>(&_impl_.duration_) -
+        reinterpret_cast<char*>(&_impl_.offset_)) + sizeof(_impl_.duration_));
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL Meta::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const Meta& this_ = static_cast<const Meta&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL Meta::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const Meta& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(serialize_to_array_start:lyric.Meta)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // repeated .lyric.MetaUnknown unknowns = 1 [json_name = "unknowns"];
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    for (unsigned i = 0, n = static_cast<unsigned>(
+                             this_._internal_unknowns_size());
+         i < n; i++) {
+      const auto& repfield = this_._internal_unknowns().Get(i);
+      target =
+          ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+              1, repfield, repfield.GetCachedSize(),
+              target, stream);
+    }
+  }
+
+  // sint32 offset = 2 [json_name = "offset"];
+  if (CheckHasBit(cached_has_bits, 0x00000100U)) {
+    if (this_._internal_offset() != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteSInt32ToArray(
+          2, this_._internal_offset(), target);
+    }
+  }
+
+  // uint32 duration = 3 [json_name = "duration"];
+  if (CheckHasBit(cached_has_bits, 0x00000200U)) {
+    if (this_._internal_duration() != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+          3, this_._internal_duration(), target);
+    }
+  }
+
+  // repeated .lyric.MetaText titles = 4 [json_name = "titles"];
+  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+    for (unsigned i = 0, n = static_cast<unsigned>(
+                             this_._internal_titles_size());
+         i < n; i++) {
+      const auto& repfield = this_._internal_titles().Get(i);
+      target =
+          ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+              4, repfield, repfield.GetCachedSize(),
+              target, stream);
+    }
+  }
+
+  // repeated .lyric.MetaText artists = 5 [json_name = "artists"];
+  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+    for (unsigned i = 0, n = static_cast<unsigned>(
+                             this_._internal_artists_size());
+         i < n; i++) {
+      const auto& repfield = this_._internal_artists().Get(i);
+      target =
+          ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+              5, repfield, repfield.GetCachedSize(),
+              target, stream);
+    }
+  }
+
+  // repeated .lyric.MetaText albums = 6 [json_name = "albums"];
+  if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+    for (unsigned i = 0, n = static_cast<unsigned>(
+                             this_._internal_albums_size());
+         i < n; i++) {
+      const auto& repfield = this_._internal_albums().Get(i);
+      target =
+          ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+              6, repfield, repfield.GetCachedSize(),
+              target, stream);
+    }
+  }
+
+  // repeated .lyric.MetaText authors = 7 [json_name = "authors"];
+  if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+    for (unsigned i = 0, n = static_cast<unsigned>(
+                             this_._internal_authors_size());
+         i < n; i++) {
+      const auto& repfield = this_._internal_authors().Get(i);
+      target =
+          ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+              7, repfield, repfield.GetCachedSize(),
+              target, stream);
+    }
+  }
+
+  // repeated string isrcs = 8 [json_name = "isrcs"];
+  if (CheckHasBit(cached_has_bits, 0x00000020U)) {
+    for (int i = 0, n = this_._internal_isrcs_size(); i < n; ++i) {
+      const auto& s = this_._internal_isrcs().Get(i);
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.Meta.isrcs");
+      target = stream->WriteString(8, s, target);
+    }
+  }
+
+  // repeated .lyric.MetaCredit credits = 9 [json_name = "credits"];
+  if (CheckHasBit(cached_has_bits, 0x00000040U)) {
+    for (unsigned i = 0, n = static_cast<unsigned>(
+                             this_._internal_credits_size());
+         i < n; i++) {
+      const auto& repfield = this_._internal_credits().Get(i);
+      target =
+          ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+              9, repfield, repfield.GetCachedSize(),
+              target, stream);
+    }
+  }
+
+  // repeated .lyric.MetaReference references = 10 [json_name = "references"];
+  if (CheckHasBit(cached_has_bits, 0x00000080U)) {
+    for (unsigned i = 0, n = static_cast<unsigned>(
+                             this_._internal_references_size());
+         i < n; i++) {
+      const auto& repfield = this_._internal_references().Get(i);
+      target =
+          ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+              10, repfield, repfield.GetCachedSize(),
+              target, stream);
+    }
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:lyric.Meta)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t Meta::ByteSizeLong(const MessageLite& base) {
+  const Meta& this_ = static_cast<const Meta&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t Meta::ByteSizeLong() const {
+  const Meta& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:lyric.Meta)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x000000ffU)) {
+    // repeated .lyric.MetaUnknown unknowns = 1 [json_name = "unknowns"];
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      total_size += 1UL * this_._internal_unknowns_size();
+      for (const auto& msg : this_._internal_unknowns()) {
+        total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+      }
+    }
+    // repeated .lyric.MetaText titles = 4 [json_name = "titles"];
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      total_size += 1UL * this_._internal_titles_size();
+      for (const auto& msg : this_._internal_titles()) {
+        total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+      }
+    }
+    // repeated .lyric.MetaText artists = 5 [json_name = "artists"];
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      total_size += 1UL * this_._internal_artists_size();
+      for (const auto& msg : this_._internal_artists()) {
+        total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+      }
+    }
+    // repeated .lyric.MetaText albums = 6 [json_name = "albums"];
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+      total_size += 1UL * this_._internal_albums_size();
+      for (const auto& msg : this_._internal_albums()) {
+        total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+      }
+    }
+    // repeated .lyric.MetaText authors = 7 [json_name = "authors"];
+    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+      total_size += 1UL * this_._internal_authors_size();
+      for (const auto& msg : this_._internal_authors()) {
+        total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+      }
+    }
+    // repeated string isrcs = 8 [json_name = "isrcs"];
+    if (CheckHasBit(cached_has_bits, 0x00000020U)) {
+      total_size +=
+          1 * ::google::protobuf::internal::FromIntSize(this_._internal_isrcs().size());
+      for (int i = 0, n = this_._internal_isrcs().size(); i < n; ++i) {
+        total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+            this_._internal_isrcs().Get(i));
+      }
+    }
+    // repeated .lyric.MetaCredit credits = 9 [json_name = "credits"];
+    if (CheckHasBit(cached_has_bits, 0x00000040U)) {
+      total_size += 1UL * this_._internal_credits_size();
+      for (const auto& msg : this_._internal_credits()) {
+        total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+      }
+    }
+    // repeated .lyric.MetaReference references = 10 [json_name = "references"];
+    if (CheckHasBit(cached_has_bits, 0x00000080U)) {
+      total_size += 1UL * this_._internal_references_size();
+      for (const auto& msg : this_._internal_references()) {
+        total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+      }
+    }
+  }
+  if (BatchCheckHasBit(cached_has_bits, 0x00000300U)) {
+    // sint32 offset = 2 [json_name = "offset"];
+    if (CheckHasBit(cached_has_bits, 0x00000100U)) {
+      if (this_._internal_offset() != 0) {
+        total_size += ::_pbi::WireFormatLite::SInt32SizePlusOne(
+            this_._internal_offset());
+      }
+    }
+    // uint32 duration = 3 [json_name = "duration"];
+    if (CheckHasBit(cached_has_bits, 0x00000200U)) {
+      if (this_._internal_duration() != 0) {
+        total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+            this_._internal_duration());
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void Meta::MergeImpl(::google::protobuf::MessageLite& to_msg,
+                      const ::google::protobuf::MessageLite& from_msg) {
+   auto* const _this = static_cast<Meta*>(&to_msg);
+  auto& from = static_cast<const Meta&>(from_msg);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    from.CheckHasBitConsistency();
+  }
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:lyric.Meta)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x000000ffU)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      _this->_internal_mutable_unknowns()->InternalMergeFromWithArena(
+          ::google::protobuf::MessageLite::internal_visibility(), arena,
+          from._internal_unknowns());
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      _this->_internal_mutable_titles()->InternalMergeFromWithArena(
+          ::google::protobuf::MessageLite::internal_visibility(), arena,
+          from._internal_titles());
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      _this->_internal_mutable_artists()->InternalMergeFromWithArena(
+          ::google::protobuf::MessageLite::internal_visibility(), arena,
+          from._internal_artists());
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+      _this->_internal_mutable_albums()->InternalMergeFromWithArena(
+          ::google::protobuf::MessageLite::internal_visibility(), arena,
+          from._internal_albums());
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+      _this->_internal_mutable_authors()->InternalMergeFromWithArena(
+          ::google::protobuf::MessageLite::internal_visibility(), arena,
+          from._internal_authors());
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000020U)) {
+      _this->_internal_mutable_isrcs()->InternalMergeFromWithArena(
+          ::google::protobuf::MessageLite::internal_visibility(), arena,
+          from._internal_isrcs());
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000040U)) {
+      _this->_internal_mutable_credits()->InternalMergeFromWithArena(
+          ::google::protobuf::MessageLite::internal_visibility(), arena,
+          from._internal_credits());
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000080U)) {
+      _this->_internal_mutable_references()->InternalMergeFromWithArena(
+          ::google::protobuf::MessageLite::internal_visibility(), arena,
+          from._internal_references());
+    }
+  }
+  if (BatchCheckHasBit(cached_has_bits, 0x00000300U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000100U)) {
+      if (from._internal_offset() != 0) {
+        _this->_impl_.offset_ = from._impl_.offset_;
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000200U)) {
+      if (from._internal_duration() != 0) {
+        _this->_impl_.duration_ = from._impl_.duration_;
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+}
+
+void Meta::CopyFrom(const Meta& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:lyric.Meta)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Meta::InternalSwap(Meta* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.unknowns_.InternalSwap(&other->_impl_.unknowns_);
+  _impl_.titles_.InternalSwap(&other->_impl_.titles_);
+  _impl_.artists_.InternalSwap(&other->_impl_.artists_);
+  _impl_.albums_.InternalSwap(&other->_impl_.albums_);
+  _impl_.authors_.InternalSwap(&other->_impl_.authors_);
+  _impl_.isrcs_.InternalSwap(&other->_impl_.isrcs_);
+  _impl_.credits_.InternalSwap(&other->_impl_.credits_);
+  _impl_.references_.InternalSwap(&other->_impl_.references_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Meta, _impl_.duration_)
+      + sizeof(Meta::_impl_.duration_)
+      - PROTOBUF_FIELD_OFFSET(Meta, _impl_.offset_)>(
+          reinterpret_cast<char*>(&_impl_.offset_),
+          reinterpret_cast<char*>(&other->_impl_.offset_));
+}
+
+::google::protobuf::Metadata Meta::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // @@protoc_insertion_point(namespace_scope)

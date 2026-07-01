@@ -21,21 +21,24 @@ namespace {
 		w2.set_content("漢");
 		w2.set_language("ja");
 
-		LineNormal body;
-		body.mutable_time()->set_start(1000);
-		body.mutable_time()->set_end(2000);
-		*body.add_words()          = makeWordNormal(w1);
-		*body.add_words()          = makeWordSpace(sp);
-		*body.add_words()          = makeWordNormal(w2);
-		*body.mutable_annotation() = makeLineAnnotation();
-		return makeLineNormal(body);
+		LineNormal   body;
+		LineContent* content           = body.mutable_content();
+		*content->add_words()          = makeWordNormal(w1);
+		*content->add_words()          = makeWordSpace(sp);
+		*content->add_words()          = makeWordNormal(w2);
+		*content->mutable_annotation() = makeLineAnnotation();
+
+		Time time;
+		time.set_start(1000);
+		time.set_end(2000);
+		return makeLineNormal(body, &time);
 	}
 
 	Line makeInterludeLine() {
-		LineInterlude body;
-		body.mutable_time()->set_start(2000);
-		body.mutable_time()->set_end(3000);
-		return makeLineInterlude(body);
+		Time time;
+		time.set_start(2000);
+		time.set_end(3000);
+		return makeLineInterlude(&time);
 	}
 } // namespace
 
@@ -53,6 +56,11 @@ TEST_CASE("getLineTime and getLineDuration read across the oneof") {
 	REQUIRE(getLineTime(interlude) != nullptr);
 	CHECK(getLineTime(interlude)->end() == 3000);
 	CHECK(getLineDuration(normal) == 1000);
+}
+
+TEST_CASE("getLineContent is absent on an interlude") {
+	CHECK(getLineContent(makeNormalLine()) != nullptr);
+	CHECK(getLineContent(makeInterludeLine()) == nullptr);
 }
 
 TEST_CASE("getLineWords is empty for an interlude") {

@@ -1,6 +1,7 @@
 #include "agent/agent.h"
 
 #include "doctest.h"
+#include "info.h"
 #include "line/content.h"
 
 using namespace music_lyric_model;
@@ -13,14 +14,27 @@ namespace {
 		AgentItem*                  a1 = agents.Add();
 		a1->set_id("a1");
 		a1->set_type(AGENT_TYPE_PERSON);
-		a1->set_count(3);
 		a1->add_names("Alice");
 		AgentItem* a2 = agents.Add();
 		a2->set_id("a2");
 		a2->set_type(AGENT_TYPE_GROUP);
-		a2->set_count(5);
 		a2->add_names("Chorus");
 		return agents;
+	}
+
+	Line makeAgentLine(const std::string& id) {
+		LineNormal body;
+		body.mutable_content()->mutable_agent()->set_id(id);
+		return makeLineNormal(body);
+	}
+
+	Info makeAgentInfo() {
+		Info info;
+		*info.mutable_agents() = makeAgents();
+		*info.add_lines()      = makeAgentLine("a2");
+		*info.add_lines()      = makeAgentLine("a2");
+		*info.add_lines()      = makeAgentLine("a1");
+		return info;
 	}
 } // namespace
 
@@ -33,18 +47,34 @@ TEST_CASE("getAgentById finds the agent") {
 
 TEST_CASE("getLineAgent resolves a line reference") {
 	const RepeatedPtrField<AgentItem> agents = makeAgents();
-	LineNormal                        body;
-	body.mutable_agent()->set_id("a2");
-	const Line line = makeLineNormal(body);
+	const Line                        line   = makeAgentLine("a2");
 	REQUIRE(getLineAgent(line, agents) != nullptr);
 	CHECK(getLineAgent(line, agents)->id() == "a2");
 	CHECK(getLineAgent(makeLineNormal(), agents) == nullptr);
 	CHECK(getLineAgent(makeLineInterlude(), agents) == nullptr);
 }
 
+TEST_CASE("getAgentLineCounts and getAgentLineCount tally lines per agent") {
+	const Info info = makeAgentInfo();
+	CHECK(getAgentLineCounts(info.lines()).at("a2") == 2);
+	CHECK(getAgentLineCount(info.lines(), "a1") == 1);
+	CHECK(getAgentLineCount(info.lines(), "none") == 0);
+}
+
+TEST_CASE("getAgentLineIndexes tracks global and block occurrence") {
+	const Info info     = makeAgentInfo();
+	const auto indexes  = getAgentLineIndexes(info.lines());
+	const auto secondA2 = indexes.at(&info.lines(1));
+	const auto firstA1  = indexes.at(&info.lines(2));
+	CHECK(secondA2.globalIndex == 1);
+	CHECK(secondA2.blockIndex == 1);
+	CHECK(firstA1.globalIndex == 0);
+	CHECK(firstA1.blockIndex == 0);
+}
+
 TEST_CASE("getPrimaryAgent picks the most lines") {
-	const RepeatedPtrField<AgentItem> agents = makeAgents();
-	REQUIRE(getPrimaryAgent(agents) != nullptr);
-	CHECK(getPrimaryAgent(agents)->id() == "a2");
-	CHECK(getPrimaryAgent(RepeatedPtrField<AgentItem>()) == nullptr);
+	const Info info = makeAgentInfo();
+	REQUIRE(getPrimaryAgent(info) != nullptr);
+	CHECK(getPrimaryAgent(info)->id() == "a2");
+	CHECK(getPrimaryAgent(makeInfo()) == nullptr);
 }

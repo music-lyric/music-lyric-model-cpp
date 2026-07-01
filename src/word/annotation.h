@@ -19,6 +19,11 @@ namespace music_lyric_model {
 	lyric::WordAnnotationRoman makeWordAnnotationRoman();
 
 	/**
+	 * Creates a WordAnnotationTranslate.
+	 */
+	lyric::WordAnnotationTranslate makeWordAnnotationTranslate();
+
+	/**
 	 * Creates a WordAnnotationRuby.
 	 */
 	lyric::WordAnnotationRuby makeWordAnnotationRuby();

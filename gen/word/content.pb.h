@@ -480,7 +480,7 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED WordNormal final : public ::google:
   ::std::string* PROTOBUF_NONNULL _internal_mutable_language();
 
   public:
-  // optional .lyric.Time time = 1 [json_name = "time"];
+  // .lyric.Time time = 1 [json_name = "time"];
   [[nodiscard]] bool has_time()
       const;
   void clear_time() ;
@@ -496,7 +496,7 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED WordNormal final : public ::google:
   ::lyric::Time* PROTOBUF_NONNULL _internal_mutable_time();
 
   public:
-  // optional .lyric.WordAnnotation annotation = 4 [json_name = "annotation"];
+  // .lyric.WordAnnotation annotation = 4 [json_name = "annotation"];
   [[nodiscard]] bool has_annotation()
       const;
   void clear_annotation() ;
@@ -830,7 +830,7 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED Word final : public ::google::proto
 
 // WordNormal
 
-// optional .lyric.Time time = 1 [json_name = "time"];
+// .lyric.Time time = 1 [json_name = "time"];
 inline bool WordNormal::has_time() const {
   bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000004U);
   PROTOBUF_ASSUME(!value || _impl_.time_ != nullptr);
@@ -1055,7 +1055,7 @@ inline void WordNormal::set_allocated_language(::std::string* PROTOBUF_NULLABLE 
   // @@protoc_insertion_point(field_set_allocated:lyric.WordNormal.language)
 }
 
-// optional .lyric.WordAnnotation annotation = 4 [json_name = "annotation"];
+// .lyric.WordAnnotation annotation = 4 [json_name = "annotation"];
 inline bool WordNormal::has_annotation() const {
   bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000008U);
   PROTOBUF_ASSUME(!value || _impl_.annotation_ != nullptr);

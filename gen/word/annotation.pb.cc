@@ -33,6 +33,8 @@ PROTOBUF_CONSTINIT ::google::protobuf::internal::ReflectionData
         {&::_pbi::kDescriptorMethods, &::descriptor_table_word_2fannotation_2eproto, /* tracker*/ nullptr,},
         // ::lyric::WordAnnotationRoman
         {&::_pbi::kDescriptorMethods, &::descriptor_table_word_2fannotation_2eproto, /* tracker*/ nullptr,},
+        // ::lyric::WordAnnotationTranslate
+        {&::_pbi::kDescriptorMethods, &::descriptor_table_word_2fannotation_2eproto, /* tracker*/ nullptr,},
         // ::lyric::WordAnnotationRuby
         {&::_pbi::kDescriptorMethods, &::descriptor_table_word_2fannotation_2eproto, /* tracker*/ nullptr,},
         // ::lyric::WordAnnotationUnknown
@@ -73,14 +75,14 @@ constexpr WordAnnotationContent::ParseTableT_ WordAnnotationContent::InternalGen
       {::_pbi::TcParser::FastUS1,
        {18, 0, 0,
         PROTOBUF_FIELD_OFFSET(WordAnnotationContent, _impl_.content_)}},
-      // optional .lyric.Time time = 1 [json_name = "time"];
+      // .lyric.Time time = 1 [json_name = "time"];
       {::_pbi::TcParser::FastMtS1,
        {10, 1, 0,
         PROTOBUF_FIELD_OFFSET(WordAnnotationContent, _impl_.time_)}},
     }}, {{
       65535, 65535
     }}, {{
-      // optional .lyric.Time time = 1 [json_name = "time"];
+      // .lyric.Time time = 1 [json_name = "time"];
       {PROTOBUF_FIELD_OFFSET(WordAnnotationContent, _impl_.time_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
       // string content = 2 [json_name = "content"];
       {PROTOBUF_FIELD_OFFSET(WordAnnotationContent, _impl_.content_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
@@ -236,7 +238,7 @@ constexpr WordAnnotationUnknown::ParseTableT_ WordAnnotationUnknown::InternalGen
       {::_pbi::TcParser::FastUS1,
        {10, 1, 0,
         PROTOBUF_FIELD_OFFSET(WordAnnotationUnknown, _impl_.key_)}},
-      // optional .lyric.Time time = 2 [json_name = "time"];
+      // .lyric.Time time = 2 [json_name = "time"];
       {::_pbi::TcParser::FastMtS1,
        {18, 3, 0,
         PROTOBUF_FIELD_OFFSET(WordAnnotationUnknown, _impl_.time_)}},
@@ -249,7 +251,7 @@ constexpr WordAnnotationUnknown::ParseTableT_ WordAnnotationUnknown::InternalGen
     }}, {{
       // string key = 1 [json_name = "key"];
       {PROTOBUF_FIELD_OFFSET(WordAnnotationUnknown, _impl_.key_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-      // optional .lyric.Time time = 2 [json_name = "time"];
+      // .lyric.Time time = 2 [json_name = "time"];
       {PROTOBUF_FIELD_OFFSET(WordAnnotationUnknown, _impl_.time_), _Internal::kHasBitsOffset + 3, 0, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
       // optional string language = 3 [json_name = "language"];
       {PROTOBUF_FIELD_OFFSET(WordAnnotationUnknown, _impl_.language_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
@@ -336,7 +338,7 @@ constexpr auto WordAnnotationUnknown::InternalGenerateClassData_(
           false,
       },
 #ifdef PROTOBUF_MESSAGE_GLOBALS
-      &file_reflection_data[3],
+      &file_reflection_data[4],
 #else   // !PROTOBUF_MESSAGE_GLOBALS
       &::_pbi::kDescriptorMethods,
       &descriptor_table_word_2fannotation_2eproto,
@@ -387,6 +389,182 @@ const ::_pbi::ClassData* WordAnnotationUnknown_get_class_data() {
 }
 }  // namespace
 #endif  // PROTOBUF_CUSTOM_VTABLE
+class WordAnnotationTranslate::_Internal {
+ public:
+  using HasBits = decltype(::std::declval<WordAnnotationTranslate>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(WordAnnotationTranslate, _impl_._has_bits_);
+};
+
+constexpr WordAnnotationTranslate::ParseTableT_ WordAnnotationTranslate::InternalGenerateParseTable_(const ::_pbi::ClassData* class_data) {
+  return ParseTableT_{
+    {
+      PROTOBUF_FIELD_OFFSET(WordAnnotationTranslate, _impl_._has_bits_),
+      0, // no _extensions_
+      3, 24,  // max_field_number, fast_idx_mask
+      offsetof(ParseTableT_, field_lookup_table),
+      4294967288,  // skipmap
+      offsetof(ParseTableT_, field_entries),
+      3,  // num_field_entries
+      2,  // num_aux_entries
+      offsetof(ParseTableT_, aux_entries),
+      class_data,
+      nullptr,  // post_loop_handler
+      ::_pbi::TcParser::GenericFallback,  // fallback
+      #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+      ::_pbi::TcParser::GetTable<::lyric::WordAnnotationTranslate>(),  // to_prefetch
+      #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+    }, {{
+      {::_pbi::TcParser::MiniParse, {}},
+      // .lyric.Time time = 1 [json_name = "time"];
+      {::_pbi::TcParser::FastMtS1,
+       {10, 2, 0,
+        PROTOBUF_FIELD_OFFSET(WordAnnotationTranslate, _impl_.time_)}},
+      // optional string language = 2 [json_name = "language"];
+      {::_pbi::TcParser::FastUS1,
+       {18, 1, 0,
+        PROTOBUF_FIELD_OFFSET(WordAnnotationTranslate, _impl_.language_)}},
+      // repeated .lyric.WordAnnotationContent words = 3 [json_name = "words"];
+      {::_pbi::TcParser::FastMtR1,
+       {26, 0, 1,
+        PROTOBUF_FIELD_OFFSET(WordAnnotationTranslate, _impl_.words_)}},
+    }}, {{
+      65535, 65535
+    }}, {{
+      // .lyric.Time time = 1 [json_name = "time"];
+      {PROTOBUF_FIELD_OFFSET(WordAnnotationTranslate, _impl_.time_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+      // optional string language = 2 [json_name = "language"];
+      {PROTOBUF_FIELD_OFFSET(WordAnnotationTranslate, _impl_.language_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+      // repeated .lyric.WordAnnotationContent words = 3 [json_name = "words"];
+      {PROTOBUF_FIELD_OFFSET(WordAnnotationTranslate, _impl_.words_), _Internal::kHasBitsOffset + 0, 1, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    }},
+    {{
+        #ifndef PROTOBUF_MESSAGE_GLOBALS
+        {::_pbi::TcParser::GetTable<::lyric::Time>()},
+        #else
+        {::_pbi::FieldAuxMessageGlobals(), &::lyric::Time_globals_},
+        #endif
+        #ifndef PROTOBUF_MESSAGE_GLOBALS
+        {::_pbi::TcParser::GetTable<::lyric::WordAnnotationContent>()},
+        #else
+        {::_pbi::FieldAuxMessageGlobals(), &::lyric::WordAnnotationContent_globals_},
+        #endif
+    }},
+    {{
+      "\35\0\10\0\0\0\0\0"
+      "lyric.WordAnnotationTranslate"
+      "language"
+    }},
+  };
+}
+
+
+inline constexpr WordAnnotationTranslate::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        words_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::WordAnnotationTranslate,
+            PROTOBUF_FIELD_OFFSET(::lyric::WordAnnotationTranslate, _impl_.words_)>()
+         }
+        ,
+        language_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        time_{nullptr} {}
+
+template <typename>
+constexpr WordAnnotationTranslate::WordAnnotationTranslate(::_pbi::ConstantInitialized,
+                       const ::_pbi::ClassData* PROTOBUF_NONNULL class_data)
+    : ::google::protobuf::Message(
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          class_data
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          ),
+      _impl_(internal_visibility(), ::_pbi::ConstantInitialized()) {
+}
+inline void* PROTOBUF_NONNULL WordAnnotationTranslate::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) WordAnnotationTranslate(arena);
+}
+constexpr auto WordAnnotationTranslate::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(WordAnnotationTranslate), alignof(WordAnnotationTranslate));
+}
+constexpr auto WordAnnotationTranslate::InternalGenerateClassData_(
+    const MessageLite& prototype,
+    const ::google::protobuf::internal::TcParseTableBase* tc_table) {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &prototype,
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+          &_table_.header,
+#else
+          tc_table,
+#endif
+          nullptr,  // IsInitialized
+          &WordAnnotationTranslate::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<WordAnnotationTranslate>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &WordAnnotationTranslate::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<WordAnnotationTranslate>(), &WordAnnotationTranslate::ByteSizeLong,
+              &WordAnnotationTranslate::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(WordAnnotationTranslate, _impl_._cached_size_),
+          false,
+      },
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+      &file_reflection_data[2],
+#else   // !PROTOBUF_MESSAGE_GLOBALS
+      &::_pbi::kDescriptorMethods,
+      &descriptor_table_word_2fannotation_2eproto,
+      nullptr,  // tracker
+#endif  // PROTOBUF_MESSAGE_GLOBALS
+  };
+}
+struct WordAnnotationTranslateGlobalsTypeInternal : ::_pbi::MessageGlobalsBase {
+  constexpr WordAnnotationTranslateGlobalsTypeInternal()
+      :
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+        _default(::_pbi::ConstantInitialized{},
+                 WordAnnotationTranslate_class_data_.base())
+#else   // !PROTOBUF_MESSAGE_GLOBALS
+        MessageGlobalsBase(WordAnnotationTranslate::InternalGenerateClassData_(
+            _default, &WordAnnotationTranslate_globals_._table.header)),
+        _default(::_pbi::ConstantInitialized{}, GetClassData()),
+        _table(::_pbi::PrivateAccess::GenerateParseTable<WordAnnotationTranslate>(
+            GetClassData()))
+#endif  // PROTOBUF_MESSAGE_GLOBALS
+  {
+  }
+  ~WordAnnotationTranslateGlobalsTypeInternal() {}
+  union {
+    alignas(::_pbi::kMaxMessageAlignment) WordAnnotationTranslate _default;
+  };
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+  decltype(::_pbi::PrivateAccess::GenerateParseTable<WordAnnotationTranslate>(
+      ::std::declval<const ::_pbi::ClassData*>())) _table;
+#endif
+};
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+static_assert(PROTOBUF_FIELD_OFFSET(WordAnnotationTranslateGlobalsTypeInternal, _default) ==
+              ::_pbi::MessageGlobalsBase::OffsetToDefault());
+#endif  // PROTOBUF_MESSAGE_GLOBALS
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PROTOBUF_MESSAGE_GLOBALS_CONST WordAnnotationTranslateGlobalsTypeInternal WordAnnotationTranslate_globals_
+        PROTOBUF_MESSAGE_GLOBALS_SECTION(.data.rel.ro);
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+namespace {
+const ::_pbi::ClassData* WordAnnotationTranslate_get_class_data() {
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+  return WordAnnotationTranslate_globals_.GetClassData();
+#else
+  return WordAnnotationTranslate_class_data_.base();
+#endif  // PROTOBUF_MESSAGE_GLOBALS
+}
+}  // namespace
+#endif  // PROTOBUF_CUSTOM_VTABLE
 class WordAnnotationRuby::_Internal {
  public:
   using HasBits = decltype(::std::declval<WordAnnotationRuby>()._impl_._has_bits_);
@@ -417,7 +595,7 @@ constexpr WordAnnotationRuby::ParseTableT_ WordAnnotationRuby::InternalGenerateP
       {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(WordAnnotationRuby, _impl_.phrase_start_), 3>(),
        {32, 3, 0,
         PROTOBUF_FIELD_OFFSET(WordAnnotationRuby, _impl_.phrase_start_)}},
-      // optional .lyric.Time time = 1 [json_name = "time"];
+      // .lyric.Time time = 1 [json_name = "time"];
       {::_pbi::TcParser::FastMtS1,
        {10, 2, 0,
         PROTOBUF_FIELD_OFFSET(WordAnnotationRuby, _impl_.time_)}},
@@ -432,7 +610,7 @@ constexpr WordAnnotationRuby::ParseTableT_ WordAnnotationRuby::InternalGenerateP
     }}, {{
       65535, 65535
     }}, {{
-      // optional .lyric.Time time = 1 [json_name = "time"];
+      // .lyric.Time time = 1 [json_name = "time"];
       {PROTOBUF_FIELD_OFFSET(WordAnnotationRuby, _impl_.time_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
       // optional string language = 2 [json_name = "language"];
       {PROTOBUF_FIELD_OFFSET(WordAnnotationRuby, _impl_.language_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
@@ -518,7 +696,7 @@ constexpr auto WordAnnotationRuby::InternalGenerateClassData_(
           false,
       },
 #ifdef PROTOBUF_MESSAGE_GLOBALS
-      &file_reflection_data[2],
+      &file_reflection_data[3],
 #else   // !PROTOBUF_MESSAGE_GLOBALS
       &::_pbi::kDescriptorMethods,
       &descriptor_table_word_2fannotation_2eproto,
@@ -596,7 +774,7 @@ constexpr WordAnnotationRoman::ParseTableT_ WordAnnotationRoman::InternalGenerat
       #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
     }, {{
       {::_pbi::TcParser::MiniParse, {}},
-      // optional .lyric.Time time = 1 [json_name = "time"];
+      // .lyric.Time time = 1 [json_name = "time"];
       {::_pbi::TcParser::FastMtS1,
        {10, 2, 0,
         PROTOBUF_FIELD_OFFSET(WordAnnotationRoman, _impl_.time_)}},
@@ -611,7 +789,7 @@ constexpr WordAnnotationRoman::ParseTableT_ WordAnnotationRoman::InternalGenerat
     }}, {{
       65535, 65535
     }}, {{
-      // optional .lyric.Time time = 1 [json_name = "time"];
+      // .lyric.Time time = 1 [json_name = "time"];
       {PROTOBUF_FIELD_OFFSET(WordAnnotationRoman, _impl_.time_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
       // optional string language = 2 [json_name = "language"];
       {PROTOBUF_FIELD_OFFSET(WordAnnotationRoman, _impl_.language_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
@@ -757,12 +935,12 @@ constexpr WordAnnotation::ParseTableT_ WordAnnotation::InternalGenerateParseTabl
     {
       PROTOBUF_FIELD_OFFSET(WordAnnotation, _impl_._has_bits_),
       0, // no _extensions_
-      3, 24,  // max_field_number, fast_idx_mask
+      4, 24,  // max_field_number, fast_idx_mask
       offsetof(ParseTableT_, field_lookup_table),
-      4294967288,  // skipmap
+      4294967280,  // skipmap
       offsetof(ParseTableT_, field_entries),
-      3,  // num_field_entries
-      3,  // num_aux_entries
+      4,  // num_field_entries
+      4,  // num_aux_entries
       offsetof(ParseTableT_, aux_entries),
       class_data,
       nullptr,  // post_loop_handler
@@ -771,14 +949,17 @@ constexpr WordAnnotation::ParseTableT_ WordAnnotation::InternalGenerateParseTabl
       ::_pbi::TcParser::GetTable<::lyric::WordAnnotation>(),  // to_prefetch
       #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
     }, {{
-      {::_pbi::TcParser::MiniParse, {}},
+      // repeated .lyric.WordAnnotationTranslate translates = 4 [json_name = "translates"];
+      {::_pbi::TcParser::FastMtR1,
+       {34, 2, 3,
+        PROTOBUF_FIELD_OFFSET(WordAnnotation, _impl_.translates_)}},
       // repeated .lyric.WordAnnotationUnknown unknowns = 1 [json_name = "unknowns"];
       {::_pbi::TcParser::FastMtR1,
        {10, 0, 0,
         PROTOBUF_FIELD_OFFSET(WordAnnotation, _impl_.unknowns_)}},
-      // optional .lyric.WordAnnotationRuby ruby = 2 [json_name = "ruby"];
+      // .lyric.WordAnnotationRuby ruby = 2 [json_name = "ruby"];
       {::_pbi::TcParser::FastMtS1,
-       {18, 2, 1,
+       {18, 3, 1,
         PROTOBUF_FIELD_OFFSET(WordAnnotation, _impl_.ruby_)}},
       // repeated .lyric.WordAnnotationRoman romans = 3 [json_name = "romans"];
       {::_pbi::TcParser::FastMtR1,
@@ -789,10 +970,12 @@ constexpr WordAnnotation::ParseTableT_ WordAnnotation::InternalGenerateParseTabl
     }}, {{
       // repeated .lyric.WordAnnotationUnknown unknowns = 1 [json_name = "unknowns"];
       {PROTOBUF_FIELD_OFFSET(WordAnnotation, _impl_.unknowns_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-      // optional .lyric.WordAnnotationRuby ruby = 2 [json_name = "ruby"];
-      {PROTOBUF_FIELD_OFFSET(WordAnnotation, _impl_.ruby_), _Internal::kHasBitsOffset + 2, 1, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+      // .lyric.WordAnnotationRuby ruby = 2 [json_name = "ruby"];
+      {PROTOBUF_FIELD_OFFSET(WordAnnotation, _impl_.ruby_), _Internal::kHasBitsOffset + 3, 1, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
       // repeated .lyric.WordAnnotationRoman romans = 3 [json_name = "romans"];
       {PROTOBUF_FIELD_OFFSET(WordAnnotation, _impl_.romans_), _Internal::kHasBitsOffset + 1, 2, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+      // repeated .lyric.WordAnnotationTranslate translates = 4 [json_name = "translates"];
+      {PROTOBUF_FIELD_OFFSET(WordAnnotation, _impl_.translates_), _Internal::kHasBitsOffset + 2, 3, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
     }},
     {{
         #ifndef PROTOBUF_MESSAGE_GLOBALS
@@ -809,6 +992,11 @@ constexpr WordAnnotation::ParseTableT_ WordAnnotation::InternalGenerateParseTabl
         {::_pbi::TcParser::GetTable<::lyric::WordAnnotationRoman>()},
         #else
         {::_pbi::FieldAuxMessageGlobals(), &::lyric::WordAnnotationRoman_globals_},
+        #endif
+        #ifndef PROTOBUF_MESSAGE_GLOBALS
+        {::_pbi::TcParser::GetTable<::lyric::WordAnnotationTranslate>()},
+        #else
+        {::_pbi::FieldAuxMessageGlobals(), &::lyric::WordAnnotationTranslate_globals_},
         #endif
     }},
     {{
@@ -829,6 +1017,11 @@ inline constexpr WordAnnotation::Impl_::Impl_(
         romans_ { visibility, ::_pbi::InternalMetadataOffset::Build<
             ::lyric::WordAnnotation,
             PROTOBUF_FIELD_OFFSET(::lyric::WordAnnotation, _impl_.romans_)>()
+         }
+        ,
+        translates_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::WordAnnotation,
+            PROTOBUF_FIELD_OFFSET(::lyric::WordAnnotation, _impl_.translates_)>()
          }
         ,
         ruby_{nullptr} {}
@@ -874,7 +1067,7 @@ constexpr auto WordAnnotation::InternalGenerateClassData_(
           false,
       },
 #ifdef PROTOBUF_MESSAGE_GLOBALS
-      &file_reflection_data[4],
+      &file_reflection_data[5],
 #else   // !PROTOBUF_MESSAGE_GLOBALS
       &::_pbi::kDescriptorMethods,
       &descriptor_table_word_2fannotation_2eproto,
@@ -950,6 +1143,15 @@ const ::uint32_t
         1,
         0,
         0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::lyric::WordAnnotationTranslate, _impl_._has_bits_),
+        6, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::lyric::WordAnnotationTranslate, _impl_.time_),
+        PROTOBUF_FIELD_OFFSET(::lyric::WordAnnotationTranslate, _impl_.language_),
+        PROTOBUF_FIELD_OFFSET(::lyric::WordAnnotationTranslate, _impl_.words_),
+        2,
+        1,
+        0,
+        0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::lyric::WordAnnotationRuby, _impl_._has_bits_),
         7, // hasbit index offset
         PROTOBUF_FIELD_OFFSET(::lyric::WordAnnotationRuby, _impl_.time_),
@@ -973,27 +1175,31 @@ const ::uint32_t
         0,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::lyric::WordAnnotation, _impl_._has_bits_),
-        6, // hasbit index offset
+        7, // hasbit index offset
         PROTOBUF_FIELD_OFFSET(::lyric::WordAnnotation, _impl_.unknowns_),
         PROTOBUF_FIELD_OFFSET(::lyric::WordAnnotation, _impl_.ruby_),
         PROTOBUF_FIELD_OFFSET(::lyric::WordAnnotation, _impl_.romans_),
+        PROTOBUF_FIELD_OFFSET(::lyric::WordAnnotation, _impl_.translates_),
         0,
-        2,
+        3,
         1,
+        2,
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, sizeof(::lyric::WordAnnotationContent)},
         {7, sizeof(::lyric::WordAnnotationRoman)},
-        {16, sizeof(::lyric::WordAnnotationRuby)},
-        {27, sizeof(::lyric::WordAnnotationUnknown)},
-        {38, sizeof(::lyric::WordAnnotation)},
+        {16, sizeof(::lyric::WordAnnotationTranslate)},
+        {25, sizeof(::lyric::WordAnnotationRuby)},
+        {36, sizeof(::lyric::WordAnnotationUnknown)},
+        {47, sizeof(::lyric::WordAnnotation)},
 };
 static const ::_pbi::MessageGlobalsBase* PROTOBUF_NONNULL const
     file_message_globals[] = {
         &::lyric::WordAnnotationContent_globals_,
         &::lyric::WordAnnotationRoman_globals_,
+        &::lyric::WordAnnotationTranslate_globals_,
         &::lyric::WordAnnotationRuby_globals_,
         &::lyric::WordAnnotationUnknown_globals_,
         &::lyric::WordAnnotation_globals_,
@@ -1001,28 +1207,32 @@ static const ::_pbi::MessageGlobalsBase* PROTOBUF_NONNULL const
 const char descriptor_table_protodef_word_2fannotation_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\025word/annotation.proto\022\005lyric\032\021common/t"
-    "ime.proto\"`\n\025WordAnnotationContent\022$\n\004ti"
-    "me\030\001 \001(\0132\013.lyric.TimeH\000R\004time\210\001\001\022\030\n\007cont"
-    "ent\030\002 \001(\tR\007contentB\007\n\005_time\"\246\001\n\023WordAnno"
-    "tationRoman\022$\n\004time\030\001 \001(\0132\013.lyric.TimeH\000"
-    "R\004time\210\001\001\022\037\n\010language\030\002 \001(\tH\001R\010language\210"
-    "\001\001\0222\n\005words\030\003 \003(\0132\034.lyric.WordAnnotation"
-    "ContentR\005wordsB\007\n\005_timeB\013\n\t_language\"\310\001\n"
-    "\022WordAnnotationRuby\022$\n\004time\030\001 \001(\0132\013.lyri"
-    "c.TimeH\000R\004time\210\001\001\022\037\n\010language\030\002 \001(\tH\001R\010l"
-    "anguage\210\001\001\0222\n\005words\030\003 \003(\0132\034.lyric.WordAn"
-    "notationContentR\005words\022!\n\014phrase_start\030\004"
-    " \001(\010R\013phraseStartB\007\n\005_timeB\013\n\t_language\""
-    "\272\001\n\025WordAnnotationUnknown\022\020\n\003key\030\001 \001(\tR\003"
-    "key\022$\n\004time\030\002 \001(\0132\013.lyric.TimeH\000R\004time\210\001"
-    "\001\022\037\n\010language\030\003 \001(\tH\001R\010language\210\001\001\0222\n\005wo"
-    "rds\030\004 \003(\0132\034.lyric.WordAnnotationContentR"
-    "\005wordsB\007\n\005_timeB\013\n\t_language\"\273\001\n\016WordAnn"
-    "otation\0228\n\010unknowns\030\001 \003(\0132\034.lyric.WordAn"
-    "notationUnknownR\010unknowns\0222\n\004ruby\030\002 \001(\0132"
-    "\031.lyric.WordAnnotationRubyH\000R\004ruby\210\001\001\0222\n"
-    "\006romans\030\003 \003(\0132\032.lyric.WordAnnotationRoma"
-    "nR\006romansB\007\n\005_rubyb\006proto3"
+    "ime.proto\"R\n\025WordAnnotationContent\022\037\n\004ti"
+    "me\030\001 \001(\0132\013.lyric.TimeR\004time\022\030\n\007content\030\002"
+    " \001(\tR\007content\"\230\001\n\023WordAnnotationRoman\022\037\n"
+    "\004time\030\001 \001(\0132\013.lyric.TimeR\004time\022\037\n\010langua"
+    "ge\030\002 \001(\tH\000R\010language\210\001\001\0222\n\005words\030\003 \003(\0132\034"
+    ".lyric.WordAnnotationContentR\005wordsB\013\n\t_"
+    "language\"\234\001\n\027WordAnnotationTranslate\022\037\n\004"
+    "time\030\001 \001(\0132\013.lyric.TimeR\004time\022\037\n\010languag"
+    "e\030\002 \001(\tH\000R\010language\210\001\001\0222\n\005words\030\003 \003(\0132\034."
+    "lyric.WordAnnotationContentR\005wordsB\013\n\t_l"
+    "anguage\"\272\001\n\022WordAnnotationRuby\022\037\n\004time\030\001"
+    " \001(\0132\013.lyric.TimeR\004time\022\037\n\010language\030\002 \001("
+    "\tH\000R\010language\210\001\001\0222\n\005words\030\003 \003(\0132\034.lyric."
+    "WordAnnotationContentR\005words\022!\n\014phrase_s"
+    "tart\030\004 \001(\010R\013phraseStartB\013\n\t_language\"\254\001\n"
+    "\025WordAnnotationUnknown\022\020\n\003key\030\001 \001(\tR\003key"
+    "\022\037\n\004time\030\002 \001(\0132\013.lyric.TimeR\004time\022\037\n\010lan"
+    "guage\030\003 \001(\tH\000R\010language\210\001\001\0222\n\005words\030\004 \003("
+    "\0132\034.lyric.WordAnnotationContentR\005wordsB\013"
+    "\n\t_language\"\355\001\n\016WordAnnotation\0228\n\010unknow"
+    "ns\030\001 \003(\0132\034.lyric.WordAnnotationUnknownR\010"
+    "unknowns\022-\n\004ruby\030\002 \001(\0132\031.lyric.WordAnnot"
+    "ationRubyR\004ruby\0222\n\006romans\030\003 \003(\0132\032.lyric."
+    "WordAnnotationRomanR\006romans\022>\n\ntranslate"
+    "s\030\004 \003(\0132\036.lyric.WordAnnotationTranslateR"
+    "\ntranslatesb\006proto3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_word_2fannotation_2eproto_deps[1] = {
@@ -1032,13 +1242,13 @@ static ::absl::once_flag descriptor_table_word_2fannotation_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_word_2fannotation_2eproto = {
     false,
     false,
-    906,
+    1059,
     descriptor_table_protodef_word_2fannotation_2eproto,
     "word/annotation.proto",
     &descriptor_table_word_2fannotation_2eproto_once,
     descriptor_table_word_2fannotation_2eproto_deps,
     1,
-    5,
+    6,
     schemas,
     file_message_globals,
     TableStruct_word_2fannotation_2eproto::offsets,
@@ -1183,7 +1393,7 @@ PROTOBUF_NOINLINE void WordAnnotationContent::Clear() {
   (void)cached_has_bits;
 
   cached_has_bits = this_._impl_._has_bits_[0];
-  // optional .lyric.Time time = 1 [json_name = "time"];
+  // .lyric.Time time = 1 [json_name = "time"];
   if (CheckHasBit(cached_has_bits, 0x00000002U)) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         1, *this_._impl_.time_, this_._impl_.time_->GetCachedSize(), target,
@@ -1233,7 +1443,7 @@ PROTOBUF_NOINLINE void WordAnnotationContent::Clear() {
                                         this_._internal_content());
       }
     }
-    // optional .lyric.Time time = 1 [json_name = "time"];
+    // .lyric.Time time = 1 [json_name = "time"];
     if (CheckHasBit(cached_has_bits, 0x00000002U)) {
       total_size += 1 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.time_);
@@ -1454,7 +1664,7 @@ PROTOBUF_NOINLINE void WordAnnotationRoman::Clear() {
   (void)cached_has_bits;
 
   cached_has_bits = this_._impl_._has_bits_[0];
-  // optional .lyric.Time time = 1 [json_name = "time"];
+  // .lyric.Time time = 1 [json_name = "time"];
   if (CheckHasBit(cached_has_bits, 0x00000004U)) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         1, *this_._impl_.time_, this_._impl_.time_->GetCachedSize(), target,
@@ -1520,7 +1730,7 @@ PROTOBUF_NOINLINE void WordAnnotationRoman::Clear() {
       total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                       this_._internal_language());
     }
-    // optional .lyric.Time time = 1 [json_name = "time"];
+    // .lyric.Time time = 1 [json_name = "time"];
     if (CheckHasBit(cached_has_bits, 0x00000004U)) {
       total_size += 1 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.time_);
@@ -1587,6 +1797,293 @@ void WordAnnotationRoman::InternalSwap(WordAnnotationRoman* PROTOBUF_RESTRICT PR
 }
 
 ::google::protobuf::Metadata WordAnnotationRoman::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+void WordAnnotationTranslate::clear_time() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.time_ != nullptr) _impl_.time_->Clear();
+  ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
+}
+WordAnnotationTranslate::WordAnnotationTranslate(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, WordAnnotationTranslate_get_class_data()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:lyric.WordAnnotationTranslate)
+}
+PROTOBUF_NDEBUG_INLINE WordAnnotationTranslate::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    [[maybe_unused]] const ::lyric::WordAnnotationTranslate& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        words_ {
+          visibility, ::_pbi::InternalMetadataOffset::Build<
+              ::lyric::WordAnnotationTranslate,
+              PROTOBUF_FIELD_OFFSET(::lyric::WordAnnotationTranslate, _impl_.words_)>()
+          , from.words_
+        }
+        ,
+        language_(arena, from.language_) {}
+
+WordAnnotationTranslate::WordAnnotationTranslate(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const WordAnnotationTranslate& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, WordAnnotationTranslate_get_class_data()) {
+
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  WordAnnotationTranslate* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.time_ = (CheckHasBit(cached_has_bits, 0x00000004U))
+                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.time_)
+                : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:lyric.WordAnnotationTranslate)
+}
+PROTOBUF_NDEBUG_INLINE WordAnnotationTranslate::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        words_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::WordAnnotationTranslate,
+            PROTOBUF_FIELD_OFFSET(::lyric::WordAnnotationTranslate, _impl_.words_)>()
+         }
+        ,
+        language_(arena) {}
+
+inline void WordAnnotationTranslate::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.time_ = {};
+}
+WordAnnotationTranslate::~WordAnnotationTranslate() {
+  // @@protoc_insertion_point(destructor:lyric.WordAnnotationTranslate)
+  SharedDtor(*this);
+}
+inline void WordAnnotationTranslate::SharedDtor(MessageLite& self) {
+  WordAnnotationTranslate& this_ = static_cast<WordAnnotationTranslate&>(self);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.language_.Destroy();
+  delete this_._impl_.time_;
+  this_._impl_.~Impl_();
+}
+
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull WordAnnotationTranslate_class_data_ =
+        WordAnnotationTranslate::InternalGenerateClassData_(WordAnnotationTranslate_globals_._default);
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+WordAnnotationTranslate::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&WordAnnotationTranslate_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(WordAnnotationTranslate_class_data_.tc_table);
+  return WordAnnotationTranslate_class_data_.base();
+}
+#else
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+WordAnnotationTranslate::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&WordAnnotationTranslate_globals_);
+  ::google::protobuf::internal::PrefetchToLocalCache(
+      ::google::protobuf::internal::MessageGlobalsBase::ToParseTableBase(&WordAnnotationTranslate_globals_));
+  return WordAnnotationTranslate_globals_.GetClassData();
+}
+#endif  // !PROTOBUF_MESSAGE_GLOBALS
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const WordAnnotationTranslate::ParseTableT_
+    WordAnnotationTranslate::_table_ =
+        WordAnnotationTranslate::InternalGenerateParseTable_(WordAnnotationTranslate_class_data_.base());
+#endif  // !PROTOBUF_MESSAGE_GLOBALS
+PROTOBUF_NOINLINE void WordAnnotationTranslate::Clear() {
+// @@protoc_insertion_point(message_clear_start:lyric.WordAnnotationTranslate)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      _impl_.words_.Clear();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      _impl_.language_.ClearNonDefaultToEmpty();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      ABSL_DCHECK(_impl_.time_ != nullptr);
+      _impl_.time_->Clear();
+    }
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL WordAnnotationTranslate::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const WordAnnotationTranslate& this_ = static_cast<const WordAnnotationTranslate&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL WordAnnotationTranslate::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const WordAnnotationTranslate& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(serialize_to_array_start:lyric.WordAnnotationTranslate)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // .lyric.Time time = 1 [json_name = "time"];
+  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, *this_._impl_.time_, this_._impl_.time_->GetCachedSize(), target,
+        stream);
+  }
+
+  // optional string language = 2 [json_name = "language"];
+  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+    const ::std::string& _s = this_._internal_language();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.WordAnnotationTranslate.language");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  // repeated .lyric.WordAnnotationContent words = 3 [json_name = "words"];
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    for (unsigned i = 0, n = static_cast<unsigned>(
+                             this_._internal_words_size());
+         i < n; i++) {
+      const auto& repfield = this_._internal_words().Get(i);
+      target =
+          ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+              3, repfield, repfield.GetCachedSize(),
+              target, stream);
+    }
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:lyric.WordAnnotationTranslate)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t WordAnnotationTranslate::ByteSizeLong(const MessageLite& base) {
+  const WordAnnotationTranslate& this_ = static_cast<const WordAnnotationTranslate&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t WordAnnotationTranslate::ByteSizeLong() const {
+  const WordAnnotationTranslate& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:lyric.WordAnnotationTranslate)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+    // repeated .lyric.WordAnnotationContent words = 3 [json_name = "words"];
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      total_size += 1UL * this_._internal_words_size();
+      for (const auto& msg : this_._internal_words()) {
+        total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+      }
+    }
+    // optional string language = 2 [json_name = "language"];
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                      this_._internal_language());
+    }
+    // .lyric.Time time = 1 [json_name = "time"];
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      total_size += 1 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.time_);
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void WordAnnotationTranslate::MergeImpl(::google::protobuf::MessageLite& to_msg,
+                      const ::google::protobuf::MessageLite& from_msg) {
+   auto* const _this = static_cast<WordAnnotationTranslate*>(&to_msg);
+  auto& from = static_cast<const WordAnnotationTranslate&>(from_msg);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    from.CheckHasBitConsistency();
+  }
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:lyric.WordAnnotationTranslate)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      _this->_internal_mutable_words()->InternalMergeFromWithArena(
+          ::google::protobuf::MessageLite::internal_visibility(), arena,
+          from._internal_words());
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      _this->_internal_set_language(from._internal_language());
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      ABSL_DCHECK(from._impl_.time_ != nullptr);
+      if (_this->_impl_.time_ == nullptr) {
+        _this->_impl_.time_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.time_);
+      } else {
+        _this->_impl_.time_->MergeFrom(*from._impl_.time_);
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+}
+
+void WordAnnotationTranslate::CopyFrom(const WordAnnotationTranslate& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:lyric.WordAnnotationTranslate)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void WordAnnotationTranslate::InternalSwap(WordAnnotationTranslate* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.words_.InternalSwap(&other->_impl_.words_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.language_, &other->_impl_.language_, arena);
+  swap(_impl_.time_, other->_impl_.time_);
+}
+
+::google::protobuf::Metadata WordAnnotationTranslate::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
@@ -1748,7 +2245,7 @@ PROTOBUF_NOINLINE void WordAnnotationRuby::Clear() {
   (void)cached_has_bits;
 
   cached_has_bits = this_._impl_._has_bits_[0];
-  // optional .lyric.Time time = 1 [json_name = "time"];
+  // .lyric.Time time = 1 [json_name = "time"];
   if (CheckHasBit(cached_has_bits, 0x00000004U)) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         1, *this_._impl_.time_, this_._impl_.time_->GetCachedSize(), target,
@@ -1823,7 +2320,7 @@ PROTOBUF_NOINLINE void WordAnnotationRuby::Clear() {
       total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                       this_._internal_language());
     }
-    // optional .lyric.Time time = 1 [json_name = "time"];
+    // .lyric.Time time = 1 [json_name = "time"];
     if (CheckHasBit(cached_has_bits, 0x00000004U)) {
       total_size += 1 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.time_);
@@ -2076,7 +2573,7 @@ PROTOBUF_NOINLINE void WordAnnotationUnknown::Clear() {
     }
   }
 
-  // optional .lyric.Time time = 2 [json_name = "time"];
+  // .lyric.Time time = 2 [json_name = "time"];
   if (CheckHasBit(cached_has_bits, 0x00000008U)) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         2, *this_._impl_.time_, this_._impl_.time_->GetCachedSize(), target,
@@ -2149,7 +2646,7 @@ PROTOBUF_NOINLINE void WordAnnotationUnknown::Clear() {
       total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                       this_._internal_language());
     }
-    // optional .lyric.Time time = 2 [json_name = "time"];
+    // .lyric.Time time = 2 [json_name = "time"];
     if (CheckHasBit(cached_has_bits, 0x00000008U)) {
       total_size += 1 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.time_);
@@ -2258,6 +2755,13 @@ PROTOBUF_NDEBUG_INLINE WordAnnotation::Impl_::Impl_(
               PROTOBUF_FIELD_OFFSET(::lyric::WordAnnotation, _impl_.romans_)>()
           , from.romans_
         }
+        ,
+        translates_ {
+          visibility, ::_pbi::InternalMetadataOffset::Build<
+              ::lyric::WordAnnotation,
+              PROTOBUF_FIELD_OFFSET(::lyric::WordAnnotation, _impl_.translates_)>()
+          , from.translates_
+        }
      {}
 
 WordAnnotation::WordAnnotation(
@@ -2275,7 +2779,7 @@ WordAnnotation::WordAnnotation(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
   ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.ruby_ = (CheckHasBit(cached_has_bits, 0x00000004U))
+  _impl_.ruby_ = (CheckHasBit(cached_has_bits, 0x00000008U))
                 ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.ruby_)
                 : nullptr;
 
@@ -2293,6 +2797,11 @@ PROTOBUF_NDEBUG_INLINE WordAnnotation::Impl_::Impl_(
         romans_ { visibility, ::_pbi::InternalMetadataOffset::Build<
             ::lyric::WordAnnotation,
             PROTOBUF_FIELD_OFFSET(::lyric::WordAnnotation, _impl_.romans_)>()
+         }
+        ,
+        translates_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::WordAnnotation,
+            PROTOBUF_FIELD_OFFSET(::lyric::WordAnnotation, _impl_.translates_)>()
          }
      {}
 
@@ -2349,7 +2858,7 @@ PROTOBUF_NOINLINE void WordAnnotation::Clear() {
   (void) cached_has_bits;
 
   cached_has_bits = _impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x0000000fU)) {
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
       _impl_.unknowns_.Clear();
     }
@@ -2357,6 +2866,9 @@ PROTOBUF_NOINLINE void WordAnnotation::Clear() {
       _impl_.romans_.Clear();
     }
     if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      _impl_.translates_.Clear();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
       ABSL_DCHECK(_impl_.ruby_ != nullptr);
       _impl_.ruby_->Clear();
     }
@@ -2397,8 +2909,8 @@ PROTOBUF_NOINLINE void WordAnnotation::Clear() {
     }
   }
 
-  // optional .lyric.WordAnnotationRuby ruby = 2 [json_name = "ruby"];
-  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+  // .lyric.WordAnnotationRuby ruby = 2 [json_name = "ruby"];
+  if (CheckHasBit(cached_has_bits, 0x00000008U)) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         2, *this_._impl_.ruby_, this_._impl_.ruby_->GetCachedSize(), target,
         stream);
@@ -2413,6 +2925,19 @@ PROTOBUF_NOINLINE void WordAnnotation::Clear() {
       target =
           ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
               3, repfield, repfield.GetCachedSize(),
+              target, stream);
+    }
+  }
+
+  // repeated .lyric.WordAnnotationTranslate translates = 4 [json_name = "translates"];
+  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+    for (unsigned i = 0, n = static_cast<unsigned>(
+                             this_._internal_translates_size());
+         i < n; i++) {
+      const auto& repfield = this_._internal_translates().Get(i);
+      target =
+          ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+              4, repfield, repfield.GetCachedSize(),
               target, stream);
     }
   }
@@ -2442,7 +2967,7 @@ PROTOBUF_NOINLINE void WordAnnotation::Clear() {
 
   ::_pbi::Prefetch5LinesFrom7Lines(&this_);
   cached_has_bits = this_._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x0000000fU)) {
     // repeated .lyric.WordAnnotationUnknown unknowns = 1 [json_name = "unknowns"];
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
       total_size += 1UL * this_._internal_unknowns_size();
@@ -2457,8 +2982,15 @@ PROTOBUF_NOINLINE void WordAnnotation::Clear() {
         total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
       }
     }
-    // optional .lyric.WordAnnotationRuby ruby = 2 [json_name = "ruby"];
+    // repeated .lyric.WordAnnotationTranslate translates = 4 [json_name = "translates"];
     if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      total_size += 1UL * this_._internal_translates_size();
+      for (const auto& msg : this_._internal_translates()) {
+        total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+      }
+    }
+    // .lyric.WordAnnotationRuby ruby = 2 [json_name = "ruby"];
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
       total_size += 1 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.ruby_);
     }
@@ -2481,7 +3013,7 @@ void WordAnnotation::MergeImpl(::google::protobuf::MessageLite& to_msg,
   (void)cached_has_bits;
 
   cached_has_bits = from._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x0000000fU)) {
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
       _this->_internal_mutable_unknowns()->InternalMergeFromWithArena(
           ::google::protobuf::MessageLite::internal_visibility(), arena,
@@ -2493,6 +3025,11 @@ void WordAnnotation::MergeImpl(::google::protobuf::MessageLite& to_msg,
           from._internal_romans());
     }
     if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      _this->_internal_mutable_translates()->InternalMergeFromWithArena(
+          ::google::protobuf::MessageLite::internal_visibility(), arena,
+          from._internal_translates());
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
       ABSL_DCHECK(from._impl_.ruby_ != nullptr);
       if (_this->_impl_.ruby_ == nullptr) {
         _this->_impl_.ruby_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.ruby_);
@@ -2520,6 +3057,7 @@ void WordAnnotation::InternalSwap(WordAnnotation* PROTOBUF_RESTRICT PROTOBUF_NON
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.unknowns_.InternalSwap(&other->_impl_.unknowns_);
   _impl_.romans_.InternalSwap(&other->_impl_.romans_);
+  _impl_.translates_.InternalSwap(&other->_impl_.translates_);
   swap(_impl_.ruby_, other->_impl_.ruby_);
 }
 

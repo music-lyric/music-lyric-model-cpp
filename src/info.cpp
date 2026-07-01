@@ -3,7 +3,6 @@
 #include <algorithm>
 #include <stdexcept>
 #include <string>
-#include <unordered_map>
 
 #include "google/protobuf/util/json_util.h"
 #include "line/content.h"
@@ -48,46 +47,6 @@ namespace music_lyric_model {
 			throw std::runtime_error("failed to decode Info from JSON: " + std::string(status.message()));
 		}
 		return info;
-	}
-
-	void calcAgentIndex(lyric::Info& info) {
-		std::unordered_map<std::string, uint32_t> globalIndex;
-		std::unordered_map<std::string, uint32_t> idIndex;
-
-		std::string id;
-		bool        hasId      = false;
-		uint32_t    blockIndex = 0;
-
-		for (auto& line : *info.mutable_lines()) {
-			if (line.body_case() != lyric::Line::kNormal) {
-				continue;
-			}
-			lyric::LineNormal* normal = line.mutable_normal();
-			if (!normal->has_agent()) {
-				continue;
-			}
-			lyric::LineAgent* agent = normal->mutable_agent();
-
-			const std::string current = agent->id();
-
-			const uint32_t gi = globalIndex.count(current) ? globalIndex[current] : 0;
-			agent->set_global_index(gi);
-			globalIndex[current] = gi + 1;
-
-			if (!hasId || current != id) {
-				blockIndex = 0;
-				id         = current;
-				hasId      = true;
-			}
-			agent->set_block_index(blockIndex++);
-
-			idIndex[current] = (idIndex.count(current) ? idIndex[current] : 0) + 1;
-		}
-
-		for (auto& agent : *info.mutable_agents()) {
-			const auto it = idIndex.find(agent.id());
-			agent.set_count(it != idIndex.end() ? it->second : 0);
-		}
 	}
 
 	void sortLinesByTime(lyric::Info& info) {

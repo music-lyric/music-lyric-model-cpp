@@ -207,7 +207,7 @@ constexpr WordNormal::ParseTableT_ WordNormal::InternalGenerateParseTable_(const
       #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
     }, {{
       {::_pbi::TcParser::MiniParse, {}},
-      // optional .lyric.Time time = 1 [json_name = "time"];
+      // .lyric.Time time = 1 [json_name = "time"];
       {::_pbi::TcParser::FastMtS1,
        {10, 2, 0,
         PROTOBUF_FIELD_OFFSET(WordNormal, _impl_.time_)}},
@@ -219,7 +219,7 @@ constexpr WordNormal::ParseTableT_ WordNormal::InternalGenerateParseTable_(const
       {::_pbi::TcParser::FastUS1,
        {26, 1, 0,
         PROTOBUF_FIELD_OFFSET(WordNormal, _impl_.language_)}},
-      // optional .lyric.WordAnnotation annotation = 4 [json_name = "annotation"];
+      // .lyric.WordAnnotation annotation = 4 [json_name = "annotation"];
       {::_pbi::TcParser::FastMtS1,
        {34, 3, 1,
         PROTOBUF_FIELD_OFFSET(WordNormal, _impl_.annotation_)}},
@@ -232,13 +232,13 @@ constexpr WordNormal::ParseTableT_ WordNormal::InternalGenerateParseTable_(const
     }}, {{
       65535, 65535
     }}, {{
-      // optional .lyric.Time time = 1 [json_name = "time"];
+      // .lyric.Time time = 1 [json_name = "time"];
       {PROTOBUF_FIELD_OFFSET(WordNormal, _impl_.time_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
       // string content = 2 [json_name = "content"];
       {PROTOBUF_FIELD_OFFSET(WordNormal, _impl_.content_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
       // optional string language = 3 [json_name = "language"];
       {PROTOBUF_FIELD_OFFSET(WordNormal, _impl_.language_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-      // optional .lyric.WordAnnotation annotation = 4 [json_name = "annotation"];
+      // .lyric.WordAnnotation annotation = 4 [json_name = "annotation"];
       {PROTOBUF_FIELD_OFFSET(WordNormal, _impl_.annotation_), _Internal::kHasBitsOffset + 3, 1, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
       // bool stress = 5 [json_name = "stress"];
       {PROTOBUF_FIELD_OFFSET(WordNormal, _impl_.stress_), _Internal::kHasBitsOffset + 4, 0, (0 | ::_fl::kFcOptional | ::_fl::kBool)},
@@ -571,17 +571,16 @@ static const ::_pbi::MessageGlobalsBase* PROTOBUF_NONNULL const
 const char descriptor_table_protodef_word_2fcontent_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\022word/content.proto\022\005lyric\032\021common/time"
-    ".proto\032\025word/annotation.proto\"\346\001\n\nWordNo"
-    "rmal\022$\n\004time\030\001 \001(\0132\013.lyric.TimeH\000R\004time\210"
-    "\001\001\022\030\n\007content\030\002 \001(\tR\007content\022\037\n\010language"
-    "\030\003 \001(\tH\001R\010language\210\001\001\022:\n\nannotation\030\004 \001("
-    "\0132\025.lyric.WordAnnotationH\002R\nannotation\210\001"
-    "\001\022\026\n\006stress\030\005 \001(\010R\006stressB\007\n\005_timeB\013\n\t_l"
-    "anguageB\r\n\013_annotation\"!\n\tWordSpace\022\024\n\005c"
-    "ount\030\001 \001(\rR\005count\"e\n\004Word\022+\n\006normal\030\001 \001("
-    "\0132\021.lyric.WordNormalH\000R\006normal\022(\n\005space\030"
-    "\002 \001(\0132\020.lyric.WordSpaceH\000R\005spaceB\006\n\004body"
-    "b\006proto3"
+    ".proto\032\025word/annotation.proto\"\304\001\n\nWordNo"
+    "rmal\022\037\n\004time\030\001 \001(\0132\013.lyric.TimeR\004time\022\030\n"
+    "\007content\030\002 \001(\tR\007content\022\037\n\010language\030\003 \001("
+    "\tH\000R\010language\210\001\001\0225\n\nannotation\030\004 \001(\0132\025.l"
+    "yric.WordAnnotationR\nannotation\022\026\n\006stres"
+    "s\030\005 \001(\010R\006stressB\013\n\t_language\"!\n\tWordSpac"
+    "e\022\024\n\005count\030\001 \001(\rR\005count\"e\n\004Word\022+\n\006norma"
+    "l\030\001 \001(\0132\021.lyric.WordNormalH\000R\006normal\022(\n\005"
+    "space\030\002 \001(\0132\020.lyric.WordSpaceH\000R\005spaceB\006"
+    "\n\004bodyb\006proto3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_word_2fcontent_2eproto_deps[2] = {
@@ -592,7 +591,7 @@ static ::absl::once_flag descriptor_table_word_2fcontent_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_word_2fcontent_2eproto = {
     false,
     false,
-    448,
+    414,
     descriptor_table_protodef_word_2fcontent_2eproto,
     "word/content.proto",
     &descriptor_table_word_2fcontent_2eproto_once,
@@ -769,7 +768,7 @@ PROTOBUF_NOINLINE void WordNormal::Clear() {
   (void)cached_has_bits;
 
   cached_has_bits = this_._impl_._has_bits_[0];
-  // optional .lyric.Time time = 1 [json_name = "time"];
+  // .lyric.Time time = 1 [json_name = "time"];
   if (CheckHasBit(cached_has_bits, 0x00000004U)) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         1, *this_._impl_.time_, this_._impl_.time_->GetCachedSize(), target,
@@ -794,7 +793,7 @@ PROTOBUF_NOINLINE void WordNormal::Clear() {
     target = stream->WriteStringMaybeAliased(3, _s, target);
   }
 
-  // optional .lyric.WordAnnotation annotation = 4 [json_name = "annotation"];
+  // .lyric.WordAnnotation annotation = 4 [json_name = "annotation"];
   if (CheckHasBit(cached_has_bits, 0x00000008U)) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         4, *this_._impl_.annotation_, this_._impl_.annotation_->GetCachedSize(), target,
@@ -848,12 +847,12 @@ PROTOBUF_NOINLINE void WordNormal::Clear() {
       total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                       this_._internal_language());
     }
-    // optional .lyric.Time time = 1 [json_name = "time"];
+    // .lyric.Time time = 1 [json_name = "time"];
     if (CheckHasBit(cached_has_bits, 0x00000004U)) {
       total_size += 1 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.time_);
     }
-    // optional .lyric.WordAnnotation annotation = 4 [json_name = "annotation"];
+    // .lyric.WordAnnotation annotation = 4 [json_name = "annotation"];
     if (CheckHasBit(cached_has_bits, 0x00000008U)) {
       total_size += 1 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.annotation_);

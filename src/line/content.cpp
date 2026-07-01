@@ -6,19 +6,29 @@
 #include "word/content.h"
 
 namespace music_lyric_model {
-	lyric::Line makeLineNormal(const lyric::LineNormal& normal) {
+	lyric::LineContent makeLineContent(const lyric::LineContent& content) {
+		return content;
+	}
+
+	lyric::Line makeLineNormal(const lyric::LineNormal& normal, const lyric::Time* time) {
 		lyric::Line line;
+		if (time) {
+			*line.mutable_time() = *time;
+		}
 		*line.mutable_normal() = normal;
 		return line;
 	}
 
-	lyric::LineBackground makeLineBackground() {
-		return {};
+	lyric::LineBackground makeLineBackground(const lyric::LineBackground& background) {
+		return background;
 	}
 
-	lyric::Line makeLineInterlude(const lyric::LineInterlude& interlude) {
+	lyric::Line makeLineInterlude(const lyric::Time* time) {
 		lyric::Line line;
-		*line.mutable_interlude() = interlude;
+		if (time) {
+			*line.mutable_time() = *time;
+		}
+		line.mutable_interlude();
 		return line;
 	}
 
@@ -31,24 +41,25 @@ namespace music_lyric_model {
 	}
 
 	const lyric::Time* getLineTime(const lyric::Line& line) {
-		if (line.body_case() == lyric::Line::kNormal) {
-			const lyric::LineNormal& normal = line.normal();
-			return normal.has_time() ? &normal.time() : nullptr;
-		}
-		if (line.body_case() == lyric::Line::kInterlude) {
-			const lyric::LineInterlude& interlude = line.interlude();
-			return interlude.has_time() ? &interlude.time() : nullptr;
-		}
-		return nullptr;
+		return line.has_time() ? &line.time() : nullptr;
 	}
 
 	int64_t getLineDuration(const lyric::Line& line) {
 		return getTimeDuration(getLineTime(line));
 	}
 
+	const lyric::LineContent* getLineContent(const lyric::Line& line) {
+		if (line.body_case() != lyric::Line::kNormal) {
+			return nullptr;
+		}
+		const lyric::LineNormal& normal = line.normal();
+		return normal.has_content() ? &normal.content() : nullptr;
+	}
+
 	const google::protobuf::RepeatedPtrField<lyric::Word>& getLineWords(const lyric::Line& line) {
 		static const google::protobuf::RepeatedPtrField<lyric::Word> empty;
-		return line.body_case() == lyric::Line::kNormal ? line.normal().words() : empty;
+		const lyric::LineContent*                                    content = getLineContent(line);
+		return content ? content->words() : empty;
 	}
 
 	std::string getWordsText(const google::protobuf::RepeatedPtrField<lyric::Word>& words) {
@@ -82,21 +93,18 @@ namespace music_lyric_model {
 	}
 
 	std::vector<std::string> getLineLanguages(const lyric::Line& line) {
-		if (line.body_case() != lyric::Line::kNormal) {
+		const lyric::LineContent* content = getLineContent(line);
+		if (!content) {
 			return {};
 		}
-		const lyric::LineNormal& normal = line.normal();
-		if (!normal.languages().empty()) {
-			return {normal.languages().begin(), normal.languages().end()};
+		if (!content->languages().empty()) {
+			return {content->languages().begin(), content->languages().end()};
 		}
-		return getWordsLanguages(normal.words());
+		return getWordsLanguages(content->words());
 	}
 
 	const lyric::LineAnnotation* getLineAnnotation(const lyric::Line& line) {
-		if (line.body_case() != lyric::Line::kNormal) {
-			return nullptr;
-		}
-		const lyric::LineNormal& normal = line.normal();
-		return normal.has_annotation() ? &normal.annotation() : nullptr;
+		const lyric::LineContent* content = getLineContent(line);
+		return content && content->has_annotation() ? &content->annotation() : nullptr;
 	}
 } // namespace music_lyric_model

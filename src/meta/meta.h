@@ -1,6 +1,7 @@
 #ifndef MUSIC_LYRIC_META_META_H_
 #define MUSIC_LYRIC_META_META_H_
 
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -10,34 +11,44 @@ namespace music_lyric_model {
 	using namespace lyric;
 
 	/**
-	 * Creates a MetaCreator.
+	 * Creates a Meta, the lyric metadata container.
 	 */
-	lyric::MetaCreator makeMetaCreator();
+	lyric::Meta makeMeta();
 
 	/**
-	 * Creates a MetaItem; set its typed value through the content oneof.
+	 * Creates a MetaText, a value optionally tagged with a language.
 	 */
-	lyric::MetaItem makeMetaItem();
+	lyric::MetaText makeMetaText();
 
 	/**
-	 * Whether any meta of a case exists.
+	 * Creates a MetaCredit, a role with its credited names.
 	 */
-	bool hasMeta(const google::protobuf::RepeatedPtrField<lyric::MetaItem>& metas, lyric::MetaItem::ContentCase kind);
+	lyric::MetaCredit makeMetaCredit();
 
 	/**
-	 * All metas of a case.
+	 * Creates a MetaUnknown, an unrecognized meta preserved by its original key.
 	 */
-	std::vector<const lyric::MetaItem*> getAllMeta(const google::protobuf::RepeatedPtrField<lyric::MetaItem>& metas, lyric::MetaItem::ContentCase kind);
+	lyric::MetaUnknown makeMetaUnknown();
 
 	/**
-	 * First meta of a case, null when absent.
+	 * Creates a MetaReference, a platform and its identifiers.
 	 */
-	const lyric::MetaItem* getFirstMeta(const google::protobuf::RepeatedPtrField<lyric::MetaItem>& metas, lyric::MetaItem::ContentCase kind);
+	lyric::MetaReference makeMetaReference();
 
 	/**
-	 * All metas with the given original key.
+	 * Text of a localized meta list, preferring a language match, null when empty.
 	 */
-	std::vector<const lyric::MetaItem*> getMetaByKey(const google::protobuf::RepeatedPtrField<lyric::MetaItem>& metas, const std::string& key);
+	std::optional<std::string> getMetaText(const google::protobuf::RepeatedPtrField<lyric::MetaText>& items, const std::optional<std::string>& language = std::nullopt);
+
+	/**
+	 * Unrecognized meta values carrying the given original key.
+	 */
+	std::vector<std::string> getMetaUnknown(const google::protobuf::RepeatedPtrField<lyric::MetaUnknown>& unknowns, const std::string& key);
+
+	/**
+	 * Reference ids for the given platform.
+	 */
+	std::vector<std::string> getMetaReference(const google::protobuf::RepeatedPtrField<lyric::MetaReference>& references, const std::string& platform);
 } // namespace music_lyric_model
 
 #endif

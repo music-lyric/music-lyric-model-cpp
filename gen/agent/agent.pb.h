@@ -283,8 +283,6 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED LineAgent final : public ::google::
   // accessors -------------------------------------------------------
   enum : int {
     kIdFieldNumber = 1,
-    kGlobalIndexFieldNumber = 2,
-    kBlockIndexFieldNumber = 3,
   };
   // string id = 1 [json_name = "id"];
   void clear_id() ;
@@ -301,31 +299,11 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED LineAgent final : public ::google::
   ::std::string* PROTOBUF_NONNULL _internal_mutable_id();
 
   public:
-  // uint32 global_index = 2 [json_name = "globalIndex"];
-  void clear_global_index() ;
-  [[nodiscard]] ::uint32_t global_index() const;
-  void set_global_index(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_global_index() const;
-  void _internal_set_global_index(::uint32_t value);
-
-  public:
-  // uint32 block_index = 3 [json_name = "blockIndex"];
-  void clear_block_index() ;
-  [[nodiscard]] ::uint32_t block_index() const;
-  void set_block_index(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_block_index() const;
-  void _internal_set_block_index(::uint32_t value);
-
-  public:
   // @@protoc_insertion_point(class_scope:lyric.LineAgent)
  private:
   class _Internal;
   using ParseTableT_ =
-      ::google::protobuf::internal::TcParseTable<2, 3,
+      ::google::protobuf::internal::TcParseTable<0, 1,
                           0, 26,
                           2>;
   static constexpr ParseTableT_ InternalGenerateParseTable_(
@@ -355,8 +333,6 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED LineAgent final : public ::google::
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr id_;
-    ::uint32_t global_index_;
-    ::uint32_t block_index_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -512,12 +488,11 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED AgentItem final : public ::google::
 
   // accessors -------------------------------------------------------
   enum : int {
-    kNamesFieldNumber = 4,
+    kNamesFieldNumber = 3,
     kIdFieldNumber = 1,
     kTypeFieldNumber = 2,
-    kCountFieldNumber = 3,
   };
-  // repeated string names = 4 [json_name = "names"];
+  // repeated string names = 3 [json_name = "names"];
   [[nodiscard]] int names_size()
       const;
   private:
@@ -569,21 +544,11 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED AgentItem final : public ::google::
   void _internal_set_type(::lyric::AgentType value);
 
   public:
-  // uint32 count = 3 [json_name = "count"];
-  void clear_count() ;
-  [[nodiscard]] ::uint32_t count() const;
-  void set_count(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_count() const;
-  void _internal_set_count(::uint32_t value);
-
-  public:
   // @@protoc_insertion_point(class_scope:lyric.AgentItem)
  private:
   class _Internal;
   using ParseTableT_ =
-      ::google::protobuf::internal::TcParseTable<2, 4,
+      ::google::protobuf::internal::TcParseTable<2, 3,
                           0, 31,
                           2>;
   static constexpr ParseTableT_ InternalGenerateParseTable_(
@@ -615,7 +580,6 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED AgentItem final : public ::google::
     ::google::protobuf::RepeatedPtrField<::std::string> names_;
     ::google::protobuf::internal::ArenaStringPtr id_;
     int type_;
-    ::uint32_t count_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -726,31 +690,7 @@ inline void AgentItem::_internal_set_type(::lyric::AgentType value) {
   _impl_.type_ = value;
 }
 
-// uint32 count = 3 [json_name = "count"];
-inline void AgentItem::clear_count() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.count_ = 0u;
-  ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
-}
-inline ::uint32_t AgentItem::count() const {
-  // @@protoc_insertion_point(field_get:lyric.AgentItem.count)
-  return _internal_count();
-}
-inline void AgentItem::set_count(::uint32_t value) {
-  _internal_set_count(value);
-  SetHasBit(_impl_._has_bits_[0], 0x00000008U);
-  // @@protoc_insertion_point(field_set:lyric.AgentItem.count)
-}
-inline ::uint32_t AgentItem::_internal_count() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.count_;
-}
-inline void AgentItem::_internal_set_count(::uint32_t value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.count_ = value;
-}
-
-// repeated string names = 4 [json_name = "names"];
+// repeated string names = 3 [json_name = "names"];
 inline int AgentItem::_internal_names_size() const {
   return _internal_names().size();
 }
@@ -888,54 +828,6 @@ inline void LineAgent::set_allocated_id(::std::string* PROTOBUF_NULLABLE value) 
     _impl_.id_.Set("", GetArena());
   }
   // @@protoc_insertion_point(field_set_allocated:lyric.LineAgent.id)
-}
-
-// uint32 global_index = 2 [json_name = "globalIndex"];
-inline void LineAgent::clear_global_index() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.global_index_ = 0u;
-  ClearHasBit(_impl_._has_bits_[0], 0x00000002U);
-}
-inline ::uint32_t LineAgent::global_index() const {
-  // @@protoc_insertion_point(field_get:lyric.LineAgent.global_index)
-  return _internal_global_index();
-}
-inline void LineAgent::set_global_index(::uint32_t value) {
-  _internal_set_global_index(value);
-  SetHasBit(_impl_._has_bits_[0], 0x00000002U);
-  // @@protoc_insertion_point(field_set:lyric.LineAgent.global_index)
-}
-inline ::uint32_t LineAgent::_internal_global_index() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.global_index_;
-}
-inline void LineAgent::_internal_set_global_index(::uint32_t value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.global_index_ = value;
-}
-
-// uint32 block_index = 3 [json_name = "blockIndex"];
-inline void LineAgent::clear_block_index() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.block_index_ = 0u;
-  ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
-}
-inline ::uint32_t LineAgent::block_index() const {
-  // @@protoc_insertion_point(field_get:lyric.LineAgent.block_index)
-  return _internal_block_index();
-}
-inline void LineAgent::set_block_index(::uint32_t value) {
-  _internal_set_block_index(value);
-  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
-  // @@protoc_insertion_point(field_set:lyric.LineAgent.block_index)
-}
-inline ::uint32_t LineAgent::_internal_block_index() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.block_index_;
-}
-inline void LineAgent::_internal_set_block_index(::uint32_t value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.block_index_ = value;
 }
 
 #ifdef __GNUC__

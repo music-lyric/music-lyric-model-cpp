@@ -29,6 +29,8 @@ namespace _fl = ::google::protobuf::internal::field_layout;
 namespace {
 PROTOBUF_CONSTINIT ::google::protobuf::internal::ReflectionData
     file_reflection_data[] = {
+        // ::lyric::LineContent
+        {&::_pbi::kDescriptorMethods, &::descriptor_table_line_2fcontent_2eproto, /* tracker*/ nullptr,},
         // ::lyric::LineNormal
         {&::_pbi::kDescriptorMethods, &::descriptor_table_line_2fcontent_2eproto, /* tracker*/ nullptr,},
         // ::lyric::LineBackground
@@ -43,23 +45,21 @@ PROTOBUF_CONSTINIT ::google::protobuf::internal::ReflectionData
 namespace lyric {
 class LineInterlude::_Internal {
  public:
-  using HasBits = decltype(::std::declval<LineInterlude>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(LineInterlude, _impl_._has_bits_);
 };
 
 constexpr LineInterlude::ParseTableT_ LineInterlude::InternalGenerateParseTable_(const ::_pbi::ClassData* class_data) {
   return ParseTableT_{
     {
-      PROTOBUF_FIELD_OFFSET(LineInterlude, _impl_._has_bits_),
+      PROTOBUF_FIELD_OFFSET(LineInterlude,
+                            _impl_._cached_size_),  // no hasbits
       0, // no _extensions_
-      1, 0,  // max_field_number, fast_idx_mask
+      0, 0,  // max_field_number, fast_idx_mask
       offsetof(ParseTableT_, field_lookup_table),
-      4294967294,  // skipmap
-      offsetof(ParseTableT_, field_entries),
-      1,  // num_field_entries
-      1,  // num_aux_entries
-      offsetof(ParseTableT_, aux_entries),
+      4294967295,  // skipmap
+      offsetof(ParseTableT_, field_names),  // no field_entries
+      0,  // num_field_entries
+      0,  // num_aux_entries
+      offsetof(ParseTableT_, field_names),  // no aux_entries
       class_data,
       nullptr,  // post_loop_handler
       ::_pbi::TcParser::GenericFallback,  // fallback
@@ -67,44 +67,23 @@ constexpr LineInterlude::ParseTableT_ LineInterlude::InternalGenerateParseTable_
       ::_pbi::TcParser::GetTable<::lyric::LineInterlude>(),  // to_prefetch
       #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
     }, {{
-      // .lyric.Time time = 1 [json_name = "time"];
-      {::_pbi::TcParser::FastMtS1,
-       {10, 0, 0,
-        PROTOBUF_FIELD_OFFSET(LineInterlude, _impl_.time_)}},
+      {::_pbi::TcParser::MiniParse, {}},
     }}, {{
       65535, 65535
-    }}, {{
-      // .lyric.Time time = 1 [json_name = "time"];
-      {PROTOBUF_FIELD_OFFSET(LineInterlude, _impl_.time_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-    }},
-    {{
-        #ifndef PROTOBUF_MESSAGE_GLOBALS
-        {::_pbi::TcParser::GetTable<::lyric::Time>()},
-        #else
-        {::_pbi::FieldAuxMessageGlobals(), &::lyric::Time_globals_},
-        #endif
-    }},
+    }}, // no field_entries, or aux_entries
     {{
     }},
   };
 }
 
-
-inline constexpr LineInterlude::Impl_::Impl_(
-    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        time_{nullptr} {}
-
 template <typename>
 constexpr LineInterlude::LineInterlude(::_pbi::ConstantInitialized,
                        const ::_pbi::ClassData* PROTOBUF_NONNULL class_data)
-    : ::google::protobuf::Message(
+    : ::google::protobuf::internal::ZeroFieldsBase(
 #if defined(PROTOBUF_CUSTOM_VTABLE)
           class_data
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          ),
-      _impl_(internal_visibility(), ::_pbi::ConstantInitialized()) {
+      ) {
 }
 inline void* PROTOBUF_NONNULL LineInterlude::PlacementNew_(
     const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
@@ -127,17 +106,17 @@ constexpr auto LineInterlude::InternalGenerateClassData_(
 #endif
           nullptr,  // IsInitialized
           &LineInterlude::MergeImpl,
-          ::google::protobuf::Message::GetNewImpl<LineInterlude>(),
+          ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<LineInterlude>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
           &LineInterlude::SharedDtor,
-          ::google::protobuf::Message::GetClearImpl<LineInterlude>(), &LineInterlude::ByteSizeLong,
+          ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<LineInterlude>(), &LineInterlude::ByteSizeLong,
               &LineInterlude::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
           PROTOBUF_FIELD_OFFSET(LineInterlude, _impl_._cached_size_),
           false,
       },
 #ifdef PROTOBUF_MESSAGE_GLOBALS
-      &file_reflection_data[2],
+      &file_reflection_data[3],
 #else   // !PROTOBUF_MESSAGE_GLOBALS
       &::_pbi::kDescriptorMethods,
       &descriptor_table_line_2fcontent_2eproto,
@@ -188,75 +167,61 @@ const ::_pbi::ClassData* LineInterlude_get_class_data() {
 }
 }  // namespace
 #endif  // PROTOBUF_CUSTOM_VTABLE
-class LineBackground::_Internal {
+class LineContent::_Internal {
  public:
-  using HasBits = decltype(::std::declval<LineBackground>()._impl_._has_bits_);
+  using HasBits = decltype(::std::declval<LineContent>()._impl_._has_bits_);
   static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(LineBackground, _impl_._has_bits_);
+      8 * PROTOBUF_FIELD_OFFSET(LineContent, _impl_._has_bits_);
 };
 
-constexpr LineBackground::ParseTableT_ LineBackground::InternalGenerateParseTable_(const ::_pbi::ClassData* class_data) {
+constexpr LineContent::ParseTableT_ LineContent::InternalGenerateParseTable_(const ::_pbi::ClassData* class_data) {
   return ParseTableT_{
     {
-      PROTOBUF_FIELD_OFFSET(LineBackground, _impl_._has_bits_),
+      PROTOBUF_FIELD_OFFSET(LineContent, _impl_._has_bits_),
       0, // no _extensions_
-      5, 56,  // max_field_number, fast_idx_mask
+      4, 24,  // max_field_number, fast_idx_mask
       offsetof(ParseTableT_, field_lookup_table),
-      4294967264,  // skipmap
+      4294967280,  // skipmap
       offsetof(ParseTableT_, field_entries),
-      5,  // num_field_entries
-      4,  // num_aux_entries
+      4,  // num_field_entries
+      3,  // num_aux_entries
       offsetof(ParseTableT_, aux_entries),
       class_data,
       nullptr,  // post_loop_handler
       ::_pbi::TcParser::GenericFallback,  // fallback
       #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-      ::_pbi::TcParser::GetTable<::lyric::LineBackground>(),  // to_prefetch
+      ::_pbi::TcParser::GetTable<::lyric::LineContent>(),  // to_prefetch
       #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
     }, {{
-      {::_pbi::TcParser::MiniParse, {}},
-      // .lyric.Time time = 1 [json_name = "time"];
+      // repeated string languages = 4 [json_name = "languages"];
+      {::_pbi::TcParser::FastUR1,
+       {34, 1, 0,
+        PROTOBUF_FIELD_OFFSET(LineContent, _impl_.languages_)}},
+      // .lyric.LineAgent agent = 1 [json_name = "agent"];
       {::_pbi::TcParser::FastMtS1,
        {10, 2, 0,
-        PROTOBUF_FIELD_OFFSET(LineBackground, _impl_.time_)}},
-      // optional .lyric.LineAgent agent = 2 [json_name = "agent"];
-      {::_pbi::TcParser::FastMtS1,
-       {18, 3, 1,
-        PROTOBUF_FIELD_OFFSET(LineBackground, _impl_.agent_)}},
-      // repeated .lyric.Word words = 3 [json_name = "words"];
+        PROTOBUF_FIELD_OFFSET(LineContent, _impl_.agent_)}},
+      // repeated .lyric.Word words = 2 [json_name = "words"];
       {::_pbi::TcParser::FastMtR1,
-       {26, 0, 2,
-        PROTOBUF_FIELD_OFFSET(LineBackground, _impl_.words_)}},
-      // .lyric.LineAnnotation annotation = 4 [json_name = "annotation"];
+       {18, 0, 1,
+        PROTOBUF_FIELD_OFFSET(LineContent, _impl_.words_)}},
+      // .lyric.LineAnnotation annotation = 3 [json_name = "annotation"];
       {::_pbi::TcParser::FastMtS1,
-       {34, 4, 3,
-        PROTOBUF_FIELD_OFFSET(LineBackground, _impl_.annotation_)}},
-      // repeated string languages = 5 [json_name = "languages"];
-      {::_pbi::TcParser::FastUR1,
-       {42, 1, 0,
-        PROTOBUF_FIELD_OFFSET(LineBackground, _impl_.languages_)}},
-      {::_pbi::TcParser::MiniParse, {}},
-      {::_pbi::TcParser::MiniParse, {}},
+       {26, 3, 2,
+        PROTOBUF_FIELD_OFFSET(LineContent, _impl_.annotation_)}},
     }}, {{
       65535, 65535
     }}, {{
-      // .lyric.Time time = 1 [json_name = "time"];
-      {PROTOBUF_FIELD_OFFSET(LineBackground, _impl_.time_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-      // optional .lyric.LineAgent agent = 2 [json_name = "agent"];
-      {PROTOBUF_FIELD_OFFSET(LineBackground, _impl_.agent_), _Internal::kHasBitsOffset + 3, 1, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-      // repeated .lyric.Word words = 3 [json_name = "words"];
-      {PROTOBUF_FIELD_OFFSET(LineBackground, _impl_.words_), _Internal::kHasBitsOffset + 0, 2, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-      // .lyric.LineAnnotation annotation = 4 [json_name = "annotation"];
-      {PROTOBUF_FIELD_OFFSET(LineBackground, _impl_.annotation_), _Internal::kHasBitsOffset + 4, 3, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-      // repeated string languages = 5 [json_name = "languages"];
-      {PROTOBUF_FIELD_OFFSET(LineBackground, _impl_.languages_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+      // .lyric.LineAgent agent = 1 [json_name = "agent"];
+      {PROTOBUF_FIELD_OFFSET(LineContent, _impl_.agent_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+      // repeated .lyric.Word words = 2 [json_name = "words"];
+      {PROTOBUF_FIELD_OFFSET(LineContent, _impl_.words_), _Internal::kHasBitsOffset + 0, 1, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+      // .lyric.LineAnnotation annotation = 3 [json_name = "annotation"];
+      {PROTOBUF_FIELD_OFFSET(LineContent, _impl_.annotation_), _Internal::kHasBitsOffset + 3, 2, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+      // repeated string languages = 4 [json_name = "languages"];
+      {PROTOBUF_FIELD_OFFSET(LineContent, _impl_.languages_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
     }},
     {{
-        #ifndef PROTOBUF_MESSAGE_GLOBALS
-        {::_pbi::TcParser::GetTable<::lyric::Time>()},
-        #else
-        {::_pbi::FieldAuxMessageGlobals(), &::lyric::Time_globals_},
-        #endif
         #ifndef PROTOBUF_MESSAGE_GLOBALS
         {::_pbi::TcParser::GetTable<::lyric::LineAgent>()},
         #else
@@ -274,9 +239,178 @@ constexpr LineBackground::ParseTableT_ LineBackground::InternalGenerateParseTabl
         #endif
     }},
     {{
-      "\24\0\0\0\0\11\0\0"
-      "lyric.LineBackground"
+      "\21\0\0\0\11\0\0\0"
+      "lyric.LineContent"
       "languages"
+    }},
+  };
+}
+
+
+inline constexpr LineContent::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        words_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::LineContent,
+            PROTOBUF_FIELD_OFFSET(::lyric::LineContent, _impl_.words_)>()
+         }
+        ,
+        languages_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::LineContent,
+            PROTOBUF_FIELD_OFFSET(::lyric::LineContent, _impl_.languages_)>()
+         }
+        ,
+        agent_{nullptr},
+        annotation_{nullptr} {}
+
+template <typename>
+constexpr LineContent::LineContent(::_pbi::ConstantInitialized,
+                       const ::_pbi::ClassData* PROTOBUF_NONNULL class_data)
+    : ::google::protobuf::Message(
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          class_data
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          ),
+      _impl_(internal_visibility(), ::_pbi::ConstantInitialized()) {
+}
+inline void* PROTOBUF_NONNULL LineContent::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) LineContent(arena);
+}
+constexpr auto LineContent::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(LineContent), alignof(LineContent));
+}
+constexpr auto LineContent::InternalGenerateClassData_(
+    const MessageLite& prototype,
+    const ::google::protobuf::internal::TcParseTableBase* tc_table) {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &prototype,
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+          &_table_.header,
+#else
+          tc_table,
+#endif
+          nullptr,  // IsInitialized
+          &LineContent::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<LineContent>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &LineContent::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<LineContent>(), &LineContent::ByteSizeLong,
+              &LineContent::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(LineContent, _impl_._cached_size_),
+          false,
+      },
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+      &file_reflection_data[0],
+#else   // !PROTOBUF_MESSAGE_GLOBALS
+      &::_pbi::kDescriptorMethods,
+      &descriptor_table_line_2fcontent_2eproto,
+      nullptr,  // tracker
+#endif  // PROTOBUF_MESSAGE_GLOBALS
+  };
+}
+struct LineContentGlobalsTypeInternal : ::_pbi::MessageGlobalsBase {
+  constexpr LineContentGlobalsTypeInternal()
+      :
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+        _default(::_pbi::ConstantInitialized{},
+                 LineContent_class_data_.base())
+#else   // !PROTOBUF_MESSAGE_GLOBALS
+        MessageGlobalsBase(LineContent::InternalGenerateClassData_(
+            _default, &LineContent_globals_._table.header)),
+        _default(::_pbi::ConstantInitialized{}, GetClassData()),
+        _table(::_pbi::PrivateAccess::GenerateParseTable<LineContent>(
+            GetClassData()))
+#endif  // PROTOBUF_MESSAGE_GLOBALS
+  {
+  }
+  ~LineContentGlobalsTypeInternal() {}
+  union {
+    alignas(::_pbi::kMaxMessageAlignment) LineContent _default;
+  };
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+  decltype(::_pbi::PrivateAccess::GenerateParseTable<LineContent>(
+      ::std::declval<const ::_pbi::ClassData*>())) _table;
+#endif
+};
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+static_assert(PROTOBUF_FIELD_OFFSET(LineContentGlobalsTypeInternal, _default) ==
+              ::_pbi::MessageGlobalsBase::OffsetToDefault());
+#endif  // PROTOBUF_MESSAGE_GLOBALS
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PROTOBUF_MESSAGE_GLOBALS_CONST LineContentGlobalsTypeInternal LineContent_globals_
+        PROTOBUF_MESSAGE_GLOBALS_SECTION(.data.rel.ro);
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+namespace {
+const ::_pbi::ClassData* LineContent_get_class_data() {
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+  return LineContent_globals_.GetClassData();
+#else
+  return LineContent_class_data_.base();
+#endif  // PROTOBUF_MESSAGE_GLOBALS
+}
+}  // namespace
+#endif  // PROTOBUF_CUSTOM_VTABLE
+class LineBackground::_Internal {
+ public:
+  using HasBits = decltype(::std::declval<LineBackground>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(LineBackground, _impl_._has_bits_);
+};
+
+constexpr LineBackground::ParseTableT_ LineBackground::InternalGenerateParseTable_(const ::_pbi::ClassData* class_data) {
+  return ParseTableT_{
+    {
+      PROTOBUF_FIELD_OFFSET(LineBackground, _impl_._has_bits_),
+      0, // no _extensions_
+      2, 8,  // max_field_number, fast_idx_mask
+      offsetof(ParseTableT_, field_lookup_table),
+      4294967292,  // skipmap
+      offsetof(ParseTableT_, field_entries),
+      2,  // num_field_entries
+      2,  // num_aux_entries
+      offsetof(ParseTableT_, aux_entries),
+      class_data,
+      nullptr,  // post_loop_handler
+      ::_pbi::TcParser::GenericFallback,  // fallback
+      #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+      ::_pbi::TcParser::GetTable<::lyric::LineBackground>(),  // to_prefetch
+      #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+    }, {{
+      // .lyric.LineContent content = 2 [json_name = "content"];
+      {::_pbi::TcParser::FastMtS1,
+       {18, 1, 1,
+        PROTOBUF_FIELD_OFFSET(LineBackground, _impl_.content_)}},
+      // .lyric.Time time = 1 [json_name = "time"];
+      {::_pbi::TcParser::FastMtS1,
+       {10, 0, 0,
+        PROTOBUF_FIELD_OFFSET(LineBackground, _impl_.time_)}},
+    }}, {{
+      65535, 65535
+    }}, {{
+      // .lyric.Time time = 1 [json_name = "time"];
+      {PROTOBUF_FIELD_OFFSET(LineBackground, _impl_.time_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+      // .lyric.LineContent content = 2 [json_name = "content"];
+      {PROTOBUF_FIELD_OFFSET(LineBackground, _impl_.content_), _Internal::kHasBitsOffset + 1, 1, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    }},
+    {{
+        #ifndef PROTOBUF_MESSAGE_GLOBALS
+        {::_pbi::TcParser::GetTable<::lyric::Time>()},
+        #else
+        {::_pbi::FieldAuxMessageGlobals(), &::lyric::Time_globals_},
+        #endif
+        #ifndef PROTOBUF_MESSAGE_GLOBALS
+        {::_pbi::TcParser::GetTable<::lyric::LineContent>()},
+        #else
+        {::_pbi::FieldAuxMessageGlobals(), &::lyric::LineContent_globals_},
+        #endif
+    }},
+    {{
     }},
   };
 }
@@ -286,19 +420,8 @@ inline constexpr LineBackground::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        words_ { visibility, ::_pbi::InternalMetadataOffset::Build<
-            ::lyric::LineBackground,
-            PROTOBUF_FIELD_OFFSET(::lyric::LineBackground, _impl_.words_)>()
-         }
-        ,
-        languages_ { visibility, ::_pbi::InternalMetadataOffset::Build<
-            ::lyric::LineBackground,
-            PROTOBUF_FIELD_OFFSET(::lyric::LineBackground, _impl_.languages_)>()
-         }
-        ,
         time_{nullptr},
-        agent_{nullptr},
-        annotation_{nullptr} {}
+        content_{nullptr} {}
 
 template <typename>
 constexpr LineBackground::LineBackground(::_pbi::ConstantInitialized,
@@ -316,7 +439,7 @@ inline void* PROTOBUF_NONNULL LineBackground::PlacementNew_(
   return ::new (mem) LineBackground(arena);
 }
 constexpr auto LineBackground::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(LineBackground), alignof(LineBackground));
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(LineBackground), alignof(LineBackground));
 }
 constexpr auto LineBackground::InternalGenerateClassData_(
     const MessageLite& prototype,
@@ -341,7 +464,7 @@ constexpr auto LineBackground::InternalGenerateClassData_(
           false,
       },
 #ifdef PROTOBUF_MESSAGE_GLOBALS
-      &file_reflection_data[1],
+      &file_reflection_data[2],
 #else   // !PROTOBUF_MESSAGE_GLOBALS
       &::_pbi::kDescriptorMethods,
       &descriptor_table_line_2fcontent_2eproto,
@@ -404,12 +527,12 @@ constexpr LineNormal::ParseTableT_ LineNormal::InternalGenerateParseTable_(const
     {
       PROTOBUF_FIELD_OFFSET(LineNormal, _impl_._has_bits_),
       0, // no _extensions_
-      6, 56,  // max_field_number, fast_idx_mask
+      2, 8,  // max_field_number, fast_idx_mask
       offsetof(ParseTableT_, field_lookup_table),
-      4294967232,  // skipmap
+      4294967292,  // skipmap
       offsetof(ParseTableT_, field_entries),
-      6,  // num_field_entries
-      5,  // num_aux_entries
+      2,  // num_field_entries
+      2,  // num_aux_entries
       offsetof(ParseTableT_, aux_entries),
       class_data,
       nullptr,  // post_loop_handler
@@ -418,68 +541,27 @@ constexpr LineNormal::ParseTableT_ LineNormal::InternalGenerateParseTable_(const
       ::_pbi::TcParser::GetTable<::lyric::LineNormal>(),  // to_prefetch
       #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
     }, {{
-      {::_pbi::TcParser::MiniParse, {}},
-      // .lyric.Time time = 1 [json_name = "time"];
-      {::_pbi::TcParser::FastMtS1,
-       {10, 3, 0,
-        PROTOBUF_FIELD_OFFSET(LineNormal, _impl_.time_)}},
-      // optional .lyric.LineAgent agent = 2 [json_name = "agent"];
-      {::_pbi::TcParser::FastMtS1,
-       {18, 4, 1,
-        PROTOBUF_FIELD_OFFSET(LineNormal, _impl_.agent_)}},
-      // repeated .lyric.Word words = 3 [json_name = "words"];
+      // repeated .lyric.LineBackground backgrounds = 2 [json_name = "backgrounds"];
       {::_pbi::TcParser::FastMtR1,
-       {26, 0, 2,
-        PROTOBUF_FIELD_OFFSET(LineNormal, _impl_.words_)}},
-      // .lyric.LineAnnotation annotation = 4 [json_name = "annotation"];
-      {::_pbi::TcParser::FastMtS1,
-       {34, 5, 3,
-        PROTOBUF_FIELD_OFFSET(LineNormal, _impl_.annotation_)}},
-      // repeated string languages = 5 [json_name = "languages"];
-      {::_pbi::TcParser::FastUR1,
-       {42, 1, 0,
-        PROTOBUF_FIELD_OFFSET(LineNormal, _impl_.languages_)}},
-      // repeated .lyric.LineBackground backgrounds = 6 [json_name = "backgrounds"];
-      {::_pbi::TcParser::FastMtR1,
-       {50, 2, 4,
+       {18, 0, 1,
         PROTOBUF_FIELD_OFFSET(LineNormal, _impl_.backgrounds_)}},
-      {::_pbi::TcParser::MiniParse, {}},
+      // .lyric.LineContent content = 1 [json_name = "content"];
+      {::_pbi::TcParser::FastMtS1,
+       {10, 1, 0,
+        PROTOBUF_FIELD_OFFSET(LineNormal, _impl_.content_)}},
     }}, {{
       65535, 65535
     }}, {{
-      // .lyric.Time time = 1 [json_name = "time"];
-      {PROTOBUF_FIELD_OFFSET(LineNormal, _impl_.time_), _Internal::kHasBitsOffset + 3, 0, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-      // optional .lyric.LineAgent agent = 2 [json_name = "agent"];
-      {PROTOBUF_FIELD_OFFSET(LineNormal, _impl_.agent_), _Internal::kHasBitsOffset + 4, 1, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-      // repeated .lyric.Word words = 3 [json_name = "words"];
-      {PROTOBUF_FIELD_OFFSET(LineNormal, _impl_.words_), _Internal::kHasBitsOffset + 0, 2, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-      // .lyric.LineAnnotation annotation = 4 [json_name = "annotation"];
-      {PROTOBUF_FIELD_OFFSET(LineNormal, _impl_.annotation_), _Internal::kHasBitsOffset + 5, 3, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-      // repeated string languages = 5 [json_name = "languages"];
-      {PROTOBUF_FIELD_OFFSET(LineNormal, _impl_.languages_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
-      // repeated .lyric.LineBackground backgrounds = 6 [json_name = "backgrounds"];
-      {PROTOBUF_FIELD_OFFSET(LineNormal, _impl_.backgrounds_), _Internal::kHasBitsOffset + 2, 4, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+      // .lyric.LineContent content = 1 [json_name = "content"];
+      {PROTOBUF_FIELD_OFFSET(LineNormal, _impl_.content_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+      // repeated .lyric.LineBackground backgrounds = 2 [json_name = "backgrounds"];
+      {PROTOBUF_FIELD_OFFSET(LineNormal, _impl_.backgrounds_), _Internal::kHasBitsOffset + 0, 1, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
     }},
     {{
         #ifndef PROTOBUF_MESSAGE_GLOBALS
-        {::_pbi::TcParser::GetTable<::lyric::Time>()},
+        {::_pbi::TcParser::GetTable<::lyric::LineContent>()},
         #else
-        {::_pbi::FieldAuxMessageGlobals(), &::lyric::Time_globals_},
-        #endif
-        #ifndef PROTOBUF_MESSAGE_GLOBALS
-        {::_pbi::TcParser::GetTable<::lyric::LineAgent>()},
-        #else
-        {::_pbi::FieldAuxMessageGlobals(), &::lyric::LineAgent_globals_},
-        #endif
-        #ifndef PROTOBUF_MESSAGE_GLOBALS
-        {::_pbi::TcParser::GetTable<::lyric::Word>()},
-        #else
-        {::_pbi::FieldAuxMessageGlobals(), &::lyric::Word_globals_},
-        #endif
-        #ifndef PROTOBUF_MESSAGE_GLOBALS
-        {::_pbi::TcParser::GetTable<::lyric::LineAnnotation>()},
-        #else
-        {::_pbi::FieldAuxMessageGlobals(), &::lyric::LineAnnotation_globals_},
+        {::_pbi::FieldAuxMessageGlobals(), &::lyric::LineContent_globals_},
         #endif
         #ifndef PROTOBUF_MESSAGE_GLOBALS
         {::_pbi::TcParser::GetTable<::lyric::LineBackground>()},
@@ -488,9 +570,6 @@ constexpr LineNormal::ParseTableT_ LineNormal::InternalGenerateParseTable_(const
         #endif
     }},
     {{
-      "\20\0\0\0\0\11\0\0"
-      "lyric.LineNormal"
-      "languages"
     }},
   };
 }
@@ -500,24 +579,12 @@ inline constexpr LineNormal::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        words_ { visibility, ::_pbi::InternalMetadataOffset::Build<
-            ::lyric::LineNormal,
-            PROTOBUF_FIELD_OFFSET(::lyric::LineNormal, _impl_.words_)>()
-         }
-        ,
-        languages_ { visibility, ::_pbi::InternalMetadataOffset::Build<
-            ::lyric::LineNormal,
-            PROTOBUF_FIELD_OFFSET(::lyric::LineNormal, _impl_.languages_)>()
-         }
-        ,
         backgrounds_ { visibility, ::_pbi::InternalMetadataOffset::Build<
             ::lyric::LineNormal,
             PROTOBUF_FIELD_OFFSET(::lyric::LineNormal, _impl_.backgrounds_)>()
          }
         ,
-        time_{nullptr},
-        agent_{nullptr},
-        annotation_{nullptr} {}
+        content_{nullptr} {}
 
 template <typename>
 constexpr LineNormal::LineNormal(::_pbi::ConstantInitialized,
@@ -560,7 +627,7 @@ constexpr auto LineNormal::InternalGenerateClassData_(
           false,
       },
 #ifdef PROTOBUF_MESSAGE_GLOBALS
-      &file_reflection_data[0],
+      &file_reflection_data[1],
 #else   // !PROTOBUF_MESSAGE_GLOBALS
       &::_pbi::kDescriptorMethods,
       &descriptor_table_line_2fcontent_2eproto,
@@ -613,6 +680,9 @@ const ::_pbi::ClassData* LineNormal_get_class_data() {
 #endif  // PROTOBUF_CUSTOM_VTABLE
 class Line::_Internal {
  public:
+  using HasBits = decltype(::std::declval<Line>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(Line, _impl_._has_bits_);
   static constexpr ::int32_t kOneofCaseOffset =
       PROTOBUF_FIELD_OFFSET(::lyric::Line, _impl_._oneof_case_);
 };
@@ -620,15 +690,14 @@ class Line::_Internal {
 constexpr Line::ParseTableT_ Line::InternalGenerateParseTable_(const ::_pbi::ClassData* class_data) {
   return ParseTableT_{
     {
-      PROTOBUF_FIELD_OFFSET(Line,
-                            _impl_._cached_size_),  // no hasbits
+      PROTOBUF_FIELD_OFFSET(Line, _impl_._has_bits_),
       0, // no _extensions_
-      2, 0,  // max_field_number, fast_idx_mask
+      3, 0,  // max_field_number, fast_idx_mask
       offsetof(ParseTableT_, field_lookup_table),
-      4294967292,  // skipmap
+      4294967288,  // skipmap
       offsetof(ParseTableT_, field_entries),
-      2,  // num_field_entries
-      2,  // num_aux_entries
+      3,  // num_field_entries
+      3,  // num_aux_entries
       offsetof(ParseTableT_, aux_entries),
       class_data,
       nullptr,  // post_loop_handler
@@ -637,16 +706,26 @@ constexpr Line::ParseTableT_ Line::InternalGenerateParseTable_(const ::_pbi::Cla
       ::_pbi::TcParser::GetTable<::lyric::Line>(),  // to_prefetch
       #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
     }, {{
-      {::_pbi::TcParser::MiniParse, {}},
+      // .lyric.Time time = 1 [json_name = "time"];
+      {::_pbi::TcParser::FastMtS1,
+       {10, 0, 0,
+        PROTOBUF_FIELD_OFFSET(Line, _impl_.time_)}},
     }}, {{
       65535, 65535
     }}, {{
-      // .lyric.LineNormal normal = 1 [json_name = "normal"];
-      {PROTOBUF_FIELD_OFFSET(Line, _impl_.body_.normal_), _Internal::kOneofCaseOffset + 0, 0, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
-      // .lyric.LineInterlude interlude = 2 [json_name = "interlude"];
-      {PROTOBUF_FIELD_OFFSET(Line, _impl_.body_.interlude_), _Internal::kOneofCaseOffset + 0, 1, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+      // .lyric.Time time = 1 [json_name = "time"];
+      {PROTOBUF_FIELD_OFFSET(Line, _impl_.time_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+      // .lyric.LineNormal normal = 2 [json_name = "normal"];
+      {PROTOBUF_FIELD_OFFSET(Line, _impl_.body_.normal_), _Internal::kOneofCaseOffset + 0, 1, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+      // .lyric.LineInterlude interlude = 3 [json_name = "interlude"];
+      {PROTOBUF_FIELD_OFFSET(Line, _impl_.body_.interlude_), _Internal::kOneofCaseOffset + 0, 2, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
     }},
     {{
+        #ifndef PROTOBUF_MESSAGE_GLOBALS
+        {::_pbi::TcParser::GetTable<::lyric::Time>()},
+        #else
+        {::_pbi::FieldAuxMessageGlobals(), &::lyric::Time_globals_},
+        #endif
         #ifndef PROTOBUF_MESSAGE_GLOBALS
         {::_pbi::TcParser::GetTable<::lyric::LineNormal>()},
         #else
@@ -667,8 +746,9 @@ constexpr Line::ParseTableT_ Line::InternalGenerateParseTable_(const ::_pbi::Cla
 inline constexpr Line::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     ::_pbi::ConstantInitialized) noexcept
-      : body_{},
-        _cached_size_{0},
+      : _cached_size_{0},
+        time_{nullptr},
+        body_{},
         _oneof_case_{} {}
 
 template <typename>
@@ -712,7 +792,7 @@ constexpr auto Line::InternalGenerateClassData_(
           false,
       },
 #ifdef PROTOBUF_MESSAGE_GLOBALS
-      &file_reflection_data[3],
+      &file_reflection_data[4],
 #else   // !PROTOBUF_MESSAGE_GLOBALS
       &::_pbi::kDescriptorMethods,
       &descriptor_table_line_2fcontent_2eproto,
@@ -772,54 +852,55 @@ const ::uint32_t
     TableStruct_line_2fcontent_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
         protodesc_cold) = {
         0x081, // bitmap
-        PROTOBUF_FIELD_OFFSET(::lyric::LineNormal, _impl_._has_bits_),
-        9, // hasbit index offset
-        PROTOBUF_FIELD_OFFSET(::lyric::LineNormal, _impl_.time_),
-        PROTOBUF_FIELD_OFFSET(::lyric::LineNormal, _impl_.agent_),
-        PROTOBUF_FIELD_OFFSET(::lyric::LineNormal, _impl_.words_),
-        PROTOBUF_FIELD_OFFSET(::lyric::LineNormal, _impl_.annotation_),
-        PROTOBUF_FIELD_OFFSET(::lyric::LineNormal, _impl_.languages_),
-        PROTOBUF_FIELD_OFFSET(::lyric::LineNormal, _impl_.backgrounds_),
-        3,
-        4,
-        0,
-        5,
-        1,
+        PROTOBUF_FIELD_OFFSET(::lyric::LineContent, _impl_._has_bits_),
+        7, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::lyric::LineContent, _impl_.agent_),
+        PROTOBUF_FIELD_OFFSET(::lyric::LineContent, _impl_.words_),
+        PROTOBUF_FIELD_OFFSET(::lyric::LineContent, _impl_.annotation_),
+        PROTOBUF_FIELD_OFFSET(::lyric::LineContent, _impl_.languages_),
         2,
+        0,
+        3,
+        1,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::lyric::LineNormal, _impl_._has_bits_),
+        5, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::lyric::LineNormal, _impl_.content_),
+        PROTOBUF_FIELD_OFFSET(::lyric::LineNormal, _impl_.backgrounds_),
+        1,
+        0,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::lyric::LineBackground, _impl_._has_bits_),
-        8, // hasbit index offset
+        5, // hasbit index offset
         PROTOBUF_FIELD_OFFSET(::lyric::LineBackground, _impl_.time_),
-        PROTOBUF_FIELD_OFFSET(::lyric::LineBackground, _impl_.agent_),
-        PROTOBUF_FIELD_OFFSET(::lyric::LineBackground, _impl_.words_),
-        PROTOBUF_FIELD_OFFSET(::lyric::LineBackground, _impl_.annotation_),
-        PROTOBUF_FIELD_OFFSET(::lyric::LineBackground, _impl_.languages_),
-        2,
-        3,
+        PROTOBUF_FIELD_OFFSET(::lyric::LineBackground, _impl_.content_),
         0,
-        4,
         1,
-        0x081, // bitmap
-        PROTOBUF_FIELD_OFFSET(::lyric::LineInterlude, _impl_._has_bits_),
-        4, // hasbit index offset
-        PROTOBUF_FIELD_OFFSET(::lyric::LineInterlude, _impl_.time_),
-        0,
-        0x004, // bitmap
+        0x000, // bitmap
+        0x085, // bitmap
+        PROTOBUF_FIELD_OFFSET(::lyric::Line, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::lyric::Line, _impl_._oneof_case_[0]),
+        8, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::lyric::Line, _impl_.time_),
         PROTOBUF_FIELD_OFFSET(::lyric::Line, _impl_.body_),
         PROTOBUF_FIELD_OFFSET(::lyric::Line, _impl_.body_),
         PROTOBUF_FIELD_OFFSET(::lyric::Line, _impl_.body_),
+        0,
+        ~0u,
+        ~0u,
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-        {0, sizeof(::lyric::LineNormal)},
-        {15, sizeof(::lyric::LineBackground)},
-        {28, sizeof(::lyric::LineInterlude)},
-        {33, sizeof(::lyric::Line)},
+        {0, sizeof(::lyric::LineContent)},
+        {11, sizeof(::lyric::LineNormal)},
+        {18, sizeof(::lyric::LineBackground)},
+        {25, sizeof(::lyric::LineInterlude)},
+        {26, sizeof(::lyric::Line)},
 };
 static const ::_pbi::MessageGlobalsBase* PROTOBUF_NONNULL const
     file_message_globals[] = {
+        &::lyric::LineContent_globals_,
         &::lyric::LineNormal_globals_,
         &::lyric::LineBackground_globals_,
         &::lyric::LineInterlude_globals_,
@@ -829,24 +910,21 @@ const char descriptor_table_protodef_line_2fcontent_2eproto[] ABSL_ATTRIBUTE_SEC
     protodesc_cold) = {
     "\n\022line/content.proto\022\005lyric\032\021common/time"
     ".proto\032\021agent/agent.proto\032\022word/content."
-    "proto\032\025line/annotation.proto\"\225\002\n\nLineNor"
-    "mal\022\037\n\004time\030\001 \001(\0132\013.lyric.TimeR\004time\022+\n\005"
-    "agent\030\002 \001(\0132\020.lyric.LineAgentH\000R\005agent\210\001"
-    "\001\022!\n\005words\030\003 \003(\0132\013.lyric.WordR\005words\0225\n\n"
-    "annotation\030\004 \001(\0132\025.lyric.LineAnnotationR"
-    "\nannotation\022\034\n\tlanguages\030\005 \003(\tR\tlanguage"
-    "s\0227\n\013backgrounds\030\006 \003(\0132\025.lyric.LineBackg"
-    "roundR\013backgroundsB\010\n\006_agent\"\340\001\n\016LineBac"
-    "kground\022\037\n\004time\030\001 \001(\0132\013.lyric.TimeR\004time"
-    "\022+\n\005agent\030\002 \001(\0132\020.lyric.LineAgentH\000R\005age"
-    "nt\210\001\001\022!\n\005words\030\003 \003(\0132\013.lyric.WordR\005words"
-    "\0225\n\nannotation\030\004 \001(\0132\025.lyric.LineAnnotat"
-    "ionR\nannotation\022\034\n\tlanguages\030\005 \003(\tR\tlang"
-    "uagesB\010\n\006_agent\"0\n\rLineInterlude\022\037\n\004time"
-    "\030\001 \001(\0132\013.lyric.TimeR\004time\"q\n\004Line\022+\n\006nor"
-    "mal\030\001 \001(\0132\021.lyric.LineNormalH\000R\006normal\0224"
-    "\n\tinterlude\030\002 \001(\0132\024.lyric.LineInterludeH"
-    "\000R\tinterludeB\006\n\004bodyb\006proto3"
+    "proto\032\025line/annotation.proto\"\255\001\n\013LineCon"
+    "tent\022&\n\005agent\030\001 \001(\0132\020.lyric.LineAgentR\005a"
+    "gent\022!\n\005words\030\002 \003(\0132\013.lyric.WordR\005words\022"
+    "5\n\nannotation\030\003 \001(\0132\025.lyric.LineAnnotati"
+    "onR\nannotation\022\034\n\tlanguages\030\004 \003(\tR\tlangu"
+    "ages\"s\n\nLineNormal\022,\n\007content\030\001 \001(\0132\022.ly"
+    "ric.LineContentR\007content\0227\n\013backgrounds\030"
+    "\002 \003(\0132\025.lyric.LineBackgroundR\013background"
+    "s\"_\n\016LineBackground\022\037\n\004time\030\001 \001(\0132\013.lyri"
+    "c.TimeR\004time\022,\n\007content\030\002 \001(\0132\022.lyric.Li"
+    "neContentR\007content\"\017\n\rLineInterlude\"\222\001\n\004"
+    "Line\022\037\n\004time\030\001 \001(\0132\013.lyric.TimeR\004time\022+\n"
+    "\006normal\030\002 \001(\0132\021.lyric.LineNormalH\000R\006norm"
+    "al\0224\n\tinterlude\030\003 \001(\0132\024.lyric.LineInterl"
+    "udeH\000R\tinterludeB\006\n\004bodyb\006proto3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_line_2fcontent_2eproto_deps[4] = {
@@ -859,13 +937,13 @@ static ::absl::once_flag descriptor_table_line_2fcontent_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_line_2fcontent_2eproto = {
     false,
     false,
-    788,
+    672,
     descriptor_table_protodef_line_2fcontent_2eproto,
     "line/content.proto",
     &descriptor_table_line_2fcontent_2eproto_once,
     descriptor_table_line_2fcontent_2eproto_deps,
     4,
-    4,
+    5,
     schemas,
     file_message_globals,
     TableStruct_line_2fcontent_2eproto::offsets,
@@ -875,26 +953,356 @@ PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_line_2fcontent
 namespace lyric {
 // ===================================================================
 
-void LineNormal::clear_time() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.time_ != nullptr) _impl_.time_->Clear();
-  ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
-}
-void LineNormal::clear_agent() {
+void LineContent::clear_agent() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.agent_ != nullptr) _impl_.agent_->Clear();
-  ClearHasBit(_impl_._has_bits_[0], 0x00000010U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
 }
-void LineNormal::clear_words() {
+void LineContent::clear_words() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.words_.Clear();
   ClearHasBit(_impl_._has_bits_[0], 0x00000001U);
 }
-void LineNormal::clear_annotation() {
+void LineContent::clear_annotation() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.annotation_ != nullptr) _impl_.annotation_->Clear();
-  ClearHasBit(_impl_._has_bits_[0], 0x00000020U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
 }
+LineContent::LineContent(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, LineContent_get_class_data()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:lyric.LineContent)
+}
+PROTOBUF_NDEBUG_INLINE LineContent::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    [[maybe_unused]] const ::lyric::LineContent& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        words_ {
+          visibility, ::_pbi::InternalMetadataOffset::Build<
+              ::lyric::LineContent,
+              PROTOBUF_FIELD_OFFSET(::lyric::LineContent, _impl_.words_)>()
+          , from.words_
+        }
+        ,
+        languages_ {
+          visibility, ::_pbi::InternalMetadataOffset::Build<
+              ::lyric::LineContent,
+              PROTOBUF_FIELD_OFFSET(::lyric::LineContent, _impl_.languages_)>()
+          , from.languages_
+        }
+     {}
+
+LineContent::LineContent(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const LineContent& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, LineContent_get_class_data()) {
+
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  LineContent* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.agent_ = (CheckHasBit(cached_has_bits, 0x00000004U))
+                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.agent_)
+                : nullptr;
+  _impl_.annotation_ = (CheckHasBit(cached_has_bits, 0x00000008U))
+                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.annotation_)
+                : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:lyric.LineContent)
+}
+PROTOBUF_NDEBUG_INLINE LineContent::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        words_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::LineContent,
+            PROTOBUF_FIELD_OFFSET(::lyric::LineContent, _impl_.words_)>()
+         }
+        ,
+        languages_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::LineContent,
+            PROTOBUF_FIELD_OFFSET(::lyric::LineContent, _impl_.languages_)>()
+         }
+     {}
+
+inline void LineContent::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char*>(&_impl_) +
+               offsetof(Impl_, agent_),
+           0,
+           offsetof(Impl_, annotation_) -
+               offsetof(Impl_, agent_) +
+               sizeof(Impl_::annotation_));
+}
+LineContent::~LineContent() {
+  // @@protoc_insertion_point(destructor:lyric.LineContent)
+  SharedDtor(*this);
+}
+inline void LineContent::SharedDtor(MessageLite& self) {
+  LineContent& this_ = static_cast<LineContent&>(self);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  delete this_._impl_.agent_;
+  delete this_._impl_.annotation_;
+  this_._impl_.~Impl_();
+}
+
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull LineContent_class_data_ =
+        LineContent::InternalGenerateClassData_(LineContent_globals_._default);
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+LineContent::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&LineContent_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(LineContent_class_data_.tc_table);
+  return LineContent_class_data_.base();
+}
+#else
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+LineContent::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&LineContent_globals_);
+  ::google::protobuf::internal::PrefetchToLocalCache(
+      ::google::protobuf::internal::MessageGlobalsBase::ToParseTableBase(&LineContent_globals_));
+  return LineContent_globals_.GetClassData();
+}
+#endif  // !PROTOBUF_MESSAGE_GLOBALS
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const LineContent::ParseTableT_
+    LineContent::_table_ =
+        LineContent::InternalGenerateParseTable_(LineContent_class_data_.base());
+#endif  // !PROTOBUF_MESSAGE_GLOBALS
+PROTOBUF_NOINLINE void LineContent::Clear() {
+// @@protoc_insertion_point(message_clear_start:lyric.LineContent)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x0000000fU)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      _impl_.words_.Clear();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      _impl_.languages_.Clear();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      ABSL_DCHECK(_impl_.agent_ != nullptr);
+      _impl_.agent_->Clear();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+      ABSL_DCHECK(_impl_.annotation_ != nullptr);
+      _impl_.annotation_->Clear();
+    }
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL LineContent::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const LineContent& this_ = static_cast<const LineContent&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL LineContent::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const LineContent& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(serialize_to_array_start:lyric.LineContent)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // .lyric.LineAgent agent = 1 [json_name = "agent"];
+  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, *this_._impl_.agent_, this_._impl_.agent_->GetCachedSize(), target,
+        stream);
+  }
+
+  // repeated .lyric.Word words = 2 [json_name = "words"];
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    for (unsigned i = 0, n = static_cast<unsigned>(
+                             this_._internal_words_size());
+         i < n; i++) {
+      const auto& repfield = this_._internal_words().Get(i);
+      target =
+          ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+              2, repfield, repfield.GetCachedSize(),
+              target, stream);
+    }
+  }
+
+  // .lyric.LineAnnotation annotation = 3 [json_name = "annotation"];
+  if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        3, *this_._impl_.annotation_, this_._impl_.annotation_->GetCachedSize(), target,
+        stream);
+  }
+
+  // repeated string languages = 4 [json_name = "languages"];
+  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+    for (int i = 0, n = this_._internal_languages_size(); i < n; ++i) {
+      const auto& s = this_._internal_languages().Get(i);
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.LineContent.languages");
+      target = stream->WriteString(4, s, target);
+    }
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:lyric.LineContent)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t LineContent::ByteSizeLong(const MessageLite& base) {
+  const LineContent& this_ = static_cast<const LineContent&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t LineContent::ByteSizeLong() const {
+  const LineContent& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:lyric.LineContent)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x0000000fU)) {
+    // repeated .lyric.Word words = 2 [json_name = "words"];
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      total_size += 1UL * this_._internal_words_size();
+      for (const auto& msg : this_._internal_words()) {
+        total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+      }
+    }
+    // repeated string languages = 4 [json_name = "languages"];
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      total_size +=
+          1 * ::google::protobuf::internal::FromIntSize(this_._internal_languages().size());
+      for (int i = 0, n = this_._internal_languages().size(); i < n; ++i) {
+        total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+            this_._internal_languages().Get(i));
+      }
+    }
+    // .lyric.LineAgent agent = 1 [json_name = "agent"];
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      total_size += 1 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.agent_);
+    }
+    // .lyric.LineAnnotation annotation = 3 [json_name = "annotation"];
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+      total_size += 1 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.annotation_);
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void LineContent::MergeImpl(::google::protobuf::MessageLite& to_msg,
+                      const ::google::protobuf::MessageLite& from_msg) {
+   auto* const _this = static_cast<LineContent*>(&to_msg);
+  auto& from = static_cast<const LineContent&>(from_msg);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    from.CheckHasBitConsistency();
+  }
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:lyric.LineContent)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x0000000fU)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      _this->_internal_mutable_words()->InternalMergeFromWithArena(
+          ::google::protobuf::MessageLite::internal_visibility(), arena,
+          from._internal_words());
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      _this->_internal_mutable_languages()->InternalMergeFromWithArena(
+          ::google::protobuf::MessageLite::internal_visibility(), arena,
+          from._internal_languages());
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      ABSL_DCHECK(from._impl_.agent_ != nullptr);
+      if (_this->_impl_.agent_ == nullptr) {
+        _this->_impl_.agent_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.agent_);
+      } else {
+        _this->_impl_.agent_->MergeFrom(*from._impl_.agent_);
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+      ABSL_DCHECK(from._impl_.annotation_ != nullptr);
+      if (_this->_impl_.annotation_ == nullptr) {
+        _this->_impl_.annotation_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.annotation_);
+      } else {
+        _this->_impl_.annotation_->MergeFrom(*from._impl_.annotation_);
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+}
+
+void LineContent::CopyFrom(const LineContent& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:lyric.LineContent)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void LineContent::InternalSwap(LineContent* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.words_.InternalSwap(&other->_impl_.words_);
+  _impl_.languages_.InternalSwap(&other->_impl_.languages_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(LineContent, _impl_.annotation_)
+      + sizeof(LineContent::_impl_.annotation_)
+      - PROTOBUF_FIELD_OFFSET(LineContent, _impl_.agent_)>(
+          reinterpret_cast<char*>(&_impl_.agent_),
+          reinterpret_cast<char*>(&other->_impl_.agent_));
+}
+
+::google::protobuf::Metadata LineContent::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
 LineNormal::LineNormal(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, LineNormal_get_class_data()) {
@@ -910,20 +1318,6 @@ PROTOBUF_NDEBUG_INLINE LineNormal::Impl_::Impl_(
     [[maybe_unused]] const ::lyric::LineNormal& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
-        words_ {
-          visibility, ::_pbi::InternalMetadataOffset::Build<
-              ::lyric::LineNormal,
-              PROTOBUF_FIELD_OFFSET(::lyric::LineNormal, _impl_.words_)>()
-          , from.words_
-        }
-        ,
-        languages_ {
-          visibility, ::_pbi::InternalMetadataOffset::Build<
-              ::lyric::LineNormal,
-              PROTOBUF_FIELD_OFFSET(::lyric::LineNormal, _impl_.languages_)>()
-          , from.languages_
-        }
-        ,
         backgrounds_ {
           visibility, ::_pbi::InternalMetadataOffset::Build<
               ::lyric::LineNormal,
@@ -947,14 +1341,8 @@ LineNormal::LineNormal(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
   ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.time_ = (CheckHasBit(cached_has_bits, 0x00000008U))
-                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.time_)
-                : nullptr;
-  _impl_.agent_ = (CheckHasBit(cached_has_bits, 0x00000010U))
-                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.agent_)
-                : nullptr;
-  _impl_.annotation_ = (CheckHasBit(cached_has_bits, 0x00000020U))
-                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.annotation_)
+  _impl_.content_ = (CheckHasBit(cached_has_bits, 0x00000002U))
+                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.content_)
                 : nullptr;
 
   // @@protoc_insertion_point(copy_constructor:lyric.LineNormal)
@@ -963,16 +1351,6 @@ PROTOBUF_NDEBUG_INLINE LineNormal::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
       : _cached_size_{0},
-        words_ { visibility, ::_pbi::InternalMetadataOffset::Build<
-            ::lyric::LineNormal,
-            PROTOBUF_FIELD_OFFSET(::lyric::LineNormal, _impl_.words_)>()
-         }
-        ,
-        languages_ { visibility, ::_pbi::InternalMetadataOffset::Build<
-            ::lyric::LineNormal,
-            PROTOBUF_FIELD_OFFSET(::lyric::LineNormal, _impl_.languages_)>()
-         }
-        ,
         backgrounds_ { visibility, ::_pbi::InternalMetadataOffset::Build<
             ::lyric::LineNormal,
             PROTOBUF_FIELD_OFFSET(::lyric::LineNormal, _impl_.backgrounds_)>()
@@ -981,12 +1359,7 @@ PROTOBUF_NDEBUG_INLINE LineNormal::Impl_::Impl_(
 
 inline void LineNormal::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  ::memset(reinterpret_cast<char*>(&_impl_) +
-               offsetof(Impl_, time_),
-           0,
-           offsetof(Impl_, annotation_) -
-               offsetof(Impl_, time_) +
-               sizeof(Impl_::annotation_));
+  _impl_.content_ = {};
 }
 LineNormal::~LineNormal() {
   // @@protoc_insertion_point(destructor:lyric.LineNormal)
@@ -999,9 +1372,7 @@ inline void LineNormal::SharedDtor(MessageLite& self) {
   }
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
-  delete this_._impl_.time_;
-  delete this_._impl_.agent_;
-  delete this_._impl_.annotation_;
+  delete this_._impl_.content_;
   this_._impl_.~Impl_();
 }
 
@@ -1039,27 +1410,13 @@ PROTOBUF_NOINLINE void LineNormal::Clear() {
   (void) cached_has_bits;
 
   cached_has_bits = _impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x0000003fU)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-      _impl_.words_.Clear();
-    }
-    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
-      _impl_.languages_.Clear();
-    }
-    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
       _impl_.backgrounds_.Clear();
     }
-    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
-      ABSL_DCHECK(_impl_.time_ != nullptr);
-      _impl_.time_->Clear();
-    }
-    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
-      ABSL_DCHECK(_impl_.agent_ != nullptr);
-      _impl_.agent_->Clear();
-    }
-    if (CheckHasBit(cached_has_bits, 0x00000020U)) {
-      ABSL_DCHECK(_impl_.annotation_ != nullptr);
-      _impl_.annotation_->Clear();
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      ABSL_DCHECK(_impl_.content_ != nullptr);
+      _impl_.content_->Clear();
     }
   }
   _impl_._has_bits_.Clear();
@@ -1085,59 +1442,22 @@ PROTOBUF_NOINLINE void LineNormal::Clear() {
   (void)cached_has_bits;
 
   cached_has_bits = this_._impl_._has_bits_[0];
-  // .lyric.Time time = 1 [json_name = "time"];
-  if (CheckHasBit(cached_has_bits, 0x00000008U)) {
-    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        1, *this_._impl_.time_, this_._impl_.time_->GetCachedSize(), target,
-        stream);
-  }
-
-  // optional .lyric.LineAgent agent = 2 [json_name = "agent"];
-  if (CheckHasBit(cached_has_bits, 0x00000010U)) {
-    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        2, *this_._impl_.agent_, this_._impl_.agent_->GetCachedSize(), target,
-        stream);
-  }
-
-  // repeated .lyric.Word words = 3 [json_name = "words"];
-  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-    for (unsigned i = 0, n = static_cast<unsigned>(
-                             this_._internal_words_size());
-         i < n; i++) {
-      const auto& repfield = this_._internal_words().Get(i);
-      target =
-          ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-              3, repfield, repfield.GetCachedSize(),
-              target, stream);
-    }
-  }
-
-  // .lyric.LineAnnotation annotation = 4 [json_name = "annotation"];
-  if (CheckHasBit(cached_has_bits, 0x00000020U)) {
-    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        4, *this_._impl_.annotation_, this_._impl_.annotation_->GetCachedSize(), target,
-        stream);
-  }
-
-  // repeated string languages = 5 [json_name = "languages"];
+  // .lyric.LineContent content = 1 [json_name = "content"];
   if (CheckHasBit(cached_has_bits, 0x00000002U)) {
-    for (int i = 0, n = this_._internal_languages_size(); i < n; ++i) {
-      const auto& s = this_._internal_languages().Get(i);
-      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.LineNormal.languages");
-      target = stream->WriteString(5, s, target);
-    }
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, *this_._impl_.content_, this_._impl_.content_->GetCachedSize(), target,
+        stream);
   }
 
-  // repeated .lyric.LineBackground backgrounds = 6 [json_name = "backgrounds"];
-  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+  // repeated .lyric.LineBackground backgrounds = 2 [json_name = "backgrounds"];
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
     for (unsigned i = 0, n = static_cast<unsigned>(
                              this_._internal_backgrounds_size());
          i < n; i++) {
       const auto& repfield = this_._internal_backgrounds().Get(i);
       target =
           ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-              6, repfield, repfield.GetCachedSize(),
+              2, repfield, repfield.GetCachedSize(),
               target, stream);
     }
   }
@@ -1167,44 +1487,18 @@ PROTOBUF_NOINLINE void LineNormal::Clear() {
 
   ::_pbi::Prefetch5LinesFrom7Lines(&this_);
   cached_has_bits = this_._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x0000003fU)) {
-    // repeated .lyric.Word words = 3 [json_name = "words"];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    // repeated .lyric.LineBackground backgrounds = 2 [json_name = "backgrounds"];
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-      total_size += 1UL * this_._internal_words_size();
-      for (const auto& msg : this_._internal_words()) {
-        total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
-      }
-    }
-    // repeated string languages = 5 [json_name = "languages"];
-    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
-      total_size +=
-          1 * ::google::protobuf::internal::FromIntSize(this_._internal_languages().size());
-      for (int i = 0, n = this_._internal_languages().size(); i < n; ++i) {
-        total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
-            this_._internal_languages().Get(i));
-      }
-    }
-    // repeated .lyric.LineBackground backgrounds = 6 [json_name = "backgrounds"];
-    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
       total_size += 1UL * this_._internal_backgrounds_size();
       for (const auto& msg : this_._internal_backgrounds()) {
         total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
       }
     }
-    // .lyric.Time time = 1 [json_name = "time"];
-    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+    // .lyric.LineContent content = 1 [json_name = "content"];
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
       total_size += 1 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.time_);
-    }
-    // optional .lyric.LineAgent agent = 2 [json_name = "agent"];
-    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
-      total_size += 1 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.agent_);
-    }
-    // .lyric.LineAnnotation annotation = 4 [json_name = "annotation"];
-    if (CheckHasBit(cached_has_bits, 0x00000020U)) {
-      total_size += 1 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.annotation_);
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.content_);
     }
   }
   return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -1225,44 +1519,18 @@ void LineNormal::MergeImpl(::google::protobuf::MessageLite& to_msg,
   (void)cached_has_bits;
 
   cached_has_bits = from._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x0000003fU)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-      _this->_internal_mutable_words()->InternalMergeFromWithArena(
-          ::google::protobuf::MessageLite::internal_visibility(), arena,
-          from._internal_words());
-    }
-    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
-      _this->_internal_mutable_languages()->InternalMergeFromWithArena(
-          ::google::protobuf::MessageLite::internal_visibility(), arena,
-          from._internal_languages());
-    }
-    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
       _this->_internal_mutable_backgrounds()->InternalMergeFromWithArena(
           ::google::protobuf::MessageLite::internal_visibility(), arena,
           from._internal_backgrounds());
     }
-    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
-      ABSL_DCHECK(from._impl_.time_ != nullptr);
-      if (_this->_impl_.time_ == nullptr) {
-        _this->_impl_.time_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.time_);
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      ABSL_DCHECK(from._impl_.content_ != nullptr);
+      if (_this->_impl_.content_ == nullptr) {
+        _this->_impl_.content_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.content_);
       } else {
-        _this->_impl_.time_->MergeFrom(*from._impl_.time_);
-      }
-    }
-    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
-      ABSL_DCHECK(from._impl_.agent_ != nullptr);
-      if (_this->_impl_.agent_ == nullptr) {
-        _this->_impl_.agent_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.agent_);
-      } else {
-        _this->_impl_.agent_->MergeFrom(*from._impl_.agent_);
-      }
-    }
-    if (CheckHasBit(cached_has_bits, 0x00000020U)) {
-      ABSL_DCHECK(from._impl_.annotation_ != nullptr);
-      if (_this->_impl_.annotation_ == nullptr) {
-        _this->_impl_.annotation_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.annotation_);
-      } else {
-        _this->_impl_.annotation_->MergeFrom(*from._impl_.annotation_);
+        _this->_impl_.content_->MergeFrom(*from._impl_.content_);
       }
     }
   }
@@ -1283,15 +1551,8 @@ void LineNormal::InternalSwap(LineNormal* PROTOBUF_RESTRICT PROTOBUF_NONNULL oth
   using ::std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  _impl_.words_.InternalSwap(&other->_impl_.words_);
-  _impl_.languages_.InternalSwap(&other->_impl_.languages_);
   _impl_.backgrounds_.InternalSwap(&other->_impl_.backgrounds_);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(LineNormal, _impl_.annotation_)
-      + sizeof(LineNormal::_impl_.annotation_)
-      - PROTOBUF_FIELD_OFFSET(LineNormal, _impl_.time_)>(
-          reinterpret_cast<char*>(&_impl_.time_),
-          reinterpret_cast<char*>(&other->_impl_.time_));
+  swap(_impl_.content_, other->_impl_.content_);
 }
 
 ::google::protobuf::Metadata LineNormal::GetMetadata() const {
@@ -1302,22 +1563,7 @@ void LineNormal::InternalSwap(LineNormal* PROTOBUF_RESTRICT PROTOBUF_NONNULL oth
 void LineBackground::clear_time() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.time_ != nullptr) _impl_.time_->Clear();
-  ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
-}
-void LineBackground::clear_agent() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.agent_ != nullptr) _impl_.agent_->Clear();
-  ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
-}
-void LineBackground::clear_words() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.words_.Clear();
   ClearHasBit(_impl_._has_bits_[0], 0x00000001U);
-}
-void LineBackground::clear_annotation() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.annotation_ != nullptr) _impl_.annotation_->Clear();
-  ClearHasBit(_impl_._has_bits_[0], 0x00000010U);
 }
 LineBackground::LineBackground(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
@@ -1333,21 +1579,7 @@ PROTOBUF_NDEBUG_INLINE LineBackground::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
     [[maybe_unused]] const ::lyric::LineBackground& from_msg)
       : _has_bits_{from._has_bits_},
-        _cached_size_{0},
-        words_ {
-          visibility, ::_pbi::InternalMetadataOffset::Build<
-              ::lyric::LineBackground,
-              PROTOBUF_FIELD_OFFSET(::lyric::LineBackground, _impl_.words_)>()
-          , from.words_
-        }
-        ,
-        languages_ {
-          visibility, ::_pbi::InternalMetadataOffset::Build<
-              ::lyric::LineBackground,
-              PROTOBUF_FIELD_OFFSET(::lyric::LineBackground, _impl_.languages_)>()
-          , from.languages_
-        }
-     {}
+        _cached_size_{0} {}
 
 LineBackground::LineBackground(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
@@ -1364,14 +1596,11 @@ LineBackground::LineBackground(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
   ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.time_ = (CheckHasBit(cached_has_bits, 0x00000004U))
+  _impl_.time_ = (CheckHasBit(cached_has_bits, 0x00000001U))
                 ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.time_)
                 : nullptr;
-  _impl_.agent_ = (CheckHasBit(cached_has_bits, 0x00000008U))
-                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.agent_)
-                : nullptr;
-  _impl_.annotation_ = (CheckHasBit(cached_has_bits, 0x00000010U))
-                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.annotation_)
+  _impl_.content_ = (CheckHasBit(cached_has_bits, 0x00000002U))
+                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.content_)
                 : nullptr;
 
   // @@protoc_insertion_point(copy_constructor:lyric.LineBackground)
@@ -1379,26 +1608,16 @@ LineBackground::LineBackground(
 PROTOBUF_NDEBUG_INLINE LineBackground::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
-      : _cached_size_{0},
-        words_ { visibility, ::_pbi::InternalMetadataOffset::Build<
-            ::lyric::LineBackground,
-            PROTOBUF_FIELD_OFFSET(::lyric::LineBackground, _impl_.words_)>()
-         }
-        ,
-        languages_ { visibility, ::_pbi::InternalMetadataOffset::Build<
-            ::lyric::LineBackground,
-            PROTOBUF_FIELD_OFFSET(::lyric::LineBackground, _impl_.languages_)>()
-         }
-     {}
+      : _cached_size_{0} {}
 
 inline void LineBackground::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   ::memset(reinterpret_cast<char*>(&_impl_) +
                offsetof(Impl_, time_),
            0,
-           offsetof(Impl_, annotation_) -
+           offsetof(Impl_, content_) -
                offsetof(Impl_, time_) +
-               sizeof(Impl_::annotation_));
+               sizeof(Impl_::content_));
 }
 LineBackground::~LineBackground() {
   // @@protoc_insertion_point(destructor:lyric.LineBackground)
@@ -1412,8 +1631,7 @@ inline void LineBackground::SharedDtor(MessageLite& self) {
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
   delete this_._impl_.time_;
-  delete this_._impl_.agent_;
-  delete this_._impl_.annotation_;
+  delete this_._impl_.content_;
   this_._impl_.~Impl_();
 }
 
@@ -1451,24 +1669,14 @@ PROTOBUF_NOINLINE void LineBackground::Clear() {
   (void) cached_has_bits;
 
   cached_has_bits = _impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x0000001fU)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-      _impl_.words_.Clear();
-    }
-    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
-      _impl_.languages_.Clear();
-    }
-    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
       ABSL_DCHECK(_impl_.time_ != nullptr);
       _impl_.time_->Clear();
     }
-    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
-      ABSL_DCHECK(_impl_.agent_ != nullptr);
-      _impl_.agent_->Clear();
-    }
-    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
-      ABSL_DCHECK(_impl_.annotation_ != nullptr);
-      _impl_.annotation_->Clear();
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      ABSL_DCHECK(_impl_.content_ != nullptr);
+      _impl_.content_->Clear();
     }
   }
   _impl_._has_bits_.Clear();
@@ -1495,47 +1703,17 @@ PROTOBUF_NOINLINE void LineBackground::Clear() {
 
   cached_has_bits = this_._impl_._has_bits_[0];
   // .lyric.Time time = 1 [json_name = "time"];
-  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         1, *this_._impl_.time_, this_._impl_.time_->GetCachedSize(), target,
         stream);
   }
 
-  // optional .lyric.LineAgent agent = 2 [json_name = "agent"];
-  if (CheckHasBit(cached_has_bits, 0x00000008U)) {
-    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        2, *this_._impl_.agent_, this_._impl_.agent_->GetCachedSize(), target,
-        stream);
-  }
-
-  // repeated .lyric.Word words = 3 [json_name = "words"];
-  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-    for (unsigned i = 0, n = static_cast<unsigned>(
-                             this_._internal_words_size());
-         i < n; i++) {
-      const auto& repfield = this_._internal_words().Get(i);
-      target =
-          ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-              3, repfield, repfield.GetCachedSize(),
-              target, stream);
-    }
-  }
-
-  // .lyric.LineAnnotation annotation = 4 [json_name = "annotation"];
-  if (CheckHasBit(cached_has_bits, 0x00000010U)) {
-    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        4, *this_._impl_.annotation_, this_._impl_.annotation_->GetCachedSize(), target,
-        stream);
-  }
-
-  // repeated string languages = 5 [json_name = "languages"];
+  // .lyric.LineContent content = 2 [json_name = "content"];
   if (CheckHasBit(cached_has_bits, 0x00000002U)) {
-    for (int i = 0, n = this_._internal_languages_size(); i < n; ++i) {
-      const auto& s = this_._internal_languages().Get(i);
-      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.LineBackground.languages");
-      target = stream->WriteString(5, s, target);
-    }
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        2, *this_._impl_.content_, this_._impl_.content_->GetCachedSize(), target,
+        stream);
   }
 
   if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -1563,37 +1741,16 @@ PROTOBUF_NOINLINE void LineBackground::Clear() {
 
   ::_pbi::Prefetch5LinesFrom7Lines(&this_);
   cached_has_bits = this_._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x0000001fU)) {
-    // repeated .lyric.Word words = 3 [json_name = "words"];
-    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-      total_size += 1UL * this_._internal_words_size();
-      for (const auto& msg : this_._internal_words()) {
-        total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
-      }
-    }
-    // repeated string languages = 5 [json_name = "languages"];
-    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
-      total_size +=
-          1 * ::google::protobuf::internal::FromIntSize(this_._internal_languages().size());
-      for (int i = 0, n = this_._internal_languages().size(); i < n; ++i) {
-        total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
-            this_._internal_languages().Get(i));
-      }
-    }
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
     // .lyric.Time time = 1 [json_name = "time"];
-    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
       total_size += 1 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.time_);
     }
-    // optional .lyric.LineAgent agent = 2 [json_name = "agent"];
-    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+    // .lyric.LineContent content = 2 [json_name = "content"];
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
       total_size += 1 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.agent_);
-    }
-    // .lyric.LineAnnotation annotation = 4 [json_name = "annotation"];
-    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
-      total_size += 1 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.annotation_);
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.content_);
     }
   }
   return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -1614,18 +1771,8 @@ void LineBackground::MergeImpl(::google::protobuf::MessageLite& to_msg,
   (void)cached_has_bits;
 
   cached_has_bits = from._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x0000001fU)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-      _this->_internal_mutable_words()->InternalMergeFromWithArena(
-          ::google::protobuf::MessageLite::internal_visibility(), arena,
-          from._internal_words());
-    }
-    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
-      _this->_internal_mutable_languages()->InternalMergeFromWithArena(
-          ::google::protobuf::MessageLite::internal_visibility(), arena,
-          from._internal_languages());
-    }
-    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
       ABSL_DCHECK(from._impl_.time_ != nullptr);
       if (_this->_impl_.time_ == nullptr) {
         _this->_impl_.time_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.time_);
@@ -1633,20 +1780,12 @@ void LineBackground::MergeImpl(::google::protobuf::MessageLite& to_msg,
         _this->_impl_.time_->MergeFrom(*from._impl_.time_);
       }
     }
-    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
-      ABSL_DCHECK(from._impl_.agent_ != nullptr);
-      if (_this->_impl_.agent_ == nullptr) {
-        _this->_impl_.agent_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.agent_);
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      ABSL_DCHECK(from._impl_.content_ != nullptr);
+      if (_this->_impl_.content_ == nullptr) {
+        _this->_impl_.content_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.content_);
       } else {
-        _this->_impl_.agent_->MergeFrom(*from._impl_.agent_);
-      }
-    }
-    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
-      ABSL_DCHECK(from._impl_.annotation_ != nullptr);
-      if (_this->_impl_.annotation_ == nullptr) {
-        _this->_impl_.annotation_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.annotation_);
-      } else {
-        _this->_impl_.annotation_->MergeFrom(*from._impl_.annotation_);
+        _this->_impl_.content_->MergeFrom(*from._impl_.content_);
       }
     }
   }
@@ -1667,11 +1806,9 @@ void LineBackground::InternalSwap(LineBackground* PROTOBUF_RESTRICT PROTOBUF_NON
   using ::std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  _impl_.words_.InternalSwap(&other->_impl_.words_);
-  _impl_.languages_.InternalSwap(&other->_impl_.languages_);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(LineBackground, _impl_.annotation_)
-      + sizeof(LineBackground::_impl_.annotation_)
+      PROTOBUF_FIELD_OFFSET(LineBackground, _impl_.content_)
+      + sizeof(LineBackground::_impl_.content_)
       - PROTOBUF_FIELD_OFFSET(LineBackground, _impl_.time_)>(
           reinterpret_cast<char*>(&_impl_.time_),
           reinterpret_cast<char*>(&other->_impl_.time_));
@@ -1682,70 +1819,29 @@ void LineBackground::InternalSwap(LineBackground* PROTOBUF_RESTRICT PROTOBUF_NON
 }
 // ===================================================================
 
-void LineInterlude::clear_time() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.time_ != nullptr) _impl_.time_->Clear();
-  ClearHasBit(_impl_._has_bits_[0], 0x00000001U);
-}
 LineInterlude::LineInterlude(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, LineInterlude_get_class_data()) {
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, LineInterlude_get_class_data()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(arena) {
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:lyric.LineInterlude)
 }
-PROTOBUF_NDEBUG_INLINE LineInterlude::Impl_::Impl_(
-    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
-    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-    [[maybe_unused]] const ::lyric::LineInterlude& from_msg)
-      : _has_bits_{from._has_bits_},
-        _cached_size_{0} {}
-
 LineInterlude::LineInterlude(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
     const LineInterlude& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, LineInterlude_get_class_data()) {
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, LineInterlude_get_class_data()) {
 
 #else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(arena) {
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   LineInterlude* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.time_ = (CheckHasBit(cached_has_bits, 0x00000001U))
-                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.time_)
-                : nullptr;
 
   // @@protoc_insertion_point(copy_constructor:lyric.LineInterlude)
-}
-PROTOBUF_NDEBUG_INLINE LineInterlude::Impl_::Impl_(
-    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
-    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
-      : _cached_size_{0} {}
-
-inline void LineInterlude::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.time_ = {};
-}
-LineInterlude::~LineInterlude() {
-  // @@protoc_insertion_point(destructor:lyric.LineInterlude)
-  SharedDtor(*this);
-}
-inline void LineInterlude::SharedDtor(MessageLite& self) {
-  LineInterlude& this_ = static_cast<LineInterlude&>(self);
-  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
-    this_.CheckHasBitConsistency();
-  }
-  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  ABSL_DCHECK(this_.GetArena() == nullptr);
-  delete this_._impl_.time_;
-  this_._impl_.~Impl_();
 }
 
 #ifndef PROTOBUF_MESSAGE_GLOBALS
@@ -1774,130 +1870,23 @@ PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const LineInterlude::ParseTableT_
     LineInterlude::_table_ =
         LineInterlude::InternalGenerateParseTable_(LineInterlude_class_data_.base());
 #endif  // !PROTOBUF_MESSAGE_GLOBALS
-PROTOBUF_NOINLINE void LineInterlude::Clear() {
-// @@protoc_insertion_point(message_clear_start:lyric.LineInterlude)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  cached_has_bits = _impl_._has_bits_[0];
-  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-    ABSL_DCHECK(_impl_.time_ != nullptr);
-    _impl_.time_->Clear();
-  }
-  _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-::uint8_t* PROTOBUF_NONNULL LineInterlude::_InternalSerialize(
-    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
-    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
-  const LineInterlude& this_ = static_cast<const LineInterlude&>(base);
-#else   // PROTOBUF_CUSTOM_VTABLE
-::uint8_t* PROTOBUF_NONNULL LineInterlude::_InternalSerialize(
-    ::uint8_t* PROTOBUF_NONNULL target,
-    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-  const LineInterlude& this_ = *this;
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
-    this_.CheckHasBitConsistency();
-  }
-  // @@protoc_insertion_point(serialize_to_array_start:lyric.LineInterlude)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
-
-  cached_has_bits = this_._impl_._has_bits_[0];
-  // .lyric.Time time = 1 [json_name = "time"];
-  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        1, *this_._impl_.time_, this_._impl_.time_->GetCachedSize(), target,
-        stream);
-  }
-
-  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:lyric.LineInterlude)
-  return target;
-}
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-::size_t LineInterlude::ByteSizeLong(const MessageLite& base) {
-  const LineInterlude& this_ = static_cast<const LineInterlude&>(base);
-#else   // PROTOBUF_CUSTOM_VTABLE
-::size_t LineInterlude::ByteSizeLong() const {
-  const LineInterlude& this_ = *this;
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(message_byte_size_start:lyric.LineInterlude)
-  ::size_t total_size = 0;
-
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void)cached_has_bits;
-
-   {
-    // .lyric.Time time = 1 [json_name = "time"];
-    cached_has_bits = this_._impl_._has_bits_[0];
-    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-      total_size += 1 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.time_);
-    }
-  }
-  return this_.MaybeComputeUnknownFieldsSize(total_size,
-                                             &this_._impl_._cached_size_);
-}
-
-void LineInterlude::MergeImpl(::google::protobuf::MessageLite& to_msg,
-                      const ::google::protobuf::MessageLite& from_msg) {
-   auto* const _this = static_cast<LineInterlude*>(&to_msg);
-  auto& from = static_cast<const LineInterlude&>(from_msg);
-  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
-    from.CheckHasBitConsistency();
-  }
-  ::google::protobuf::Arena* arena = _this->GetArena();
-  // @@protoc_insertion_point(class_specific_merge_from_start:lyric.LineInterlude)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
-
-  cached_has_bits = from._impl_._has_bits_[0];
-  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-    ABSL_DCHECK(from._impl_.time_ != nullptr);
-    if (_this->_impl_.time_ == nullptr) {
-      _this->_impl_.time_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.time_);
-    } else {
-      _this->_impl_.time_->MergeFrom(*from._impl_.time_);
-    }
-  }
-  _this->_impl_._has_bits_[0] |= cached_has_bits;
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-}
-
-void LineInterlude::CopyFrom(const LineInterlude& from) {
-  // @@protoc_insertion_point(class_specific_copy_from_start:lyric.LineInterlude)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
 
 
-void LineInterlude::InternalSwap(LineInterlude* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
-  using ::std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  swap(_impl_.time_, other->_impl_.time_);
-}
+
+
+
+
 
 ::google::protobuf::Metadata LineInterlude::GetMetadata() const {
-  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 
+void Line::clear_time() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.time_ != nullptr) _impl_.time_->Clear();
+  ClearHasBit(_impl_._has_bits_[0], 0x00000001U);
+}
 void Line::set_allocated_normal(::lyric::LineNormal* PROTOBUF_NULLABLE normal) {
   ::google::protobuf::Arena* message_arena = GetArena();
   clear_body();
@@ -1937,8 +1926,9 @@ PROTOBUF_NDEBUG_INLINE Line::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
     [[maybe_unused]] const ::lyric::Line& from_msg)
-      : body_{},
+      : _has_bits_{from._has_bits_},
         _cached_size_{0},
+        body_{},
         _oneof_case_{from._oneof_case_[0]} {}
 
 Line::Line(
@@ -1955,6 +1945,10 @@ Line::Line(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.time_ = (CheckHasBit(cached_has_bits, 0x00000001U))
+                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.time_)
+                : nullptr;
   switch (body_case()) {
     case BODY_NOT_SET:
       break;
@@ -1971,12 +1965,13 @@ Line::Line(
 PROTOBUF_NDEBUG_INLINE Line::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
-      : body_{},
-        _cached_size_{0},
+      : _cached_size_{0},
+        body_{},
         _oneof_case_{} {}
 
 inline void Line::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.time_ = {};
 }
 Line::~Line() {
   // @@protoc_insertion_point(destructor:lyric.Line)
@@ -1989,6 +1984,7 @@ inline void Line::SharedDtor(MessageLite& self) {
   }
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
+  delete this_._impl_.time_;
   if (this_.has_body()) {
     this_.clear_body();
   }
@@ -2056,7 +2052,13 @@ PROTOBUF_NOINLINE void Line::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  cached_has_bits = _impl_._has_bits_[0];
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    ABSL_DCHECK(_impl_.time_ != nullptr);
+    _impl_.time_->Clear();
+  }
   clear_body();
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -2078,16 +2080,24 @@ PROTOBUF_NOINLINE void Line::Clear() {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // .lyric.Time time = 1 [json_name = "time"];
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, *this_._impl_.time_, this_._impl_.time_->GetCachedSize(), target,
+        stream);
+  }
+
   switch (this_.body_case()) {
     case kNormal: {
       target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-          1, *this_._impl_.body_.normal_, this_._impl_.body_.normal_->GetCachedSize(), target,
+          2, *this_._impl_.body_.normal_, this_._impl_.body_.normal_->GetCachedSize(), target,
           stream);
       break;
     }
     case kInterlude: {
       target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-          2, *this_._impl_.body_.interlude_, this_._impl_.body_.interlude_->GetCachedSize(), target,
+          3, *this_._impl_.body_.interlude_, this_._impl_.body_.interlude_->GetCachedSize(), target,
           stream);
       break;
     }
@@ -2117,14 +2127,22 @@ PROTOBUF_NOINLINE void Line::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void)cached_has_bits;
 
+   {
+    // .lyric.Time time = 1 [json_name = "time"];
+    cached_has_bits = this_._impl_._has_bits_[0];
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      total_size += 1 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.time_);
+    }
+  }
   switch (this_.body_case()) {
-    // .lyric.LineNormal normal = 1 [json_name = "normal"];
+    // .lyric.LineNormal normal = 2 [json_name = "normal"];
     case kNormal: {
       total_size += 1 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.body_.normal_);
       break;
     }
-    // .lyric.LineInterlude interlude = 2 [json_name = "interlude"];
+    // .lyric.LineInterlude interlude = 3 [json_name = "interlude"];
     case kInterlude: {
       total_size += 1 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.body_.interlude_);
@@ -2151,6 +2169,16 @@ void Line::MergeImpl(::google::protobuf::MessageLite& to_msg,
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    ABSL_DCHECK(from._impl_.time_ != nullptr);
+    if (_this->_impl_.time_ == nullptr) {
+      _this->_impl_.time_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.time_);
+    } else {
+      _this->_impl_.time_->MergeFrom(*from._impl_.time_);
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
   if (const uint32_t oneof_from_case =
           from._impl_._oneof_case_[0]) {
     const uint32_t oneof_to_case = _this->_impl_._oneof_case_[0];
@@ -2198,6 +2226,8 @@ void Line::CopyFrom(const Line& from) {
 void Line::InternalSwap(Line* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   using ::std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_impl_.time_, other->_impl_.time_);
   swap(_impl_.body_, other->_impl_.body_);
   swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
 }

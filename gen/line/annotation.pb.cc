@@ -67,37 +67,37 @@ constexpr LineAnnotationUnknown::ParseTableT_ LineAnnotationUnknown::InternalGen
       ::_pbi::TcParser::GetTable<::lyric::LineAnnotationUnknown>(),  // to_prefetch
       #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
     }, {{
-      // bool derived = 4 [json_name = "derived"];
-      {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(LineAnnotationUnknown, _impl_.derived_), 3>(),
-       {32, 3, 0,
-        PROTOBUF_FIELD_OFFSET(LineAnnotationUnknown, _impl_.derived_)}},
+      // string content = 4 [json_name = "content"];
+      {::_pbi::TcParser::FastUS1,
+       {34, 2, 0,
+        PROTOBUF_FIELD_OFFSET(LineAnnotationUnknown, _impl_.content_)}},
       // string key = 1 [json_name = "key"];
       {::_pbi::TcParser::FastUS1,
        {10, 0, 0,
         PROTOBUF_FIELD_OFFSET(LineAnnotationUnknown, _impl_.key_)}},
-      // optional string language = 2 [json_name = "language"];
+      // bool derived = 2 [json_name = "derived"];
+      {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(LineAnnotationUnknown, _impl_.derived_), 3>(),
+       {16, 3, 0,
+        PROTOBUF_FIELD_OFFSET(LineAnnotationUnknown, _impl_.derived_)}},
+      // optional string language = 3 [json_name = "language"];
       {::_pbi::TcParser::FastUS1,
-       {18, 1, 0,
+       {26, 1, 0,
         PROTOBUF_FIELD_OFFSET(LineAnnotationUnknown, _impl_.language_)}},
-      // string content = 3 [json_name = "content"];
-      {::_pbi::TcParser::FastUS1,
-       {26, 2, 0,
-        PROTOBUF_FIELD_OFFSET(LineAnnotationUnknown, _impl_.content_)}},
     }}, {{
       65535, 65535
     }}, {{
       // string key = 1 [json_name = "key"];
       {PROTOBUF_FIELD_OFFSET(LineAnnotationUnknown, _impl_.key_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-      // optional string language = 2 [json_name = "language"];
-      {PROTOBUF_FIELD_OFFSET(LineAnnotationUnknown, _impl_.language_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-      // string content = 3 [json_name = "content"];
-      {PROTOBUF_FIELD_OFFSET(LineAnnotationUnknown, _impl_.content_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-      // bool derived = 4 [json_name = "derived"];
+      // bool derived = 2 [json_name = "derived"];
       {PROTOBUF_FIELD_OFFSET(LineAnnotationUnknown, _impl_.derived_), _Internal::kHasBitsOffset + 3, 0, (0 | ::_fl::kFcOptional | ::_fl::kBool)},
+      // optional string language = 3 [json_name = "language"];
+      {PROTOBUF_FIELD_OFFSET(LineAnnotationUnknown, _impl_.language_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+      // string content = 4 [json_name = "content"];
+      {PROTOBUF_FIELD_OFFSET(LineAnnotationUnknown, _impl_.content_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     }},
     // no aux_entries
     {{
-      "\33\3\10\7\0\0\0\0"
+      "\33\3\0\10\7\0\0\0"
       "lyric.LineAnnotationUnknown"
       "key"
       "language"
@@ -226,11 +226,11 @@ constexpr LineAnnotationTranslate::ParseTableT_ LineAnnotationTranslate::Interna
     {
       PROTOBUF_FIELD_OFFSET(LineAnnotationTranslate, _impl_._has_bits_),
       0, // no _extensions_
-      2, 8,  // max_field_number, fast_idx_mask
+      3, 24,  // max_field_number, fast_idx_mask
       offsetof(ParseTableT_, field_lookup_table),
-      4294967292,  // skipmap
+      4294967288,  // skipmap
       offsetof(ParseTableT_, field_entries),
-      2,  // num_field_entries
+      3,  // num_field_entries
       0,  // num_aux_entries
       offsetof(ParseTableT_, field_names),  // no aux_entries
       class_data,
@@ -240,25 +240,32 @@ constexpr LineAnnotationTranslate::ParseTableT_ LineAnnotationTranslate::Interna
       ::_pbi::TcParser::GetTable<::lyric::LineAnnotationTranslate>(),  // to_prefetch
       #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
     }, {{
-      // string content = 2 [json_name = "content"];
+      {::_pbi::TcParser::MiniParse, {}},
+      // bool derived = 1 [json_name = "derived"];
+      {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(LineAnnotationTranslate, _impl_.derived_), 2>(),
+       {8, 2, 0,
+        PROTOBUF_FIELD_OFFSET(LineAnnotationTranslate, _impl_.derived_)}},
+      // optional string language = 2 [json_name = "language"];
       {::_pbi::TcParser::FastUS1,
-       {18, 1, 0,
-        PROTOBUF_FIELD_OFFSET(LineAnnotationTranslate, _impl_.content_)}},
-      // optional string language = 1 [json_name = "language"];
-      {::_pbi::TcParser::FastUS1,
-       {10, 0, 0,
+       {18, 0, 0,
         PROTOBUF_FIELD_OFFSET(LineAnnotationTranslate, _impl_.language_)}},
+      // string content = 3 [json_name = "content"];
+      {::_pbi::TcParser::FastUS1,
+       {26, 1, 0,
+        PROTOBUF_FIELD_OFFSET(LineAnnotationTranslate, _impl_.content_)}},
     }}, {{
       65535, 65535
     }}, {{
-      // optional string language = 1 [json_name = "language"];
+      // bool derived = 1 [json_name = "derived"];
+      {PROTOBUF_FIELD_OFFSET(LineAnnotationTranslate, _impl_.derived_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kBool)},
+      // optional string language = 2 [json_name = "language"];
       {PROTOBUF_FIELD_OFFSET(LineAnnotationTranslate, _impl_.language_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-      // string content = 2 [json_name = "content"];
+      // string content = 3 [json_name = "content"];
       {PROTOBUF_FIELD_OFFSET(LineAnnotationTranslate, _impl_.content_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     }},
     // no aux_entries
     {{
-      "\35\10\7\0\0\0\0\0"
+      "\35\0\10\7\0\0\0\0"
       "lyric.LineAnnotationTranslate"
       "language"
       "content"
@@ -276,7 +283,8 @@ inline constexpr LineAnnotationTranslate::Impl_::Impl_(
             ::_pbi::ConstantInitialized()),
         content_(
             &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()) {}
+            ::_pbi::ConstantInitialized()),
+        derived_{false} {}
 
 template <typename>
 constexpr LineAnnotationTranslate::LineAnnotationTranslate(::_pbi::ConstantInitialized,
@@ -397,31 +405,31 @@ constexpr LineAnnotationRoman::ParseTableT_ LineAnnotationRoman::InternalGenerat
       #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
     }, {{
       {::_pbi::TcParser::MiniParse, {}},
-      // optional string language = 1 [json_name = "language"];
-      {::_pbi::TcParser::FastUS1,
-       {10, 0, 0,
-        PROTOBUF_FIELD_OFFSET(LineAnnotationRoman, _impl_.language_)}},
-      // string content = 2 [json_name = "content"];
-      {::_pbi::TcParser::FastUS1,
-       {18, 1, 0,
-        PROTOBUF_FIELD_OFFSET(LineAnnotationRoman, _impl_.content_)}},
-      // bool derived = 3 [json_name = "derived"];
+      // bool derived = 1 [json_name = "derived"];
       {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(LineAnnotationRoman, _impl_.derived_), 2>(),
-       {24, 2, 0,
+       {8, 2, 0,
         PROTOBUF_FIELD_OFFSET(LineAnnotationRoman, _impl_.derived_)}},
+      // optional string language = 2 [json_name = "language"];
+      {::_pbi::TcParser::FastUS1,
+       {18, 0, 0,
+        PROTOBUF_FIELD_OFFSET(LineAnnotationRoman, _impl_.language_)}},
+      // string content = 3 [json_name = "content"];
+      {::_pbi::TcParser::FastUS1,
+       {26, 1, 0,
+        PROTOBUF_FIELD_OFFSET(LineAnnotationRoman, _impl_.content_)}},
     }}, {{
       65535, 65535
     }}, {{
-      // optional string language = 1 [json_name = "language"];
-      {PROTOBUF_FIELD_OFFSET(LineAnnotationRoman, _impl_.language_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-      // string content = 2 [json_name = "content"];
-      {PROTOBUF_FIELD_OFFSET(LineAnnotationRoman, _impl_.content_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-      // bool derived = 3 [json_name = "derived"];
+      // bool derived = 1 [json_name = "derived"];
       {PROTOBUF_FIELD_OFFSET(LineAnnotationRoman, _impl_.derived_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kBool)},
+      // optional string language = 2 [json_name = "language"];
+      {PROTOBUF_FIELD_OFFSET(LineAnnotationRoman, _impl_.language_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+      // string content = 3 [json_name = "content"];
+      {PROTOBUF_FIELD_OFFSET(LineAnnotationRoman, _impl_.content_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     }},
     // no aux_entries
     {{
-      "\31\10\7\0\0\0\0\0"
+      "\31\0\10\7\0\0\0\0"
       "lyric.LineAnnotationRoman"
       "language"
       "content"
@@ -730,27 +738,29 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::lyric::LineAnnotationUnknown, _impl_._has_bits_),
         7, // hasbit index offset
         PROTOBUF_FIELD_OFFSET(::lyric::LineAnnotationUnknown, _impl_.key_),
+        PROTOBUF_FIELD_OFFSET(::lyric::LineAnnotationUnknown, _impl_.derived_),
         PROTOBUF_FIELD_OFFSET(::lyric::LineAnnotationUnknown, _impl_.language_),
         PROTOBUF_FIELD_OFFSET(::lyric::LineAnnotationUnknown, _impl_.content_),
-        PROTOBUF_FIELD_OFFSET(::lyric::LineAnnotationUnknown, _impl_.derived_),
         0,
+        3,
         1,
         2,
-        3,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::lyric::LineAnnotationRoman, _impl_._has_bits_),
         6, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::lyric::LineAnnotationRoman, _impl_.derived_),
         PROTOBUF_FIELD_OFFSET(::lyric::LineAnnotationRoman, _impl_.language_),
         PROTOBUF_FIELD_OFFSET(::lyric::LineAnnotationRoman, _impl_.content_),
-        PROTOBUF_FIELD_OFFSET(::lyric::LineAnnotationRoman, _impl_.derived_),
+        2,
         0,
         1,
-        2,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::lyric::LineAnnotationTranslate, _impl_._has_bits_),
-        5, // hasbit index offset
+        6, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::lyric::LineAnnotationTranslate, _impl_.derived_),
         PROTOBUF_FIELD_OFFSET(::lyric::LineAnnotationTranslate, _impl_.language_),
         PROTOBUF_FIELD_OFFSET(::lyric::LineAnnotationTranslate, _impl_.content_),
+        2,
         0,
         1,
         0x081, // bitmap
@@ -769,7 +779,7 @@ static const ::_pbi::MigrationSchema
         {0, sizeof(::lyric::LineAnnotationUnknown)},
         {11, sizeof(::lyric::LineAnnotationRoman)},
         {20, sizeof(::lyric::LineAnnotationTranslate)},
-        {27, sizeof(::lyric::LineAnnotation)},
+        {29, sizeof(::lyric::LineAnnotation)},
 };
 static const ::_pbi::MessageGlobalsBase* PROTOBUF_NONNULL const
     file_message_globals[] = {
@@ -781,26 +791,27 @@ static const ::_pbi::MessageGlobalsBase* PROTOBUF_NONNULL const
 const char descriptor_table_protodef_line_2fannotation_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\025line/annotation.proto\022\005lyric\"\213\001\n\025LineA"
-    "nnotationUnknown\022\020\n\003key\030\001 \001(\tR\003key\022\037\n\010la"
-    "nguage\030\002 \001(\tH\000R\010language\210\001\001\022\030\n\007content\030\003"
-    " \001(\tR\007content\022\030\n\007derived\030\004 \001(\010R\007derivedB"
-    "\013\n\t_language\"w\n\023LineAnnotationRoman\022\037\n\010l"
-    "anguage\030\001 \001(\tH\000R\010language\210\001\001\022\030\n\007content\030"
-    "\002 \001(\tR\007content\022\030\n\007derived\030\003 \001(\010R\007derived"
-    "B\013\n\t_language\"a\n\027LineAnnotationTranslate"
-    "\022\037\n\010language\030\001 \001(\tH\000R\010language\210\001\001\022\030\n\007con"
-    "tent\030\002 \001(\tR\007contentB\013\n\t_language\"\276\001\n\016Lin"
-    "eAnnotation\0228\n\010unknowns\030\001 \003(\0132\034.lyric.Li"
-    "neAnnotationUnknownR\010unknowns\022>\n\ntransla"
-    "tes\030\002 \003(\0132\036.lyric.LineAnnotationTranslat"
-    "eR\ntranslates\0222\n\006romans\030\003 \003(\0132\032.lyric.Li"
-    "neAnnotationRomanR\006romansb\006proto3"
+    "nnotationUnknown\022\020\n\003key\030\001 \001(\tR\003key\022\030\n\007de"
+    "rived\030\002 \001(\010R\007derived\022\037\n\010language\030\003 \001(\tH\000"
+    "R\010language\210\001\001\022\030\n\007content\030\004 \001(\tR\007contentB"
+    "\013\n\t_language\"w\n\023LineAnnotationRoman\022\030\n\007d"
+    "erived\030\001 \001(\010R\007derived\022\037\n\010language\030\002 \001(\tH"
+    "\000R\010language\210\001\001\022\030\n\007content\030\003 \001(\tR\007content"
+    "B\013\n\t_language\"{\n\027LineAnnotationTranslate"
+    "\022\030\n\007derived\030\001 \001(\010R\007derived\022\037\n\010language\030\002"
+    " \001(\tH\000R\010language\210\001\001\022\030\n\007content\030\003 \001(\tR\007co"
+    "ntentB\013\n\t_language\"\276\001\n\016LineAnnotation\0228\n"
+    "\010unknowns\030\001 \003(\0132\034.lyric.LineAnnotationUn"
+    "knownR\010unknowns\022>\n\ntranslates\030\002 \003(\0132\036.ly"
+    "ric.LineAnnotationTranslateR\ntranslates\022"
+    "2\n\006romans\030\003 \003(\0132\032.lyric.LineAnnotationRo"
+    "manR\006romansb\006proto3"
 };
 static ::absl::once_flag descriptor_table_line_2fannotation_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_line_2fannotation_2eproto = {
     false,
     false,
-    593,
+    619,
     descriptor_table_protodef_line_2fannotation_2eproto,
     "line/annotation.proto",
     &descriptor_table_line_2fannotation_2eproto_once,
@@ -961,30 +972,30 @@ PROTOBUF_NOINLINE void LineAnnotationUnknown::Clear() {
     }
   }
 
-  // optional string language = 2 [json_name = "language"];
+  // bool derived = 2 [json_name = "derived"];
+  if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+    if (this_._internal_derived() != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteBoolToArray(
+          2, this_._internal_derived(), target);
+    }
+  }
+
+  // optional string language = 3 [json_name = "language"];
   if (CheckHasBit(cached_has_bits, 0x00000002U)) {
     const ::std::string& _s = this_._internal_language();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
         _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.LineAnnotationUnknown.language");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
+    target = stream->WriteStringMaybeAliased(3, _s, target);
   }
 
-  // string content = 3 [json_name = "content"];
+  // string content = 4 [json_name = "content"];
   if (CheckHasBit(cached_has_bits, 0x00000004U)) {
     if (!this_._internal_content().empty()) {
       const ::std::string& _s = this_._internal_content();
       ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
           _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.LineAnnotationUnknown.content");
-      target = stream->WriteStringMaybeAliased(3, _s, target);
-    }
-  }
-
-  // bool derived = 4 [json_name = "derived"];
-  if (CheckHasBit(cached_has_bits, 0x00000008U)) {
-    if (this_._internal_derived() != 0) {
-      target = stream->EnsureSpace(target);
-      target = ::_pbi::WireFormatLite::WriteBoolToArray(
-          4, this_._internal_derived(), target);
+      target = stream->WriteStringMaybeAliased(4, _s, target);
     }
   }
 
@@ -1021,19 +1032,19 @@ PROTOBUF_NOINLINE void LineAnnotationUnknown::Clear() {
                                         this_._internal_key());
       }
     }
-    // optional string language = 2 [json_name = "language"];
+    // optional string language = 3 [json_name = "language"];
     if (CheckHasBit(cached_has_bits, 0x00000002U)) {
       total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                       this_._internal_language());
     }
-    // string content = 3 [json_name = "content"];
+    // string content = 4 [json_name = "content"];
     if (CheckHasBit(cached_has_bits, 0x00000004U)) {
       if (!this_._internal_content().empty()) {
         total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                         this_._internal_content());
       }
     }
-    // bool derived = 4 [json_name = "derived"];
+    // bool derived = 2 [json_name = "derived"];
     if (CheckHasBit(cached_has_bits, 0x00000008U)) {
       if (this_._internal_derived() != 0) {
         total_size += 2;
@@ -1244,30 +1255,30 @@ PROTOBUF_NOINLINE void LineAnnotationRoman::Clear() {
   (void)cached_has_bits;
 
   cached_has_bits = this_._impl_._has_bits_[0];
-  // optional string language = 1 [json_name = "language"];
+  // bool derived = 1 [json_name = "derived"];
+  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+    if (this_._internal_derived() != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteBoolToArray(
+          1, this_._internal_derived(), target);
+    }
+  }
+
+  // optional string language = 2 [json_name = "language"];
   if (CheckHasBit(cached_has_bits, 0x00000001U)) {
     const ::std::string& _s = this_._internal_language();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
         _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.LineAnnotationRoman.language");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
+    target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
-  // string content = 2 [json_name = "content"];
+  // string content = 3 [json_name = "content"];
   if (CheckHasBit(cached_has_bits, 0x00000002U)) {
     if (!this_._internal_content().empty()) {
       const ::std::string& _s = this_._internal_content();
       ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
           _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.LineAnnotationRoman.content");
-      target = stream->WriteStringMaybeAliased(2, _s, target);
-    }
-  }
-
-  // bool derived = 3 [json_name = "derived"];
-  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
-    if (this_._internal_derived() != 0) {
-      target = stream->EnsureSpace(target);
-      target = ::_pbi::WireFormatLite::WriteBoolToArray(
-          3, this_._internal_derived(), target);
+      target = stream->WriteStringMaybeAliased(3, _s, target);
     }
   }
 
@@ -1297,19 +1308,19 @@ PROTOBUF_NOINLINE void LineAnnotationRoman::Clear() {
   ::_pbi::Prefetch5LinesFrom7Lines(&this_);
   cached_has_bits = this_._impl_._has_bits_[0];
   if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
-    // optional string language = 1 [json_name = "language"];
+    // optional string language = 2 [json_name = "language"];
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
       total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                       this_._internal_language());
     }
-    // string content = 2 [json_name = "content"];
+    // string content = 3 [json_name = "content"];
     if (CheckHasBit(cached_has_bits, 0x00000002U)) {
       if (!this_._internal_content().empty()) {
         total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                         this_._internal_content());
       }
     }
-    // bool derived = 3 [json_name = "derived"];
+    // bool derived = 1 [json_name = "derived"];
     if (CheckHasBit(cached_has_bits, 0x00000004U)) {
       if (this_._internal_derived() != 0) {
         total_size += 2;
@@ -1413,6 +1424,7 @@ LineAnnotationTranslate::LineAnnotationTranslate(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.derived_ = from._impl_.derived_;
 
   // @@protoc_insertion_point(copy_constructor:lyric.LineAnnotationTranslate)
 }
@@ -1425,6 +1437,7 @@ PROTOBUF_NDEBUG_INLINE LineAnnotationTranslate::Impl_::Impl_(
 
 inline void LineAnnotationTranslate::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.derived_ = {};
 }
 LineAnnotationTranslate::~LineAnnotationTranslate() {
   // @@protoc_insertion_point(destructor:lyric.LineAnnotationTranslate)
@@ -1484,6 +1497,7 @@ PROTOBUF_NOINLINE void LineAnnotationTranslate::Clear() {
       _impl_.content_.ClearNonDefaultToEmpty();
     }
   }
+  _impl_.derived_ = false;
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -1507,21 +1521,30 @@ PROTOBUF_NOINLINE void LineAnnotationTranslate::Clear() {
   (void)cached_has_bits;
 
   cached_has_bits = this_._impl_._has_bits_[0];
-  // optional string language = 1 [json_name = "language"];
+  // bool derived = 1 [json_name = "derived"];
+  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+    if (this_._internal_derived() != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteBoolToArray(
+          1, this_._internal_derived(), target);
+    }
+  }
+
+  // optional string language = 2 [json_name = "language"];
   if (CheckHasBit(cached_has_bits, 0x00000001U)) {
     const ::std::string& _s = this_._internal_language();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
         _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.LineAnnotationTranslate.language");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
+    target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
-  // string content = 2 [json_name = "content"];
+  // string content = 3 [json_name = "content"];
   if (CheckHasBit(cached_has_bits, 0x00000002U)) {
     if (!this_._internal_content().empty()) {
       const ::std::string& _s = this_._internal_content();
       ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
           _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.LineAnnotationTranslate.content");
-      target = stream->WriteStringMaybeAliased(2, _s, target);
+      target = stream->WriteStringMaybeAliased(3, _s, target);
     }
   }
 
@@ -1550,17 +1573,23 @@ PROTOBUF_NOINLINE void LineAnnotationTranslate::Clear() {
 
   ::_pbi::Prefetch5LinesFrom7Lines(&this_);
   cached_has_bits = this_._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
-    // optional string language = 1 [json_name = "language"];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+    // optional string language = 2 [json_name = "language"];
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
       total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                       this_._internal_language());
     }
-    // string content = 2 [json_name = "content"];
+    // string content = 3 [json_name = "content"];
     if (CheckHasBit(cached_has_bits, 0x00000002U)) {
       if (!this_._internal_content().empty()) {
         total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                         this_._internal_content());
+      }
+    }
+    // bool derived = 1 [json_name = "derived"];
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      if (this_._internal_derived() != 0) {
+        total_size += 2;
       }
     }
   }
@@ -1581,7 +1610,7 @@ void LineAnnotationTranslate::MergeImpl(::google::protobuf::MessageLite& to_msg,
   (void)cached_has_bits;
 
   cached_has_bits = from._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
       _this->_internal_set_language(from._internal_language());
     }
@@ -1592,6 +1621,11 @@ void LineAnnotationTranslate::MergeImpl(::google::protobuf::MessageLite& to_msg,
         if (_this->_impl_.content_.IsDefault()) {
           _this->_internal_set_content("");
         }
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      if (from._internal_derived() != 0) {
+        _this->_impl_.derived_ = from._impl_.derived_;
       }
     }
   }
@@ -1616,6 +1650,7 @@ void LineAnnotationTranslate::InternalSwap(LineAnnotationTranslate* PROTOBUF_RES
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.language_, &other->_impl_.language_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.content_, &other->_impl_.content_, arena);
+  swap(_impl_.derived_, other->_impl_.derived_);
 }
 
 ::google::protobuf::Metadata LineAnnotationTranslate::GetMetadata() const {
