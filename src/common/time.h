@@ -6,27 +6,27 @@
 #include "common/time.pb.h"
 
 namespace music_lyric_model {
-	using namespace lyric;
+	using namespace lyric::common;
 
 	/**
 	 * Creates a Time.
 	 */
-	lyric::Time makeTime();
+	lyric::common::Time makeTime(const lyric::common::Time& time = {});
 
 	/**
 	 * Duration of a time range in milliseconds, zero when absent.
 	 */
-	int64_t getTimeDuration(const lyric::Time* time);
+	int64_t getTimeDuration(const lyric::common::Time* time);
 
 	/**
 	 * Progress within a time range at the given moment, clamped to 0..1.
 	 */
-	double getTimeProgress(const lyric::Time* time, int64_t ms);
+	double getTimeProgress(const lyric::common::Time* time, int64_t ms);
 
 	/**
 	 * Whether the time range is active at the given moment in milliseconds.
 	 */
-	bool isTimeActive(const lyric::Time* time, int64_t ms);
+	bool isTimeActive(const lyric::common::Time* time, int64_t ms);
 } // namespace music_lyric_model
 
 #endif

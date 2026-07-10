@@ -1,15 +1,14 @@
 #ifndef MUSIC_LYRIC_MODEL_H_
 #define MUSIC_LYRIC_MODEL_H_
 
-#include "agent/agent.h"
 #include "common/time.h"
-#include "info.h"
-#include "language/language.h"
-#include "line/annotation.h"
-#include "line/content.h"
-#include "meta/meta.h"
+#include "runtime/agent.h"
+#include "runtime/info.h"
+#include "runtime/language.h"
+#include "runtime/line.h"
+#include "runtime/meta.h"
+#include "runtime/part.h"
+#include "runtime/word.h"
 #include "version.h"
-#include "word/annotation.h"
-#include "word/content.h"
 
 #endif

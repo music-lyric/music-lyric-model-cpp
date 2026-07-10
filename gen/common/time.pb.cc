@@ -29,12 +29,13 @@ namespace _fl = ::google::protobuf::internal::field_layout;
 namespace {
 PROTOBUF_CONSTINIT ::google::protobuf::internal::ReflectionData
     file_reflection_data[] = {
-        // ::lyric::Time
+        // ::lyric::common::Time
         {&::_pbi::kDescriptorMethods, &::descriptor_table_common_2ftime_2eproto, /* tracker*/ nullptr,},
 };
 }  // namespace
 #endif
 namespace lyric {
+namespace common {
 class Time::_Internal {
  public:
   using HasBits = decltype(::std::declval<Time>()._impl_._has_bits_);
@@ -58,7 +59,7 @@ constexpr Time::ParseTableT_ Time::InternalGenerateParseTable_(const ::_pbi::Cla
       nullptr,  // post_loop_handler
       ::_pbi::TcParser::GenericFallback,  // fallback
       #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-      ::_pbi::TcParser::GetTable<::lyric::Time>(),  // to_prefetch
+      ::_pbi::TcParser::GetTable<::lyric::common::Time>(),  // to_prefetch
       #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
     }, {{
       // uint32 end = 2 [json_name = "end"];
@@ -183,6 +184,7 @@ const ::_pbi::ClassData* Time_get_class_data() {
 }
 }  // namespace
 #endif  // PROTOBUF_CUSTOM_VTABLE
+}  // namespace common
 }  // namespace lyric
 static constexpr const ::_pb::EnumDescriptor* PROTOBUF_NONNULL* PROTOBUF_NULLABLE
     file_level_enum_descriptors_common_2ftime_2eproto = nullptr;
@@ -192,33 +194,33 @@ const ::uint32_t
     TableStruct_common_2ftime_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
         protodesc_cold) = {
         0x081, // bitmap
-        PROTOBUF_FIELD_OFFSET(::lyric::Time, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::lyric::common::Time, _impl_._has_bits_),
         5, // hasbit index offset
-        PROTOBUF_FIELD_OFFSET(::lyric::Time, _impl_.start_),
-        PROTOBUF_FIELD_OFFSET(::lyric::Time, _impl_.end_),
+        PROTOBUF_FIELD_OFFSET(::lyric::common::Time, _impl_.start_),
+        PROTOBUF_FIELD_OFFSET(::lyric::common::Time, _impl_.end_),
         0,
         1,
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-        {0, sizeof(::lyric::Time)},
+        {0, sizeof(::lyric::common::Time)},
 };
 static const ::_pbi::MessageGlobalsBase* PROTOBUF_NONNULL const
     file_message_globals[] = {
-        &::lyric::Time_globals_,
+        &::lyric::common::Time_globals_,
 };
 const char descriptor_table_protodef_common_2ftime_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\021common/time.proto\022\005lyric\".\n\004Time\022\024\n\005st"
-    "art\030\001 \001(\rR\005start\022\020\n\003end\030\002 \001(\rR\003endb\006prot"
-    "o3"
+    "\n\021common/time.proto\022\014lyric.common\".\n\004Tim"
+    "e\022\024\n\005start\030\001 \001(\rR\005start\022\020\n\003end\030\002 \001(\rR\003en"
+    "db\006proto3"
 };
 static ::absl::once_flag descriptor_table_common_2ftime_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_common_2ftime_2eproto = {
     false,
     false,
-    82,
+    89,
     descriptor_table_protodef_common_2ftime_2eproto,
     "common/time.proto",
     &descriptor_table_common_2ftime_2eproto_once,
@@ -232,6 +234,7 @@ PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_common_2ftime_
     file_level_service_descriptors_common_2ftime_2eproto,
 };
 namespace lyric {
+namespace common {
 // ===================================================================
 
 Time::Time(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
@@ -241,7 +244,7 @@ Time::Time(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:lyric.Time)
+  // @@protoc_insertion_point(arena_constructor:lyric.common.Time)
 }
 Time::Time(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Time& from)
@@ -269,7 +272,7 @@ inline void Time::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
                sizeof(Impl_::end_));
 }
 Time::~Time() {
-  // @@protoc_insertion_point(destructor:lyric.Time)
+  // @@protoc_insertion_point(destructor:lyric.common.Time)
   SharedDtor(*this);
 }
 inline void Time::SharedDtor(MessageLite& self) {
@@ -309,7 +312,7 @@ PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const Time::ParseTableT_
         Time::InternalGenerateParseTable_(Time_class_data_.base());
 #endif  // !PROTOBUF_MESSAGE_GLOBALS
 PROTOBUF_NOINLINE void Time::Clear() {
-// @@protoc_insertion_point(message_clear_start:lyric.Time)
+// @@protoc_insertion_point(message_clear_start:lyric.common.Time)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -339,7 +342,7 @@ PROTOBUF_NOINLINE void Time::Clear() {
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
-  // @@protoc_insertion_point(serialize_to_array_start:lyric.Time)
+  // @@protoc_insertion_point(serialize_to_array_start:lyric.common.Time)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -367,7 +370,7 @@ PROTOBUF_NOINLINE void Time::Clear() {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:lyric.Time)
+  // @@protoc_insertion_point(serialize_to_array_end:lyric.common.Time)
   return target;
 }
 
@@ -378,7 +381,7 @@ PROTOBUF_NOINLINE void Time::Clear() {
 ::size_t Time::ByteSizeLong() const {
   const Time& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(message_byte_size_start:lyric.Time)
+  // @@protoc_insertion_point(message_byte_size_start:lyric.common.Time)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -414,7 +417,7 @@ void Time::MergeImpl(::google::protobuf::MessageLite& to_msg,
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     from.CheckHasBitConsistency();
   }
-  // @@protoc_insertion_point(class_specific_merge_from_start:lyric.Time)
+  // @@protoc_insertion_point(class_specific_merge_from_start:lyric.common.Time)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
@@ -438,7 +441,7 @@ void Time::MergeImpl(::google::protobuf::MessageLite& to_msg,
 }
 
 void Time::CopyFrom(const Time& from) {
-  // @@protoc_insertion_point(class_specific_copy_from_start:lyric.Time)
+  // @@protoc_insertion_point(class_specific_copy_from_start:lyric.common.Time)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -461,6 +464,7 @@ void Time::InternalSwap(Time* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // @@protoc_insertion_point(namespace_scope)
+}  // namespace common
 }  // namespace lyric
 namespace google {
 namespace protobuf {
