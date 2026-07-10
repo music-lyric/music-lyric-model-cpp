@@ -7,7 +7,7 @@
 
 #include "runtime/meta/meta.pb.h"
 
-namespace music_lyric_model {
+namespace music_lyric_model::runtime {
 	using namespace lyric::runtime;
 
 	/**
@@ -49,6 +49,6 @@ namespace music_lyric_model {
 	 * Reference ids for the given platform.
 	 */
 	std::vector<std::string> getMetaReference(const google::protobuf::RepeatedPtrField<lyric::runtime::MetaReference>& references, const std::string& platform);
-} // namespace music_lyric_model
+} // namespace music_lyric_model::runtime
 
 #endif

@@ -40,7 +40,7 @@ namespace music_lyric_model::storage {
 	}
 
 	int64_t getLineDuration(const lyric::storage::Line& line) {
-		return getTimeDuration(getLineTime(line));
+		return common::getTimeDuration(getLineTime(line));
 	}
 
 	const google::protobuf::RepeatedPtrField<lyric::storage::Word>& getLineWords(const lyric::storage::Line& line) {
@@ -90,7 +90,7 @@ namespace music_lyric_model::storage {
 
 	int getActiveLineIndex(const google::protobuf::RepeatedPtrField<lyric::storage::Line>& lines, int64_t ms) {
 		for (int i = 0, len = lines.size(); i < len; i++) {
-			if (isTimeActive(getLineTime(lines.Get(i)), ms)) {
+			if (common::isTimeActive(getLineTime(lines.Get(i)), ms)) {
 				return i;
 			}
 		}

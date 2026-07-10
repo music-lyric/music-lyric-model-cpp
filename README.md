@@ -21,14 +21,14 @@ target_link_libraries(your_app PRIVATE music_lyric_model)
 #include "music_lyric_model.h"
 
 // makeInfo stamps the current SCHEMA_VERSION.
-auto info = music_lyric_model::makeInfo();
-info.set_type(music_lyric_model::INFO_TYPE_NORMAL);
+music_lyric_model::runtime::proto::Info info = music_lyric_model::runtime::makeInfo();
+info.set_type(music_lyric_model::runtime::proto::INFO_TYPE_VALID);
 
-std::vector<uint8_t> bytes = music_lyric_model::encodeInfo(info);
-std::string          json  = music_lyric_model::infoToJson(info);
+std::vector<uint8_t> bytes = music_lyric_model::runtime::encodeInfo(info);
+std::string          json  = music_lyric_model::runtime::infoToJson(info);
 
-auto fromBytes = music_lyric_model::decodeInfo(bytes);
-auto fromJson  = music_lyric_model::infoFromJson(json);
+auto fromBytes = music_lyric_model::runtime::decodeInfo(bytes);
+auto fromJson  = music_lyric_model::runtime::infoFromJson(json);
 ```
 
 ## Build

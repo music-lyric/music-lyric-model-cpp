@@ -1,10 +1,9 @@
 #include <algorithm>
 
 #include "doctest.h"
-#include "runtime/runtime.h"
-#include "version.h"
+#include "music_lyric_model.h"
 
-using namespace music_lyric_model;
+using namespace music_lyric_model::runtime;
 using namespace lyric::common;
 using namespace lyric::runtime;
 
@@ -41,12 +40,18 @@ namespace {
 	}
 } // namespace
 
+TEST_CASE("runtime proto namespace exports generated types") {
+	music_lyric_model::runtime::proto::Info info;
+	info.set_type(INFO_TYPE_VALID);
+	CHECK(info.type() == INFO_TYPE_VALID);
+}
+
 TEST_CASE("makeInfo preserves initial values and stamps the schema version") {
 	Info init;
 	init.set_version("0.0.1");
 	init.set_type(INFO_TYPE_INVALID);
 	const Info info = makeInfo(init);
-	CHECK(info.version() == SCHEMA_VERSION);
+	CHECK(info.version() == music_lyric_model::SCHEMA_VERSION);
 	CHECK(info.type() == INFO_TYPE_INVALID);
 }
 

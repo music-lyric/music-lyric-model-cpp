@@ -3,7 +3,7 @@
 
 #include "runtime/part/part.pb.h"
 
-namespace music_lyric_model {
+namespace music_lyric_model::runtime {
 	using namespace lyric::common;
 	using namespace lyric::runtime;
 
@@ -11,6 +11,6 @@ namespace music_lyric_model {
 	 * Creates a Part, a line's structural section.
 	 */
 	lyric::runtime::Part makePart(const lyric::runtime::Part& part = {});
-} // namespace music_lyric_model
+} // namespace music_lyric_model::runtime
 
 #endif

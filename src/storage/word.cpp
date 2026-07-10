@@ -68,16 +68,16 @@ namespace music_lyric_model::storage {
 	}
 
 	int64_t getWordDuration(const lyric::storage::Word& word) {
-		return getTimeDuration(getWordTime(word));
+		return common::getTimeDuration(getWordTime(word));
 	}
 
 	int64_t getWordDuration(const lyric::storage::WordNormal& word) {
-		return getTimeDuration(getWordTime(word));
+		return common::getTimeDuration(getWordTime(word));
 	}
 
 	int getActiveWordIndex(const google::protobuf::RepeatedPtrField<lyric::storage::Word>& words, int64_t ms) {
 		for (int i = 0, len = words.size(); i < len; i++) {
-			if (isTimeActive(getWordTime(words.Get(i)), ms)) {
+			if (common::isTimeActive(getWordTime(words.Get(i)), ms)) {
 				return i;
 			}
 		}

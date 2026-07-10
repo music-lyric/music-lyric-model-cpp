@@ -5,7 +5,7 @@
 
 #include "common/time.pb.h"
 
-namespace music_lyric_model {
+namespace music_lyric_model::common {
 	using namespace lyric::common;
 
 	/**
@@ -27,6 +27,6 @@ namespace music_lyric_model {
 	 * Whether the time range is active at the given moment in milliseconds.
 	 */
 	bool isTimeActive(const lyric::common::Time* time, int64_t ms);
-} // namespace music_lyric_model
+} // namespace music_lyric_model::common
 
 #endif

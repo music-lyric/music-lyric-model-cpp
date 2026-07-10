@@ -2,7 +2,7 @@
 
 #include "common/time.h"
 
-namespace music_lyric_model {
+namespace music_lyric_model::runtime {
 	lyric::runtime::Word makeWordNormal(const lyric::runtime::WordNormal& normal) {
 		lyric::runtime::Word word;
 		*word.mutable_normal() = normal;
@@ -84,16 +84,16 @@ namespace music_lyric_model {
 	}
 
 	int64_t getWordDuration(const lyric::runtime::Word& word) {
-		return getTimeDuration(getWordTime(word));
+		return common::getTimeDuration(getWordTime(word));
 	}
 
 	int64_t getWordDuration(const lyric::runtime::WordNormal& word) {
-		return getTimeDuration(getWordTime(word));
+		return common::getTimeDuration(getWordTime(word));
 	}
 
 	int getActiveWordIndex(const google::protobuf::RepeatedPtrField<lyric::runtime::Word>& words, int64_t ms) {
 		for (int i = 0, len = words.size(); i < len; i++) {
-			if (isTimeActive(getWordTime(words.Get(i)), ms)) {
+			if (common::isTimeActive(getWordTime(words.Get(i)), ms)) {
 				return i;
 			}
 		}
@@ -104,4 +104,4 @@ namespace music_lyric_model {
 		const int index = getActiveWordIndex(words, ms);
 		return index == -1 ? nullptr : &words.Get(index);
 	}
-} // namespace music_lyric_model
+} // namespace music_lyric_model::runtime

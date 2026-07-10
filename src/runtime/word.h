@@ -8,7 +8,7 @@
 #include "runtime/word/annotation.pb.h"
 #include "runtime/word/content.pb.h"
 
-namespace music_lyric_model {
+namespace music_lyric_model::runtime {
 	using namespace lyric::common;
 	using namespace lyric::runtime;
 
@@ -123,6 +123,6 @@ namespace music_lyric_model {
 		}
 		return result;
 	}
-} // namespace music_lyric_model
+} // namespace music_lyric_model::runtime
 
 #endif

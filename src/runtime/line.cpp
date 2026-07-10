@@ -7,7 +7,7 @@
 #include "common/time.h"
 #include "runtime/word.h"
 
-namespace music_lyric_model {
+namespace music_lyric_model::runtime {
 	namespace {
 		/**
 		 * Aggregates per-word annotations into line items, one per distinct group.
@@ -142,7 +142,7 @@ namespace music_lyric_model {
 	}
 
 	int64_t getLineDuration(const lyric::runtime::Line& line) {
-		return getTimeDuration(getLineTime(line));
+		return common::getTimeDuration(getLineTime(line));
 	}
 
 	const lyric::runtime::LineContent* getLineContent(const lyric::runtime::Line& line) {
@@ -207,7 +207,7 @@ namespace music_lyric_model {
 
 	int getActiveLineIndex(const google::protobuf::RepeatedPtrField<lyric::runtime::Line>& lines, int64_t ms) {
 		for (int i = 0, len = lines.size(); i < len; i++) {
-			if (isTimeActive(getLineTime(lines.Get(i)), ms)) {
+			if (common::isTimeActive(getLineTime(lines.Get(i)), ms)) {
 				return i;
 			}
 		}
@@ -308,4 +308,4 @@ namespace music_lyric_model {
 		}
 		return annotation;
 	}
-} // namespace music_lyric_model
+} // namespace music_lyric_model::runtime

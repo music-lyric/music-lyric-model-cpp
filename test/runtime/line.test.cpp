@@ -1,12 +1,10 @@
-#include "runtime/line.h"
-
 #include <string>
 #include <vector>
 
 #include "doctest.h"
-#include "runtime/word.h"
+#include "music_lyric_model.h"
 
-using namespace music_lyric_model;
+using namespace music_lyric_model::runtime;
 using namespace lyric::common;
 using namespace lyric::runtime;
 

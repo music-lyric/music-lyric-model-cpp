@@ -11,7 +11,7 @@
 #include "runtime/line/content.pb.h"
 #include "runtime/word/content.pb.h"
 
-namespace music_lyric_model {
+namespace music_lyric_model::runtime {
 	using namespace lyric::common;
 	using namespace lyric::runtime;
 
@@ -174,6 +174,6 @@ namespace music_lyric_model {
 	 * Builds a LineAnnotation by aggregating a line's word annotations; every item is marked derived.
 	 */
 	lyric::runtime::LineAnnotation deriveLineAnnotation(const google::protobuf::RepeatedPtrField<lyric::runtime::Word>& words);
-} // namespace music_lyric_model
+} // namespace music_lyric_model::runtime
 
 #endif

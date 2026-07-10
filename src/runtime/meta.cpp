@@ -1,6 +1,6 @@
 #include "runtime/meta.h"
 
-namespace music_lyric_model {
+namespace music_lyric_model::runtime {
 	lyric::runtime::Meta makeMeta(const lyric::runtime::Meta& meta) {
 		return meta;
 	}
@@ -50,4 +50,4 @@ namespace music_lyric_model {
 		}
 		return {};
 	}
-} // namespace music_lyric_model
+} // namespace music_lyric_model::runtime

@@ -1,8 +1,14 @@
-#include "common/common.h"
 #include "doctest.h"
+#include "music_lyric_model.h"
 
-using namespace music_lyric_model;
+using namespace music_lyric_model::common;
 using namespace lyric::common;
+
+TEST_CASE("common proto namespace exports generated types") {
+	music_lyric_model::common::proto::Time time;
+	time.set_start(100);
+	CHECK(time.start() == 100);
+}
 
 TEST_CASE("makeTime preserves initial values") {
 	Time init;

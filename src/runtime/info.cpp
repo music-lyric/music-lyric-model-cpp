@@ -8,7 +8,7 @@
 #include "runtime/line.h"
 #include "version.h"
 
-namespace music_lyric_model {
+namespace music_lyric_model::runtime {
 	lyric::runtime::Info makeInfo(const lyric::runtime::Info& init) {
 		lyric::runtime::Info info = init;
 		info.set_version(SCHEMA_VERSION);
@@ -68,4 +68,4 @@ namespace music_lyric_model {
 			});
 		}
 	}
-} // namespace music_lyric_model
+} // namespace music_lyric_model::runtime

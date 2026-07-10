@@ -11,7 +11,7 @@
 #include "runtime/info.pb.h"
 #include "runtime/line/content.pb.h"
 
-namespace music_lyric_model {
+namespace music_lyric_model::runtime {
 	using namespace lyric::common;
 	using namespace lyric::runtime;
 
@@ -79,6 +79,6 @@ namespace music_lyric_model {
 	 * Whether any agent of a type exists.
 	 */
 	bool hasAgent(const google::protobuf::RepeatedPtrField<lyric::runtime::AgentItem>& agents, lyric::common::AgentType type);
-} // namespace music_lyric_model
+} // namespace music_lyric_model::runtime
 
 #endif

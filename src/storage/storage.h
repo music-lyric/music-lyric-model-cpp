@@ -6,6 +6,7 @@
 #include "storage/lyric.h"
 #include "storage/meta.h"
 #include "storage/part.h"
+#include "storage/proto.h"
 #include "storage/word.h"
 
 #endif

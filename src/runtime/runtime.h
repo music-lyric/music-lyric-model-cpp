@@ -7,6 +7,7 @@
 #include "runtime/line.h"
 #include "runtime/meta.h"
 #include "runtime/part.h"
+#include "runtime/proto.h"
 #include "runtime/word.h"
 
 #endif

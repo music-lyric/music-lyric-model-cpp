@@ -1,6 +1,6 @@
 #include "runtime/language.h"
 
-namespace music_lyric_model {
+namespace music_lyric_model::runtime {
 	lyric::runtime::LanguageItem makeLanguageItem(const lyric::runtime::LanguageItem& item) {
 		return item;
 	}
@@ -32,4 +32,4 @@ namespace music_lyric_model {
 		}
 		return result;
 	}
-} // namespace music_lyric_model
+} // namespace music_lyric_model::runtime

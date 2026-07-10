@@ -1,6 +1,6 @@
 #include "common/time.h"
 
-namespace music_lyric_model {
+namespace music_lyric_model::common {
 	lyric::common::Time makeTime(const lyric::common::Time& time) {
 		return time;
 	}
@@ -26,4 +26,4 @@ namespace music_lyric_model {
 	bool isTimeActive(const lyric::common::Time* time, int64_t ms) {
 		return time ? ms >= static_cast<int64_t>(time->start()) && ms < static_cast<int64_t>(time->end()) : false;
 	}
-} // namespace music_lyric_model
+} // namespace music_lyric_model::common

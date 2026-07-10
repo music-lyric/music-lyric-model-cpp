@@ -7,7 +7,7 @@
 
 #include "runtime/info.pb.h"
 
-namespace music_lyric_model {
+namespace music_lyric_model::runtime {
 	using namespace lyric::runtime;
 
 	/**
@@ -41,6 +41,6 @@ namespace music_lyric_model {
 	 * Sorts lines and their background lines by start time ascending.
 	 */
 	void sortLinesByTime(lyric::runtime::Info& info);
-} // namespace music_lyric_model
+} // namespace music_lyric_model::runtime
 
 #endif

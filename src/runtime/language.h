@@ -5,7 +5,7 @@
 
 #include "runtime/language/language.pb.h"
 
-namespace music_lyric_model {
+namespace music_lyric_model::runtime {
 	using namespace lyric::runtime;
 
 	/**
@@ -27,6 +27,6 @@ namespace music_lyric_model {
 	 * The language with the highest share, null when empty.
 	 */
 	const lyric::runtime::LanguageItem* getPrimaryLanguage(const google::protobuf::RepeatedPtrField<lyric::runtime::LanguageItem>& languages);
-} // namespace music_lyric_model
+} // namespace music_lyric_model::runtime
 
 #endif

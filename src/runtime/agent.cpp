@@ -1,6 +1,6 @@
 #include "runtime/agent.h"
 
-namespace music_lyric_model {
+namespace music_lyric_model::runtime {
 	namespace {
 		/**
 		 * Referenced agent id of a line, null when the line performs no agent.
@@ -118,4 +118,4 @@ namespace music_lyric_model {
 		}
 		return false;
 	}
-} // namespace music_lyric_model
+} // namespace music_lyric_model::runtime
