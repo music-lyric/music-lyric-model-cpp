@@ -5,7 +5,7 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SOURCES = (os.path.join(ROOT, "src"), os.path.join(ROOT, "test"))
+SOURCES = (os.path.join(ROOT, "include"), os.path.join(ROOT, "src"), os.path.join(ROOT, "test"))
 
 EXCLUDES = {"version.h", "doctest.h"}
 

@@ -36,8 +36,12 @@ endif()
 file(GLOB_RECURSE MUSIC_LYRIC_GEN_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/gen/*.pb.cc")
 file(GLOB_RECURSE MUSIC_LYRIC_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 
-add_library(music_lyric_model ${MUSIC_LYRIC_GEN_SOURCES} ${MUSIC_LYRIC_SOURCES})
+set(MUSIC_LYRIC_PUBLIC_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/include/music_lyric_model.h")
+
+add_library(music_lyric_model ${MUSIC_LYRIC_GEN_SOURCES} ${MUSIC_LYRIC_SOURCES} ${MUSIC_LYRIC_PUBLIC_HEADER})
 add_library(music_lyric_model::music_lyric_model ALIAS music_lyric_model)
+
+set_target_properties(music_lyric_model PROPERTIES PUBLIC_HEADER "${MUSIC_LYRIC_PUBLIC_HEADER}")
 
 target_compile_features(music_lyric_model PUBLIC cxx_std_17)
 
@@ -45,10 +49,17 @@ target_compile_features(music_lyric_model PUBLIC cxx_std_17)
 # /bigobj is required by protobuf gencode.
 target_compile_options(music_lyric_model PUBLIC $<$<CXX_COMPILER_ID:MSVC>:/utf-8;/bigobj>)
 
-target_include_directories(music_lyric_model PUBLIC
+target_include_directories(music_lyric_model
+    PUBLIC
+        "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+        "$<INSTALL_INTERFACE:include>"
+    PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/gen"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src"
+)
+
+target_include_directories(music_lyric_model SYSTEM INTERFACE
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/gen>"
-    "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>"
-    "$<INSTALL_INTERFACE:include>"
 )
 
 target_link_libraries(music_lyric_model PUBLIC protobuf::libprotobuf)

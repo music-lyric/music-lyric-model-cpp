@@ -1,0 +1,9 @@
+#ifndef MUSIC_LYRIC_MODEL_H_
+#define MUSIC_LYRIC_MODEL_H_
+
+#include "../src/common/common.h"
+#include "../src/runtime/runtime.h"
+#include "../src/storage/storage.h"
+#include "../src/version.h"
+
+#endif
