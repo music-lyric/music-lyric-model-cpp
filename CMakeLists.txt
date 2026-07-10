@@ -41,11 +41,6 @@ set(MUSIC_LYRIC_PUBLIC_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/include/music_lyric_m
 add_library(music_lyric_model STATIC ${MUSIC_LYRIC_GEN_SOURCES} ${MUSIC_LYRIC_SOURCES} ${MUSIC_LYRIC_PUBLIC_HEADER})
 add_library(music_lyric::model ALIAS music_lyric_model)
 
-set_target_properties(music_lyric_model PROPERTIES
-    EXPORT_NAME model
-    PUBLIC_HEADER "${MUSIC_LYRIC_PUBLIC_HEADER}"
-)
-
 target_compile_features(music_lyric_model PUBLIC cxx_std_17)
 
 # MSVC reads source as the system code page (e.g. GBK) by default, but abseil/protobuf headers are UTF-8.
@@ -54,15 +49,14 @@ target_compile_options(music_lyric_model PUBLIC $<$<CXX_COMPILER_ID:MSVC>:/utf-8
 
 target_include_directories(music_lyric_model
     PUBLIC
-        "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
-        "$<INSTALL_INTERFACE:include>"
+        "${CMAKE_CURRENT_SOURCE_DIR}/include"
     PRIVATE
         "${CMAKE_CURRENT_SOURCE_DIR}/gen"
         "${CMAKE_CURRENT_SOURCE_DIR}/src"
 )
 
 target_include_directories(music_lyric_model SYSTEM INTERFACE
-    "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/gen>"
+    "${CMAKE_CURRENT_SOURCE_DIR}/gen"
 )
 
 target_link_libraries(music_lyric_model PUBLIC protobuf::libprotobuf)
