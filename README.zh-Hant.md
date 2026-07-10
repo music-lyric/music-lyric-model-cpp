@@ -14,7 +14,7 @@ git submodule add https://github.com/music-lyric/music-lyric-model-cpp.git third
 
 ```cmake
 add_subdirectory(third_party/music-lyric-model-cpp)
-target_link_libraries(your_app PRIVATE music_lyric_model)
+target_link_libraries(your_app PRIVATE music_lyric::model)
 ```
 
 ```cpp

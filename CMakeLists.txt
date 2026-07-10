@@ -39,9 +39,12 @@ file(GLOB_RECURSE MUSIC_LYRIC_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_
 set(MUSIC_LYRIC_PUBLIC_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/include/music_lyric_model.h")
 
 add_library(music_lyric_model ${MUSIC_LYRIC_GEN_SOURCES} ${MUSIC_LYRIC_SOURCES} ${MUSIC_LYRIC_PUBLIC_HEADER})
-add_library(music_lyric_model::music_lyric_model ALIAS music_lyric_model)
+add_library(music_lyric::model ALIAS music_lyric_model)
 
-set_target_properties(music_lyric_model PROPERTIES PUBLIC_HEADER "${MUSIC_LYRIC_PUBLIC_HEADER}")
+set_target_properties(music_lyric_model PROPERTIES
+    EXPORT_NAME model
+    PUBLIC_HEADER "${MUSIC_LYRIC_PUBLIC_HEADER}"
+)
 
 target_compile_features(music_lyric_model PUBLIC cxx_std_17)
 
@@ -70,7 +73,7 @@ if(PROJECT_IS_TOP_LEVEL)
     file(GLOB_RECURSE MUSIC_LYRIC_TEST_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/test/*.cpp")
 
     add_executable(music_lyric_model_test ${MUSIC_LYRIC_TEST_SOURCES})
-    target_link_libraries(music_lyric_model_test PRIVATE music_lyric_model)
+    target_link_libraries(music_lyric_model_test PRIVATE music_lyric::model)
     target_include_directories(music_lyric_model_test PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/test")
 
     add_test(NAME music_lyric_model_test COMMAND music_lyric_model_test)
