@@ -1,10 +1,7 @@
-#include "runtime/info.h"
-
 #include <algorithm>
 
 #include "doctest.h"
-#include "runtime/line.h"
-#include "runtime/word.h"
+#include "runtime/runtime.h"
 #include "version.h"
 
 using namespace music_lyric_model;

@@ -1,5 +1,4 @@
-#include "common/time.h"
-
+#include "common/common.h"
 #include "doctest.h"
 
 using namespace music_lyric_model;

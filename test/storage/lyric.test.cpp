@@ -1,11 +1,7 @@
-#include "storage/lyric.h"
-
 #include <algorithm>
 
 #include "doctest.h"
-#include "storage/agent.h"
-#include "storage/line.h"
-#include "storage/word.h"
+#include "storage/storage.h"
 #include "version.h"
 
 namespace Storage = music_lyric_model::storage;
