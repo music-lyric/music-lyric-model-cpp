@@ -6,8 +6,6 @@
 #include "common/time.pb.h"
 
 namespace music_lyric_model::common {
-	using namespace lyric::common;
-
 	/**
 	 * Creates a Time.
 	 */

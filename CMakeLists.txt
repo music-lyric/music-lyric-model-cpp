@@ -34,7 +34,8 @@ if(NOT Protobuf_FOUND)
 endif()
 
 file(GLOB_RECURSE MUSIC_LYRIC_GEN_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/gen/*.pb.cc")
-file(GLOB_RECURSE MUSIC_LYRIC_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
+# Temporary: only common helpers until parsed/storage are ported to proto v4.
+file(GLOB_RECURSE MUSIC_LYRIC_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/common/*.cpp")
 
 set(MUSIC_LYRIC_PUBLIC_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/include/music_lyric_model.h")
 
@@ -64,7 +65,11 @@ target_link_libraries(music_lyric_model PUBLIC protobuf::libprotobuf)
 if(PROJECT_IS_TOP_LEVEL)
     enable_testing()
 
-    file(GLOB_RECURSE MUSIC_LYRIC_TEST_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/test/*.cpp")
+    # Temporary: only common tests until parsed/storage are ported to proto v4.
+file(GLOB_RECURSE MUSIC_LYRIC_TEST_SOURCES CONFIGURE_DEPENDS
+	"${CMAKE_CURRENT_SOURCE_DIR}/test/main.cpp"
+	"${CMAKE_CURRENT_SOURCE_DIR}/test/common/*.cpp"
+)
 
     add_executable(music_lyric_model_test ${MUSIC_LYRIC_TEST_SOURCES})
     target_link_libraries(music_lyric_model_test PRIVATE music_lyric::model)

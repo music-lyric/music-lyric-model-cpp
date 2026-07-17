@@ -25,40 +25,221 @@ PROTOBUF_PRAGMA_INIT_SEG
 namespace _pb = ::google::protobuf;
 namespace _pbi = ::google::protobuf::internal;
 namespace _fl = ::google::protobuf::internal::field_layout;
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+namespace {
+PROTOBUF_CONSTINIT ::google::protobuf::internal::ReflectionData
+    file_reflection_data[] = {
+        // ::lyric::common::Part
+        {&::_pbi::kDescriptorMethods, &::descriptor_table_common_2fpart_2eproto, /* tracker*/ nullptr,},
+};
+}  // namespace
+#endif
 namespace lyric {
 namespace common {
+class Part::_Internal {
+ public:
+  using HasBits = decltype(::std::declval<Part>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(Part, _impl_._has_bits_);
+};
+
+constexpr Part::ParseTableT_ Part::InternalGenerateParseTable_(const ::_pbi::ClassData* class_data) {
+  return ParseTableT_{
+    {
+      PROTOBUF_FIELD_OFFSET(Part, _impl_._has_bits_),
+      0, // no _extensions_
+      2, 8,  // max_field_number, fast_idx_mask
+      offsetof(ParseTableT_, field_lookup_table),
+      4294967292,  // skipmap
+      offsetof(ParseTableT_, field_entries),
+      2,  // num_field_entries
+      0,  // num_aux_entries
+      offsetof(ParseTableT_, field_names),  // no aux_entries
+      class_data,
+      nullptr,  // post_loop_handler
+      ::_pbi::TcParser::GenericFallback,  // fallback
+      #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+      ::_pbi::TcParser::GetTable<::lyric::common::Part>(),  // to_prefetch
+      #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+    }, {{
+      // optional string label = 2 [json_name = "label"];
+      {::_pbi::TcParser::FastUS1,
+       {18, 0, 0,
+        PROTOBUF_FIELD_OFFSET(Part, _impl_.label_)}},
+      // .lyric.common.PartType type = 1 [json_name = "type"];
+      {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Part, _impl_.type_), 1>(),
+       {8, 1, 0,
+        PROTOBUF_FIELD_OFFSET(Part, _impl_.type_)}},
+    }}, {{
+      65535, 65535
+    }}, {{
+      // .lyric.common.PartType type = 1 [json_name = "type"];
+      {PROTOBUF_FIELD_OFFSET(Part, _impl_.type_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
+      // optional string label = 2 [json_name = "label"];
+      {PROTOBUF_FIELD_OFFSET(Part, _impl_.label_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    }},
+    // no aux_entries
+    {{
+      "\21\0\5\0\0\0\0\0"
+      "lyric.common.Part"
+      "label"
+    }},
+  };
+}
+
+
+inline constexpr Part::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        label_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        type_{static_cast< ::lyric::common::PartType >(0)} {}
+
+template <typename>
+constexpr Part::Part(::_pbi::ConstantInitialized,
+                       const ::_pbi::ClassData* PROTOBUF_NONNULL class_data)
+    : ::google::protobuf::Message(
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          class_data
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          ),
+      _impl_(internal_visibility(), ::_pbi::ConstantInitialized()) {
+}
+inline void* PROTOBUF_NONNULL Part::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) Part(arena);
+}
+constexpr auto Part::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Part), alignof(Part));
+}
+constexpr auto Part::InternalGenerateClassData_(
+    const MessageLite& prototype,
+    const ::google::protobuf::internal::TcParseTableBase* tc_table) {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &prototype,
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+          &_table_.header,
+#else
+          tc_table,
+#endif
+          nullptr,  // IsInitialized
+          &Part::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<Part>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &Part::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<Part>(), &Part::ByteSizeLong,
+              &Part::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(Part, _impl_._cached_size_),
+          false,
+      },
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+      &file_reflection_data[0],
+#else   // !PROTOBUF_MESSAGE_GLOBALS
+      &::_pbi::kDescriptorMethods,
+      &descriptor_table_common_2fpart_2eproto,
+      nullptr,  // tracker
+#endif  // PROTOBUF_MESSAGE_GLOBALS
+  };
+}
+struct PartGlobalsTypeInternal : ::_pbi::MessageGlobalsBase {
+  constexpr PartGlobalsTypeInternal()
+      :
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+        _default(::_pbi::ConstantInitialized{},
+                 Part_class_data_.base())
+#else   // !PROTOBUF_MESSAGE_GLOBALS
+        MessageGlobalsBase(Part::InternalGenerateClassData_(
+            _default, &Part_globals_._table.header)),
+        _default(::_pbi::ConstantInitialized{}, GetClassData()),
+        _table(::_pbi::PrivateAccess::GenerateParseTable<Part>(
+            GetClassData()))
+#endif  // PROTOBUF_MESSAGE_GLOBALS
+  {
+  }
+  ~PartGlobalsTypeInternal() {}
+  union {
+    alignas(::_pbi::kMaxMessageAlignment) Part _default;
+  };
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+  decltype(::_pbi::PrivateAccess::GenerateParseTable<Part>(
+      ::std::declval<const ::_pbi::ClassData*>())) _table;
+#endif
+};
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+static_assert(PROTOBUF_FIELD_OFFSET(PartGlobalsTypeInternal, _default) ==
+              ::_pbi::MessageGlobalsBase::OffsetToDefault());
+#endif  // PROTOBUF_MESSAGE_GLOBALS
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PROTOBUF_MESSAGE_GLOBALS_CONST PartGlobalsTypeInternal Part_globals_
+        PROTOBUF_MESSAGE_GLOBALS_SECTION(.data.rel.ro);
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+namespace {
+const ::_pbi::ClassData* Part_get_class_data() {
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+  return Part_globals_.GetClassData();
+#else
+  return Part_class_data_.base();
+#endif  // PROTOBUF_MESSAGE_GLOBALS
+}
+}  // namespace
+#endif  // PROTOBUF_CUSTOM_VTABLE
 }  // namespace common
 }  // namespace lyric
 static const ::_pb::EnumDescriptor* PROTOBUF_NONNULL
     file_level_enum_descriptors_common_2fpart_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor* PROTOBUF_NONNULL* PROTOBUF_NULLABLE
     file_level_service_descriptors_common_2fpart_2eproto = nullptr;
-const ::uint32_t TableStruct_common_2fpart_2eproto::offsets[1] = {};
-static constexpr ::_pbi::MigrationSchema* PROTOBUF_NULLABLE schemas = nullptr;
-static constexpr ::_pbi::MessageGlobalsBase* PROTOBUF_NONNULL const* PROTOBUF_NULLABLE
-    file_message_globals = nullptr;
+const ::uint32_t
+    TableStruct_common_2fpart_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
+        protodesc_cold) = {
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::lyric::common::Part, _impl_._has_bits_),
+        5, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::lyric::common::Part, _impl_.type_),
+        PROTOBUF_FIELD_OFFSET(::lyric::common::Part, _impl_.label_),
+        1,
+        0,
+};
+
+static const ::_pbi::MigrationSchema
+    schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
+        {0, sizeof(::lyric::common::Part)},
+};
+static const ::_pbi::MessageGlobalsBase* PROTOBUF_NONNULL const
+    file_message_globals[] = {
+        &::lyric::common::Part_globals_,
+};
 const char descriptor_table_protodef_common_2fpart_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\021common/part.proto\022\014lyric.common*\215\002\n\010Pa"
-    "rtType\022\031\n\025PART_TYPE_UNSPECIFIED\020\000\022\023\n\017PAR"
-    "T_TYPE_OTHER\020\001\022\023\n\017PART_TYPE_INTRO\020\002\022\023\n\017P"
-    "ART_TYPE_VERSE\020\003\022\030\n\024PART_TYPE_PRE_CHORUS"
-    "\020\004\022\024\n\020PART_TYPE_CHORUS\020\005\022\031\n\025PART_TYPE_PO"
-    "ST_CHORUS\020\006\022\024\n\020PART_TYPE_BRIDGE\020\007\022\025\n\021PAR"
-    "T_TYPE_REFRAIN\020\010\022\032\n\026PART_TYPE_INSTRUMENT"
-    "AL\020\t\022\023\n\017PART_TYPE_OUTRO\020\nb\006proto3"
+    "\n\021common/part.proto\022\014lyric.common\"W\n\004Par"
+    "t\022*\n\004type\030\001 \001(\0162\026.lyric.common.PartTypeR"
+    "\004type\022\031\n\005label\030\002 \001(\tH\000R\005label\210\001\001B\010\n\006_lab"
+    "el*\215\002\n\010PartType\022\031\n\025PART_TYPE_UNSPECIFIED"
+    "\020\000\022\023\n\017PART_TYPE_OTHER\020\001\022\023\n\017PART_TYPE_INT"
+    "RO\020\002\022\023\n\017PART_TYPE_VERSE\020\003\022\030\n\024PART_TYPE_P"
+    "RE_CHORUS\020\004\022\024\n\020PART_TYPE_CHORUS\020\005\022\031\n\025PAR"
+    "T_TYPE_POST_CHORUS\020\006\022\024\n\020PART_TYPE_BRIDGE"
+    "\020\007\022\025\n\021PART_TYPE_REFRAIN\020\010\022\032\n\026PART_TYPE_I"
+    "NSTRUMENTAL\020\t\022\023\n\017PART_TYPE_OUTRO\020\nb\006prot"
+    "o3"
 };
 static ::absl::once_flag descriptor_table_common_2fpart_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_common_2fpart_2eproto = {
     false,
     false,
-    313,
+    402,
     descriptor_table_protodef_common_2fpart_2eproto,
     "common/part.proto",
     &descriptor_table_common_2fpart_2eproto_once,
     nullptr,
     0,
-    0,
+    1,
     schemas,
     file_message_globals,
     TableStruct_common_2fpart_2eproto::offsets,
@@ -74,6 +255,238 @@ PartType_descriptor() {
 }
 PROTOBUF_CONSTINIT const uint32_t PartType_internal_data_[] = {
     720896u, 0u, };
+// ===================================================================
+
+Part::Part(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, Part_get_class_data()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:lyric.common.Part)
+}
+PROTOBUF_NDEBUG_INLINE Part::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    [[maybe_unused]] const ::lyric::common::Part& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        label_(arena, from.label_) {}
+
+Part::Part(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const Part& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, Part_get_class_data()) {
+
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Part* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.type_ = from._impl_.type_;
+
+  // @@protoc_insertion_point(copy_constructor:lyric.common.Part)
+}
+PROTOBUF_NDEBUG_INLINE Part::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        label_(arena) {}
+
+inline void Part::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.type_ = {};
+}
+Part::~Part() {
+  // @@protoc_insertion_point(destructor:lyric.common.Part)
+  SharedDtor(*this);
+}
+inline void Part::SharedDtor(MessageLite& self) {
+  Part& this_ = static_cast<Part&>(self);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.label_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull Part_class_data_ =
+        Part::InternalGenerateClassData_(Part_globals_._default);
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+Part::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&Part_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(Part_class_data_.tc_table);
+  return Part_class_data_.base();
+}
+#else
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+Part::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&Part_globals_);
+  ::google::protobuf::internal::PrefetchToLocalCache(
+      ::google::protobuf::internal::MessageGlobalsBase::ToParseTableBase(&Part_globals_));
+  return Part_globals_.GetClassData();
+}
+#endif  // !PROTOBUF_MESSAGE_GLOBALS
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const Part::ParseTableT_
+    Part::_table_ =
+        Part::InternalGenerateParseTable_(Part_class_data_.base());
+#endif  // !PROTOBUF_MESSAGE_GLOBALS
+PROTOBUF_NOINLINE void Part::Clear() {
+// @@protoc_insertion_point(message_clear_start:lyric.common.Part)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    _impl_.label_.ClearNonDefaultToEmpty();
+  }
+  _impl_.type_ = 0;
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL Part::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const Part& this_ = static_cast<const Part&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL Part::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const Part& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(serialize_to_array_start:lyric.common.Part)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // .lyric.common.PartType type = 1 [json_name = "type"];
+  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+    if (this_._internal_type() != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteEnumToArray(
+          1, this_._internal_type(), target);
+    }
+  }
+
+  // optional string label = 2 [json_name = "label"];
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    const ::std::string& _s = this_._internal_label();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.common.Part.label");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:lyric.common.Part)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t Part::ByteSizeLong(const MessageLite& base) {
+  const Part& this_ = static_cast<const Part&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t Part::ByteSizeLong() const {
+  const Part& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:lyric.common.Part)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    // optional string label = 2 [json_name = "label"];
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                      this_._internal_label());
+    }
+    // .lyric.common.PartType type = 1 [json_name = "type"];
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (this_._internal_type() != 0) {
+        total_size += 1 +
+                      ::_pbi::WireFormatLite::EnumSize(this_._internal_type());
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void Part::MergeImpl(::google::protobuf::MessageLite& to_msg,
+                      const ::google::protobuf::MessageLite& from_msg) {
+   auto* const _this = static_cast<Part*>(&to_msg);
+  auto& from = static_cast<const Part&>(from_msg);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    from.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(class_specific_merge_from_start:lyric.common.Part)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      _this->_internal_set_label(from._internal_label());
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (from._internal_type() != 0) {
+        _this->_impl_.type_ = from._impl_.type_;
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+}
+
+void Part::CopyFrom(const Part& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:lyric.common.Part)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Part::InternalSwap(Part* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.label_, &other->_impl_.label_, arena);
+  swap(_impl_.type_, other->_impl_.type_);
+}
+
+::google::protobuf::Metadata Part::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace common
 }  // namespace lyric

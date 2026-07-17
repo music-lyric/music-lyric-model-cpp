@@ -2,7 +2,6 @@
 #include "music_lyric_model.h"
 
 using namespace music_lyric_model::common;
-using namespace lyric::common;
 
 TEST_CASE("common proto namespace exports generated types") {
 	music_lyric_model::common::proto::Time time;
@@ -11,16 +10,16 @@ TEST_CASE("common proto namespace exports generated types") {
 }
 
 TEST_CASE("makeTime preserves initial values") {
-	Time init;
+	lyric::common::Time init;
 	init.set_start(100);
 	init.set_end(200);
-	const Time time = makeTime(init);
+	const lyric::common::Time time = makeTime(init);
 	CHECK(time.start() == 100);
 	CHECK(time.end() == 200);
 }
 
 TEST_CASE("getTimeDuration returns end minus start") {
-	Time time;
+	lyric::common::Time time;
 	time.set_start(100);
 	time.set_end(250);
 	CHECK(getTimeDuration(&time) == 150);
@@ -28,7 +27,7 @@ TEST_CASE("getTimeDuration returns end minus start") {
 }
 
 TEST_CASE("getTimeProgress clamps to 0..1") {
-	Time time;
+	lyric::common::Time time;
 	time.set_start(100);
 	time.set_end(200);
 	CHECK(getTimeProgress(&time, 50) == 0);
@@ -38,7 +37,7 @@ TEST_CASE("getTimeProgress clamps to 0..1") {
 }
 
 TEST_CASE("isTimeActive checks the half-open range") {
-	Time time;
+	lyric::common::Time time;
 	time.set_start(100);
 	time.set_end(200);
 	CHECK(isTimeActive(&time, 100) == true);

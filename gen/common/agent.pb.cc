@@ -25,37 +25,232 @@ PROTOBUF_PRAGMA_INIT_SEG
 namespace _pb = ::google::protobuf;
 namespace _pbi = ::google::protobuf::internal;
 namespace _fl = ::google::protobuf::internal::field_layout;
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+namespace {
+PROTOBUF_CONSTINIT ::google::protobuf::internal::ReflectionData
+    file_reflection_data[] = {
+        // ::lyric::common::AgentItem
+        {&::_pbi::kDescriptorMethods, &::descriptor_table_common_2fagent_2eproto, /* tracker*/ nullptr,},
+};
+}  // namespace
+#endif
 namespace lyric {
 namespace common {
+class AgentItem::_Internal {
+ public:
+  using HasBits = decltype(::std::declval<AgentItem>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(AgentItem, _impl_._has_bits_);
+};
+
+constexpr AgentItem::ParseTableT_ AgentItem::InternalGenerateParseTable_(const ::_pbi::ClassData* class_data) {
+  return ParseTableT_{
+    {
+      PROTOBUF_FIELD_OFFSET(AgentItem, _impl_._has_bits_),
+      0, // no _extensions_
+      3, 24,  // max_field_number, fast_idx_mask
+      offsetof(ParseTableT_, field_lookup_table),
+      4294967288,  // skipmap
+      offsetof(ParseTableT_, field_entries),
+      3,  // num_field_entries
+      0,  // num_aux_entries
+      offsetof(ParseTableT_, field_names),  // no aux_entries
+      class_data,
+      nullptr,  // post_loop_handler
+      ::_pbi::TcParser::GenericFallback,  // fallback
+      #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+      ::_pbi::TcParser::GetTable<::lyric::common::AgentItem>(),  // to_prefetch
+      #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+    }, {{
+      {::_pbi::TcParser::MiniParse, {}},
+      // string id = 1 [json_name = "id"];
+      {::_pbi::TcParser::FastUS1,
+       {10, 1, 0,
+        PROTOBUF_FIELD_OFFSET(AgentItem, _impl_.id_)}},
+      // .lyric.common.AgentType type = 2 [json_name = "type"];
+      {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(AgentItem, _impl_.type_), 2>(),
+       {16, 2, 0,
+        PROTOBUF_FIELD_OFFSET(AgentItem, _impl_.type_)}},
+      // repeated string names = 3 [json_name = "names"];
+      {::_pbi::TcParser::FastUR1,
+       {26, 0, 0,
+        PROTOBUF_FIELD_OFFSET(AgentItem, _impl_.names_)}},
+    }}, {{
+      65535, 65535
+    }}, {{
+      // string id = 1 [json_name = "id"];
+      {PROTOBUF_FIELD_OFFSET(AgentItem, _impl_.id_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+      // .lyric.common.AgentType type = 2 [json_name = "type"];
+      {PROTOBUF_FIELD_OFFSET(AgentItem, _impl_.type_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
+      // repeated string names = 3 [json_name = "names"];
+      {PROTOBUF_FIELD_OFFSET(AgentItem, _impl_.names_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+    }},
+    // no aux_entries
+    {{
+      "\26\2\0\5\0\0\0\0"
+      "lyric.common.AgentItem"
+      "id"
+      "names"
+    }},
+  };
+}
+
+
+inline constexpr AgentItem::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        names_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::common::AgentItem,
+            PROTOBUF_FIELD_OFFSET(::lyric::common::AgentItem, _impl_.names_)>()
+         }
+        ,
+        id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        type_{static_cast< ::lyric::common::AgentType >(0)} {}
+
+template <typename>
+constexpr AgentItem::AgentItem(::_pbi::ConstantInitialized,
+                       const ::_pbi::ClassData* PROTOBUF_NONNULL class_data)
+    : ::google::protobuf::Message(
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          class_data
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          ),
+      _impl_(internal_visibility(), ::_pbi::ConstantInitialized()) {
+}
+inline void* PROTOBUF_NONNULL AgentItem::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) AgentItem(arena);
+}
+constexpr auto AgentItem::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(AgentItem), alignof(AgentItem));
+}
+constexpr auto AgentItem::InternalGenerateClassData_(
+    const MessageLite& prototype,
+    const ::google::protobuf::internal::TcParseTableBase* tc_table) {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &prototype,
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+          &_table_.header,
+#else
+          tc_table,
+#endif
+          nullptr,  // IsInitialized
+          &AgentItem::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<AgentItem>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &AgentItem::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<AgentItem>(), &AgentItem::ByteSizeLong,
+              &AgentItem::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(AgentItem, _impl_._cached_size_),
+          false,
+      },
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+      &file_reflection_data[0],
+#else   // !PROTOBUF_MESSAGE_GLOBALS
+      &::_pbi::kDescriptorMethods,
+      &descriptor_table_common_2fagent_2eproto,
+      nullptr,  // tracker
+#endif  // PROTOBUF_MESSAGE_GLOBALS
+  };
+}
+struct AgentItemGlobalsTypeInternal : ::_pbi::MessageGlobalsBase {
+  constexpr AgentItemGlobalsTypeInternal()
+      :
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+        _default(::_pbi::ConstantInitialized{},
+                 AgentItem_class_data_.base())
+#else   // !PROTOBUF_MESSAGE_GLOBALS
+        MessageGlobalsBase(AgentItem::InternalGenerateClassData_(
+            _default, &AgentItem_globals_._table.header)),
+        _default(::_pbi::ConstantInitialized{}, GetClassData()),
+        _table(::_pbi::PrivateAccess::GenerateParseTable<AgentItem>(
+            GetClassData()))
+#endif  // PROTOBUF_MESSAGE_GLOBALS
+  {
+  }
+  ~AgentItemGlobalsTypeInternal() {}
+  union {
+    alignas(::_pbi::kMaxMessageAlignment) AgentItem _default;
+  };
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+  decltype(::_pbi::PrivateAccess::GenerateParseTable<AgentItem>(
+      ::std::declval<const ::_pbi::ClassData*>())) _table;
+#endif
+};
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+static_assert(PROTOBUF_FIELD_OFFSET(AgentItemGlobalsTypeInternal, _default) ==
+              ::_pbi::MessageGlobalsBase::OffsetToDefault());
+#endif  // PROTOBUF_MESSAGE_GLOBALS
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PROTOBUF_MESSAGE_GLOBALS_CONST AgentItemGlobalsTypeInternal AgentItem_globals_
+        PROTOBUF_MESSAGE_GLOBALS_SECTION(.data.rel.ro);
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+namespace {
+const ::_pbi::ClassData* AgentItem_get_class_data() {
+#ifdef PROTOBUF_MESSAGE_GLOBALS
+  return AgentItem_globals_.GetClassData();
+#else
+  return AgentItem_class_data_.base();
+#endif  // PROTOBUF_MESSAGE_GLOBALS
+}
+}  // namespace
+#endif  // PROTOBUF_CUSTOM_VTABLE
 }  // namespace common
 }  // namespace lyric
 static const ::_pb::EnumDescriptor* PROTOBUF_NONNULL
     file_level_enum_descriptors_common_2fagent_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor* PROTOBUF_NONNULL* PROTOBUF_NULLABLE
     file_level_service_descriptors_common_2fagent_2eproto = nullptr;
-const ::uint32_t TableStruct_common_2fagent_2eproto::offsets[1] = {};
-static constexpr ::_pbi::MigrationSchema* PROTOBUF_NULLABLE schemas = nullptr;
-static constexpr ::_pbi::MessageGlobalsBase* PROTOBUF_NONNULL const* PROTOBUF_NULLABLE
-    file_message_globals = nullptr;
+const ::uint32_t
+    TableStruct_common_2fagent_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
+        protodesc_cold) = {
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::lyric::common::AgentItem, _impl_._has_bits_),
+        6, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::lyric::common::AgentItem, _impl_.id_),
+        PROTOBUF_FIELD_OFFSET(::lyric::common::AgentItem, _impl_.type_),
+        PROTOBUF_FIELD_OFFSET(::lyric::common::AgentItem, _impl_.names_),
+        1,
+        2,
+        0,
+};
+
+static const ::_pbi::MigrationSchema
+    schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
+        {0, sizeof(::lyric::common::AgentItem)},
+};
+static const ::_pbi::MessageGlobalsBase* PROTOBUF_NONNULL const
+    file_message_globals[] = {
+        &::lyric::common::AgentItem_globals_,
+};
 const char descriptor_table_protodef_common_2fagent_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\022common/agent.proto\022\014lyric.common*\202\001\n\tA"
-    "gentType\022\032\n\026AGENT_TYPE_UNSPECIFIED\020\000\022\026\n\022"
-    "AGENT_TYPE_UNKNOWN\020\001\022\025\n\021AGENT_TYPE_PERSO"
-    "N\020\002\022\024\n\020AGENT_TYPE_GROUP\020\003\022\024\n\020AGENT_TYPE_"
-    "OTHER\020\004b\006proto3"
+    "\n\022common/agent.proto\022\014lyric.common\"^\n\tAg"
+    "entItem\022\016\n\002id\030\001 \001(\tR\002id\022+\n\004type\030\002 \001(\0162\027."
+    "lyric.common.AgentTypeR\004type\022\024\n\005names\030\003 "
+    "\003(\tR\005names*\202\001\n\tAgentType\022\032\n\026AGENT_TYPE_U"
+    "NSPECIFIED\020\000\022\026\n\022AGENT_TYPE_UNKNOWN\020\001\022\025\n\021"
+    "AGENT_TYPE_PERSON\020\002\022\024\n\020AGENT_TYPE_GROUP\020"
+    "\003\022\024\n\020AGENT_TYPE_OTHER\020\004b\006proto3"
 };
 static ::absl::once_flag descriptor_table_common_2fagent_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_common_2fagent_2eproto = {
     false,
     false,
-    175,
+    271,
     descriptor_table_protodef_common_2fagent_2eproto,
     "common/agent.proto",
     &descriptor_table_common_2fagent_2eproto_once,
     nullptr,
     0,
-    0,
+    1,
     schemas,
     file_message_globals,
     TableStruct_common_2fagent_2eproto::offsets,
@@ -71,6 +266,291 @@ AgentType_descriptor() {
 }
 PROTOBUF_CONSTINIT const uint32_t AgentType_internal_data_[] = {
     327680u, 0u, };
+// ===================================================================
+
+AgentItem::AgentItem(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, AgentItem_get_class_data()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:lyric.common.AgentItem)
+}
+PROTOBUF_NDEBUG_INLINE AgentItem::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    [[maybe_unused]] const ::lyric::common::AgentItem& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        names_ {
+          visibility, ::_pbi::InternalMetadataOffset::Build<
+              ::lyric::common::AgentItem,
+              PROTOBUF_FIELD_OFFSET(::lyric::common::AgentItem, _impl_.names_)>()
+          , from.names_
+        }
+        ,
+        id_(arena, from.id_) {}
+
+AgentItem::AgentItem(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const AgentItem& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, AgentItem_get_class_data()) {
+
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  AgentItem* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.type_ = from._impl_.type_;
+
+  // @@protoc_insertion_point(copy_constructor:lyric.common.AgentItem)
+}
+PROTOBUF_NDEBUG_INLINE AgentItem::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        names_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::lyric::common::AgentItem,
+            PROTOBUF_FIELD_OFFSET(::lyric::common::AgentItem, _impl_.names_)>()
+         }
+        ,
+        id_(arena) {}
+
+inline void AgentItem::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.type_ = {};
+}
+AgentItem::~AgentItem() {
+  // @@protoc_insertion_point(destructor:lyric.common.AgentItem)
+  SharedDtor(*this);
+}
+inline void AgentItem::SharedDtor(MessageLite& self) {
+  AgentItem& this_ = static_cast<AgentItem&>(self);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.id_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull AgentItem_class_data_ =
+        AgentItem::InternalGenerateClassData_(AgentItem_globals_._default);
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+AgentItem::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&AgentItem_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(AgentItem_class_data_.tc_table);
+  return AgentItem_class_data_.base();
+}
+#else
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+AgentItem::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&AgentItem_globals_);
+  ::google::protobuf::internal::PrefetchToLocalCache(
+      ::google::protobuf::internal::MessageGlobalsBase::ToParseTableBase(&AgentItem_globals_));
+  return AgentItem_globals_.GetClassData();
+}
+#endif  // !PROTOBUF_MESSAGE_GLOBALS
+#ifndef PROTOBUF_MESSAGE_GLOBALS
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const AgentItem::ParseTableT_
+    AgentItem::_table_ =
+        AgentItem::InternalGenerateParseTable_(AgentItem_class_data_.base());
+#endif  // !PROTOBUF_MESSAGE_GLOBALS
+PROTOBUF_NOINLINE void AgentItem::Clear() {
+// @@protoc_insertion_point(message_clear_start:lyric.common.AgentItem)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      _impl_.names_.Clear();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      _impl_.id_.ClearNonDefaultToEmpty();
+    }
+  }
+  _impl_.type_ = 0;
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL AgentItem::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const AgentItem& this_ = static_cast<const AgentItem&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL AgentItem::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const AgentItem& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(serialize_to_array_start:lyric.common.AgentItem)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // string id = 1 [json_name = "id"];
+  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+    if (!this_._internal_id().empty()) {
+      const ::std::string& _s = this_._internal_id();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.common.AgentItem.id");
+      target = stream->WriteStringMaybeAliased(1, _s, target);
+    }
+  }
+
+  // .lyric.common.AgentType type = 2 [json_name = "type"];
+  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+    if (this_._internal_type() != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteEnumToArray(
+          2, this_._internal_type(), target);
+    }
+  }
+
+  // repeated string names = 3 [json_name = "names"];
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    for (int i = 0, n = this_._internal_names_size(); i < n; ++i) {
+      const auto& s = this_._internal_names().Get(i);
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "lyric.common.AgentItem.names");
+      target = stream->WriteString(3, s, target);
+    }
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:lyric.common.AgentItem)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t AgentItem::ByteSizeLong(const MessageLite& base) {
+  const AgentItem& this_ = static_cast<const AgentItem&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t AgentItem::ByteSizeLong() const {
+  const AgentItem& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:lyric.common.AgentItem)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+    // repeated string names = 3 [json_name = "names"];
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      total_size +=
+          1 * ::google::protobuf::internal::FromIntSize(this_._internal_names().size());
+      for (int i = 0, n = this_._internal_names().size(); i < n; ++i) {
+        total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+            this_._internal_names().Get(i));
+      }
+    }
+    // string id = 1 [json_name = "id"];
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (!this_._internal_id().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_id());
+      }
+    }
+    // .lyric.common.AgentType type = 2 [json_name = "type"];
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      if (this_._internal_type() != 0) {
+        total_size += 1 +
+                      ::_pbi::WireFormatLite::EnumSize(this_._internal_type());
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void AgentItem::MergeImpl(::google::protobuf::MessageLite& to_msg,
+                      const ::google::protobuf::MessageLite& from_msg) {
+   auto* const _this = static_cast<AgentItem*>(&to_msg);
+  auto& from = static_cast<const AgentItem&>(from_msg);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    from.CheckHasBitConsistency();
+  }
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:lyric.common.AgentItem)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      _this->_internal_mutable_names()->InternalMergeFromWithArena(
+          ::google::protobuf::MessageLite::internal_visibility(), arena,
+          from._internal_names());
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (!from._internal_id().empty()) {
+        _this->_internal_set_id(from._internal_id());
+      } else {
+        if (_this->_impl_.id_.IsDefault()) {
+          _this->_internal_set_id("");
+        }
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      if (from._internal_type() != 0) {
+        _this->_impl_.type_ = from._impl_.type_;
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+}
+
+void AgentItem::CopyFrom(const AgentItem& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:lyric.common.AgentItem)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void AgentItem::InternalSwap(AgentItem* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.names_.InternalSwap(&other->_impl_.names_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.id_, &other->_impl_.id_, arena);
+  swap(_impl_.type_, other->_impl_.type_);
+}
+
+::google::protobuf::Metadata AgentItem::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace common
 }  // namespace lyric

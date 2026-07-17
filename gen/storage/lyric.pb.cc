@@ -211,11 +211,11 @@ constexpr Lyric::ParseTableT_ Lyric::InternalGenerateParseTable_(const ::_pbi::C
        {16, 4, 0,
         PROTOBUF_FIELD_OFFSET(Lyric, _impl_.timing_)}},
       {::_pbi::TcParser::MiniParse, {}},
-      // .lyric.storage.Meta meta = 4 [json_name = "meta"];
+      // .lyric.common.Meta meta = 4 [json_name = "meta"];
       {::_pbi::TcParser::FastMtS1,
        {34, 3, 0,
         PROTOBUF_FIELD_OFFSET(Lyric, _impl_.meta_)}},
-      // repeated .lyric.storage.AgentItem agents = 5 [json_name = "agents"];
+      // repeated .lyric.common.AgentItem agents = 5 [json_name = "agents"];
       {::_pbi::TcParser::FastMtR1,
        {42, 0, 1,
         PROTOBUF_FIELD_OFFSET(Lyric, _impl_.agents_)}},
@@ -233,23 +233,23 @@ constexpr Lyric::ParseTableT_ Lyric::InternalGenerateParseTable_(const ::_pbi::C
       {PROTOBUF_FIELD_OFFSET(Lyric, _impl_.timing_), _Internal::kHasBitsOffset + 4, 0, (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
       // map<string, string> extra = 3 [json_name = "extra"];
       {PROTOBUF_FIELD_OFFSET(Lyric, _impl_.extra_), _Internal::kHasBitsOffset + 5, 3, (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
-      // .lyric.storage.Meta meta = 4 [json_name = "meta"];
+      // .lyric.common.Meta meta = 4 [json_name = "meta"];
       {PROTOBUF_FIELD_OFFSET(Lyric, _impl_.meta_), _Internal::kHasBitsOffset + 3, 0, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-      // repeated .lyric.storage.AgentItem agents = 5 [json_name = "agents"];
+      // repeated .lyric.common.AgentItem agents = 5 [json_name = "agents"];
       {PROTOBUF_FIELD_OFFSET(Lyric, _impl_.agents_), _Internal::kHasBitsOffset + 0, 1, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
       // repeated .lyric.storage.Line lines = 6 [json_name = "lines"];
       {PROTOBUF_FIELD_OFFSET(Lyric, _impl_.lines_), _Internal::kHasBitsOffset + 1, 2, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
     }},
     {{
         #ifndef PROTOBUF_MESSAGE_GLOBALS
-        {::_pbi::TcParser::GetTable<::lyric::storage::Meta>()},
+        {::_pbi::TcParser::GetTable<::lyric::common::Meta>()},
         #else
-        {::_pbi::FieldAuxMessageGlobals(), &::lyric::storage::Meta_globals_},
+        {::_pbi::FieldAuxMessageGlobals(), &::lyric::common::Meta_globals_},
         #endif
         #ifndef PROTOBUF_MESSAGE_GLOBALS
-        {::_pbi::TcParser::GetTable<::lyric::storage::AgentItem>()},
+        {::_pbi::TcParser::GetTable<::lyric::common::AgentItem>()},
         #else
-        {::_pbi::FieldAuxMessageGlobals(), &::lyric::storage::AgentItem_globals_},
+        {::_pbi::FieldAuxMessageGlobals(), &::lyric::common::AgentItem_globals_},
         #endif
         #ifndef PROTOBUF_MESSAGE_GLOBALS
         {::_pbi::TcParser::GetTable<::lyric::storage::Line>()},
@@ -431,31 +431,31 @@ static const ::_pbi::MessageGlobalsBase* PROTOBUF_NONNULL const
 };
 const char descriptor_table_protodef_storage_2flyric_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\023storage/lyric.proto\022\rlyric.storage\032\023co"
-    "mmon/timing.proto\032\027storage/meta/meta.pro"
-    "to\032\031storage/agent/agent.proto\032\032storage/l"
-    "ine/content.proto\"\306\002\n\005Lyric\022\030\n\007version\030\001"
-    " \001(\tR\007version\022,\n\006timing\030\002 \001(\0162\024.lyric.co"
-    "mmon.TimingR\006timing\0225\n\005extra\030\003 \003(\0132\037.lyr"
-    "ic.storage.Lyric.ExtraEntryR\005extra\022\'\n\004me"
-    "ta\030\004 \001(\0132\023.lyric.storage.MetaR\004meta\0220\n\006a"
-    "gents\030\005 \003(\0132\030.lyric.storage.AgentItemR\006a"
-    "gents\022)\n\005lines\030\006 \003(\0132\023.lyric.storage.Lin"
-    "eR\005lines\0328\n\nExtraEntry\022\020\n\003key\030\001 \001(\tR\003key"
-    "\022\024\n\005value\030\002 \001(\tR\005value:\0028\001b\006proto3"
+    "\n\023storage/lyric.proto\022\rlyric.storage\032\022co"
+    "mmon/agent.proto\032\021common/meta.proto\032\023com"
+    "mon/timing.proto\032\022storage/line.proto\"\304\002\n"
+    "\005Lyric\022\030\n\007version\030\001 \001(\tR\007version\022,\n\006timi"
+    "ng\030\002 \001(\0162\024.lyric.common.TimingR\006timing\0225"
+    "\n\005extra\030\003 \003(\0132\037.lyric.storage.Lyric.Extr"
+    "aEntryR\005extra\022&\n\004meta\030\004 \001(\0132\022.lyric.comm"
+    "on.MetaR\004meta\022/\n\006agents\030\005 \003(\0132\027.lyric.co"
+    "mmon.AgentItemR\006agents\022)\n\005lines\030\006 \003(\0132\023."
+    "lyric.storage.LineR\005lines\0328\n\nExtraEntry\022"
+    "\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005value:"
+    "\0028\001b\006proto3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_storage_2flyric_2eproto_deps[4] = {
+        &::descriptor_table_common_2fagent_2eproto,
+        &::descriptor_table_common_2fmeta_2eproto,
         &::descriptor_table_common_2ftiming_2eproto,
-        &::descriptor_table_storage_2fagent_2fagent_2eproto,
-        &::descriptor_table_storage_2fline_2fcontent_2eproto,
-        &::descriptor_table_storage_2fmeta_2fmeta_2eproto,
+        &::descriptor_table_storage_2fline_2eproto,
 };
 static ::absl::once_flag descriptor_table_storage_2flyric_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_storage_2flyric_2eproto = {
     false,
     false,
-    474,
+    451,
     descriptor_table_protodef_storage_2flyric_2eproto,
     "storage/lyric.proto",
     &descriptor_table_storage_2flyric_2eproto_once,
@@ -763,14 +763,14 @@ PROTOBUF_NOINLINE void Lyric::Clear() {
     }
   }
 
-  // .lyric.storage.Meta meta = 4 [json_name = "meta"];
+  // .lyric.common.Meta meta = 4 [json_name = "meta"];
   if (CheckHasBit(cached_has_bits, 0x00000008U)) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         4, *this_._impl_.meta_, this_._impl_.meta_->GetCachedSize(), target,
         stream);
   }
 
-  // repeated .lyric.storage.AgentItem agents = 5 [json_name = "agents"];
+  // repeated .lyric.common.AgentItem agents = 5 [json_name = "agents"];
   if (CheckHasBit(cached_has_bits, 0x00000001U)) {
     for (unsigned i = 0, n = static_cast<unsigned>(
                              this_._internal_agents_size());
@@ -822,7 +822,7 @@ PROTOBUF_NOINLINE void Lyric::Clear() {
   ::_pbi::Prefetch5LinesFrom7Lines(&this_);
   cached_has_bits = this_._impl_._has_bits_[0];
   if (BatchCheckHasBit(cached_has_bits, 0x0000003fU)) {
-    // repeated .lyric.storage.AgentItem agents = 5 [json_name = "agents"];
+    // repeated .lyric.common.AgentItem agents = 5 [json_name = "agents"];
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
       total_size += 1UL * this_._internal_agents_size();
       for (const auto& msg : this_._internal_agents()) {
@@ -843,7 +843,7 @@ PROTOBUF_NOINLINE void Lyric::Clear() {
                                         this_._internal_version());
       }
     }
-    // .lyric.storage.Meta meta = 4 [json_name = "meta"];
+    // .lyric.common.Meta meta = 4 [json_name = "meta"];
     if (CheckHasBit(cached_has_bits, 0x00000008U)) {
       total_size += 1 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.meta_);
