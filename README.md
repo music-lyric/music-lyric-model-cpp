@@ -49,7 +49,7 @@ cmake --build --preset debug      # or: --preset release
 
 ### Make
 
-Regenerate `private/gen/` from the proto submodule (requires `buf`):
+Regenerate `private/pb/`, `src/model/**/*.gen.h`, and `private/bridge/` from the proto submodule (requires `buf` and Go):
 
 ```bash
 git submodule update --init --recursive   # fetch proto/

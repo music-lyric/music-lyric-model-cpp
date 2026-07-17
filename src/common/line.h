@@ -1,38 +1,13 @@
 #ifndef MUSIC_LYRIC_MODEL_COMMON_LINE_H_
 #define MUSIC_LYRIC_MODEL_COMMON_LINE_H_
 
+#include "model/common/line.gen.h"
+
 #include <optional>
 #include <string>
 #include <vector>
 
-#include "unknown.h"
-
 namespace music_lyric_model::common {
-	/**
-	 * A romanized line annotation item.
-	 */
-	struct LineAnnotationRoman {
-		std::optional<std::string> language;
-		std::string                content;
-	};
-
-	/**
-	 * A translated line annotation item.
-	 */
-	struct LineAnnotationTranslation {
-		std::optional<std::string> language;
-		std::string                content;
-	};
-
-	/**
-	 * Line-level annotations explicitly present in the source.
-	 */
-	struct LineAnnotation {
-		std::vector<Unknown>                    unknowns;
-		std::vector<LineAnnotationRoman>        romans;
-		std::vector<LineAnnotationTranslation>  translations;
-	};
-
 	/**
 	 * First annotation item, preferring a language match.
 	 */

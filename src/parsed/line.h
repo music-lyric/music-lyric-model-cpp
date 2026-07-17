@@ -1,59 +1,19 @@
 #ifndef MUSIC_LYRIC_MODEL_PARSED_LINE_H_
 #define MUSIC_LYRIC_MODEL_PARSED_LINE_H_
 
+#include "model/parsed/line.gen.h"
+
 #include <cstdint>
 #include <optional>
 #include <string>
-#include <unordered_map>
-#include <variant>
 #include <vector>
 
 #include "common/line.h"
-#include "common/part.h"
 #include "common/time.h"
 #include "common/unknown.h"
 #include "common/word.h"
 
 namespace music_lyric_model::parsed {
-	/**
-	 * Background vocal line attached to a normal line.
-	 */
-	struct LineBackground {
-		std::unordered_map<std::string, std::string> extra;
-		std::optional<common::Time>                  time;
-		std::vector<std::string>                     agents;
-		std::vector<std::string>                     languages;
-		std::vector<common::Word>                    words;
-		std::optional<common::LineAnnotation>        annotation;
-	};
-
-	/**
-	 * Primary lyric line body.
-	 */
-	struct LineNormal {
-		std::unordered_map<std::string, std::string> extra;
-		std::optional<common::Time>                  time;
-		std::optional<common::Part>                  part;
-		std::vector<std::string>                     agents;
-		std::vector<std::string>                     languages;
-		std::vector<common::Word>                    words;
-		std::optional<common::LineAnnotation>        annotation;
-		std::vector<LineBackground>                  backgrounds;
-	};
-
-	/**
-	 * An instrumental gap derived after parsing.
-	 */
-	struct LineInterlude {
-		std::unordered_map<std::string, std::string> extra;
-		std::optional<common::Time>                  time;
-	};
-
-	/**
-	 * A lyric line; exactly one body variant must be set.
-	 */
-	using Line = std::variant<LineNormal, LineInterlude>;
-
 	/**
 	 * Creates a normal line wrapped in a Line.
 	 */

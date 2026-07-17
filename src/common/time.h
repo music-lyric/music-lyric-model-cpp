@@ -3,15 +3,9 @@
 
 #include <cstdint>
 
-namespace music_lyric_model::common {
-	/**
-	 * A half-open time range in milliseconds.
-	 */
-	struct Time {
-		uint32_t start = 0;
-		uint32_t end   = 0;
-	};
+#include "model/common/time.gen.h"
 
+namespace music_lyric_model::common {
 	/**
 	 * Duration of a time range in milliseconds, zero when absent.
 	 */

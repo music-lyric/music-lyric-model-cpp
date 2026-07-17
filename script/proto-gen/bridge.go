@@ -1,0 +1,474 @@
+package main
+
+import (
+	"fmt"
+	"strings"
+
+	"google.golang.org/protobuf/compiler/protogen"
+	"google.golang.org/protobuf/reflect/protoreflect"
+)
+
+/**
+ * Emits a bridge header with toPb/fromPb for every type in the file.
+ */
+func generateBridgeFile(gen *protogen.Plugin, file *protogen.File) error {
+	if len(file.Messages) == 0 && len(file.Enums) == 0 {
+		return nil
+	}
+
+	selfPath := file.Desc.Path()
+	selfPkg := string(file.Desc.Package())
+	outPath := bridgeOutPath(selfPath)
+	g := gen.NewGeneratedFile(outPath, file.GoImportPath)
+
+	guard := bridgeIncludeGuard(selfPath)
+	domainNS := domainNamespace(selfPkg)
+	pbNS := pbNamespace(selfPkg)
+
+	// Includes.
+	incs := newIncludeSet()
+	incs.addSystem("optional")
+	incs.addSystem("stdexcept")
+	incs.addSystem("string")
+	incs.addSystem("unordered_map")
+	incs.addSystem("utility")
+	incs.addSystem("variant")
+	incs.addSystem("vector")
+	incs.addLocal(pbIncludeForFile(selfPath))
+	incs.addLocal(domainHeaderPath(file))
+
+	// Domain/pb deps from fields.
+	var walkMsg func(m *protogen.Message)
+	walkMsg = func(m *protogen.Message) {
+		for _, nested := range m.Messages {
+			if nested.Desc.IsMapEntry() {
+				continue
+			}
+			walkMsg(nested)
+		}
+		for _, f := range m.Fields {
+			switch f.Desc.Kind() {
+			case protoreflect.MessageKind:
+				if isMap(f) {
+					// map value may be message
+					val := f.Message.Fields[1]
+					if val.Desc.Kind() == protoreflect.MessageKind {
+						depPath := val.Message.Desc.ParentFile().Path()
+						if depPath != selfPath {
+							incs.addLocal(pbIncludeForFile(depPath))
+							incs.addLocal("model/" + strings.TrimSuffix(depPath, ".proto") + ".gen.h")
+							incs.addLocal("bridge/" + strings.TrimSuffix(depPath, ".proto") + ".gen.h")
+						}
+					}
+					continue
+				}
+				depPath := f.Message.Desc.ParentFile().Path()
+				if depPath != selfPath {
+					incs.addLocal(pbIncludeForFile(depPath))
+					incs.addLocal("model/" + strings.TrimSuffix(depPath, ".proto") + ".gen.h")
+					incs.addLocal("bridge/" + strings.TrimSuffix(depPath, ".proto") + ".gen.h")
+				}
+			case protoreflect.EnumKind:
+				depPath := f.Enum.Desc.ParentFile().Path()
+				if depPath != selfPath {
+					incs.addLocal(pbIncludeForFile(depPath))
+					incs.addLocal("model/" + strings.TrimSuffix(depPath, ".proto") + ".gen.h")
+					incs.addLocal("bridge/" + strings.TrimSuffix(depPath, ".proto") + ".gen.h")
+				}
+			}
+		}
+	}
+	for _, m := range file.Messages {
+		walkMsg(m)
+	}
+	for _, e := range file.Enums {
+		_ = e
+	}
+
+	var body strings.Builder
+
+	// Utility helpers only in common/unknown or once — put map helpers in every bridge is wasteful.
+	// Emit putMap/takeMap only from common/unknown.proto (first common file alphabetically is agent).
+	// Emit them once from a dedicated synthetic: we put them in every file that needs maps, as static inline.
+	// Simpler: always emit putMap/takeMap in common/time bridge? Better: emit in all bridge files under anonymous namespace?
+	// Handwritten uses internal::putMap. Emit once from `common/map_util` — skip; emit in each bridge that uses maps.
+	needsMap := false
+	var checkMap func(m *protogen.Message)
+	checkMap = func(m *protogen.Message) {
+		for _, nested := range m.Messages {
+			if !nested.Desc.IsMapEntry() {
+				checkMap(nested)
+			}
+		}
+		for _, f := range m.Fields {
+			if isMap(f) {
+				needsMap = true
+			}
+		}
+	}
+	for _, m := range file.Messages {
+		checkMap(m)
+	}
+
+	if needsMap {
+		body.WriteString("\tinline void putMap(const std::unordered_map<std::string, std::string>& src, google::protobuf::Map<std::string, std::string>* dst) {\n")
+		body.WriteString("\t\tdst->clear();\n")
+		body.WriteString("\t\tfor (const auto& [k, v] : src) {\n")
+		body.WriteString("\t\t\t(*dst)[k] = v;\n")
+		body.WriteString("\t\t}\n")
+		body.WriteString("\t}\n\n")
+		body.WriteString("\tinline std::unordered_map<std::string, std::string> takeMap(const google::protobuf::Map<std::string, std::string>& src) {\n")
+		body.WriteString("\t\tstd::unordered_map<std::string, std::string> out;\n")
+		body.WriteString("\t\tout.reserve(static_cast<size_t>(src.size()));\n")
+		body.WriteString("\t\tfor (const auto& [k, v] : src) {\n")
+		body.WriteString("\t\t\tout.emplace(k, v);\n")
+		body.WriteString("\t\t}\n")
+		body.WriteString("\t\treturn out;\n")
+		body.WriteString("\t}\n\n")
+	}
+
+	// Enums
+	for _, e := range file.Enums {
+		writeEnumBridge(&body, e, domainNS, pbNS)
+	}
+
+	// Messages
+	var emitMsgBridge func(m *protogen.Message)
+	emitMsgBridge = func(m *protogen.Message) {
+		for _, nested := range m.Messages {
+			if nested.Desc.IsMapEntry() {
+				continue
+			}
+			emitMsgBridge(nested)
+		}
+		for _, e := range m.Enums {
+			writeEnumBridge(&body, e, domainNS, pbNS)
+		}
+		if isVariantWrapper(m) {
+			writeVariantBridge(&body, m, domainNS, pbNS)
+			return
+		}
+		writeStructBridge(&body, m, domainNS, pbNS, selfPkg)
+	}
+	for _, m := range file.Messages {
+		if m.Desc.IsMapEntry() {
+			continue
+		}
+		emitMsgBridge(m)
+	}
+
+	g.P("// Code generated by protoc-gen-music-lyric-cpp. DO NOT EDIT.")
+	g.P("// source: ", selfPath)
+	g.P()
+	g.P("#ifndef ", guard)
+	g.P("#define ", guard)
+	g.P()
+	g.P("// Internal protobuf bridging. Not part of the public API.")
+	g.P()
+	incText := incs.render()
+	if incText != "" {
+		g.P(strings.TrimRight(incText, "\n"))
+		g.P()
+	}
+	g.P("namespace music_lyric_model::internal {")
+	content := strings.TrimRight(body.String(), "\n")
+	if content != "" {
+		g.P(content)
+	}
+	g.P("} // namespace music_lyric_model::internal")
+	g.P()
+	g.P("#endif")
+	return nil
+}
+
+/**
+ * Builds an include guard for a bridge header.
+ */
+func bridgeIncludeGuard(path string) string {
+	p := strings.TrimSuffix(path, ".proto")
+	p = strings.ReplaceAll(p, "/", "_")
+	p = strings.ReplaceAll(p, "-", "_")
+	p = strings.ReplaceAll(p, ".", "_")
+	return "MUSIC_LYRIC_MODEL_INTERNAL_" + strings.ToUpper(p) + "_BRIDGE_H_"
+}
+
+/**
+ * Writes toPb/fromPb for an enum type.
+ */
+func writeEnumBridge(b *strings.Builder, e *protogen.Enum, domainNS, pbNS string) {
+	name := string(e.Desc.Name())
+	fmt.Fprintf(b, "\tinline %s::%s toPb(%s::%s value) {\n", pbNS, name, domainNS, name)
+	b.WriteString("\t\tswitch (value) {\n")
+	var unspecified *protogen.EnumValue
+	for _, v := range e.Values {
+		dn := domainEnumValueName(e, v)
+		pn := string(v.Desc.Name())
+		if dn == "Unspecified" {
+			unspecified = v
+			continue
+		}
+		fmt.Fprintf(b, "\t\tcase %s::%s::%s:\n", domainNS, name, dn)
+		fmt.Fprintf(b, "\t\t\treturn %s::%s;\n", pbNS, pn)
+	}
+	// default + Unspecified
+	if unspecified != nil {
+		fmt.Fprintf(b, "\t\tcase %s::%s::Unspecified:\n", domainNS, name)
+	}
+	b.WriteString("\t\tdefault:\n")
+	if unspecified != nil {
+		fmt.Fprintf(b, "\t\t\treturn %s::%s;\n", pbNS, unspecified.Desc.Name())
+	} else if len(e.Values) > 0 {
+		fmt.Fprintf(b, "\t\t\treturn %s::%s;\n", pbNS, e.Values[0].Desc.Name())
+	}
+	b.WriteString("\t\t}\n")
+	b.WriteString("\t}\n\n")
+
+	fmt.Fprintf(b, "\tinline %s::%s fromPb(%s::%s value) {\n", domainNS, name, pbNS, name)
+	b.WriteString("\t\tswitch (value) {\n")
+	for _, v := range e.Values {
+		dn := domainEnumValueName(e, v)
+		pn := string(v.Desc.Name())
+		if dn == "Unspecified" {
+			continue
+		}
+		fmt.Fprintf(b, "\t\tcase %s::%s:\n", pbNS, pn)
+		fmt.Fprintf(b, "\t\t\treturn %s::%s::%s;\n", domainNS, name, dn)
+	}
+	if unspecified != nil {
+		fmt.Fprintf(b, "\t\tcase %s::%s:\n", pbNS, unspecified.Desc.Name())
+	}
+	b.WriteString("\t\tdefault:\n")
+	if unspecified != nil {
+		fmt.Fprintf(b, "\t\t\treturn %s::%s::Unspecified;\n", domainNS, name)
+	} else if len(e.Values) > 0 {
+		fmt.Fprintf(b, "\t\t\treturn %s::%s::%s;\n", domainNS, name, domainEnumValueName(e, e.Values[0]))
+	}
+	b.WriteString("\t\t}\n")
+	b.WriteString("\t}\n\n")
+}
+
+/**
+ * Writes toPb/fromPb for a normal struct message.
+ */
+func writeStructBridge(b *strings.Builder, m *protogen.Message, domainNS, pbNS, selfPkg string) {
+	name := string(m.Desc.Name())
+	fmt.Fprintf(b, "\tinline %s::%s toPb(const %s::%s& in) {\n", pbNS, name, domainNS, name)
+	fmt.Fprintf(b, "\t\t%s::%s out;\n", pbNS, name)
+	for _, f := range m.Fields {
+		if f.Oneof != nil && !f.Oneof.Desc.IsSynthetic() {
+			continue
+		}
+		writeToPbField(b, f, "in", "out", domainNS, pbNS, selfPkg)
+	}
+	b.WriteString("\t\treturn out;\n")
+	b.WriteString("\t}\n\n")
+
+	fmt.Fprintf(b, "\tinline %s::%s fromPb(const %s::%s& in) {\n", domainNS, name, pbNS, name)
+	fmt.Fprintf(b, "\t\t%s::%s out;\n", domainNS, name)
+	for _, f := range m.Fields {
+		if f.Oneof != nil && !f.Oneof.Desc.IsSynthetic() {
+			continue
+		}
+		writeFromPbField(b, f, "in", "out", domainNS, pbNS, selfPkg)
+	}
+	b.WriteString("\t\treturn out;\n")
+	b.WriteString("\t}\n\n")
+}
+
+/**
+ * Writes toPb/fromPb for a variant-wrapper message (pure oneof).
+ */
+func writeVariantBridge(b *strings.Builder, m *protogen.Message, domainNS, pbNS string) {
+	name := string(m.Desc.Name())
+	oo := m.Oneofs[0]
+	fmt.Fprintf(b, "\tinline %s::%s toPb(const %s::%s& in) {\n", pbNS, name, domainNS, name)
+	fmt.Fprintf(b, "\t\t%s::%s out;\n", pbNS, name)
+	for _, f := range oo.Fields {
+		armType := fieldArmType(f, domainNS)
+		fname := pbFieldName(f)
+		fmt.Fprintf(b, "\t\tif (const %s* arm = std::get_if<%s>(&in)) {\n", armType, armType)
+		if f.Desc.Kind() == protoreflect.MessageKind {
+			fmt.Fprintf(b, "\t\t\t*out.mutable_%s() = toPb(*arm);\n", fname)
+		} else {
+			// scalar arm
+			fmt.Fprintf(b, "\t\t\tout.set_%s(*arm);\n", fname)
+		}
+		b.WriteString("\t\t\treturn out;\n")
+		b.WriteString("\t\t}\n")
+	}
+	fmt.Fprintf(b, "\t\tthrow std::runtime_error(\"%s body is unset\");\n", strings.ToLower(name))
+	b.WriteString("\t}\n\n")
+
+	fmt.Fprintf(b, "\tinline %s::%s fromPb(const %s::%s& in) {\n", domainNS, name, pbNS, name)
+	b.WriteString("\t\tswitch (in.body_case()) {\n")
+	for _, f := range oo.Fields {
+		caseName := pbOneofCaseName(f)
+		fname := pbFieldName(f)
+		fmt.Fprintf(b, "\t\tcase %s::%s::%s:\n", pbNS, name, caseName)
+		if f.Desc.Kind() == protoreflect.MessageKind {
+			fmt.Fprintf(b, "\t\t\treturn %s::%s{fromPb(in.%s())};\n", domainNS, name, fname)
+		} else {
+			fmt.Fprintf(b, "\t\t\treturn %s::%s{in.%s()};\n", domainNS, name, fname)
+		}
+	}
+	fmt.Fprintf(b, "\t\tcase %s::%s::BODY_NOT_SET:\n", pbNS, name)
+	b.WriteString("\t\tdefault:\n")
+	fmt.Fprintf(b, "\t\t\tthrow std::runtime_error(\"%s body is unset\");\n", strings.ToLower(name))
+	b.WriteString("\t\t}\n")
+	b.WriteString("\t}\n\n")
+}
+
+/**
+ * Domain type of a oneof arm for get_if.
+ */
+func fieldArmType(f *protogen.Field, domainNS string) string {
+	if f.Desc.Kind() == protoreflect.MessageKind {
+		msg := f.Message
+		pkg := string(msg.Desc.ParentFile().Package())
+		n := string(msg.Desc.Name())
+		if domainNamespace(pkg) == domainNS {
+			// Use fully-qualified for safety in get_if across namespaces.
+			return domainNS + "::" + n
+		}
+		return domainNamespace(pkg) + "::" + n
+	}
+	return scalarCppType(f.Desc.Kind())
+}
+
+
+/**
+ * Emits field conversion domain -> pb.
+ */
+func writeToPbField(b *strings.Builder, f *protogen.Field, in, out, domainNS, pbNS, selfPkg string) {
+	dname := domainFieldName(f)
+	pname := pbFieldName(f)
+
+	if isMap(f) {
+		fmt.Fprintf(b, "\t\tputMap(%s.%s, %s.mutable_%s());\n", in, dname, out, pname)
+		return
+	}
+
+	if isRepeated(f) {
+		fmt.Fprintf(b, "\t\tfor (const auto& item : %s.%s) {\n", in, dname)
+		switch f.Desc.Kind() {
+		case protoreflect.MessageKind:
+			fmt.Fprintf(b, "\t\t\t*%s.add_%s() = toPb(item);\n", out, pname)
+		case protoreflect.EnumKind:
+			fmt.Fprintf(b, "\t\t\t%s.add_%s(toPb(item));\n", out, pname)
+		case protoreflect.StringKind, protoreflect.BytesKind:
+			fmt.Fprintf(b, "\t\t\t%s.add_%s(item);\n", out, pname)
+		default:
+			fmt.Fprintf(b, "\t\t\t%s.add_%s(item);\n", out, pname)
+		}
+		b.WriteString("\t\t}\n")
+		return
+	}
+
+	if isExplicitOptional(f) {
+		fmt.Fprintf(b, "\t\tif (%s.%s.has_value()) {\n", in, dname)
+		switch f.Desc.Kind() {
+		case protoreflect.MessageKind:
+			fmt.Fprintf(b, "\t\t\t*%s.mutable_%s() = toPb(*%s.%s);\n", out, pname, in, dname)
+		case protoreflect.EnumKind:
+			fmt.Fprintf(b, "\t\t\t%s.set_%s(toPb(*%s.%s));\n", out, pname, in, dname)
+		default:
+			fmt.Fprintf(b, "\t\t\t%s.set_%s(*%s.%s);\n", out, pname, in, dname)
+		}
+		b.WriteString("\t\t}\n")
+		return
+	}
+
+	if isOptionalMessage(f) && !isBareMessageField(f) {
+		fmt.Fprintf(b, "\t\tif (%s.%s.has_value()) {\n", in, dname)
+		fmt.Fprintf(b, "\t\t\t*%s.mutable_%s() = toPb(*%s.%s);\n", out, pname, in, dname)
+		b.WriteString("\t\t}\n")
+		return
+	}
+
+	switch f.Desc.Kind() {
+	case protoreflect.MessageKind:
+		fmt.Fprintf(b, "\t\t*%s.mutable_%s() = toPb(%s.%s);\n", out, pname, in, dname)
+	case protoreflect.EnumKind:
+		fmt.Fprintf(b, "\t\t%s.set_%s(toPb(%s.%s));\n", out, pname, in, dname)
+	default:
+		fmt.Fprintf(b, "\t\t%s.set_%s(%s.%s);\n", out, pname, in, dname)
+	}
+	_ = domainNS
+	_ = pbNS
+	_ = selfPkg
+}
+
+/**
+ * Emits field conversion pb -> domain.
+ */
+func writeFromPbField(b *strings.Builder, f *protogen.Field, in, out, domainNS, pbNS, selfPkg string) {
+	dname := domainFieldName(f)
+	pname := pbFieldName(f)
+
+	if isMap(f) {
+		fmt.Fprintf(b, "\t\t%s.%s = takeMap(%s.%s());\n", out, dname, in, pname)
+		return
+	}
+
+	if isRepeated(f) {
+		switch f.Desc.Kind() {
+		case protoreflect.MessageKind:
+			fmt.Fprintf(b, "\t\t%s.%s.reserve(static_cast<size_t>(%s.%s_size()));\n", out, dname, in, pname)
+			fmt.Fprintf(b, "\t\tfor (const auto& item : %s.%s()) {\n", in, pname)
+			fmt.Fprintf(b, "\t\t\t%s.%s.push_back(fromPb(item));\n", out, dname)
+			b.WriteString("\t\t}\n")
+		case protoreflect.EnumKind:
+			fmt.Fprintf(b, "\t\t%s.%s.reserve(static_cast<size_t>(%s.%s_size()));\n", out, dname, in, pname)
+			fmt.Fprintf(b, "\t\tfor (const auto& item : %s.%s()) {\n", in, pname)
+			fmt.Fprintf(b, "\t\t\t%s.%s.push_back(fromPb(item));\n", out, dname)
+			b.WriteString("\t\t}\n")
+		case protoreflect.StringKind, protoreflect.BytesKind:
+			fmt.Fprintf(b, "\t\t%s.%s.assign(%s.%s().begin(), %s.%s().end());\n", out, dname, in, pname, in, pname)
+		default:
+			fmt.Fprintf(b, "\t\t%s.%s.reserve(static_cast<size_t>(%s.%s_size()));\n", out, dname, in, pname)
+			fmt.Fprintf(b, "\t\tfor (const auto& item : %s.%s()) {\n", in, pname)
+			fmt.Fprintf(b, "\t\t\t%s.%s.push_back(item);\n", out, dname)
+			b.WriteString("\t\t}\n")
+		}
+		return
+	}
+
+	if isExplicitOptional(f) {
+		fmt.Fprintf(b, "\t\tif (%s.has_%s()) {\n", in, pname)
+		switch f.Desc.Kind() {
+		case protoreflect.MessageKind:
+			fmt.Fprintf(b, "\t\t\t%s.%s = fromPb(%s.%s());\n", out, dname, in, pname)
+		case protoreflect.EnumKind:
+			fmt.Fprintf(b, "\t\t\t%s.%s = fromPb(%s.%s());\n", out, dname, in, pname)
+		default:
+			fmt.Fprintf(b, "\t\t\t%s.%s = %s.%s();\n", out, dname, in, pname)
+		}
+		b.WriteString("\t\t}\n")
+		return
+	}
+
+	if isOptionalMessage(f) && !isBareMessageField(f) {
+		fmt.Fprintf(b, "\t\tif (%s.has_%s()) {\n", in, pname)
+		fmt.Fprintf(b, "\t\t\t%s.%s = fromPb(%s.%s());\n", out, dname, in, pname)
+		b.WriteString("\t\t}\n")
+		return
+	}
+
+	switch f.Desc.Kind() {
+	case protoreflect.MessageKind:
+		if isBareMessageField(f) {
+			fmt.Fprintf(b, "\t\tif (%s.has_%s()) {\n", in, pname)
+			fmt.Fprintf(b, "\t\t\t%s.%s = fromPb(%s.%s());\n", out, dname, in, pname)
+			b.WriteString("\t\t}\n")
+		} else {
+			fmt.Fprintf(b, "\t\t%s.%s = fromPb(%s.%s());\n", out, dname, in, pname)
+		}
+	case protoreflect.EnumKind:
+		fmt.Fprintf(b, "\t\t%s.%s = fromPb(%s.%s());\n", out, dname, in, pname)
+	default:
+		fmt.Fprintf(b, "\t\t%s.%s = %s.%s();\n", out, dname, in, pname)
+	}
+	_ = domainNS
+	_ = pbNS
+	_ = selfPkg
+}

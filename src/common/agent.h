@@ -1,6 +1,8 @@
 #ifndef MUSIC_LYRIC_MODEL_COMMON_AGENT_H_
 #define MUSIC_LYRIC_MODEL_COMMON_AGENT_H_
 
+#include "model/common/agent.gen.h"
+
 #include <cstdint>
 #include <string>
 #include <unordered_map>
@@ -8,26 +10,6 @@
 #include <vector>
 
 namespace music_lyric_model::common {
-	/**
-	 * Performing type of an agent.
-	 */
-	enum class AgentType {
-		Unspecified = 0,
-		Unknown     = 1,
-		Person      = 2,
-		Group       = 3,
-		Other       = 4,
-	};
-
-	/**
-	 * A performing agent referenced by lines.
-	 */
-	struct AgentItem {
-		std::string              id;
-		AgentType                type = AgentType::Unspecified;
-		std::vector<std::string> names;
-	};
-
 	/**
 	 * Agent with the given id, null when absent.
 	 */

@@ -1,18 +1,12 @@
 #ifndef MUSIC_LYRIC_MODEL_COMMON_UNKNOWN_H_
 #define MUSIC_LYRIC_MODEL_COMMON_UNKNOWN_H_
 
+#include "model/common/unknown.gen.h"
+
 #include <string>
 #include <vector>
 
 namespace music_lyric_model::common {
-	/**
-	 * A key-value pair preserved from an unrecognized source field.
-	 */
-	struct Unknown {
-		std::string key;
-		std::string value;
-	};
-
 	/**
 	 * Raw values among unknowns that carry the given original key.
 	 */

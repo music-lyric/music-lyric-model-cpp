@@ -1,86 +1,14 @@
 #ifndef MUSIC_LYRIC_MODEL_COMMON_WORD_H_
 #define MUSIC_LYRIC_MODEL_COMMON_WORD_H_
 
+#include "model/common/word.gen.h"
+
 #include <cstdint>
 #include <optional>
 #include <string>
-#include <unordered_map>
-#include <variant>
 #include <vector>
 
-#include "time.h"
-#include "unknown.h"
-
 namespace music_lyric_model::common {
-	/**
-	 * One token of a word annotation.
-	 */
-	struct WordAnnotationContent {
-		std::optional<Time> time;
-		std::string         content;
-	};
-
-	/**
-	 * A word-level translation.
-	 */
-	struct WordAnnotationTranslation {
-		std::optional<std::string> language;
-		std::string                content;
-	};
-
-	/**
-	 * A word-level romanization.
-	 */
-	struct WordAnnotationRoman {
-		std::optional<Time>                 time;
-		std::optional<std::string>          language;
-		std::vector<WordAnnotationContent>  words;
-	};
-
-	/**
-	 * A word-level ruby annotation.
-	 */
-	struct WordAnnotationRuby {
-		std::optional<Time>                time;
-		std::optional<std::string>         language;
-		std::vector<WordAnnotationContent> words;
-		bool                               phraseStart = false;
-	};
-
-	/**
-	 * The per-word annotation container.
-	 */
-	struct WordAnnotation {
-		std::vector<Unknown>                   unknowns;
-		std::vector<WordAnnotationRuby>        rubies;
-		std::vector<WordAnnotationRoman>       romans;
-		std::vector<WordAnnotationTranslation> translations;
-	};
-
-	/**
-	 * A normal lyric word.
-	 */
-	struct WordNormal {
-		std::unordered_map<std::string, std::string> extra;
-		std::optional<Time>                          time;
-		std::string                                  content;
-		std::optional<std::string>                   language;
-		std::optional<WordAnnotation>                annotation;
-		bool                                         stress = false;
-	};
-
-	/**
-	 * A run of consecutive space characters.
-	 */
-	struct WordSpace {
-		uint32_t count = 0;
-	};
-
-	/**
-	 * A word token; exactly one body variant must be set.
-	 */
-	using Word = std::variant<WordNormal, WordSpace>;
-
 	/**
 	 * Creates a normal word wrapped in a Word.
 	 */

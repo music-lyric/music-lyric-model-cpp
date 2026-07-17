@@ -49,7 +49,7 @@ cmake --build --preset debug      # 或: --preset release
 
 ### Make
 
-从 proto submodule 重新生成 `private/gen/` (需要 `buf`):
+从 proto submodule 重新生成 `private/pb/`、`src/model/**/*.gen.h` 与 `private/bridge/` (需要 `buf` 与 Go):
 
 ```bash
 git submodule update --init --recursive   # 拉取 proto/

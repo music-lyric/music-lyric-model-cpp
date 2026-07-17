@@ -4,153 +4,19 @@
 #include <stdexcept>
 
 #include "google/protobuf/util/json_util.h"
-#include "pb.h"
 #include "storage/line.h"
-#include "storage/line.pb.h"
+#include "bridge/storage/lyric.gen.h"
 #include "storage/lyric.pb.h"
 #include "version.h"
 
 namespace music_lyric_model::storage {
-	namespace {
-		/**
-		 * Convert a public LineBackground to its protobuf form.
-		 */
-		lyric::storage::LineBackground toPb(const LineBackground& line) {
-			lyric::storage::LineBackground out;
-			internal::putMap(line.extra, out.mutable_extra());
-			if (line.time.has_value()) {
-				*out.mutable_time() = internal::toPb(*line.time);
-			}
-			for (const auto& agent : line.agents) {
-				out.add_agents(agent);
-			}
-			for (const auto& word : line.words) {
-				*out.add_words() = internal::toPb(word);
-			}
-			if (line.annotation.has_value()) {
-				*out.mutable_annotation() = internal::toPb(*line.annotation);
-			}
-			return out;
-		}
-
-		/**
-		 * Convert a protobuf LineBackground to the public form.
-		 */
-		LineBackground fromPb(const lyric::storage::LineBackground& line) {
-			LineBackground out;
-			out.extra = internal::takeMap(line.extra());
-			out.time  = internal::optionalTimeFrom(line.has_time(), line.time());
-			out.agents.assign(line.agents().begin(), line.agents().end());
-			out.words.reserve(static_cast<size_t>(line.words_size()));
-			for (const auto& word : line.words()) {
-				out.words.push_back(internal::fromPb(word));
-			}
-			if (line.has_annotation()) {
-				out.annotation = internal::fromPb(line.annotation());
-			}
-			return out;
-		}
-
-		/**
-		 * Convert a public Line to its protobuf form.
-		 */
-		lyric::storage::Line toPb(const Line& line) {
-			lyric::storage::Line out;
-			internal::putMap(line.extra, out.mutable_extra());
-			if (line.time.has_value()) {
-				*out.mutable_time() = internal::toPb(*line.time);
-			}
-			if (line.part.has_value()) {
-				*out.mutable_part() = internal::toPb(*line.part);
-			}
-			for (const auto& agent : line.agents) {
-				out.add_agents(agent);
-			}
-			for (const auto& word : line.words) {
-				*out.add_words() = internal::toPb(word);
-			}
-			if (line.annotation.has_value()) {
-				*out.mutable_annotation() = internal::toPb(*line.annotation);
-			}
-			for (const auto& background : line.backgrounds) {
-				*out.add_backgrounds() = toPb(background);
-			}
-			return out;
-		}
-
-		/**
-		 * Convert a protobuf Line to the public form.
-		 */
-		Line fromPb(const lyric::storage::Line& line) {
-			Line out;
-			out.extra = internal::takeMap(line.extra());
-			out.time  = internal::optionalTimeFrom(line.has_time(), line.time());
-			if (line.has_part()) {
-				out.part = internal::fromPb(line.part());
-			}
-			out.agents.assign(line.agents().begin(), line.agents().end());
-			out.words.reserve(static_cast<size_t>(line.words_size()));
-			for (const auto& word : line.words()) {
-				out.words.push_back(internal::fromPb(word));
-			}
-			if (line.has_annotation()) {
-				out.annotation = internal::fromPb(line.annotation());
-			}
-			out.backgrounds.reserve(static_cast<size_t>(line.backgrounds_size()));
-			for (const auto& background : line.backgrounds()) {
-				out.backgrounds.push_back(fromPb(background));
-			}
-			return out;
-		}
-
-		/**
-		 * Convert a public Lyric to its protobuf form.
-		 */
-		lyric::storage::Lyric toPb(const Lyric& lyric) {
-			lyric::storage::Lyric out;
-			out.set_version(lyric.version);
-			out.set_timing(internal::toPb(lyric.timing));
-			internal::putMap(lyric.extra, out.mutable_extra());
-			*out.mutable_meta() = internal::toPb(lyric.meta);
-			for (const auto& item : lyric.agents) {
-				*out.add_agents() = internal::toPb(item);
-			}
-			for (const auto& item : lyric.lines) {
-				*out.add_lines() = toPb(item);
-			}
-			return out;
-		}
-
-		/**
-		 * Convert a protobuf Lyric to the public form.
-		 */
-		Lyric fromPb(const lyric::storage::Lyric& lyric) {
-			Lyric out;
-			out.version = lyric.version();
-			out.timing  = internal::fromPb(lyric.timing());
-			out.extra   = internal::takeMap(lyric.extra());
-			if (lyric.has_meta()) {
-				out.meta = internal::fromPb(lyric.meta());
-			}
-			out.agents.reserve(static_cast<size_t>(lyric.agents_size()));
-			for (const auto& item : lyric.agents()) {
-				out.agents.push_back(internal::fromPb(item));
-			}
-			out.lines.reserve(static_cast<size_t>(lyric.lines_size()));
-			for (const auto& item : lyric.lines()) {
-				out.lines.push_back(fromPb(item));
-			}
-			return out;
-		}
-	} // namespace
-
 	Lyric makeStorageLyric(Lyric init) {
 		init.version = SCHEMA_VERSION;
 		return init;
 	}
 
 	std::vector<uint8_t> encodeStorageLyric(const Lyric& lyric) {
-		const lyric::storage::Lyric pb = toPb(lyric);
+		const lyric::storage::Lyric pb = internal::toPb(lyric);
 		std::vector<uint8_t>        out(pb.ByteSizeLong());
 		if (!pb.SerializeToArray(out.data(), static_cast<int>(out.size()))) {
 			throw std::runtime_error("failed to encode Lyric to binary");
@@ -163,11 +29,11 @@ namespace music_lyric_model::storage {
 		if (!pb.ParseFromArray(data.data(), static_cast<int>(data.size()))) {
 			throw std::runtime_error("failed to decode Lyric from binary");
 		}
-		return fromPb(pb);
+		return internal::fromPb(pb);
 	}
 
 	std::string storageLyricToJson(const Lyric& lyric) {
-		const lyric::storage::Lyric pb = toPb(lyric);
+		const lyric::storage::Lyric pb = internal::toPb(lyric);
 		std::string                 out;
 		const auto                  status = google::protobuf::util::MessageToJsonString(pb, &out);
 		if (!status.ok()) {
@@ -182,7 +48,7 @@ namespace music_lyric_model::storage {
 		if (!status.ok()) {
 			throw std::runtime_error("failed to decode Lyric from JSON: " + std::string(status.message()));
 		}
-		return fromPb(pb);
+		return internal::fromPb(pb);
 	}
 
 	void sortStorageLinesByTime(Lyric& lyric) {

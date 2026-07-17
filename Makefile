@@ -1,6 +1,6 @@
 .PHONY: gen configure build format test clean
 
-# Regenerate proto info.
+# Regenerate protobuf C++ gencode, domain/bridge headers, and version.h.
 gen:
 	buf generate proto --template buf.gen.yml
 	python script/generate-proto-version.py

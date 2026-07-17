@@ -1,29 +1,13 @@
 #ifndef MUSIC_LYRIC_MODEL_STORAGE_LYRIC_H_
 #define MUSIC_LYRIC_MODEL_STORAGE_LYRIC_H_
 
+#include "model/storage/lyric.gen.h"
+
 #include <cstdint>
 #include <string>
-#include <unordered_map>
 #include <vector>
 
-#include "common/agent.h"
-#include "common/common.h"
-#include "common/meta.h"
-#include "line.h"
-
 namespace music_lyric_model::storage {
-	/**
-	 * A storage lyric document.
-	 */
-	struct Lyric {
-		std::string                                  version;
-		common::Timing                               timing = common::Timing::Unspecified;
-		std::unordered_map<std::string, std::string> extra;
-		common::Meta                                 meta;
-		std::vector<common::AgentItem>               agents;
-		std::vector<Line>                            lines;
-	};
-
 	/**
 	 * Creates a Lyric, stamping the current SCHEMA_VERSION.
 	 */

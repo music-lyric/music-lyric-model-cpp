@@ -1,42 +1,18 @@
 #ifndef MUSIC_LYRIC_MODEL_STORAGE_LINE_H_
 #define MUSIC_LYRIC_MODEL_STORAGE_LINE_H_
 
+#include "model/storage/line.gen.h"
+
 #include <cstdint>
 #include <optional>
 #include <string>
-#include <unordered_map>
 #include <vector>
 
 #include "common/line.h"
-#include "common/part.h"
 #include "common/time.h"
 #include "common/word.h"
 
 namespace music_lyric_model::storage {
-	/**
-	 * Background vocal line attached to a primary line.
-	 */
-	struct LineBackground {
-		std::unordered_map<std::string, std::string> extra;
-		std::optional<common::Time>                  time;
-		std::vector<std::string>                     agents;
-		std::vector<common::Word>                    words;
-		std::optional<common::LineAnnotation>        annotation;
-	};
-
-	/**
-	 * Primary storage lyric line.
-	 */
-	struct Line {
-		std::unordered_map<std::string, std::string> extra;
-		std::optional<common::Time>                  time;
-		std::optional<common::Part>                  part;
-		std::vector<std::string>                     agents;
-		std::vector<common::Word>                    words;
-		std::optional<common::LineAnnotation>        annotation;
-		std::vector<LineBackground>                  backgrounds;
-	};
-
 	/**
 	 * Time range of a primary line, null when absent.
 	 */

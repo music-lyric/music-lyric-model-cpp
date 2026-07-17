@@ -2,4 +2,14 @@ version: v2
 clean: true
 plugins:
   - remote: buf.build/protocolbuffers/cpp:v35.1
-    out: private/gen
+    out: private/pb
+  - local: ['go', 'run', '-C', 'script/proto-gen', '.']
+    out: src/model
+    opt:
+      - root_ns=music_lyric_model
+      - emit=domain
+  - local: ['go', 'run', '-C', 'script/proto-gen', '.']
+    out: private/bridge
+    opt:
+      - root_ns=music_lyric_model
+      - emit=bridge

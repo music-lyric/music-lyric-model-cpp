@@ -1,18 +1,12 @@
 #ifndef MUSIC_LYRIC_MODEL_PARSED_LANGUAGE_H_
 #define MUSIC_LYRIC_MODEL_PARSED_LANGUAGE_H_
 
+#include "model/parsed/language.gen.h"
+
 #include <string>
 #include <vector>
 
 namespace music_lyric_model::parsed {
-	/**
-	 * A language share entry for a lyric.
-	 */
-	struct LanguageItem {
-		std::string tag;
-		double      percent = 0;
-	};
-
 	/**
 	 * Whether a language of the given tag is present.
 	 */
