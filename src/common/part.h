@@ -1,5 +1,5 @@
-#ifndef MUSIC_LYRIC_COMMON_PART_H_
-#define MUSIC_LYRIC_COMMON_PART_H_
+#ifndef MUSIC_LYRIC_MODEL_COMMON_PART_H_
+#define MUSIC_LYRIC_MODEL_COMMON_PART_H_
 
 #include "common/part.pb.h"
 

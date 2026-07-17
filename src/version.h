@@ -1,5 +1,5 @@
-#ifndef MUSIC_LYRIC_VERSION_H_
-#define MUSIC_LYRIC_VERSION_H_
+#ifndef MUSIC_LYRIC_MODEL_VERSION_H_
+#define MUSIC_LYRIC_MODEL_VERSION_H_
 
 namespace music_lyric_model {
 	/**

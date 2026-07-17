@@ -1,5 +1,5 @@
-#ifndef MUSIC_LYRIC_COMMON_H_
-#define MUSIC_LYRIC_COMMON_H_
+#ifndef MUSIC_LYRIC_MODEL_COMMON_H_
+#define MUSIC_LYRIC_MODEL_COMMON_H_
 
 #include "agent.h"
 #include "line.h"

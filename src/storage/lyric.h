@@ -1,5 +1,5 @@
-#ifndef MUSIC_LYRIC_STORAGE_LYRIC_H_
-#define MUSIC_LYRIC_STORAGE_LYRIC_H_
+#ifndef MUSIC_LYRIC_MODEL_STORAGE_LYRIC_H_
+#define MUSIC_LYRIC_MODEL_STORAGE_LYRIC_H_
 
 #include <cstdint>
 #include <string>

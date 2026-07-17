@@ -1,5 +1,5 @@
-#ifndef MUSIC_LYRIC_COMMON_WORD_H_
-#define MUSIC_LYRIC_COMMON_WORD_H_
+#ifndef MUSIC_LYRIC_MODEL_COMMON_WORD_H_
+#define MUSIC_LYRIC_MODEL_COMMON_WORD_H_
 
 #include <cstdint>
 #include <string>

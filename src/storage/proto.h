@@ -1,5 +1,5 @@
-#ifndef MUSIC_LYRIC_STORAGE_PROTO_H_
-#define MUSIC_LYRIC_STORAGE_PROTO_H_
+#ifndef MUSIC_LYRIC_MODEL_STORAGE_PROTO_H_
+#define MUSIC_LYRIC_MODEL_STORAGE_PROTO_H_
 
 #include "storage/line.pb.h"
 #include "storage/lyric.pb.h"

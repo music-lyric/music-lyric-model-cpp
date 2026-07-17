@@ -1,5 +1,5 @@
-#ifndef MUSIC_LYRIC_COMMON_UNKNOWN_H_
-#define MUSIC_LYRIC_COMMON_UNKNOWN_H_
+#ifndef MUSIC_LYRIC_MODEL_COMMON_UNKNOWN_H_
+#define MUSIC_LYRIC_MODEL_COMMON_UNKNOWN_H_
 
 #include <string>
 #include <vector>

@@ -1,5 +1,5 @@
-#ifndef MUSIC_LYRIC_PARSED_INFO_H_
-#define MUSIC_LYRIC_PARSED_INFO_H_
+#ifndef MUSIC_LYRIC_MODEL_PARSED_INFO_H_
+#define MUSIC_LYRIC_MODEL_PARSED_INFO_H_
 
 #include <cstdint>
 #include <string>

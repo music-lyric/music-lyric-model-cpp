@@ -1,5 +1,5 @@
-#ifndef MUSIC_LYRIC_COMMON_TIME_H_
-#define MUSIC_LYRIC_COMMON_TIME_H_
+#ifndef MUSIC_LYRIC_MODEL_COMMON_TIME_H_
+#define MUSIC_LYRIC_MODEL_COMMON_TIME_H_
 
 #include <cstdint>
 

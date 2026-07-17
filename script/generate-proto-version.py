@@ -12,8 +12,8 @@ def main() -> None:
     with open(VERSION_TXT, encoding="utf-8") as f:
         version = f.read().strip()
     content = (
-        "#ifndef MUSIC_LYRIC_VERSION_H_\n"
-        "#define MUSIC_LYRIC_VERSION_H_\n"
+        "#ifndef MUSIC_LYRIC_MODEL_VERSION_H_\n"
+        "#define MUSIC_LYRIC_MODEL_VERSION_H_\n"
         "\n"
         "namespace music_lyric_model {\n"
         "\t/**\n"

@@ -1,5 +1,5 @@
-#ifndef MUSIC_LYRIC_COMMON_PROTO_H_
-#define MUSIC_LYRIC_COMMON_PROTO_H_
+#ifndef MUSIC_LYRIC_MODEL_COMMON_PROTO_H_
+#define MUSIC_LYRIC_MODEL_COMMON_PROTO_H_
 
 #include "common/agent.pb.h"
 #include "common/line.pb.h"
