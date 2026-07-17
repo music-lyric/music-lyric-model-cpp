@@ -4,11 +4,10 @@
 #include <stdexcept>
 
 #include "google/protobuf/util/json_util.h"
+#include "pb.h"
+#include "storage/line.h"
 #include "storage/line.pb.h"
 #include "storage/lyric.pb.h"
-
-#include "pb_common.h"
-#include "storage/line.h"
 #include "version.h"
 
 namespace music_lyric_model::storage {

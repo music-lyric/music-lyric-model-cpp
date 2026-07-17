@@ -6,10 +6,9 @@
 #include "google/protobuf/util/json_util.h"
 #include "parsed/info.pb.h"
 #include "parsed/language.pb.h"
-#include "parsed/line.pb.h"
-
-#include "pb_common.h"
 #include "parsed/line.h"
+#include "parsed/line.pb.h"
+#include "pb.h"
 #include "version.h"
 
 namespace music_lyric_model::parsed {

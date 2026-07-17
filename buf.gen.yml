@@ -2,4 +2,4 @@ version: v2
 clean: true
 plugins:
   - remote: buf.build/protocolbuffers/cpp:v35.1
-    out: gen
+    out: private/gen

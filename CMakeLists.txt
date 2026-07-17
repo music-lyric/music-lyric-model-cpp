@@ -33,7 +33,7 @@ if(NOT Protobuf_FOUND)
     FetchContent_MakeAvailable(protobuf)
 endif()
 
-file(GLOB_RECURSE MUSIC_LYRIC_GEN_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/gen/*.pb.cc")
+file(GLOB_RECURSE MUSIC_LYRIC_GEN_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/private/gen/*.pb.cc")
 file(GLOB_RECURSE MUSIC_LYRIC_SOURCES CONFIGURE_DEPENDS
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/common/*.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/parsed/*.cpp"
@@ -56,8 +56,8 @@ target_include_directories(music_lyric_model
         "${CMAKE_CURRENT_SOURCE_DIR}/include"
         "${CMAKE_CURRENT_SOURCE_DIR}/src"
     PRIVATE
-        "${CMAKE_CURRENT_SOURCE_DIR}/gen"
         "${CMAKE_CURRENT_SOURCE_DIR}/private"
+        "${CMAKE_CURRENT_SOURCE_DIR}/private/gen"
 )
 
 target_link_libraries(music_lyric_model PRIVATE protobuf::libprotobuf)
