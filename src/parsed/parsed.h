@@ -4,6 +4,5 @@
 #include "info.h"
 #include "language.h"
 #include "line.h"
-#include "proto.h"
 
 #endif

@@ -1,5 +1,6 @@
 #include <optional>
 #include <string>
+#include <vector>
 
 #include "doctest.h"
 #include "music_lyric_model.h"
@@ -11,104 +12,99 @@ namespace {
 	/**
 	 * Build a normal word carrying a single-token roman annotation.
 	 */
-	lyric::common::Word romanWord(const std::string& content, const std::string& roman, const std::optional<std::string>& language = std::nullopt) {
-		lyric::common::WordAnnotationContent token;
-		token.set_content(roman);
+	Word romanWord(const std::string& content, const std::string& roman, const std::optional<std::string>& language = std::nullopt) {
+		WordAnnotationContent token;
+		token.content = roman;
 
-		lyric::common::WordAnnotationRoman romanItem;
-		if (language.has_value()) {
-			romanItem.set_language(*language);
-		}
-		*romanItem.add_words() = makeWordAnnotationContent(token);
+		WordAnnotationRoman romanItem;
+		romanItem.language = language;
+		romanItem.words.push_back(token);
 
-		lyric::common::WordAnnotation annotation;
-		*annotation.add_romans() = makeWordAnnotationRoman(romanItem);
+		WordAnnotation annotation;
+		annotation.romans.push_back(romanItem);
 
-		lyric::common::WordNormal normal;
-		normal.set_content(content);
-		*normal.mutable_annotation() = makeWordAnnotation(annotation);
+		WordNormal normal;
+		normal.content    = content;
+		normal.annotation = annotation;
 		return makeWordNormal(normal);
 	}
 
 	/**
 	 * Build a normal word carrying a single translation.
 	 */
-	lyric::common::Word translateWord(const std::string& content, const std::string& translation, const std::optional<std::string>& language = std::nullopt) {
-		lyric::common::WordAnnotationTranslation item;
-		if (language.has_value()) {
-			item.set_language(*language);
-		}
-		item.set_content(translation);
+	Word translateWord(const std::string& content, const std::string& translation, const std::optional<std::string>& language = std::nullopt) {
+		WordAnnotationTranslation item;
+		item.language = language;
+		item.content  = translation;
 
-		lyric::common::WordAnnotation annotation;
-		*annotation.add_translations() = makeWordAnnotationTranslation(item);
+		WordAnnotation annotation;
+		annotation.translations.push_back(item);
 
-		lyric::common::WordNormal normal;
-		normal.set_content(content);
-		*normal.mutable_annotation() = makeWordAnnotation(annotation);
+		WordNormal normal;
+		normal.content    = content;
+		normal.annotation = annotation;
 		return makeWordNormal(normal);
 	}
 
 	/**
 	 * Build a normal word carrying an unknown annotation.
 	 */
-	lyric::common::Word unknownWord(const std::string& content, const std::string& key, const std::string& value) {
-		lyric::common::Unknown unknown;
-		unknown.set_key(key);
-		unknown.set_value(value);
+	Word unknownWord(const std::string& content, const std::string& key, const std::string& value) {
+		WordAnnotation annotation;
+		annotation.unknowns.push_back(Unknown{key, value});
 
-		lyric::common::WordAnnotation annotation;
-		*annotation.add_unknowns() = makeUnknown(unknown);
-
-		lyric::common::WordNormal normal;
-		normal.set_content(content);
-		*normal.mutable_annotation() = makeWordAnnotation(annotation);
+		WordNormal normal;
+		normal.content    = content;
+		normal.annotation = annotation;
 		return makeWordNormal(normal);
 	}
 } // namespace
 
 TEST_CASE("deriveParsedLineRomans joins tokens in word order with padded spacing") {
-	google::protobuf::RepeatedPtrField<lyric::common::Word> words;
-	*words.Add() = romanWord("今日", "kyou", "romaji");
-	lyric::common::WordSpace space;
-	space.set_count(1);
-	*words.Add() = makeWordSpace(space);
-	*words.Add() = romanWord("は", "wa", "romaji");
+	WordSpace space;
+	space.count = 1;
+	const std::vector<Word> words = {
+		romanWord("A", "kyou", "romaji"),
+		makeWordSpace(space),
+		romanWord("B", "wa", "romaji"),
+	};
 
 	const auto items = deriveParsedLineRomans(words);
 	REQUIRE(items.size() == 1);
-	CHECK(items[0].content() == "kyou wa");
-	CHECK(items[0].language() == "romaji");
+	CHECK(items[0].content == "kyou wa");
+	CHECK(items[0].language == "romaji");
 }
 
 TEST_CASE("deriveParsedLineTranslations aggregates word translations by language") {
-	google::protobuf::RepeatedPtrField<lyric::common::Word> words;
-	*words.Add() = translateWord("猫", "cat", "en");
-	lyric::common::WordSpace space;
-	space.set_count(1);
-	*words.Add() = makeWordSpace(space);
-	*words.Add() = translateWord("好", "good", "en");
+	WordSpace space;
+	space.count = 1;
+	const std::vector<Word> words = {
+		translateWord("A", "cat", "en"),
+		makeWordSpace(space),
+		translateWord("B", "good", "en"),
+	};
 
 	const auto items = deriveParsedLineTranslations(words);
 	REQUIRE(items.size() == 1);
-	CHECK(items[0].content() == "cat good");
-	CHECK(items[0].language() == "en");
+	CHECK(items[0].content == "cat good");
+	CHECK(items[0].language == "en");
 }
 
 TEST_CASE("deriveParsedLineUnknowns and deriveParsedLineAnnotation group by key") {
-	google::protobuf::RepeatedPtrField<lyric::common::Word> words;
-	*words.Add() = unknownWord("a", "ruby", "x");
-	lyric::common::WordSpace space;
-	space.set_count(1);
-	*words.Add() = makeWordSpace(space);
-	*words.Add() = unknownWord("b", "ruby", "y");
+	WordSpace space;
+	space.count = 1;
+	const std::vector<Word> words = {
+		unknownWord("a", "ruby", "x"),
+		makeWordSpace(space),
+		unknownWord("b", "ruby", "y"),
+	};
 
 	const auto unknowns = deriveParsedLineUnknowns(words);
 	REQUIRE(unknowns.size() == 1);
-	CHECK(unknowns[0].key() == "ruby");
-	CHECK(unknowns[0].value() == "x y");
+	CHECK(unknowns[0].key == "ruby");
+	CHECK(unknowns[0].value == "x y");
 
-	const lyric::common::LineAnnotation annotation = deriveParsedLineAnnotation(words);
-	REQUIRE(annotation.unknowns_size() == 1);
-	CHECK(annotation.unknowns(0).value() == "x y");
+	const LineAnnotation annotation = deriveParsedLineAnnotation(words);
+	REQUIRE(annotation.unknowns.size() == 1);
+	CHECK(annotation.unknowns[0].value == "x y");
 }

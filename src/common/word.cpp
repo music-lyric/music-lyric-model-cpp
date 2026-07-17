@@ -5,65 +5,41 @@
 #include "common/time.h"
 
 namespace music_lyric_model::common {
-	lyric::common::Word makeWordNormal(const lyric::common::WordNormal& normal) {
-		lyric::common::Word word;
-		*word.mutable_normal() = normal;
-		return word;
+	Word makeWordNormal(WordNormal normal) {
+		return Word{std::move(normal)};
 	}
 
-	lyric::common::Word makeWordSpace(const lyric::common::WordSpace& space) {
-		lyric::common::Word word;
-		*word.mutable_space() = space;
-		return word;
+	Word makeWordSpace(WordSpace space) {
+		return Word{std::move(space)};
 	}
 
-	lyric::common::WordAnnotationContent makeWordAnnotationContent(const lyric::common::WordAnnotationContent& content) {
-		return content;
+	bool isWordNormal(const Word& word) {
+		return std::holds_alternative<WordNormal>(word);
 	}
 
-	lyric::common::WordAnnotationRoman makeWordAnnotationRoman(const lyric::common::WordAnnotationRoman& roman) {
-		return roman;
+	bool isWordSpace(const Word& word) {
+		return std::holds_alternative<WordSpace>(word);
 	}
 
-	lyric::common::WordAnnotationTranslation makeWordAnnotationTranslation(const lyric::common::WordAnnotationTranslation& translation) {
-		return translation;
+	const WordNormal* asWordNormal(const Word& word) {
+		return std::get_if<WordNormal>(&word);
 	}
 
-	lyric::common::WordAnnotationRuby makeWordAnnotationRuby(const lyric::common::WordAnnotationRuby& ruby) {
-		return ruby;
+	const WordSpace* asWordSpace(const Word& word) {
+		return std::get_if<WordSpace>(&word);
 	}
 
-	lyric::common::WordAnnotation makeWordAnnotation(const lyric::common::WordAnnotation& annotation) {
-		return annotation;
-	}
-
-	bool isWordNormal(const lyric::common::Word& word) {
-		return word.body_case() == lyric::common::Word::kNormal;
-	}
-
-	bool isWordSpace(const lyric::common::Word& word) {
-		return word.body_case() == lyric::common::Word::kSpace;
-	}
-
-	const lyric::common::WordNormal* asWordNormal(const lyric::common::Word& word) {
-		return isWordNormal(word) ? &word.normal() : nullptr;
-	}
-
-	const lyric::common::WordSpace* asWordSpace(const lyric::common::Word& word) {
-		return isWordSpace(word) ? &word.space() : nullptr;
-	}
-
-	std::string getWordText(const lyric::common::Word& word) {
-		if (word.body_case() == lyric::common::Word::kNormal) {
-			return word.normal().content();
+	std::string getWordText(const Word& word) {
+		if (const WordNormal* normal = asWordNormal(word)) {
+			return normal->content;
 		}
-		if (word.body_case() == lyric::common::Word::kSpace) {
-			return std::string(word.space().count(), ' ');
+		if (const WordSpace* space = asWordSpace(word)) {
+			return std::string(space->count, ' ');
 		}
 		return {};
 	}
 
-	std::string getWordsText(const google::protobuf::RepeatedPtrField<lyric::common::Word>& words) {
+	std::string getWordsText(const std::vector<Word>& words) {
 		std::string result;
 		for (const auto& word : words) {
 			result += getWordText(word);
@@ -71,14 +47,15 @@ namespace music_lyric_model::common {
 		return result;
 	}
 
-	std::vector<std::string> getWordsLanguages(const google::protobuf::RepeatedPtrField<lyric::common::Word>& words) {
+	std::vector<std::string> getWordsLanguages(const std::vector<Word>& words) {
 		std::vector<std::string>        result;
 		std::unordered_set<std::string> seen;
 		for (const auto& word : words) {
-			if (word.body_case() != lyric::common::Word::kNormal || !word.normal().has_language()) {
+			const WordNormal* normal = asWordNormal(word);
+			if (!normal || !normal->language.has_value()) {
 				continue;
 			}
-			const std::string& tag = word.normal().language();
+			const std::string& tag = *normal->language;
 			if (seen.insert(tag).second) {
 				result.push_back(tag);
 			}
@@ -86,47 +63,46 @@ namespace music_lyric_model::common {
 		return result;
 	}
 
-	const lyric::common::Time* getWordTime(const lyric::common::Word& word) {
-		if (word.body_case() == lyric::common::Word::kNormal && word.normal().has_time()) {
-			return &word.normal().time();
-		}
-		return nullptr;
+	const Time* getWordTime(const Word& word) {
+		const WordNormal* normal = asWordNormal(word);
+		return normal ? getWordTime(*normal) : nullptr;
 	}
 
-	const lyric::common::Time* getWordTime(const lyric::common::WordNormal& word) {
-		return word.has_time() ? &word.time() : nullptr;
+	const Time* getWordTime(const WordNormal& word) {
+		return word.time.has_value() ? &*word.time : nullptr;
 	}
 
-	std::vector<const lyric::common::WordAnnotationRuby*> getWordRubies(const lyric::common::Word& word) {
-		std::vector<const lyric::common::WordAnnotationRuby*> result;
-		if (word.body_case() != lyric::common::Word::kNormal || !word.normal().has_annotation()) {
+	std::vector<const WordAnnotationRuby*> getWordRubies(const Word& word) {
+		std::vector<const WordAnnotationRuby*> result;
+		const WordNormal*                      normal = asWordNormal(word);
+		if (!normal || !normal->annotation.has_value()) {
 			return result;
 		}
-		for (const auto& ruby : word.normal().annotation().rubies()) {
+		for (const auto& ruby : normal->annotation->rubies) {
 			result.push_back(&ruby);
 		}
 		return result;
 	}
 
-	int64_t getWordDuration(const lyric::common::Word& word) {
+	int64_t getWordDuration(const Word& word) {
 		return getTimeDuration(getWordTime(word));
 	}
 
-	int64_t getWordDuration(const lyric::common::WordNormal& word) {
+	int64_t getWordDuration(const WordNormal& word) {
 		return getTimeDuration(getWordTime(word));
 	}
 
-	int getActiveWordIndex(const google::protobuf::RepeatedPtrField<lyric::common::Word>& words, int64_t ms) {
-		for (int i = 0, len = words.size(); i < len; i++) {
-			if (isTimeActive(getWordTime(words.Get(i)), ms)) {
+	int getActiveWordIndex(const std::vector<Word>& words, int64_t ms) {
+		for (int i = 0, len = static_cast<int>(words.size()); i < len; i++) {
+			if (isTimeActive(getWordTime(words[static_cast<size_t>(i)]), ms)) {
 				return i;
 			}
 		}
 		return -1;
 	}
 
-	const lyric::common::Word* getActiveWord(const google::protobuf::RepeatedPtrField<lyric::common::Word>& words, int64_t ms) {
+	const Word* getActiveWord(const std::vector<Word>& words, int64_t ms) {
 		const int index = getActiveWordIndex(words, ms);
-		return index == -1 ? nullptr : &words.Get(index);
+		return index == -1 ? nullptr : &words[static_cast<size_t>(index)];
 	}
 } // namespace music_lyric_model::common

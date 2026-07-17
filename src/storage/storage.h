@@ -3,6 +3,5 @@
 
 #include "line.h"
 #include "lyric.h"
-#include "proto.h"
 
 #endif

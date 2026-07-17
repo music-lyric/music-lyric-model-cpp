@@ -2,117 +2,164 @@
 #define MUSIC_LYRIC_MODEL_COMMON_WORD_H_
 
 #include <cstdint>
+#include <optional>
 #include <string>
+#include <unordered_map>
+#include <variant>
 #include <vector>
 
-#include "common/time.pb.h"
-#include "common/word.pb.h"
+#include "time.h"
+#include "unknown.h"
 
 namespace music_lyric_model::common {
 	/**
+	 * One token of a word annotation.
+	 */
+	struct WordAnnotationContent {
+		std::optional<Time> time;
+		std::string         content;
+	};
+
+	/**
+	 * A word-level translation.
+	 */
+	struct WordAnnotationTranslation {
+		std::optional<std::string> language;
+		std::string                content;
+	};
+
+	/**
+	 * A word-level romanization.
+	 */
+	struct WordAnnotationRoman {
+		std::optional<Time>                 time;
+		std::optional<std::string>          language;
+		std::vector<WordAnnotationContent>  words;
+	};
+
+	/**
+	 * A word-level ruby annotation.
+	 */
+	struct WordAnnotationRuby {
+		std::optional<Time>                time;
+		std::optional<std::string>         language;
+		std::vector<WordAnnotationContent> words;
+		bool                               phraseStart = false;
+	};
+
+	/**
+	 * The per-word annotation container.
+	 */
+	struct WordAnnotation {
+		std::vector<Unknown>                   unknowns;
+		std::vector<WordAnnotationRuby>        rubies;
+		std::vector<WordAnnotationRoman>       romans;
+		std::vector<WordAnnotationTranslation> translations;
+	};
+
+	/**
+	 * A normal lyric word.
+	 */
+	struct WordNormal {
+		std::unordered_map<std::string, std::string> extra;
+		std::optional<Time>                          time;
+		std::string                                  content;
+		std::optional<std::string>                   language;
+		std::optional<WordAnnotation>                annotation;
+		bool                                         stress = false;
+	};
+
+	/**
+	 * A run of consecutive space characters.
+	 */
+	struct WordSpace {
+		uint32_t count = 0;
+	};
+
+	/**
+	 * A word token; exactly one body variant must be set.
+	 */
+	using Word = std::variant<WordNormal, WordSpace>;
+
+	/**
 	 * Creates a normal word wrapped in a Word.
 	 */
-	lyric::common::Word makeWordNormal(const lyric::common::WordNormal& normal = {});
+	Word makeWordNormal(WordNormal normal = {});
 
 	/**
 	 * Creates a run of spaces wrapped in a Word.
 	 */
-	lyric::common::Word makeWordSpace(const lyric::common::WordSpace& space = {});
-
-	/**
-	 * Creates a WordAnnotationContent, one token of a word annotation.
-	 */
-	lyric::common::WordAnnotationContent makeWordAnnotationContent(const lyric::common::WordAnnotationContent& content = {});
-
-	/**
-	 * Creates a WordAnnotationRoman.
-	 */
-	lyric::common::WordAnnotationRoman makeWordAnnotationRoman(const lyric::common::WordAnnotationRoman& roman = {});
-
-	/**
-	 * Creates a WordAnnotationTranslation.
-	 */
-	lyric::common::WordAnnotationTranslation makeWordAnnotationTranslation(const lyric::common::WordAnnotationTranslation& translation = {});
-
-	/**
-	 * Creates a WordAnnotationRuby.
-	 */
-	lyric::common::WordAnnotationRuby makeWordAnnotationRuby(const lyric::common::WordAnnotationRuby& ruby = {});
-
-	/**
-	 * Creates a WordAnnotation, the per-word annotation container.
-	 */
-	lyric::common::WordAnnotation makeWordAnnotation(const lyric::common::WordAnnotation& annotation = {});
+	Word makeWordSpace(WordSpace space = {});
 
 	/**
 	 * Whether a Word holds a normal word.
 	 */
-	bool isWordNormal(const lyric::common::Word& word);
+	bool isWordNormal(const Word& word);
 
 	/**
 	 * Whether a Word holds a run of spaces.
 	 */
-	bool isWordSpace(const lyric::common::Word& word);
+	bool isWordSpace(const Word& word);
 
 	/**
 	 * Normal word held by a Word, null when it holds something else.
 	 */
-	const lyric::common::WordNormal* asWordNormal(const lyric::common::Word& word);
+	const WordNormal* asWordNormal(const Word& word);
 
 	/**
 	 * Space run held by a Word, null when it holds something else.
 	 */
-	const lyric::common::WordSpace* asWordSpace(const lyric::common::Word& word);
+	const WordSpace* asWordSpace(const Word& word);
 
 	/**
 	 * Rendered text of a word: its content, or padded spaces.
 	 */
-	std::string getWordText(const lyric::common::Word& word);
+	std::string getWordText(const Word& word);
 
 	/**
 	 * Text joined from words in order.
 	 */
-	std::string getWordsText(const google::protobuf::RepeatedPtrField<lyric::common::Word>& words);
+	std::string getWordsText(const std::vector<Word>& words);
 
 	/**
 	 * Distinct language tags among a list of words, in first-seen order.
 	 */
-	std::vector<std::string> getWordsLanguages(const google::protobuf::RepeatedPtrField<lyric::common::Word>& words);
+	std::vector<std::string> getWordsLanguages(const std::vector<Word>& words);
 
 	/**
 	 * Time range of a word, null when absent.
 	 */
-	const lyric::common::Time* getWordTime(const lyric::common::Word& word);
+	const Time* getWordTime(const Word& word);
 
 	/**
 	 * Time range of a bare normal word, null when absent.
 	 */
-	const lyric::common::Time* getWordTime(const lyric::common::WordNormal& word);
+	const Time* getWordTime(const WordNormal& word);
 
 	/**
 	 * Ruby annotations of a normal word.
 	 */
-	std::vector<const lyric::common::WordAnnotationRuby*> getWordRubies(const lyric::common::Word& word);
+	std::vector<const WordAnnotationRuby*> getWordRubies(const Word& word);
 
 	/**
 	 * Duration of a word in milliseconds.
 	 */
-	int64_t getWordDuration(const lyric::common::Word& word);
+	int64_t getWordDuration(const Word& word);
 
 	/**
 	 * Duration of a bare normal word in milliseconds.
 	 */
-	int64_t getWordDuration(const lyric::common::WordNormal& word);
+	int64_t getWordDuration(const WordNormal& word);
 
 	/**
 	 * Index of the word active at the given moment, or -1 when none.
 	 */
-	int getActiveWordIndex(const google::protobuf::RepeatedPtrField<lyric::common::Word>& words, int64_t ms);
+	int getActiveWordIndex(const std::vector<Word>& words, int64_t ms);
 
 	/**
 	 * Word active at the given moment, null when none.
 	 */
-	const lyric::common::Word* getActiveWord(const google::protobuf::RepeatedPtrField<lyric::common::Word>& words, int64_t ms);
+	const Word* getActiveWord(const std::vector<Word>& words, int64_t ms);
 
 	/**
 	 * Text joined from every annotation token.
@@ -120,8 +167,8 @@ namespace music_lyric_model::common {
 	template <typename T>
 	std::string getWordAnnotationText(const T& item) {
 		std::string result;
-		for (const auto& word : item.words()) {
-			result += word.content();
+		for (const auto& word : item.words) {
+			result += word.content;
 		}
 		return result;
 	}

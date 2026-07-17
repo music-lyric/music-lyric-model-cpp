@@ -2,29 +2,31 @@
 #define MUSIC_LYRIC_MODEL_PARSED_LANGUAGE_H_
 
 #include <string>
-
-#include "parsed/language.pb.h"
+#include <vector>
 
 namespace music_lyric_model::parsed {
 	/**
-	 * Creates a LanguageItem.
+	 * A language share entry for a lyric.
 	 */
-	lyric::parsed::LanguageItem makeParsedLanguageItem(const lyric::parsed::LanguageItem& item = {});
+	struct LanguageItem {
+		std::string tag;
+		double      percent = 0;
+	};
 
 	/**
 	 * Whether a language of the given tag is present.
 	 */
-	bool hasParsedLanguage(const google::protobuf::RepeatedPtrField<lyric::parsed::LanguageItem>& languages, const std::string& tag);
+	bool hasParsedLanguage(const std::vector<LanguageItem>& languages, const std::string& tag);
 
 	/**
 	 * The language entry of the given tag, null when absent.
 	 */
-	const lyric::parsed::LanguageItem* getParsedLanguageByTag(const google::protobuf::RepeatedPtrField<lyric::parsed::LanguageItem>& languages, const std::string& tag);
+	const LanguageItem* getParsedLanguageByTag(const std::vector<LanguageItem>& languages, const std::string& tag);
 
 	/**
 	 * The language with the highest share, null when empty.
 	 */
-	const lyric::parsed::LanguageItem* getParsedPrimaryLanguage(const google::protobuf::RepeatedPtrField<lyric::parsed::LanguageItem>& languages);
+	const LanguageItem* getParsedPrimaryLanguage(const std::vector<LanguageItem>& languages);
 } // namespace music_lyric_model::parsed
 
 #endif

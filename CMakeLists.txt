@@ -48,22 +48,19 @@ add_library(music_lyric::model ALIAS music_lyric_model)
 target_compile_features(music_lyric_model PUBLIC cxx_std_17)
 
 # MSVC reads source as the system code page (e.g. GBK) by default, but abseil/protobuf headers are UTF-8.
-# /bigobj is required by protobuf gencode.
-target_compile_options(music_lyric_model PUBLIC $<$<CXX_COMPILER_ID:MSVC>:/utf-8;/bigobj>)
+# /bigobj is required by protobuf gencode. Keep both PRIVATE so consumers need not depend on protobuf.
+target_compile_options(music_lyric_model PRIVATE $<$<CXX_COMPILER_ID:MSVC>:/utf-8;/bigobj>)
 
 target_include_directories(music_lyric_model
     PUBLIC
         "${CMAKE_CURRENT_SOURCE_DIR}/include"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src"
     PRIVATE
         "${CMAKE_CURRENT_SOURCE_DIR}/gen"
-        "${CMAKE_CURRENT_SOURCE_DIR}/src"
+        "${CMAKE_CURRENT_SOURCE_DIR}/private"
 )
 
-target_include_directories(music_lyric_model SYSTEM INTERFACE
-    "${CMAKE_CURRENT_SOURCE_DIR}/gen"
-)
-
-target_link_libraries(music_lyric_model PUBLIC protobuf::libprotobuf)
+target_link_libraries(music_lyric_model PRIVATE protobuf::libprotobuf)
 
 if(PROJECT_IS_TOP_LEVEL)
     enable_testing()
@@ -78,6 +75,7 @@ if(PROJECT_IS_TOP_LEVEL)
     add_executable(music_lyric_model_test ${MUSIC_LYRIC_TEST_SOURCES})
     target_link_libraries(music_lyric_model_test PRIVATE music_lyric::model)
     target_include_directories(music_lyric_model_test PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/test")
+    target_compile_options(music_lyric_model_test PRIVATE $<$<CXX_COMPILER_ID:MSVC>:/utf-8>)
 
     add_test(NAME music_lyric_model_test COMMAND music_lyric_model_test)
 endif()

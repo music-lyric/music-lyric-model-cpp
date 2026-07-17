@@ -1,48 +1,68 @@
 #ifndef MUSIC_LYRIC_MODEL_COMMON_META_H_
 #define MUSIC_LYRIC_MODEL_COMMON_META_H_
 
+#include <cstdint>
 #include <optional>
 #include <string>
 #include <vector>
 
-#include "common/meta.pb.h"
-#include "common/unknown.pb.h"
+#include "unknown.h"
 
 namespace music_lyric_model::common {
 	/**
-	 * Creates a Meta, the lyric metadata container.
+	 * A value optionally tagged with a language.
 	 */
-	lyric::common::Meta makeMeta(const lyric::common::Meta& meta = {});
+	struct MetaText {
+		std::optional<std::string> language;
+		std::string                content;
+	};
 
 	/**
-	 * Creates a MetaText, a value optionally tagged with a language.
+	 * A role with its credited names.
 	 */
-	lyric::common::MetaText makeMetaText(const lyric::common::MetaText& text = {});
+	struct MetaCredit {
+		std::string           role;
+		std::vector<MetaText> names;
+	};
 
 	/**
-	 * Creates a MetaCredit, a role with its credited names.
+	 * A platform and its identifiers.
 	 */
-	lyric::common::MetaCredit makeMetaCredit(const lyric::common::MetaCredit& credit = {});
+	struct MetaReference {
+		std::string              platform;
+		std::vector<std::string> ids;
+	};
 
 	/**
-	 * Creates a MetaReference, a platform and its identifiers.
+	 * The lyric metadata container.
 	 */
-	lyric::common::MetaReference makeMetaReference(const lyric::common::MetaReference& reference = {});
+	struct Meta {
+		std::vector<Unknown>       unknowns;
+		int32_t                    offset   = 0;
+		uint32_t                   duration = 0;
+		std::vector<MetaText>      titles;
+		std::vector<MetaText>      artists;
+		std::vector<MetaText>      albums;
+		std::vector<MetaText>      authors;
+		std::vector<std::string>   isrcs;
+		std::vector<MetaCredit>    credits;
+		std::vector<MetaReference> references;
+	};
 
 	/**
 	 * Text of a localized meta list, preferring a language match, null when empty.
 	 */
-	std::optional<std::string> getMetaText(const google::protobuf::RepeatedPtrField<lyric::common::MetaText>& items, const std::optional<std::string>& language = std::nullopt);
+	std::optional<std::string> getMetaText(const std::vector<MetaText>& items, const std::optional<std::string>& language = std::nullopt);
 
 	/**
 	 * Unrecognized meta values carrying the given original key.
 	 */
-	std::vector<std::string> getMetaUnknown(const google::protobuf::RepeatedPtrField<lyric::common::Unknown>& unknowns, const std::string& key);
+	std::vector<std::string> getMetaUnknown(const std::vector<Unknown>& unknowns, const std::string& key);
 
 	/**
 	 * Reference ids for the given platform.
 	 */
-	std::vector<std::string> getMetaReference(const google::protobuf::RepeatedPtrField<lyric::common::MetaReference>& references, const std::string& platform);
+	std::vector<std::string> getMetaReference(const std::vector<MetaReference>& references, const std::string& platform);
 } // namespace music_lyric_model::common
 
 #endif

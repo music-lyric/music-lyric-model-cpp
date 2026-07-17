@@ -4,18 +4,19 @@
 #include <string>
 #include <vector>
 
-#include "common/unknown.pb.h"
-
 namespace music_lyric_model::common {
 	/**
-	 * Creates an Unknown key-value pair preserved from an unrecognized source field.
+	 * A key-value pair preserved from an unrecognized source field.
 	 */
-	lyric::common::Unknown makeUnknown(const lyric::common::Unknown& unknown = {});
+	struct Unknown {
+		std::string key;
+		std::string value;
+	};
 
 	/**
 	 * Raw values among unknowns that carry the given original key.
 	 */
-	std::vector<std::string> getUnknownValues(const google::protobuf::RepeatedPtrField<lyric::common::Unknown>& unknowns, const std::string& key);
+	std::vector<std::string> getUnknownValues(const std::vector<Unknown>& unknowns, const std::string& key);
 } // namespace music_lyric_model::common
 
 #endif

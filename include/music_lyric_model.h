@@ -1,9 +1,9 @@
 #ifndef MUSIC_LYRIC_MODEL_H_
 #define MUSIC_LYRIC_MODEL_H_
 
-#include "../src/common/common.h"
-#include "../src/parsed/parsed.h"
-#include "../src/storage/storage.h"
-#include "../src/version.h"
+#include "common/common.h"
+#include "parsed/parsed.h"
+#include "storage/storage.h"
+#include "version.h"
 
 #endif

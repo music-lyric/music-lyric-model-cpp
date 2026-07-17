@@ -3,54 +3,82 @@
 
 #include <cstdint>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
-#include "parsed/info.pb.h"
+#include "common/agent.h"
+#include "common/common.h"
+#include "common/meta.h"
+#include "language.h"
+#include "line.h"
 
 namespace music_lyric_model::parsed {
 	/**
+	 * Parse validity of a lyric.
+	 */
+	enum class InfoType {
+		Unspecified = 0,
+		Invalid     = 1,
+		Valid       = 2,
+	};
+
+	/**
+	 * A fully parsed lyric document.
+	 */
+	struct Info {
+		std::string                                  version;
+		InfoType                                     type = InfoType::Unspecified;
+		common::Timing                               timing = common::Timing::Unspecified;
+		std::unordered_map<std::string, std::string> extra;
+		common::Meta                                 meta;
+		std::vector<LanguageItem>                    languages;
+		std::vector<common::AgentItem>               agents;
+		std::vector<Line>                            lines;
+	};
+
+	/**
 	 * Creates an Info, stamping the current SCHEMA_VERSION.
 	 */
-	lyric::parsed::Info makeParsedInfo(const lyric::parsed::Info& init = {});
+	Info makeParsedInfo(Info init = {});
 
 	/**
 	 * Whether an Info is marked valid.
 	 */
-	bool isParsedInfoValid(const lyric::parsed::Info& info);
+	bool isParsedInfoValid(const Info& info);
 
 	/**
 	 * Whether an Info is marked invalid.
 	 */
-	bool isParsedInfoInvalid(const lyric::parsed::Info& info);
+	bool isParsedInfoInvalid(const Info& info);
 
 	/**
 	 * Encode an Info to protobuf binary.
 	 * Throws std::runtime_error when encoding fails.
 	 */
-	std::vector<uint8_t> encodeParsedInfo(const lyric::parsed::Info& info);
+	std::vector<uint8_t> encodeParsedInfo(const Info& info);
 
 	/**
 	 * Decode an Info from protobuf binary.
 	 * Throws std::runtime_error when the input is not a valid Info.
 	 */
-	lyric::parsed::Info decodeParsedInfo(const std::vector<uint8_t>& data);
+	Info decodeParsedInfo(const std::vector<uint8_t>& data);
 
 	/**
 	 * Convert an Info to protobuf JSON.
 	 * Throws std::runtime_error when encoding fails.
 	 */
-	std::string parsedInfoToJson(const lyric::parsed::Info& info);
+	std::string parsedInfoToJson(const Info& info);
 
 	/**
 	 * Restore an Info from protobuf JSON.
 	 * Throws std::runtime_error when the input is not valid Info JSON.
 	 */
-	lyric::parsed::Info parsedInfoFromJson(const std::string& json);
+	Info parsedInfoFromJson(const std::string& json);
 
 	/**
 	 * Sort lines and their background lines by start time ascending.
 	 */
-	void sortParsedLinesByTime(lyric::parsed::Info& info);
+	void sortParsedLinesByTime(Info& info);
 } // namespace music_lyric_model::parsed
 
 #endif

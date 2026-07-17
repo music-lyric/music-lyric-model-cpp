@@ -3,38 +3,49 @@
 
 #include <optional>
 #include <string>
+#include <vector>
 
-#include "common/line.pb.h"
+#include "unknown.h"
 
 namespace music_lyric_model::common {
 	/**
-	 * Creates a LineAnnotationRoman.
+	 * A romanized line annotation item.
 	 */
-	lyric::common::LineAnnotationRoman makeLineAnnotationRoman(const lyric::common::LineAnnotationRoman& roman = {});
+	struct LineAnnotationRoman {
+		std::optional<std::string> language;
+		std::string                content;
+	};
 
 	/**
-	 * Creates a LineAnnotationTranslation.
+	 * A translated line annotation item.
 	 */
-	lyric::common::LineAnnotationTranslation makeLineAnnotationTranslation(const lyric::common::LineAnnotationTranslation& translation = {});
+	struct LineAnnotationTranslation {
+		std::optional<std::string> language;
+		std::string                content;
+	};
 
 	/**
-	 * Creates a LineAnnotation, the per-line annotation container.
+	 * Line-level annotations explicitly present in the source.
 	 */
-	lyric::common::LineAnnotation makeLineAnnotation(const lyric::common::LineAnnotation& annotation = {});
+	struct LineAnnotation {
+		std::vector<Unknown>                    unknowns;
+		std::vector<LineAnnotationRoman>        romans;
+		std::vector<LineAnnotationTranslation>  translations;
+	};
 
 	/**
 	 * First annotation item, preferring a language match.
 	 */
 	template <typename T>
-	const T* getFirstAnnotation(const google::protobuf::RepeatedPtrField<T>& items, const std::optional<std::string>& language = std::nullopt) {
+	const T* getFirstAnnotation(const std::vector<T>& items, const std::optional<std::string>& language = std::nullopt) {
 		if (language.has_value()) {
 			for (const auto& item : items) {
-				if (item.has_language() && item.language() == *language) {
+				if (item.language.has_value() && *item.language == *language) {
 					return &item;
 				}
 			}
 		}
-		return items.empty() ? nullptr : &items.Get(0);
+		return items.empty() ? nullptr : &items[0];
 	}
 } // namespace music_lyric_model::common
 

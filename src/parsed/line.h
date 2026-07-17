@@ -4,214 +4,250 @@
 #include <cstdint>
 #include <optional>
 #include <string>
+#include <unordered_map>
+#include <variant>
 #include <vector>
 
-#include "common/line.pb.h"
-#include "common/time.pb.h"
-#include "common/unknown.pb.h"
-#include "common/word.pb.h"
-#include "parsed/line.pb.h"
+#include "common/line.h"
+#include "common/part.h"
+#include "common/time.h"
+#include "common/unknown.h"
+#include "common/word.h"
 
 namespace music_lyric_model::parsed {
 	/**
-	 * Creates a normal line wrapped in a Line.
+	 * Background vocal line attached to a normal line.
 	 */
-	lyric::parsed::Line makeParsedLineNormal(const lyric::parsed::LineNormal& normal = {});
+	struct LineBackground {
+		std::unordered_map<std::string, std::string> extra;
+		std::optional<common::Time>                  time;
+		std::vector<std::string>                     agents;
+		std::vector<std::string>                     languages;
+		std::vector<common::Word>                    words;
+		std::optional<common::LineAnnotation>        annotation;
+	};
 
 	/**
-	 * Creates a LineBackground.
+	 * Primary lyric line body.
 	 */
-	lyric::parsed::LineBackground makeParsedLineBackground(const lyric::parsed::LineBackground& background = {});
+	struct LineNormal {
+		std::unordered_map<std::string, std::string> extra;
+		std::optional<common::Time>                  time;
+		std::optional<common::Part>                  part;
+		std::vector<std::string>                     agents;
+		std::vector<std::string>                     languages;
+		std::vector<common::Word>                    words;
+		std::optional<common::LineAnnotation>        annotation;
+		std::vector<LineBackground>                  backgrounds;
+	};
+
+	/**
+	 * An instrumental gap derived after parsing.
+	 */
+	struct LineInterlude {
+		std::unordered_map<std::string, std::string> extra;
+		std::optional<common::Time>                  time;
+	};
+
+	/**
+	 * A lyric line; exactly one body variant must be set.
+	 */
+	using Line = std::variant<LineNormal, LineInterlude>;
+
+	/**
+	 * Creates a normal line wrapped in a Line.
+	 */
+	Line makeParsedLineNormal(LineNormal normal = {});
 
 	/**
 	 * Creates an interlude wrapped in a Line.
 	 */
-	lyric::parsed::Line makeParsedLineInterlude(const lyric::parsed::LineInterlude& interlude = {});
+	Line makeParsedLineInterlude(LineInterlude interlude = {});
 
 	/**
 	 * Whether a Line holds a normal line.
 	 */
-	bool isParsedLineNormal(const lyric::parsed::Line& line);
+	bool isParsedLineNormal(const Line& line);
 
 	/**
 	 * Whether a Line holds an interlude.
 	 */
-	bool isParsedLineInterlude(const lyric::parsed::Line& line);
+	bool isParsedLineInterlude(const Line& line);
 
 	/**
 	 * Normal body of a line, null when it holds something else.
 	 */
-	const lyric::parsed::LineNormal* asParsedLineNormal(const lyric::parsed::Line& line);
+	const LineNormal* asParsedLineNormal(const Line& line);
 
 	/**
 	 * Interlude body of a line, null when it holds something else.
 	 */
-	const lyric::parsed::LineInterlude* asParsedLineInterlude(const lyric::parsed::Line& line);
+	const LineInterlude* asParsedLineInterlude(const Line& line);
 
 	/**
 	 * Time range of a line wrapper, null when absent.
 	 */
-	const lyric::common::Time* getParsedLineTime(const lyric::parsed::Line& line);
+	const common::Time* getParsedLineTime(const Line& line);
 
 	/**
 	 * Time range of a normal body, null when absent.
 	 */
-	const lyric::common::Time* getParsedLineTime(const lyric::parsed::LineNormal& line);
+	const common::Time* getParsedLineTime(const LineNormal& line);
 
 	/**
 	 * Time range of a background line, null when absent.
 	 */
-	const lyric::common::Time* getParsedLineTime(const lyric::parsed::LineBackground& line);
+	const common::Time* getParsedLineTime(const LineBackground& line);
 
 	/**
 	 * Time range of an interlude body, null when absent.
 	 */
-	const lyric::common::Time* getParsedLineTime(const lyric::parsed::LineInterlude& line);
+	const common::Time* getParsedLineTime(const LineInterlude& line);
 
 	/**
 	 * Duration of a line wrapper in milliseconds.
 	 */
-	int64_t getParsedLineDuration(const lyric::parsed::Line& line);
+	int64_t getParsedLineDuration(const Line& line);
 
 	/**
 	 * Duration of a normal body in milliseconds.
 	 */
-	int64_t getParsedLineDuration(const lyric::parsed::LineNormal& line);
+	int64_t getParsedLineDuration(const LineNormal& line);
 
 	/**
 	 * Duration of a background line in milliseconds.
 	 */
-	int64_t getParsedLineDuration(const lyric::parsed::LineBackground& line);
+	int64_t getParsedLineDuration(const LineBackground& line);
 
 	/**
 	 * Duration of an interlude body in milliseconds.
 	 */
-	int64_t getParsedLineDuration(const lyric::parsed::LineInterlude& line);
+	int64_t getParsedLineDuration(const LineInterlude& line);
 
 	/**
 	 * Words of a line wrapper; empty for an interlude.
 	 */
-	const google::protobuf::RepeatedPtrField<lyric::common::Word>& getParsedLineWords(const lyric::parsed::Line& line);
+	const std::vector<common::Word>& getParsedLineWords(const Line& line);
 
 	/**
 	 * Words of a normal body.
 	 */
-	const google::protobuf::RepeatedPtrField<lyric::common::Word>& getParsedLineWords(const lyric::parsed::LineNormal& line);
+	const std::vector<common::Word>& getParsedLineWords(const LineNormal& line);
 
 	/**
 	 * Words of a background line.
 	 */
-	const google::protobuf::RepeatedPtrField<lyric::common::Word>& getParsedLineWords(const lyric::parsed::LineBackground& line);
+	const std::vector<common::Word>& getParsedLineWords(const LineBackground& line);
 
 	/**
 	 * Plain text of a line wrapper.
 	 */
-	std::string getParsedLineText(const lyric::parsed::Line& line);
+	std::string getParsedLineText(const Line& line);
 
 	/**
 	 * Plain text of a normal body.
 	 */
-	std::string getParsedLineText(const lyric::parsed::LineNormal& line);
+	std::string getParsedLineText(const LineNormal& line);
 
 	/**
 	 * Plain text of a background line.
 	 */
-	std::string getParsedLineText(const lyric::parsed::LineBackground& line);
+	std::string getParsedLineText(const LineBackground& line);
 
 	/**
 	 * Languages of a line: explicit tags when present, otherwise those of its words.
 	 * Empty for an interlude wrapper.
 	 */
-	std::vector<std::string> getParsedLineLanguages(const lyric::parsed::Line& line);
+	std::vector<std::string> getParsedLineLanguages(const Line& line);
 
 	/**
 	 * Languages of a normal body: explicit tags when present, otherwise those of its words.
 	 */
-	std::vector<std::string> getParsedLineLanguages(const lyric::parsed::LineNormal& line);
+	std::vector<std::string> getParsedLineLanguages(const LineNormal& line);
 
 	/**
 	 * Languages of a background line: explicit tags when present, otherwise those of its words.
 	 */
-	std::vector<std::string> getParsedLineLanguages(const lyric::parsed::LineBackground& line);
+	std::vector<std::string> getParsedLineLanguages(const LineBackground& line);
 
 	/**
 	 * Annotation of a line wrapper; null on an interlude.
 	 */
-	const lyric::common::LineAnnotation* getParsedLineAnnotation(const lyric::parsed::Line& line);
+	const common::LineAnnotation* getParsedLineAnnotation(const Line& line);
 
 	/**
 	 * Annotation of a normal body; null when absent.
 	 */
-	const lyric::common::LineAnnotation* getParsedLineAnnotation(const lyric::parsed::LineNormal& line);
+	const common::LineAnnotation* getParsedLineAnnotation(const LineNormal& line);
 
 	/**
 	 * Annotation of a background line; null when absent.
 	 */
-	const lyric::common::LineAnnotation* getParsedLineAnnotation(const lyric::parsed::LineBackground& line);
+	const common::LineAnnotation* getParsedLineAnnotation(const LineBackground& line);
 
 	/**
 	 * Index of the line active at the given moment, or -1 when none.
 	 */
-	int getParsedActiveLineIndex(const google::protobuf::RepeatedPtrField<lyric::parsed::Line>& lines, int64_t ms);
+	int getParsedActiveLineIndex(const std::vector<Line>& lines, int64_t ms);
 
 	/**
 	 * Line active at the given moment, null when none.
 	 */
-	const lyric::parsed::Line* getParsedActiveLine(const google::protobuf::RepeatedPtrField<lyric::parsed::Line>& lines, int64_t ms);
+	const Line* getParsedActiveLine(const std::vector<Line>& lines, int64_t ms);
 
 	/**
 	 * Translated text of a line wrapper, preferring a language match.
 	 */
-	std::optional<std::string> getParsedLineTranslation(const lyric::parsed::Line& line, const std::optional<std::string>& language = std::nullopt);
+	std::optional<std::string> getParsedLineTranslation(const Line& line, const std::optional<std::string>& language = std::nullopt);
 
 	/**
 	 * Translated text of a normal body, preferring a language match.
 	 */
-	std::optional<std::string> getParsedLineTranslation(const lyric::parsed::LineNormal& line, const std::optional<std::string>& language = std::nullopt);
+	std::optional<std::string> getParsedLineTranslation(const LineNormal& line, const std::optional<std::string>& language = std::nullopt);
 
 	/**
 	 * Translated text of a background line, preferring a language match.
 	 */
-	std::optional<std::string> getParsedLineTranslation(const lyric::parsed::LineBackground& line, const std::optional<std::string>& language = std::nullopt);
+	std::optional<std::string> getParsedLineTranslation(const LineBackground& line, const std::optional<std::string>& language = std::nullopt);
 
 	/**
 	 * Romanized text of a line wrapper, preferring a language match.
 	 */
-	std::optional<std::string> getParsedLineRoman(const lyric::parsed::Line& line, const std::optional<std::string>& language = std::nullopt);
+	std::optional<std::string> getParsedLineRoman(const Line& line, const std::optional<std::string>& language = std::nullopt);
 
 	/**
 	 * Romanized text of a normal body, preferring a language match.
 	 */
-	std::optional<std::string> getParsedLineRoman(const lyric::parsed::LineNormal& line, const std::optional<std::string>& language = std::nullopt);
+	std::optional<std::string> getParsedLineRoman(const LineNormal& line, const std::optional<std::string>& language = std::nullopt);
 
 	/**
 	 * Romanized text of a background line, preferring a language match.
 	 */
-	std::optional<std::string> getParsedLineRoman(const lyric::parsed::LineBackground& line, const std::optional<std::string>& language = std::nullopt);
+	std::optional<std::string> getParsedLineRoman(const LineBackground& line, const std::optional<std::string>& language = std::nullopt);
 
 	/**
 	 * Line romanizations aggregated from word annotations, grouped by language.
-	 * Display-time only; does not write back into the line message.
+	 * Display-time only; does not write back into the line.
 	 */
-	std::vector<lyric::common::LineAnnotationRoman> deriveParsedLineRomans(const google::protobuf::RepeatedPtrField<lyric::common::Word>& words);
+	std::vector<common::LineAnnotationRoman> deriveParsedLineRomans(const std::vector<common::Word>& words);
 
 	/**
 	 * Line translations aggregated from word annotations, grouped by language.
-	 * Display-time only; does not write back into the line message.
+	 * Display-time only; does not write back into the line.
 	 */
-	std::vector<lyric::common::LineAnnotationTranslation> deriveParsedLineTranslations(const google::protobuf::RepeatedPtrField<lyric::common::Word>& words);
+	std::vector<common::LineAnnotationTranslation> deriveParsedLineTranslations(const std::vector<common::Word>& words);
 
 	/**
 	 * Line unknown annotations aggregated from word annotations, grouped by original key.
-	 * Display-time only; does not write back into the line message.
+	 * Display-time only; does not write back into the line.
 	 */
-	std::vector<lyric::common::Unknown> deriveParsedLineUnknowns(const google::protobuf::RepeatedPtrField<lyric::common::Word>& words);
+	std::vector<common::Unknown> deriveParsedLineUnknowns(const std::vector<common::Word>& words);
 
 	/**
 	 * Build a LineAnnotation by aggregating word annotations for display.
-	 * Does not write back into the line message.
+	 * Does not write back into the line.
 	 */
-	lyric::common::LineAnnotation deriveParsedLineAnnotation(const google::protobuf::RepeatedPtrField<lyric::common::Word>& words);
+	common::LineAnnotation deriveParsedLineAnnotation(const std::vector<common::Word>& words);
 } // namespace music_lyric_model::parsed
 
 #endif

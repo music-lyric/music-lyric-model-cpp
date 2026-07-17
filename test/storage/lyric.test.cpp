@@ -14,131 +14,116 @@ namespace {
 	/**
 	 * Build a Lyric with two lines referencing agents by id.
 	 */
-	lyric::storage::Lyric buildLyric() {
-		lyric::storage::Lyric init;
+	Lyric buildLyric() {
+		Lyric init;
+		AgentItem a1;
+		a1.id    = "a1";
+		a1.names = {"Alice"};
+		AgentItem a2;
+		a2.id    = "a2";
+		a2.names = {"Bob"};
+		init.agents = {a1, a2};
 
-		lyric::common::AgentItem a1;
-		a1.set_id("a1");
-		a1.add_names("Alice");
-		*init.add_agents() = makeAgentItem(a1);
+		Line first;
+		first.time   = Time{1000, 2000};
+		first.agents = {"a1", "a2"};
+		WordNormal hello;
+		hello.content  = "hello";
+		hello.language = "en";
+		first.words    = {makeWordNormal(hello)};
+		init.lines.push_back(first);
 
-		lyric::common::AgentItem a2;
-		a2.set_id("a2");
-		a2.add_names("Bob");
-		*init.add_agents() = makeAgentItem(a2);
-
-		lyric::storage::Line first;
-		first.mutable_time()->set_start(1000);
-		first.mutable_time()->set_end(2000);
-		first.add_agents("a1");
-		first.add_agents("a2");
-		lyric::common::WordNormal hello;
-		hello.set_content("hello");
-		hello.set_language("en");
-		*first.add_words() = makeWordNormal(hello);
-		*init.add_lines() = makeStorageLine(first);
-
-		lyric::storage::Line second;
-		second.mutable_time()->set_start(2000);
-		second.mutable_time()->set_end(3000);
-		second.add_agents("a1");
-		lyric::common::WordNormal world;
-		world.set_content("world");
-		*second.add_words() = makeWordNormal(world);
-		*init.add_lines() = makeStorageLine(second);
+		Line second;
+		second.time   = Time{2000, 3000};
+		second.agents = {"a1"};
+		WordNormal world;
+		world.content = "world";
+		second.words  = {makeWordNormal(world)};
+		init.lines.push_back(second);
 
 		return makeStorageLyric(init);
 	}
 } // namespace
 
-TEST_CASE("storage proto namespace exports generated types") {
-	music_lyric_model::storage::proto::Lyric lyric;
-	lyric.set_version("x");
-	CHECK(lyric.version() == "x");
-}
-
 TEST_CASE("makeStorageLyric stamps the schema version") {
-	CHECK(std::string(makeStorageLyric().version()) == SCHEMA_VERSION);
-	lyric::storage::Lyric init;
-	init.set_version("0.0.1");
-	CHECK(std::string(makeStorageLyric(init).version()) == SCHEMA_VERSION);
+	CHECK(makeStorageLyric().version == SCHEMA_VERSION);
+	Lyric init;
+	init.version = "0.0.1";
+	CHECK(makeStorageLyric(init).version == SCHEMA_VERSION);
 }
 
 TEST_CASE("line time, plain text and multi-agent resolution") {
-	const lyric::storage::Lyric lyric = buildLyric();
-	const lyric::storage::Line& first = lyric.lines(0);
-	CHECK(getStorageLineTime(first)->start() == 1000);
+	const Lyric lyric = buildLyric();
+	const Line& first = lyric.lines[0];
+	CHECK(getStorageLineTime(first)->start == 1000);
 	CHECK(getStorageLineDuration(first) == 1000);
 	CHECK(getStorageLineText(first) == "hello");
 	CHECK(getStorageLineLanguages(first) == std::vector<std::string>{"en"});
-	const auto agents = resolveLineAgents(lyric.agents(), first);
+	const auto agents = resolveLineAgents(lyric.agents, first);
 	REQUIRE(agents.size() == 2);
-	CHECK(agents[0]->id() == "a1");
-	CHECK(agents[1]->id() == "a2");
+	CHECK(agents[0]->id == "a1");
+	CHECK(agents[1]->id == "a2");
 }
 
 TEST_CASE("agent line counts and primary agent") {
-	const lyric::storage::Lyric lyric  = buildLyric();
-	const auto                  counts = getAgentLineCounts(lyric.lines());
+	const Lyric lyric  = buildLyric();
+	const auto  counts = getAgentLineCounts(lyric.lines);
 	CHECK(counts.at("a1") == 2);
 	CHECK(counts.at("a2") == 1);
-	CHECK(getPrimaryAgent(lyric.agents(), lyric.lines())->id() == "a1");
+	CHECK(getPrimaryAgent(lyric.agents, lyric.lines)->id == "a1");
 }
 
 TEST_CASE("binary and json round-trip preserve content") {
-	const lyric::storage::Lyric lyric      = buildLyric();
-	const lyric::storage::Lyric fromBinary = decodeStorageLyric(encodeStorageLyric(lyric));
-	CHECK(getStorageLineText(fromBinary.lines(0)) == "hello");
-	const lyric::storage::Lyric fromJson = storageLyricFromJson(storageLyricToJson(lyric));
-	CHECK(getStorageLineText(fromJson.lines(1)) == "world");
+	const Lyric lyric      = buildLyric();
+	const Lyric fromBinary = decodeStorageLyric(encodeStorageLyric(lyric));
+	CHECK(getStorageLineText(fromBinary.lines[0]) == "hello");
+	const Lyric fromJson = storageLyricFromJson(storageLyricToJson(lyric));
+	CHECK(getStorageLineText(fromJson.lines[1]) == "world");
 }
 
 TEST_CASE("sortStorageLinesByTime orders ascending including backgrounds") {
-	lyric::storage::Lyric lyric = buildLyric();
+	Lyric lyric = buildLyric();
 
-	lyric::storage::Line late;
-	late.mutable_time()->set_start(4000);
-	late.mutable_time()->set_end(5000);
-	lyric::storage::LineBackground bgLate;
-	bgLate.mutable_time()->set_start(4500);
-	bgLate.mutable_time()->set_end(4600);
-	lyric::storage::LineBackground bgEarly;
-	bgEarly.mutable_time()->set_start(4100);
-	bgEarly.mutable_time()->set_end(4200);
-	*late.add_backgrounds() = makeStorageLineBackground(bgLate);
-	*late.add_backgrounds() = makeStorageLineBackground(bgEarly);
-	*lyric.add_lines()      = makeStorageLine(late);
+	Line late;
+	late.time = Time{4000, 5000};
+	LineBackground bgLate;
+	bgLate.time = Time{4500, 4600};
+	LineBackground bgEarly;
+	bgEarly.time = Time{4100, 4200};
+	late.backgrounds.push_back(bgLate);
+	late.backgrounds.push_back(bgEarly);
+	lyric.lines.push_back(late);
 
-	std::reverse(lyric.mutable_lines()->begin(), lyric.mutable_lines()->end());
+	std::reverse(lyric.lines.begin(), lyric.lines.end());
 	sortStorageLinesByTime(lyric);
-	CHECK(getStorageLineTime(lyric.lines(0))->start() == 1000);
-	CHECK(getStorageLineTime(lyric.lines(2))->start() == 4000);
-	REQUIRE(lyric.lines(2).backgrounds_size() == 2);
-	CHECK(lyric.lines(2).backgrounds(0).time().start() == 4100);
-	CHECK(lyric.lines(2).backgrounds(1).time().start() == 4500);
+	CHECK(getStorageLineTime(lyric.lines[0])->start == 1000);
+	CHECK(getStorageLineTime(lyric.lines[2])->start == 4000);
+	REQUIRE(lyric.lines[2].backgrounds.size() == 2);
+	CHECK(lyric.lines[2].backgrounds[0].time->start == 4100);
+	CHECK(lyric.lines[2].backgrounds[1].time->start == 4500);
 }
 
 TEST_CASE("getStorageActiveLine picks the timed line covering the moment") {
-	const lyric::storage::Lyric lyric = buildLyric();
-	CHECK(getStorageActiveLineIndex(lyric.lines(), 1500) == 0);
-	CHECK(getStorageActiveLine(lyric.lines(), 2500) == &lyric.lines(1));
-	CHECK(getStorageActiveLineIndex(lyric.lines(), 50) == -1);
-	CHECK(getStorageActiveLine(lyric.lines(), 50) == nullptr);
+	const Lyric lyric = buildLyric();
+	CHECK(getStorageActiveLineIndex(lyric.lines, 1500) == 0);
+	CHECK(getStorageActiveLine(lyric.lines, 2500) == &lyric.lines[1]);
+	CHECK(getStorageActiveLineIndex(lyric.lines, 50) == -1);
+	CHECK(getStorageActiveLine(lyric.lines, 50) == nullptr);
 }
 
 TEST_CASE("getStorageLineTranslation and getStorageLineRoman read line annotations") {
-	lyric::common::LineAnnotationTranslation translation;
-	translation.set_language("en");
-	translation.set_content("hello");
-	lyric::common::LineAnnotationRoman roman;
-	roman.set_language("romaji");
-	roman.set_content("konnichiwa");
-	lyric::common::LineAnnotation annotation;
-	*annotation.add_translations() = makeLineAnnotationTranslation(translation);
-	*annotation.add_romans()       = makeLineAnnotationRoman(roman);
+	LineAnnotation annotation;
+	LineAnnotationTranslation translation;
+	translation.language = "en";
+	translation.content  = "hello";
+	annotation.translations.push_back(translation);
+	LineAnnotationRoman roman;
+	roman.language = "romaji";
+	roman.content  = "konnichiwa";
+	annotation.romans.push_back(roman);
 
-	lyric::storage::Line line;
-	*line.mutable_annotation() = makeLineAnnotation(annotation);
+	Line line;
+	line.annotation = annotation;
 	CHECK(*getStorageLineTranslation(line, std::string("en")) == "hello");
 	CHECK(*getStorageLineRoman(line, std::string("romaji")) == "konnichiwa");
 }

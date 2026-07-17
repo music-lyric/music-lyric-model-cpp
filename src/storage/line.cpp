@@ -9,109 +9,101 @@ namespace music_lyric_model::storage {
 		/**
 		 * Translation content from an annotation, preferring a language match.
 		 */
-		std::optional<std::string> translationOf(const lyric::common::LineAnnotation* annotation, const std::optional<std::string>& language) {
+		std::optional<std::string> translationOf(const common::LineAnnotation* annotation, const std::optional<std::string>& language) {
 			if (!annotation) {
 				return std::nullopt;
 			}
-			const lyric::common::LineAnnotationTranslation* item = common::getFirstAnnotation(annotation->translations(), language);
-			return item ? std::optional<std::string>(item->content()) : std::nullopt;
+			const common::LineAnnotationTranslation* item = common::getFirstAnnotation(annotation->translations, language);
+			return item ? std::optional<std::string>(item->content) : std::nullopt;
 		}
 
 		/**
 		 * Roman content from an annotation, preferring a language match.
 		 */
-		std::optional<std::string> romanOf(const lyric::common::LineAnnotation* annotation, const std::optional<std::string>& language) {
+		std::optional<std::string> romanOf(const common::LineAnnotation* annotation, const std::optional<std::string>& language) {
 			if (!annotation) {
 				return std::nullopt;
 			}
-			const lyric::common::LineAnnotationRoman* item = common::getFirstAnnotation(annotation->romans(), language);
-			return item ? std::optional<std::string>(item->content()) : std::nullopt;
+			const common::LineAnnotationRoman* item = common::getFirstAnnotation(annotation->romans, language);
+			return item ? std::optional<std::string>(item->content) : std::nullopt;
 		}
 	} // namespace
 
-	lyric::storage::Line makeStorageLine(const lyric::storage::Line& line) {
-		return line;
+	const common::Time* getStorageLineTime(const Line& line) {
+		return line.time.has_value() ? &*line.time : nullptr;
 	}
 
-	lyric::storage::LineBackground makeStorageLineBackground(const lyric::storage::LineBackground& background) {
-		return background;
+	const common::Time* getStorageLineTime(const LineBackground& line) {
+		return line.time.has_value() ? &*line.time : nullptr;
 	}
 
-	const lyric::common::Time* getStorageLineTime(const lyric::storage::Line& line) {
-		return line.has_time() ? &line.time() : nullptr;
-	}
-
-	const lyric::common::Time* getStorageLineTime(const lyric::storage::LineBackground& line) {
-		return line.has_time() ? &line.time() : nullptr;
-	}
-
-	int64_t getStorageLineDuration(const lyric::storage::Line& line) {
+	int64_t getStorageLineDuration(const Line& line) {
 		return common::getTimeDuration(getStorageLineTime(line));
 	}
 
-	int64_t getStorageLineDuration(const lyric::storage::LineBackground& line) {
+	int64_t getStorageLineDuration(const LineBackground& line) {
 		return common::getTimeDuration(getStorageLineTime(line));
 	}
 
-	const google::protobuf::RepeatedPtrField<lyric::common::Word>& getStorageLineWords(const lyric::storage::Line& line) {
-		return line.words();
+	const std::vector<common::Word>& getStorageLineWords(const Line& line) {
+		return line.words;
 	}
 
-	const google::protobuf::RepeatedPtrField<lyric::common::Word>& getStorageLineWords(const lyric::storage::LineBackground& line) {
-		return line.words();
+	const std::vector<common::Word>& getStorageLineWords(const LineBackground& line) {
+		return line.words;
 	}
 
-	std::string getStorageLineText(const lyric::storage::Line& line) {
+	std::string getStorageLineText(const Line& line) {
 		return common::getWordsText(getStorageLineWords(line));
 	}
 
-	std::string getStorageLineText(const lyric::storage::LineBackground& line) {
+	std::string getStorageLineText(const LineBackground& line) {
 		return common::getWordsText(getStorageLineWords(line));
 	}
 
-	std::vector<std::string> getStorageLineLanguages(const lyric::storage::Line& line) {
+	std::vector<std::string> getStorageLineLanguages(const Line& line) {
 		return common::getWordsLanguages(getStorageLineWords(line));
 	}
 
-	std::vector<std::string> getStorageLineLanguages(const lyric::storage::LineBackground& line) {
+	std::vector<std::string> getStorageLineLanguages(const LineBackground& line) {
 		return common::getWordsLanguages(getStorageLineWords(line));
 	}
 
-	const lyric::common::LineAnnotation* getStorageLineAnnotation(const lyric::storage::Line& line) {
-		return line.has_annotation() ? &line.annotation() : nullptr;
+	const common::LineAnnotation* getStorageLineAnnotation(const Line& line) {
+		return line.annotation.has_value() ? &*line.annotation : nullptr;
 	}
 
-	const lyric::common::LineAnnotation* getStorageLineAnnotation(const lyric::storage::LineBackground& line) {
-		return line.has_annotation() ? &line.annotation() : nullptr;
+	const common::LineAnnotation* getStorageLineAnnotation(const LineBackground& line) {
+		return line.annotation.has_value() ? &*line.annotation : nullptr;
 	}
 
-	int getStorageActiveLineIndex(const google::protobuf::RepeatedPtrField<lyric::storage::Line>& lines, int64_t ms) {
-		for (int i = 0, len = lines.size(); i < len; i++) {
-			if (common::isTimeActive(getStorageLineTime(lines.Get(i)), ms)) {
+	int getStorageActiveLineIndex(const std::vector<Line>& lines, int64_t ms) {
+		for (int i = 0, len = static_cast<int>(lines.size()); i < len; i++) {
+			if (common::isTimeActive(getStorageLineTime(lines[static_cast<size_t>(i)]), ms)) {
 				return i;
 			}
 		}
 		return -1;
 	}
 
-	const lyric::storage::Line* getStorageActiveLine(const google::protobuf::RepeatedPtrField<lyric::storage::Line>& lines, int64_t ms) {
+	const Line* getStorageActiveLine(const std::vector<Line>& lines, int64_t ms) {
 		const int index = getStorageActiveLineIndex(lines, ms);
-		return index == -1 ? nullptr : &lines.Get(index);
+		return index == -1 ? nullptr : &lines[static_cast<size_t>(index)];
 	}
 
-	std::optional<std::string> getStorageLineTranslation(const lyric::storage::Line& line, const std::optional<std::string>& language) {
+	std::optional<std::string> getStorageLineTranslation(const Line& line, const std::optional<std::string>& language) {
 		return translationOf(getStorageLineAnnotation(line), language);
 	}
 
-	std::optional<std::string> getStorageLineTranslation(const lyric::storage::LineBackground& line, const std::optional<std::string>& language) {
+	std::optional<std::string> getStorageLineTranslation(const LineBackground& line, const std::optional<std::string>& language) {
 		return translationOf(getStorageLineAnnotation(line), language);
 	}
 
-	std::optional<std::string> getStorageLineRoman(const lyric::storage::Line& line, const std::optional<std::string>& language) {
+	std::optional<std::string> getStorageLineRoman(const Line& line, const std::optional<std::string>& language) {
 		return romanOf(getStorageLineAnnotation(line), language);
 	}
 
-	std::optional<std::string> getStorageLineRoman(const lyric::storage::LineBackground& line, const std::optional<std::string>& language) {
+	std::optional<std::string> getStorageLineRoman(const LineBackground& line, const std::optional<std::string>& language) {
 		return romanOf(getStorageLineAnnotation(line), language);
 	}
 } // namespace music_lyric_model::storage
