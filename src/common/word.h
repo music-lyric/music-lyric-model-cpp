@@ -1,12 +1,12 @@
 #ifndef MUSIC_LYRIC_MODEL_COMMON_WORD_H_
 #define MUSIC_LYRIC_MODEL_COMMON_WORD_H_
 
-#include "model/common/word.gen.h"
-
 #include <cstdint>
 #include <optional>
 #include <string>
 #include <vector>
+
+#include "model/common/word.gen.h"
 
 namespace music_lyric_model::common {
 	/**

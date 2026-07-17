@@ -9,10 +9,10 @@ using namespace music_lyric_model::common;
 TEST_CASE("asWordNormal and asWordSpace unwrap the matching variant") {
 	WordNormal normalInit;
 	normalInit.content = "hi";
-	const Word normal = makeWordNormal(normalInit);
+	const Word normal  = makeWordNormal(normalInit);
 
 	WordSpace spaceInit;
-	spaceInit.count = 2;
+	spaceInit.count  = 2;
 	const Word space = makeWordSpace(spaceInit);
 
 	CHECK(isWordNormal(normal) == true);
@@ -25,8 +25,8 @@ TEST_CASE("asWordNormal and asWordSpace unwrap the matching variant") {
 
 TEST_CASE("getWordTime and getWordDuration accept a Word or a bare WordNormal") {
 	WordNormal normalInit;
-	normalInit.content = "hi";
-	normalInit.time    = Time{1000, 1500};
+	normalInit.content       = "hi";
+	normalInit.time          = Time{1000, 1500};
 	const Word        word   = makeWordNormal(normalInit);
 	const WordNormal* normal = asWordNormal(word);
 
@@ -38,7 +38,7 @@ TEST_CASE("getWordTime and getWordDuration accept a Word or a bare WordNormal") 
 
 TEST_CASE("getWordTime is null and getWordDuration zero for a space") {
 	WordSpace spaceInit;
-	spaceInit.count = 1;
+	spaceInit.count  = 1;
 	const Word space = makeWordSpace(spaceInit);
 
 	CHECK(getWordTime(space) == nullptr);
@@ -51,7 +51,7 @@ TEST_CASE("getWordsText joins rendered word text") {
 	WordSpace space;
 	space.count = 2;
 	WordNormal b;
-	b.content = "!";
+	b.content                     = "!";
 	const std::vector<Word> words = {
 		makeWordNormal(a),
 		makeWordSpace(space),
@@ -72,8 +72,8 @@ TEST_CASE("getWordsLanguages returns distinct tags in first-seen order") {
 	b.content  = "b";
 	b.language = "en";
 	WordNormal c;
-	c.content  = "c";
-	c.language = "ja";
+	c.content                     = "c";
+	c.language                    = "ja";
 	const std::vector<Word> words = {
 		makeWordNormal(a),
 		makeWordSpace(space),
@@ -94,8 +94,8 @@ TEST_CASE("getActiveWord picks the timed word covering the moment") {
 	WordSpace space;
 	space.count = 1;
 	WordNormal second;
-	second.content = "b";
-	second.time    = Time{200, 300};
+	second.content                = "b";
+	second.time                   = Time{200, 300};
 	const std::vector<Word> words = {
 		makeWordNormal(first),
 		makeWordSpace(space),
@@ -109,7 +109,7 @@ TEST_CASE("getActiveWord picks the timed word covering the moment") {
 }
 
 TEST_CASE("getWordRubies and getWordAnnotationText read annotation tokens") {
-	WordAnnotationRuby ruby;
+	WordAnnotationRuby    ruby;
 	WordAnnotationContent token;
 	token.content = "kyou";
 	ruby.words.push_back(token);

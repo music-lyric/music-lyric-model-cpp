@@ -1,8 +1,6 @@
 #ifndef MUSIC_LYRIC_MODEL_STORAGE_LINE_H_
 #define MUSIC_LYRIC_MODEL_STORAGE_LINE_H_
 
-#include "model/storage/line.gen.h"
-
 #include <cstdint>
 #include <optional>
 #include <string>
@@ -11,6 +9,7 @@
 #include "common/line.h"
 #include "common/time.h"
 #include "common/word.h"
+#include "model/storage/line.gen.h"
 
 namespace music_lyric_model::storage {
 	/**

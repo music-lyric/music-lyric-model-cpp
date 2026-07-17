@@ -3,8 +3,8 @@
 #include <algorithm>
 #include <stdexcept>
 
-#include "google/protobuf/util/json_util.h"
 #include "bridge/parsed/info.gen.h"
+#include "google/protobuf/util/json_util.h"
 #include "parsed/info.pb.h"
 #include "parsed/line.h"
 #include "version.h"

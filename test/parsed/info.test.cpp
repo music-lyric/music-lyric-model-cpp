@@ -15,11 +15,11 @@ namespace {
 	 * Build an Info with two timed lines and a trailing interlude.
 	 */
 	Info buildInfo() {
-		Info init;
+		Info      init;
 		AgentItem a1;
 		a1.id = "a1";
 		AgentItem a2;
-		a2.id = "a2";
+		a2.id       = "a2";
 		init.agents = {a1, a2};
 
 		LineNormal first;
@@ -76,7 +76,7 @@ TEST_CASE("line guards and plain text read the body") {
 }
 
 TEST_CASE("agent line counts and primary agent over normal bodies") {
-	const Info info = buildInfo();
+	const Info              info = buildInfo();
 	std::vector<LineNormal> normals;
 	for (const auto& line : info.lines) {
 		if (const LineNormal* normal = asParsedLineNormal(line)) {

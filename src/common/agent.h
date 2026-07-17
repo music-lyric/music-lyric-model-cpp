@@ -1,13 +1,13 @@
 #ifndef MUSIC_LYRIC_MODEL_COMMON_AGENT_H_
 #define MUSIC_LYRIC_MODEL_COMMON_AGENT_H_
 
-#include "model/common/agent.gen.h"
-
 #include <cstdint>
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
+
+#include "model/common/agent.gen.h"
 
 namespace music_lyric_model::common {
 	/**
@@ -67,7 +67,7 @@ namespace music_lyric_model::common {
 	const AgentItem* getPrimaryAgent(const std::vector<AgentItem>& agents, const Lines& lines) {
 		const std::unordered_map<std::string, uint32_t> counts = getAgentLineCounts(lines);
 		const AgentItem*                                result = nullptr;
-		uint32_t                                         best   = 0;
+		uint32_t                                        best   = 0;
 		for (const auto& agent : agents) {
 			const auto     it    = counts.find(agent.id);
 			const uint32_t count = it != counts.end() ? it->second : 0;

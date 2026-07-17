@@ -15,13 +15,13 @@ namespace {
 	 * Build a Lyric with two lines referencing agents by id.
 	 */
 	Lyric buildLyric() {
-		Lyric init;
+		Lyric     init;
 		AgentItem a1;
 		a1.id    = "a1";
 		a1.names = {"Alice"};
 		AgentItem a2;
-		a2.id    = "a2";
-		a2.names = {"Bob"};
+		a2.id       = "a2";
+		a2.names    = {"Bob"};
 		init.agents = {a1, a2};
 
 		Line first;
@@ -112,7 +112,7 @@ TEST_CASE("getStorageActiveLine picks the timed line covering the moment") {
 }
 
 TEST_CASE("getStorageLineTranslation and getStorageLineRoman read line annotations") {
-	LineAnnotation annotation;
+	LineAnnotation            annotation;
 	LineAnnotationTranslation translation;
 	translation.language = "en";
 	translation.content  = "hello";

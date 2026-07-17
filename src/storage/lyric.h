@@ -1,11 +1,11 @@
 #ifndef MUSIC_LYRIC_MODEL_STORAGE_LYRIC_H_
 #define MUSIC_LYRIC_MODEL_STORAGE_LYRIC_H_
 
-#include "model/storage/lyric.gen.h"
-
 #include <cstdint>
 #include <string>
 #include <vector>
+
+#include "model/storage/lyric.gen.h"
 
 namespace music_lyric_model::storage {
 	/**

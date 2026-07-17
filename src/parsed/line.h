@@ -1,8 +1,6 @@
 #ifndef MUSIC_LYRIC_MODEL_PARSED_LINE_H_
 #define MUSIC_LYRIC_MODEL_PARSED_LINE_H_
 
-#include "model/parsed/line.gen.h"
-
 #include <cstdint>
 #include <optional>
 #include <string>
@@ -12,6 +10,7 @@
 #include "common/time.h"
 #include "common/unknown.h"
 #include "common/word.h"
+#include "model/parsed/line.gen.h"
 
 namespace music_lyric_model::parsed {
 	/**

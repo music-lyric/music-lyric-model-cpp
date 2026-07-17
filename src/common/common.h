@@ -4,9 +4,9 @@
 #include "agent.h"
 #include "line.h"
 #include "meta.h"
+#include "model/common/timing.gen.h"
 #include "part.h"
 #include "time.h"
-#include "model/common/timing.gen.h"
 #include "unknown.h"
 #include "word.h"
 

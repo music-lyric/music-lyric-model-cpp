@@ -26,8 +26,8 @@ TEST_CASE("getMetaText prefers a language match then falls back") {
 	zh.language = "zh";
 	zh.content  = "title-zh";
 	MetaText en;
-	en.language = "en";
-	en.content  = "title";
+	en.language                       = "en";
+	en.content                        = "title";
 	const std::vector<MetaText> items = {zh, en};
 
 	CHECK(*getMetaText(items, std::string("en")) == "title");
@@ -37,12 +37,14 @@ TEST_CASE("getMetaText prefers a language match then falls back") {
 }
 
 TEST_CASE("getMetaUnknown and getMetaReference read nested collections") {
-	const std::vector<Unknown> unknowns = {{"offset", "12"}};
+	const std::vector<Unknown> unknowns = {
+		{"offset", "12"}
+        };
 	CHECK(getMetaUnknown(unknowns, "offset") == std::vector<std::string>{"12"});
 
 	MetaReference ref;
-	ref.platform = "spotify";
-	ref.ids      = {"id-a", "id-b"};
+	ref.platform                                = "spotify";
+	ref.ids                                     = {"id-a", "id-b"};
 	const std::vector<MetaReference> references = {ref};
 	CHECK(getMetaReference(references, "spotify") == std::vector<std::string>({"id-a", "id-b"}));
 	CHECK(getMetaReference(references, "apple").empty());
@@ -59,8 +61,8 @@ TEST_CASE("getFirstAnnotation prefers a language match then falls back") {
 	zh.language = "zh";
 	zh.content  = "nihao";
 	LineAnnotationTranslation en;
-	en.language = "en";
-	en.content  = "hi";
+	en.language                                        = "en";
+	en.content                                         = "hi";
 	const std::vector<LineAnnotationTranslation> items = {zh, en};
 
 	CHECK(getFirstAnnotation(items, std::string("en"))->content == "hi");

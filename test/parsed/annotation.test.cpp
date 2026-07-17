@@ -62,7 +62,7 @@ namespace {
 
 TEST_CASE("deriveParsedLineRomans joins tokens in word order with padded spacing") {
 	WordSpace space;
-	space.count = 1;
+	space.count                   = 1;
 	const std::vector<Word> words = {
 		romanWord("A", "kyou", "romaji"),
 		makeWordSpace(space),
@@ -77,7 +77,7 @@ TEST_CASE("deriveParsedLineRomans joins tokens in word order with padded spacing
 
 TEST_CASE("deriveParsedLineTranslations aggregates word translations by language") {
 	WordSpace space;
-	space.count = 1;
+	space.count                   = 1;
 	const std::vector<Word> words = {
 		translateWord("A", "cat", "en"),
 		makeWordSpace(space),
@@ -92,7 +92,7 @@ TEST_CASE("deriveParsedLineTranslations aggregates word translations by language
 
 TEST_CASE("deriveParsedLineUnknowns and deriveParsedLineAnnotation group by key") {
 	WordSpace space;
-	space.count = 1;
+	space.count                   = 1;
 	const std::vector<Word> words = {
 		unknownWord("a", "ruby", "x"),
 		makeWordSpace(space),

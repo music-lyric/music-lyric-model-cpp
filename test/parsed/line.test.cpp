@@ -11,8 +11,8 @@ using namespace music_lyric_model::parsed;
 TEST_CASE("asParsedLineNormal and asParsedLineInterlude unwrap the matching variant") {
 	LineNormal normalInit;
 	WordNormal wordInit;
-	wordInit.content = "hi";
-	normalInit.words = {makeWordNormal(wordInit)};
+	wordInit.content     = "hi";
+	normalInit.words     = {makeWordNormal(wordInit)};
 	const Line normal    = makeParsedLineNormal(normalInit);
 	const Line interlude = makeParsedLineInterlude();
 
@@ -27,9 +27,9 @@ TEST_CASE("getParsedLineTime duration words and languages cover wrapper and bodi
 	normalInit.time      = Time{1000, 1500};
 	normalInit.languages = {"ja"};
 	WordNormal wordInit;
-	wordInit.content  = "hi";
-	wordInit.language = "en";
-	normalInit.words  = {makeWordNormal(wordInit)};
+	wordInit.content          = "hi";
+	wordInit.language         = "en";
+	normalInit.words          = {makeWordNormal(wordInit)};
 	const Line        wrapper = makeParsedLineNormal(normalInit);
 	const LineNormal* normal  = asParsedLineNormal(wrapper);
 
@@ -47,8 +47,8 @@ TEST_CASE("getParsedLineTime duration words and languages cover wrapper and bodi
 	CHECK(getParsedLineLanguages(background) == std::vector<std::string>{"en"});
 
 	LineInterlude interludeInit;
-	interludeInit.time      = Time{3000, 3500};
-	const Line    interlude = makeParsedLineInterlude(interludeInit);
+	interludeInit.time   = Time{3000, 3500};
+	const Line interlude = makeParsedLineInterlude(interludeInit);
 	CHECK(getParsedLineDuration(interlude) == 500);
 	CHECK(getParsedLineWords(interlude).empty());
 	CHECK(getParsedLineLanguages(interlude).empty());
@@ -71,7 +71,7 @@ TEST_CASE("getParsedActiveLine picks the timed line covering the moment") {
 }
 
 TEST_CASE("getParsedLineTranslation and getParsedLineRoman read line annotations") {
-	LineAnnotation annotation;
+	LineAnnotation            annotation;
 	LineAnnotationTranslation translation;
 	translation.language = "en";
 	translation.content  = "hello";

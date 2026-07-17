@@ -21,7 +21,7 @@ namespace {
 	std::vector<AgentItem> sampleAgents() {
 		return {
 			AgentItem{"a1", AgentType::Person, {"Alice"}},
-			AgentItem{"a2", AgentType::Group, {"Bob"}},
+			AgentItem{"a2", AgentType::Group,  {"Bob"}  },
 		};
 	}
 } // namespace
@@ -39,8 +39,10 @@ TEST_CASE("getAgentById and resolveAgents preserve order and skip missing ids") 
 }
 
 TEST_CASE("resolveLineAgents reads agent ids from the line") {
-	const auto                          agents   = sampleAgents();
-	const AgentLine                     line     = {{"a1", "a2"}};
+	const auto      agents = sampleAgents();
+	const AgentLine line   = {
+		{"a1", "a2"}
+        };
 	const std::vector<const AgentItem*> resolved = resolveLineAgents(agents, line);
 	REQUIRE(resolved.size() == 2);
 	CHECK(resolved[0]->id == "a1");

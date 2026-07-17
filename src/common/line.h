@@ -1,11 +1,11 @@
 #ifndef MUSIC_LYRIC_MODEL_COMMON_LINE_H_
 #define MUSIC_LYRIC_MODEL_COMMON_LINE_H_
 
-#include "model/common/line.gen.h"
-
 #include <optional>
 #include <string>
 #include <vector>
+
+#include "model/common/line.gen.h"
 
 namespace music_lyric_model::common {
 	/**

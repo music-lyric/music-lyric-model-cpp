@@ -3,9 +3,9 @@
 #include <algorithm>
 #include <stdexcept>
 
+#include "bridge/storage/lyric.gen.h"
 #include "google/protobuf/util/json_util.h"
 #include "storage/line.h"
-#include "bridge/storage/lyric.gen.h"
 #include "storage/lyric.pb.h"
 #include "version.h"
 

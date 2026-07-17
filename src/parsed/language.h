@@ -1,10 +1,10 @@
 #ifndef MUSIC_LYRIC_MODEL_PARSED_LANGUAGE_H_
 #define MUSIC_LYRIC_MODEL_PARSED_LANGUAGE_H_
 
-#include "model/parsed/language.gen.h"
-
 #include <string>
 #include <vector>
+
+#include "model/parsed/language.gen.h"
 
 namespace music_lyric_model::parsed {
 	/**

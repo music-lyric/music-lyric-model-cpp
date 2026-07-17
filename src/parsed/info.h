@@ -1,11 +1,11 @@
 #ifndef MUSIC_LYRIC_MODEL_PARSED_INFO_H_
 #define MUSIC_LYRIC_MODEL_PARSED_INFO_H_
 
-#include "model/parsed/info.gen.h"
-
 #include <cstdint>
 #include <string>
 #include <vector>
+
+#include "model/parsed/info.gen.h"
 
 namespace music_lyric_model::parsed {
 	/**

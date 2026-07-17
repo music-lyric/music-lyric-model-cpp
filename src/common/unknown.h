@@ -1,10 +1,10 @@
 #ifndef MUSIC_LYRIC_MODEL_COMMON_UNKNOWN_H_
 #define MUSIC_LYRIC_MODEL_COMMON_UNKNOWN_H_
 
-#include "model/common/unknown.gen.h"
-
 #include <string>
 #include <vector>
+
+#include "model/common/unknown.gen.h"
 
 namespace music_lyric_model::common {
 	/**

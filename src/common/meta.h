@@ -1,11 +1,11 @@
 #ifndef MUSIC_LYRIC_MODEL_COMMON_META_H_
 #define MUSIC_LYRIC_MODEL_COMMON_META_H_
 
-#include "model/common/meta.gen.h"
-
 #include <optional>
 #include <string>
 #include <vector>
+
+#include "model/common/meta.gen.h"
 
 namespace music_lyric_model::common {
 	/**
