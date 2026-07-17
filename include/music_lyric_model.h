@@ -3,6 +3,7 @@
 
 #include "../src/common/common.h"
 #include "../src/parsed/parsed.h"
+#include "../src/storage/storage.h"
 #include "../src/version.h"
 
 #endif

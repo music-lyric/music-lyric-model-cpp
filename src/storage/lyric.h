@@ -9,36 +9,38 @@
 
 namespace music_lyric_model::storage {
 	/**
-	 * Creates a Lyric stamped with the current SCHEMA_VERSION.
+	 * Creates a Lyric, stamping the current SCHEMA_VERSION.
 	 */
-	lyric::storage::Lyric makeLyric(const lyric::storage::Lyric& init = {});
+	lyric::storage::Lyric makeStorageLyric(const lyric::storage::Lyric& init = {});
 
 	/**
-	 * Encodes a Lyric into protobuf binary wire format.
+	 * Encode a Lyric to protobuf binary.
+	 * Throws std::runtime_error when encoding fails.
 	 */
-	std::vector<uint8_t> encodeLyric(const lyric::storage::Lyric& model);
+	std::vector<uint8_t> encodeStorageLyric(const lyric::storage::Lyric& lyric);
 
 	/**
-	 * Decodes a Lyric from protobuf binary wire format.
+	 * Decode a Lyric from protobuf binary.
 	 * Throws std::runtime_error when the input is not a valid Lyric.
 	 */
-	lyric::storage::Lyric decodeLyric(const std::vector<uint8_t>& data);
+	lyric::storage::Lyric decodeStorageLyric(const std::vector<uint8_t>& data);
 
 	/**
-	 * Encodes a Lyric into its JSON representation.
+	 * Convert a Lyric to protobuf JSON.
+	 * Throws std::runtime_error when encoding fails.
 	 */
-	std::string lyricToJson(const lyric::storage::Lyric& model);
+	std::string storageLyricToJson(const lyric::storage::Lyric& lyric);
 
 	/**
-	 * Decodes a Lyric from its JSON representation.
+	 * Restore a Lyric from protobuf JSON.
 	 * Throws std::runtime_error when the input is not valid Lyric JSON.
 	 */
-	lyric::storage::Lyric lyricFromJson(const std::string& json);
+	lyric::storage::Lyric storageLyricFromJson(const std::string& json);
 
 	/**
-	 * Sorts lines and their background lines by start time ascending.
+	 * Sort lines and their background lines by start time ascending.
 	 */
-	void sortLinesByTime(lyric::storage::Lyric& model);
+	void sortStorageLinesByTime(lyric::storage::Lyric& lyric);
 } // namespace music_lyric_model::storage
 
 #endif
