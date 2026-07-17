@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <stdexcept>
 #include <string>
 #include <vector>
 
@@ -51,6 +52,12 @@ namespace {
 	}
 } // namespace
 
+TEST_CASE("parsed proto namespace exports generated types") {
+	music_lyric_model::parsed::proto::Info info;
+	info.set_type(lyric::parsed::INFO_TYPE_VALID);
+	CHECK(info.type() == lyric::parsed::INFO_TYPE_VALID);
+}
+
 TEST_CASE("makeParsedInfo stamps the schema version") {
 	CHECK(std::string(makeParsedInfo().version()) == SCHEMA_VERSION);
 	lyric::parsed::Info init;
@@ -93,17 +100,42 @@ TEST_CASE("agent line counts and primary agent over normal bodies") {
 	CHECK(getPrimaryAgent(info.agents(), normals)->id() == "a1");
 }
 
-TEST_CASE("sortParsedLinesByTime orders ascending") {
+TEST_CASE("sortParsedLinesByTime orders ascending including backgrounds") {
 	lyric::parsed::Info info = buildInfo();
+
+	lyric::parsed::LineNormal body;
+	body.mutable_time()->set_start(500);
+	body.mutable_time()->set_end(900);
+	lyric::parsed::LineBackground late;
+	late.mutable_time()->set_start(700);
+	late.mutable_time()->set_end(800);
+	lyric::parsed::LineBackground early;
+	early.mutable_time()->set_start(600);
+	early.mutable_time()->set_end(650);
+	*body.add_backgrounds() = makeParsedLineBackground(late);
+	*body.add_backgrounds() = makeParsedLineBackground(early);
+	*info.add_lines()       = makeParsedLineNormal(body);
+
 	std::reverse(info.mutable_lines()->begin(), info.mutable_lines()->end());
 	sortParsedLinesByTime(info);
-	CHECK(getParsedLineTime(info.lines(0))->start() == 1000);
+	CHECK(getParsedLineTime(info.lines(0))->start() == 500);
+	const lyric::parsed::LineNormal* sorted = asParsedLineNormal(info.lines(0));
+	REQUIRE(sorted != nullptr);
+	REQUIRE(sorted->backgrounds_size() == 2);
+	CHECK(sorted->backgrounds(0).time().start() == 600);
+	CHECK(sorted->backgrounds(1).time().start() == 700);
 }
 
 TEST_CASE("binary and json round-trip preserve content") {
-	const lyric::parsed::Info info      = buildInfo();
+	const lyric::parsed::Info info       = buildInfo();
 	const lyric::parsed::Info fromBinary = decodeParsedInfo(encodeParsedInfo(info));
 	CHECK(getParsedLineText(fromBinary.lines(0)) == "hello");
 	const lyric::parsed::Info fromJson = parsedInfoFromJson(parsedInfoToJson(info));
 	CHECK(getParsedLineText(fromJson.lines(1)) == "world");
+}
+
+TEST_CASE("decodeParsedInfo throws on invalid binary and json") {
+	const std::vector<uint8_t> badBinary = {0x01, 0x02, 0x03};
+	CHECK_THROWS_AS(decodeParsedInfo(badBinary), std::runtime_error);
+	CHECK_THROWS_AS(parsedInfoFromJson("{not-json"), std::runtime_error);
 }

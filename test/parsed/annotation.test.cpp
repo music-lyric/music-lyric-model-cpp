@@ -48,6 +48,23 @@ namespace {
 		*normal.mutable_annotation() = makeWordAnnotation(annotation);
 		return makeWordNormal(normal);
 	}
+
+	/**
+	 * Build a normal word carrying an unknown annotation.
+	 */
+	lyric::common::Word unknownWord(const std::string& content, const std::string& key, const std::string& value) {
+		lyric::common::Unknown unknown;
+		unknown.set_key(key);
+		unknown.set_value(value);
+
+		lyric::common::WordAnnotation annotation;
+		*annotation.add_unknowns() = makeUnknown(unknown);
+
+		lyric::common::WordNormal normal;
+		normal.set_content(content);
+		*normal.mutable_annotation() = makeWordAnnotation(annotation);
+		return makeWordNormal(normal);
+	}
 } // namespace
 
 TEST_CASE("deriveParsedLineRomans joins tokens in word order with padded spacing") {
@@ -78,18 +95,20 @@ TEST_CASE("deriveParsedLineTranslations aggregates word translations by language
 	CHECK(items[0].language() == "en");
 }
 
-TEST_CASE("getFirstAnnotation prefers a language match then falls back") {
-	google::protobuf::RepeatedPtrField<lyric::common::LineAnnotationTranslation> items;
-	lyric::common::LineAnnotationTranslation                                     zh;
-	zh.set_content("你好");
-	zh.set_language("zh");
-	*items.Add() = makeLineAnnotationTranslation(zh);
-	lyric::common::LineAnnotationTranslation en;
-	en.set_content("hi");
-	en.set_language("en");
-	*items.Add() = makeLineAnnotationTranslation(en);
+TEST_CASE("deriveParsedLineUnknowns and deriveParsedLineAnnotation group by key") {
+	google::protobuf::RepeatedPtrField<lyric::common::Word> words;
+	*words.Add() = unknownWord("a", "ruby", "x");
+	lyric::common::WordSpace space;
+	space.set_count(1);
+	*words.Add() = makeWordSpace(space);
+	*words.Add() = unknownWord("b", "ruby", "y");
 
-	CHECK(getFirstAnnotation(items, std::string("en"))->content() == "hi");
-	CHECK(getFirstAnnotation(items)->content() == "你好");
-	CHECK(getFirstAnnotation(items, std::string("ko"))->content() == "你好");
+	const auto unknowns = deriveParsedLineUnknowns(words);
+	REQUIRE(unknowns.size() == 1);
+	CHECK(unknowns[0].key() == "ruby");
+	CHECK(unknowns[0].value() == "x y");
+
+	const lyric::common::LineAnnotation annotation = deriveParsedLineAnnotation(words);
+	REQUIRE(annotation.unknowns_size() == 1);
+	CHECK(annotation.unknowns(0).value() == "x y");
 }
