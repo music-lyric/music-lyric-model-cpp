@@ -7,6 +7,10 @@
 
 #include "model/storage/lyric.gen.h"
 
+#ifndef MUSIC_LYRIC_MODEL_ENABLE_JSON
+#define MUSIC_LYRIC_MODEL_ENABLE_JSON 1
+#endif
+
 namespace music_lyric_model::storage {
 	/**
 	 * Creates a Lyric, stamping the current SCHEMA_VERSION.
@@ -25,6 +29,7 @@ namespace music_lyric_model::storage {
 	 */
 	Lyric decodeStorageLyric(const std::vector<uint8_t>& data);
 
+#if MUSIC_LYRIC_MODEL_ENABLE_JSON
 	/**
 	 * Convert a Lyric to protobuf JSON.
 	 * Throws std::runtime_error when encoding fails.
@@ -36,6 +41,7 @@ namespace music_lyric_model::storage {
 	 * Throws std::runtime_error when the input is not valid Lyric JSON.
 	 */
 	Lyric storageLyricFromJson(const std::string& json);
+#endif
 
 	/**
 	 * Sort lines and their background lines by start time ascending.

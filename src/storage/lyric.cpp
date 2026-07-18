@@ -4,7 +4,6 @@
 #include <stdexcept>
 
 #include "bridge/storage/lyric.gen.h"
-#include "google/protobuf/util/json_util.h"
 #include "storage/line.h"
 #include "storage/lyric.pb.h"
 #include "version.h"
@@ -28,25 +27,6 @@ namespace music_lyric_model::storage {
 		lyric::storage::Lyric pb;
 		if (!pb.ParseFromArray(data.data(), static_cast<int>(data.size()))) {
 			throw std::runtime_error("failed to decode Lyric from binary");
-		}
-		return internal::fromPb(pb);
-	}
-
-	std::string storageLyricToJson(const Lyric& lyric) {
-		const lyric::storage::Lyric pb = internal::toPb(lyric);
-		std::string                 out;
-		const auto                  status = google::protobuf::util::MessageToJsonString(pb, &out);
-		if (!status.ok()) {
-			throw std::runtime_error("failed to encode Lyric to JSON: " + std::string(status.message()));
-		}
-		return out;
-	}
-
-	Lyric storageLyricFromJson(const std::string& json) {
-		lyric::storage::Lyric pb;
-		const auto            status = google::protobuf::util::JsonStringToMessage(json, &pb);
-		if (!status.ok()) {
-			throw std::runtime_error("failed to decode Lyric from JSON: " + std::string(status.message()));
 		}
 		return internal::fromPb(pb);
 	}

@@ -111,16 +111,27 @@ TEST_CASE("sortParsedLinesByTime orders ascending including backgrounds") {
 	CHECK(sorted->backgrounds[1].time->start == 700);
 }
 
-TEST_CASE("binary and json round-trip preserve content") {
+TEST_CASE("binary round-trip preserves content") {
 	const Info info       = buildInfo();
 	const Info fromBinary = decodeParsedInfo(encodeParsedInfo(info));
 	CHECK(getParsedLineText(fromBinary.lines[0]) == "hello");
+	CHECK(getParsedLineText(fromBinary.lines[1]) == "world");
+}
+
+TEST_CASE("decodeParsedInfo throws on invalid binary") {
+	const std::vector<uint8_t> badBinary = {0x01, 0x02, 0x03};
+	CHECK_THROWS_AS(decodeParsedInfo(badBinary), std::runtime_error);
+}
+
+#if MUSIC_LYRIC_MODEL_ENABLE_JSON
+TEST_CASE("json round-trip preserves content") {
+	const Info info     = buildInfo();
 	const Info fromJson = parsedInfoFromJson(parsedInfoToJson(info));
+	CHECK(getParsedLineText(fromJson.lines[0]) == "hello");
 	CHECK(getParsedLineText(fromJson.lines[1]) == "world");
 }
 
-TEST_CASE("decodeParsedInfo throws on invalid binary and json") {
-	const std::vector<uint8_t> badBinary = {0x01, 0x02, 0x03};
-	CHECK_THROWS_AS(decodeParsedInfo(badBinary), std::runtime_error);
+TEST_CASE("parsedInfoFromJson throws on invalid json") {
 	CHECK_THROWS_AS(parsedInfoFromJson("{not-json"), std::runtime_error);
 }
+#endif

@@ -7,6 +7,10 @@
 
 #include "model/parsed/info.gen.h"
 
+#ifndef MUSIC_LYRIC_MODEL_ENABLE_JSON
+#define MUSIC_LYRIC_MODEL_ENABLE_JSON 1
+#endif
+
 namespace music_lyric_model::parsed {
 	/**
 	 * Creates an Info, stamping the current SCHEMA_VERSION.
@@ -35,6 +39,7 @@ namespace music_lyric_model::parsed {
 	 */
 	Info decodeParsedInfo(const std::vector<uint8_t>& data);
 
+#if MUSIC_LYRIC_MODEL_ENABLE_JSON
 	/**
 	 * Convert an Info to protobuf JSON.
 	 * Throws std::runtime_error when encoding fails.
@@ -46,6 +51,7 @@ namespace music_lyric_model::parsed {
 	 * Throws std::runtime_error when the input is not valid Info JSON.
 	 */
 	Info parsedInfoFromJson(const std::string& json);
+#endif
 
 	/**
 	 * Sort lines and their background lines by start time ascending.

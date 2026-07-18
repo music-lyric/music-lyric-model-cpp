@@ -73,13 +73,21 @@ TEST_CASE("agent line counts and primary agent") {
 	CHECK(getPrimaryAgent(lyric.agents, lyric.lines)->id == "a1");
 }
 
-TEST_CASE("binary and json round-trip preserve content") {
+TEST_CASE("binary round-trip preserves content") {
 	const Lyric lyric      = buildLyric();
 	const Lyric fromBinary = decodeStorageLyric(encodeStorageLyric(lyric));
 	CHECK(getStorageLineText(fromBinary.lines[0]) == "hello");
+	CHECK(getStorageLineText(fromBinary.lines[1]) == "world");
+}
+
+#if MUSIC_LYRIC_MODEL_ENABLE_JSON
+TEST_CASE("json round-trip preserves content") {
+	const Lyric lyric    = buildLyric();
 	const Lyric fromJson = storageLyricFromJson(storageLyricToJson(lyric));
+	CHECK(getStorageLineText(fromJson.lines[0]) == "hello");
 	CHECK(getStorageLineText(fromJson.lines[1]) == "world");
 }
+#endif
 
 TEST_CASE("sortStorageLinesByTime orders ascending including backgrounds") {
 	Lyric lyric = buildLyric();
@@ -128,8 +136,13 @@ TEST_CASE("getStorageLineTranslation and getStorageLineRoman read line annotatio
 	CHECK(*getStorageLineRoman(line, std::string("romaji")) == "konnichiwa");
 }
 
-TEST_CASE("decodeStorageLyric throws on invalid binary and json") {
+TEST_CASE("decodeStorageLyric throws on invalid binary") {
 	const std::vector<uint8_t> badBinary = {0x01, 0x02, 0x03};
 	CHECK_THROWS_AS(decodeStorageLyric(badBinary), std::runtime_error);
+}
+
+#if MUSIC_LYRIC_MODEL_ENABLE_JSON
+TEST_CASE("storageLyricFromJson throws on invalid json") {
 	CHECK_THROWS_AS(storageLyricFromJson("{not-json"), std::runtime_error);
 }
+#endif

@@ -1,28 +1,42 @@
 {
-    "version": 3,
-    "cmakeMinimumRequired": {
-        "major": 3,
-        "minor": 21,
-        "patch": 0
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 21,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "displayName": "Default (Ninja Multi-Config)",
+      "generator": "Ninja Multi-Config",
+      "binaryDir": "${sourceDir}/build"
     },
-    "configurePresets": [
-        {
-            "name": "default",
-            "displayName": "Default (Ninja Multi-Config)",
-            "generator": "Ninja Multi-Config",
-            "binaryDir": "${sourceDir}/build"
-        }
-    ],
-    "buildPresets": [
-        {
-            "name": "debug",
-            "configurePreset": "default",
-            "configuration": "Debug"
-        },
-        {
-            "name": "release",
-            "configurePreset": "default",
-            "configuration": "Release"
-        }
-    ]
+    {
+      "name": "release-lto",
+      "displayName": "Release with LTO",
+      "inherits": "default",
+      "binaryDir": "${sourceDir}/build-lto",
+      "cacheVariables": {
+        "MUSIC_LYRIC_MODEL_ENABLE_LTO": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "debug",
+      "configurePreset": "default",
+      "configuration": "Debug"
+    },
+    {
+      "name": "release",
+      "configurePreset": "default",
+      "configuration": "Release"
+    },
+    {
+      "name": "release-lto",
+      "configurePreset": "release-lto",
+      "configuration": "Release"
+    }
+  ]
 }
