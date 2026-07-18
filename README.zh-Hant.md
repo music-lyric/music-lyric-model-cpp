@@ -9,27 +9,60 @@
 將本儲存庫作為 submodule 引入, 並在你的 CMake 專案中連結:
 
 ```bash
-git submodule add https://github.com/music-lyric/music-lyric-model-cpp.git third_party/music-lyric-model-cpp
+git submodule add https://github.com/music-lyric/music-lyric-model-cpp.git third-party/music-lyric-model-cpp
 ```
 
 ```cmake
-add_subdirectory(third_party/music-lyric-model-cpp)
+add_subdirectory(third-party/music-lyric-model-cpp)
 target_link_libraries(your_app PRIVATE music_lyric::model)
 ```
 
 ```cpp
 #include "music_lyric_model.h"
 
-// makeInfo 會蓋上當前的 SCHEMA_VERSION.
-music_lyric_model::runtime::proto::Info info = music_lyric_model::runtime::makeInfo();
-info.set_type(music_lyric_model::runtime::proto::INFO_TYPE_VALID);
+using namespace music_lyric_model;
+using namespace music_lyric_model::common;
+using namespace music_lyric_model::parsed;
+using namespace music_lyric_model::storage;
 
-std::vector<uint8_t> bytes = music_lyric_model::runtime::encodeInfo(info);
-std::string          json  = music_lyric_model::runtime::infoToJson(info);
+// Parsed
+Info info = makeParsedInfo();
+info.type   = InfoType::Valid;
+info.timing = Timing::Word;
 
-auto fromBytes = music_lyric_model::runtime::decodeInfo(bytes);
-auto fromJson  = music_lyric_model::runtime::infoFromJson(json);
+WordNormal word;
+word.content = "hello";
+word.time    = makeTime(Time{0, 500});
+
+LineNormal line;
+line.time  = makeTime(Time{0, 1000});
+line.words = {makeWordNormal(std::move(word))};
+info.lines.push_back(makeParsedLineNormal(std::move(line)));
+
+std::vector<uint8_t> bytes = encodeParsedInfo(info);
+std::string          json  = parsedInfoToJson(info);
+
+Info fromBytes = decodeParsedInfo(bytes);
+Info fromJson  = parsedInfoFromJson(json);
+
+// Storage
+Lyric lyric = makeStorageLyric();
+lyric.timing = Timing::Word;
+std::vector<uint8_t> lyricBytes = encodeStorageLyric(lyric);
 ```
+
+### 命名空間
+
+| 命名空間                     | 作用             |
+| ---------------------------- | ---------------- |
+| `music_lyric_model::common`  | 共享原語         |
+| `music_lyric_model::parsed`  | 解析產物         |
+| `music_lyric_model::storage` | 持久化           |
+| `music_lyric_model`          | `SCHEMA_VERSION` |
+
+`#include "music_lyric_model.h"` 會引入上述三個模組.
+
+`parsed` 與 `storage` 依賴 `common` 的共享類型與 helper, 彼此不互相包含.
 
 ## 建置
 
@@ -37,6 +70,7 @@ auto fromJson  = music_lyric_model::runtime::infoFromJson(json);
 
 - CMake ≥ 3.21
 - Ninja
+- C++17 編譯器
 
 ### CMake
 
@@ -44,7 +78,13 @@ auto fromJson  = music_lyric_model::runtime::infoFromJson(json);
 
 ```bash
 cmake --preset default
-cmake --build --preset debug      # 或: --preset release
+cmake --build --preset debug
+```
+
+執行測試:
+
+```bash
+make test
 ```
 
 ### Make
@@ -52,11 +92,11 @@ cmake --build --preset debug      # 或: --preset release
 從 proto submodule 重新產生 `private/pb/`、`src/model/**/*.gen.h` 與 `private/bridge/` (需要 `buf` 與 Go):
 
 ```bash
-git submodule update --init --recursive   # 拉取 proto/
+git submodule update --init --recursive
 make gen
 ```
 
-`make` 同樣封裝了建置: `make build`, `make clean`.
+`make` 同樣封裝了建置: `make build`, `make format`, `make clean`.
 
 ## 授權
 
