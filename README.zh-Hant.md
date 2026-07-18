@@ -32,10 +32,10 @@ info.timing = Timing::Word;
 
 WordNormal word;
 word.content = "hello";
-word.time    = makeTime(Time{0, 500});
+word.time    = makeTime({.start = 0, .end = 500});
 
 LineNormal line;
-line.time  = makeTime(Time{0, 1000});
+line.time  = makeTime({.start = 0, .end = 1000});
 line.words = {makeWordNormal(std::move(word))};
 info.lines.push_back(makeParsedLineNormal(std::move(line)));
 
@@ -70,7 +70,7 @@ std::vector<uint8_t> lyricBytes = encodeStorageLyric(lyric);
 
 - CMake ≥ 3.21
 - Ninja
-- C++17 編譯器
+- C++20 編譯器
 
 ### CMake
 

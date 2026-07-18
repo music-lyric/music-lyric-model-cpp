@@ -33,6 +33,8 @@
 #include "parsed/line.pb.h"
 
 namespace music_lyric_model::internal {
+#ifndef MUSIC_LYRIC_MODEL_INTERNAL_MAP_HELPERS_
+#define MUSIC_LYRIC_MODEL_INTERNAL_MAP_HELPERS_
 	inline void putMap(const std::unordered_map<std::string, std::string>& src, google::protobuf::Map<std::string, std::string>* dst) {
 		dst->clear();
 		for (const auto& [k, v] : src) {
@@ -48,6 +50,7 @@ namespace music_lyric_model::internal {
 		}
 		return out;
 	}
+#endif // MUSIC_LYRIC_MODEL_INTERNAL_MAP_HELPERS_
 
 	inline lyric::parsed::InfoType toPb(music_lyric_model::parsed::InfoType value) {
 		switch (value) {

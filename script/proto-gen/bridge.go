@@ -110,7 +110,11 @@ func generateBridgeFile(gen *protogen.Plugin, file *protogen.File) error {
 		checkMap(m)
 	}
 
+	// putMap/takeMap live in music_lyric_model::internal and may appear in several
+	// bridge headers; guard so including more than one does not redefine them.
 	if needsMap {
+		body.WriteString("#ifndef MUSIC_LYRIC_MODEL_INTERNAL_MAP_HELPERS_\n")
+		body.WriteString("#define MUSIC_LYRIC_MODEL_INTERNAL_MAP_HELPERS_\n")
 		body.WriteString("\tinline void putMap(const std::unordered_map<std::string, std::string>& src, google::protobuf::Map<std::string, std::string>* dst) {\n")
 		body.WriteString("\t\tdst->clear();\n")
 		body.WriteString("\t\tfor (const auto& [k, v] : src) {\n")
@@ -124,9 +128,9 @@ func generateBridgeFile(gen *protogen.Plugin, file *protogen.File) error {
 		body.WriteString("\t\t\tout.emplace(k, v);\n")
 		body.WriteString("\t\t}\n")
 		body.WriteString("\t\treturn out;\n")
-		body.WriteString("\t}\n\n")
+		body.WriteString("\t}\n")
+		body.WriteString("#endif // MUSIC_LYRIC_MODEL_INTERNAL_MAP_HELPERS_\n\n")
 	}
-
 	// Enums
 	for _, e := range file.Enums {
 		writeEnumBridge(&body, e, domainNS, pbNS)

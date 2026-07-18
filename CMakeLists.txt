@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.21)
 
 project(music_lyric_model VERSION 3.0.0 LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
@@ -45,7 +45,7 @@ set(MUSIC_LYRIC_PUBLIC_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/include/music_lyric_m
 add_library(music_lyric_model STATIC ${MUSIC_LYRIC_GEN_SOURCES} ${MUSIC_LYRIC_SOURCES} ${MUSIC_LYRIC_PUBLIC_HEADER})
 add_library(music_lyric::model ALIAS music_lyric_model)
 
-target_compile_features(music_lyric_model PUBLIC cxx_std_17)
+target_compile_features(music_lyric_model PUBLIC cxx_std_20)
 
 # MSVC reads source as the system code page (e.g. GBK) by default, but abseil/protobuf headers are UTF-8.
 # /bigobj is required by protobuf gencode. Keep both PRIVATE so consumers need not depend on protobuf.
