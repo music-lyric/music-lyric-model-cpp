@@ -3,4 +3,11 @@
 
 #include "model/common/part.gen.h"
 
+namespace music_lyric_model::common {
+	/**
+	 * Creates a Part, a line's structural section.
+	 */
+	Part makePart(Part init = {});
+} // namespace music_lyric_model::common
+
 #endif

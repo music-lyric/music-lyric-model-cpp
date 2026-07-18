@@ -1,6 +1,10 @@
 #include "parsed/language.h"
 
 namespace music_lyric_model::parsed {
+	LanguageItem makeParsedLanguageItem(LanguageItem init) {
+		return init;
+	}
+
 	bool hasParsedLanguage(const std::vector<LanguageItem>& languages, const std::string& tag) {
 		return getParsedLanguageByTag(languages, tag) != nullptr;
 	}

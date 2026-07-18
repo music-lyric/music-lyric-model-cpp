@@ -7,6 +7,11 @@
 
 namespace music_lyric_model::common {
 	/**
+	 * Creates a Time.
+	 */
+	Time makeTime(Time init = {});
+
+	/**
 	 * Duration of a time range in milliseconds, zero when absent.
 	 */
 	int64_t getTimeDuration(const Time* time);

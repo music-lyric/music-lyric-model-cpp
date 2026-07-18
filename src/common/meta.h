@@ -9,6 +9,26 @@
 
 namespace music_lyric_model::common {
 	/**
+	 * Creates a Meta, the lyric metadata container.
+	 */
+	Meta makeMeta(Meta init = {});
+
+	/**
+	 * Creates a MetaText, a value optionally tagged with a language.
+	 */
+	MetaText makeMetaText(MetaText init = {});
+
+	/**
+	 * Creates a MetaCredit, a role with its credited names.
+	 */
+	MetaCredit makeMetaCredit(MetaCredit init = {});
+
+	/**
+	 * Creates a MetaReference, a platform and its identifiers.
+	 */
+	MetaReference makeMetaReference(MetaReference init = {});
+
+	/**
 	 * Text of a localized meta list, preferring a language match, null when empty.
 	 */
 	std::optional<std::string> getMetaText(const std::vector<MetaText>& items, const std::optional<std::string>& language = std::nullopt);

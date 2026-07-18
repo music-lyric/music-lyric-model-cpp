@@ -9,6 +9,21 @@
 
 namespace music_lyric_model::common {
 	/**
+	 * Creates a LineAnnotationRoman.
+	 */
+	LineAnnotationRoman makeLineAnnotationRoman(LineAnnotationRoman init = {});
+
+	/**
+	 * Creates a LineAnnotationTranslation.
+	 */
+	LineAnnotationTranslation makeLineAnnotationTranslation(LineAnnotationTranslation init = {});
+
+	/**
+	 * Creates a LineAnnotation, the per-line annotation container.
+	 */
+	LineAnnotation makeLineAnnotation(LineAnnotation init = {});
+
+	/**
 	 * First annotation item, preferring a language match.
 	 */
 	template <typename T>

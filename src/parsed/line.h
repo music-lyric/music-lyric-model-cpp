@@ -19,6 +19,11 @@ namespace music_lyric_model::parsed {
 	Line makeParsedLineNormal(LineNormal normal = {});
 
 	/**
+	 * Creates a ParsedLineBackground.
+	 */
+	LineBackground makeParsedLineBackground(LineBackground init = {});
+
+	/**
 	 * Creates an interlude wrapped in a Line.
 	 */
 	Line makeParsedLineInterlude(LineInterlude interlude = {});

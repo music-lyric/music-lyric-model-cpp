@@ -29,6 +29,14 @@ namespace music_lyric_model::storage {
 		}
 	} // namespace
 
+	Line makeStorageLine(Line init) {
+		return init;
+	}
+
+	LineBackground makeStorageLineBackground(LineBackground init) {
+		return init;
+	}
+
 	const common::Time* getStorageLineTime(const Line& line) {
 		return line.time.has_value() ? &*line.time : nullptr;
 	}

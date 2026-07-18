@@ -122,6 +122,10 @@ namespace music_lyric_model::parsed {
 		return Line{std::move(normal)};
 	}
 
+	LineBackground makeParsedLineBackground(LineBackground init) {
+		return init;
+	}
+
 	Line makeParsedLineInterlude(LineInterlude interlude) {
 		return Line{std::move(interlude)};
 	}

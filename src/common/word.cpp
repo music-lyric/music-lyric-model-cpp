@@ -1,6 +1,7 @@
 #include "common/word.h"
 
 #include <unordered_set>
+#include <utility>
 
 #include "common/time.h"
 
@@ -11,6 +12,26 @@ namespace music_lyric_model::common {
 
 	Word makeWordSpace(WordSpace space) {
 		return Word{std::move(space)};
+	}
+
+	WordAnnotationContent makeWordAnnotationContent(WordAnnotationContent init) {
+		return init;
+	}
+
+	WordAnnotationRoman makeWordAnnotationRoman(WordAnnotationRoman init) {
+		return init;
+	}
+
+	WordAnnotationTranslation makeWordAnnotationTranslation(WordAnnotationTranslation init) {
+		return init;
+	}
+
+	WordAnnotationRuby makeWordAnnotationRuby(WordAnnotationRuby init) {
+		return init;
+	}
+
+	WordAnnotation makeWordAnnotation(WordAnnotation init) {
+		return init;
 	}
 
 	bool isWordNormal(const Word& word) {

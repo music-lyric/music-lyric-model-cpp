@@ -1,3 +1,7 @@
 #include "common/part.h"
 
-// Part is a pure value type; helpers live with consumers.
+namespace music_lyric_model::common {
+	Part makePart(Part init) {
+		return init;
+	}
+} // namespace music_lyric_model::common

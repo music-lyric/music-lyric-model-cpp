@@ -1,6 +1,10 @@
 #include "common/time.h"
 
 namespace music_lyric_model::common {
+	Time makeTime(Time init) {
+		return init;
+	}
+
 	int64_t getTimeDuration(const Time* time) {
 		return time ? static_cast<int64_t>(time->end) - static_cast<int64_t>(time->start) : 0;
 	}

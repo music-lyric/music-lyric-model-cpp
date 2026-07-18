@@ -11,6 +11,11 @@
 
 namespace music_lyric_model::common {
 	/**
+	 * Creates an AgentItem.
+	 */
+	AgentItem makeAgentItem(AgentItem init = {});
+
+	/**
 	 * Agent with the given id, null when absent.
 	 */
 	const AgentItem* getAgentById(const std::vector<AgentItem>& agents, const std::string& id);

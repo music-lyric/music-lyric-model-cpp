@@ -13,6 +13,16 @@
 
 namespace music_lyric_model::storage {
 	/**
+	 * Creates a storage line.
+	 */
+	Line makeStorageLine(Line init = {});
+
+	/**
+	 * Creates a storage background line.
+	 */
+	LineBackground makeStorageLineBackground(LineBackground init = {});
+
+	/**
 	 * Time range of a primary line, null when absent.
 	 */
 	const common::Time* getStorageLineTime(const Line& line);

@@ -3,6 +3,22 @@
 #include "common/unknown.h"
 
 namespace music_lyric_model::common {
+	Meta makeMeta(Meta init) {
+		return init;
+	}
+
+	MetaText makeMetaText(MetaText init) {
+		return init;
+	}
+
+	MetaCredit makeMetaCredit(MetaCredit init) {
+		return init;
+	}
+
+	MetaReference makeMetaReference(MetaReference init) {
+		return init;
+	}
+
 	std::optional<std::string> getMetaText(const std::vector<MetaText>& items, const std::optional<std::string>& language) {
 		if (language.has_value()) {
 			for (const auto& item : items) {

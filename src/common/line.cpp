@@ -1,3 +1,15 @@
 #include "common/line.h"
 
-// Line annotation helpers are header-only templates.
+namespace music_lyric_model::common {
+	LineAnnotationRoman makeLineAnnotationRoman(LineAnnotationRoman init) {
+		return init;
+	}
+
+	LineAnnotationTranslation makeLineAnnotationTranslation(LineAnnotationTranslation init) {
+		return init;
+	}
+
+	LineAnnotation makeLineAnnotation(LineAnnotation init) {
+		return init;
+	}
+} // namespace music_lyric_model::common

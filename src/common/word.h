@@ -20,6 +20,31 @@ namespace music_lyric_model::common {
 	Word makeWordSpace(WordSpace space = {});
 
 	/**
+	 * Creates a WordAnnotationContent, one token of a word annotation.
+	 */
+	WordAnnotationContent makeWordAnnotationContent(WordAnnotationContent init = {});
+
+	/**
+	 * Creates a WordAnnotationRoman.
+	 */
+	WordAnnotationRoman makeWordAnnotationRoman(WordAnnotationRoman init = {});
+
+	/**
+	 * Creates a WordAnnotationTranslation.
+	 */
+	WordAnnotationTranslation makeWordAnnotationTranslation(WordAnnotationTranslation init = {});
+
+	/**
+	 * Creates a WordAnnotationRuby.
+	 */
+	WordAnnotationRuby makeWordAnnotationRuby(WordAnnotationRuby init = {});
+
+	/**
+	 * Creates a WordAnnotation, the per-word annotation container.
+	 */
+	WordAnnotation makeWordAnnotation(WordAnnotation init = {});
+
+	/**
 	 * Whether a Word holds a normal word.
 	 */
 	bool isWordNormal(const Word& word);

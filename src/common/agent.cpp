@@ -1,6 +1,10 @@
 #include "common/agent.h"
 
 namespace music_lyric_model::common {
+	AgentItem makeAgentItem(AgentItem init) {
+		return init;
+	}
+
 	const AgentItem* getAgentById(const std::vector<AgentItem>& agents, const std::string& id) {
 		for (const auto& item : agents) {
 			if (item.id == id) {

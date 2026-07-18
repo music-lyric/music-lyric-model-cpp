@@ -8,6 +8,11 @@
 
 namespace music_lyric_model::parsed {
 	/**
+	 * Creates a LanguageItem.
+	 */
+	LanguageItem makeParsedLanguageItem(LanguageItem init = {});
+
+	/**
 	 * Whether a language of the given tag is present.
 	 */
 	bool hasParsedLanguage(const std::vector<LanguageItem>& languages, const std::string& tag);
